@@ -1,0 +1,194 @@
+<div class="ttvcmsblog-event ttvcmsblog-left-side">
+    <div class="ttvblog-event">
+        <div class="home_blog_post_area product_block_container ttvblog-full-width ttvnews-event">
+            <div class="ttvnews-event-wrapper ttvall-block-box-shadows"> 
+            	{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_left_column_title_design.twig' with {'title': main_title} %}
+				 <div class="ttvblog-event-all-block">
+                    <div class="ttvblog-event-inner-block">
+                        <div class="ttvnews-wrapper-info-box owl-theme owl-carousel">
+							{% for data in blogpost_data %}
+								 <div class="item ttvblog-event-all-content-block ttvblog-part-1 ttvblog-even">
+	                                    <article class="blog_pos clearfix">
+	                                        <div class="blog_post_content_top ttvblog-img-block col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	                                            <div class="post_thumbnail">
+													{% if data.tvcmsblog_main_posttype == "video" %}
+													<!-- begin video -->
+														<a href="{{ data.tvcmsblog_main_video }}?autoplay=1" class="various fancybox fancybox.iframe img_content" >
+															<div class="ttvnews-event-hoverbtn">
+																<div class="ttvblog-content-img ttvblog-balance-height">
+																	<img src="https://img.youtube.com/vi/{{ data.youtube_id }}/0.jpg" alt="">
+																</div>
+																<div class="ttvnews-event-overly"></div>
+																<div class="ttvnews-event-buttons">
+																	<i class="fa fa-play-circle" aria-hidden="true"></i>
+																</div>
+															</div>
+														</a>
+													<!-- begin video -->
+													{% elseif data.tvcmsblog_main_posttype == "gallery" %}
+													<!-- begin galleryimage -->
+													<a href="{{ data.tvcmsblog_main_link }}" class="various fancybox fancybox.iframe img_content">
+														<div class="ttvnews-event-hoverbtn">
+															<div class="ttvblog-content-img">
+																<img src="{{ data.gallery }}" alt="">
+															</div>
+															<div class="ttvnews-event-buttons"><i class="fa fa-search" aria-hidden="true"></i></div>
+														</div>
+													</a>
+													<!-- end galleryimage -->
+														{% else %}							
+													<!-- begin image -->
+													<a href="{{ data.tvcmsblog_main_link }}" class="various fancybox fancybox.iframe img_content">
+														<div class="ttvnews-event-hoverbtn">
+															<div class="ttvblog-content-img">
+																<img src="{{ data.tvcmsblog_main_featureimage }}" alt="">
+															</div>
+															<div class="ttvnews-event-buttons"><i class="fa fa-search" aria-hidden="true"></i></div>
+														</div>
+													</a>
+													<!-- end image -->
+													{% endif %}
+												</div>
+											</div>
+											<div class="post_content ttvnews-event-content-wrapper col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+												<div class="ttv-event-content">
+													<div class="ttvblog-date-username">
+														{# <div class="post_meta">
+															<div class="meta-author ttvnews-event-username"><i class="fa fa-user" aria-hidden="true"></i>
+																<p>{{ text_by }}:{{ text_user_title }}</p>
+															</div>
+															<div class="ttv-author-comment">
+																<p>{{ data.comment_count }} {{ text_comment }}</p>
+															</div>
+														</div> #}
+														<div class="date_time ttvdate-time">
+															<p>
+																<i class="fa fa-calendar-o" aria-hidden="true"></i> 
+														 		{{ data.tvcmsblog_main_adddate }} 
+														 	</p>
+														</div>
+														
+													</div>
+													<div class="ttvnews-event-titel">
+														<a href="{{ data.tvcmsblog_main_link }}" class="post_title">
+															 <h3>{{ data.tvcmsblog_sub_title }}</h3>
+														</a>
+													</div>
+													<p class="post_description ttvnews-event-description"> 
+														{{ data.tvcmsblog_sub_excerpt }} 
+													</p>
+													<div class="ttvnews-event-read-more">
+														<div class="ttvnews-event-read-more-link">
+															<a href="{{ data.tvcmsblog_main_link }}">{{ text_readmore }} <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+															</a>
+														</div>
+													</div>
+												</div>
+											</div>
+										</article>
+								</div>
+							{% endfor %}
+						</div>
+					</div>
+					<div class='ttvcms-blog-left-side-pagination-wrapper'>
+		                <div class="ttvcms-blog-left-side-pagination">
+		                    <div class="ttvcms-blog-left-side-next-pre-btn">
+		                        <div class="ttvblog-left-side-prev ttvcmsprev-btn"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+		                        <div class="ttvblog-left-side-next ttvcmsnext-btn"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+		                    </div>
+		                </div>
+		            </div>
+				</div>
+			</div>
+		</div>
+	</div> 
+			
+</div>
+	<script type="text/javascript">
+	/******************  left blog post Js *******************************************/
+
+$(document).ready(function(){
+var mobileViewSize  = 991;
+leftRightSideSlider();
+		leftRightBlogTitleToggle();
+		$(window).resize(function() {
+			leftRightSideSlider();
+			leftRightBlogTitleToggle();
+		});
+
+  function leftRightSideSlider()
+  {
+    $('.ttvcmsblog-left-side .ttvnews-wrapper-info-box').owlCarousel({
+      loop: false,
+      dots: false,
+      nav: false,
+      responsive: {
+        0: { items: 1},
+        320:{ items: 1, slideBy: 1},
+        400:{ items: 1, slideBy: 1},
+        768:{ items: 1, slideBy: 1},
+        992:{ items: 1, slideBy: 1},
+        1200:{ items: 1, slideBy: 1},
+        1600:{ items: 1, slideBy: 1},
+        1800:{ items: 1, slideBy: 1}
+      },
+    });
+    
+
+    $('.ttvcmsblog-left-side .ttvblog-left-side-prev').on('click', function() {
+		$('.ttvcmsblog-left-side .owl-nav .owl-prev').trigger('click');
+	});
+
+	$('.ttvcmsblog-left-side .ttvblog-left-side-next').on('click', function() {
+		$('.ttvcmsblog-left-side .owl-nav .owl-next').trigger('click');
+	});
+
+  }
+
+   /*************** Start left Right  Product Toggle in Mobile Size ***************************************************/
+ 
+  function leftRightBlogTitleToggle()
+  {
+    $('.ttvcmsblog-left-side .ttvleft-right-title-toggle').on('click', function(e){
+      e.preventDefault();
+      if(document.body.clientWidth <= mobileViewSize){
+        if($(this).hasClass('open')) {
+          $(this).removeClass('open');
+          $(this).parent().parent().find('.ttvblog-event-all-block').removeClass('open').stop(false).slideUp(500, "swing");
+        } else {
+          $(this).addClass('open');
+          $(this).parent().parent().find('.ttvblog-event-all-block').addClass('open').stop(false).slideDown(500, "swing");
+        }
+      }
+      e.stopPropagation();
+    });
+  }
+  /*************** End left Right  Product Toggle in Mobile Size ***************************************************/
+
+  /*************** Start left Right  Product Toggle in Mobile Size ***************************************************/
+  leftRightBlogTitleToggle();
+  $(window).resize(function(){
+    $('.ttvcmsblog-left-side .ttvleft-right-title-toggle, .ttvleft-right-penal-all-block .ttvblog-event-all-block').removeClass('open');
+    leftRightBlogTitleToggle();
+  });
+  function leftRightBlogTitleToggle()
+  {
+    $('.ttvcmsblog-left-side .ttvleft-right-title-toggle').on('click', function(e){
+      e.preventDefault();
+      if(document.body.clientWidth <= mobileViewSize){
+        if($(this).hasClass('open')) {
+          $(this).removeClass('open');
+          $(this).parent().parent().find('.ttvblog-event-all-block').removeClass('open').stop(false).slideUp(500, "swing");
+        } else {
+          $(this).addClass('open');
+          $(this).parent().parent().find('.ttvblog-event-all-block').addClass('open').stop(false).slideDown(500, "swing");
+        }
+      }
+      e.stopPropagation();
+    });
+  }
+  /*************** End left Right  Product Toggle in Mobile Size ***************************************************/
+ });
+
+/****************** End left blog post Js *******************************************/
+</script>

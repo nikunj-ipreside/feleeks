@@ -1,0 +1,334 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-module" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <div id="growls" class="default"></div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+      </div>
+      <div class="panel-body">
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-module" class="form-horizontal">
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+            <div class="col-sm-10">
+              <select name="status" id="input-status" class="form-control">
+                {% if status %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+            </div>         
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-name">{{ entry_name }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="name" value="{{ name }}" placeholder="{{ entry_name }}" id="input-name" class="form-control" />
+              {% if error_name %}
+              <div class="text-danger">{{ error_name }}</div>
+              {% endif %}
+            </div>
+          </div>
+          {% if status_main_form %}
+            <div class="form-group">
+              <center><h1>{{ text_main }}</h1></center>
+            </div>
+
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab-general">
+                  <ul class="nav nav-tabs" id="language">
+                    {% for language in languages %}
+                    <li><a href="#language{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+                    {% endfor %}
+                  </ul>
+                  <div class="tab-content">{% for language in languages %}
+                    <div class="tab-pane" id="language{{ language.language_id }}">
+                        {% if status_main_title %}
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-title{{ language.language_id }}">{{ entry_main_title }}</label>
+                            <div class="col-sm-10">
+                              <input type="text" name="tvcmsbanners_main[{{ language.language_id }}][title]" value="{{ tvcmsbanners_main[language.language_id] ? tvcmsbanners_main[language.language_id].title }}" placeholder="{{ entry_main_title }}" id="input-name{{ language.language_id }}" class="form-control" />
+                            </div>
+                          </div>
+                        {% endif %}
+                        {% if status_main_description %}
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-des{{ language.language_id }}">{{ entry_des }}</label>
+                            <div class="col-sm-10">
+                              <input type="text" name="tvcmsbanners_main[{{ language.language_id }}][des]" value="{{ tvcmsbanners_main[language.language_id] ? tvcmsbanners_main[language.language_id].des }}" placeholder="{{ entry_des }}" id="input-name{{ language.language_id }}" class="form-control" />
+                            </div>
+                          </div>
+                        {% endif %}
+                        {% if status_main_short_description %}
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-short{{ language.language_id }}">{{ entry_main_des }}</label>
+                            <div class="col-sm-10">
+                              <input type="text" name="tvcmsbanners_main[{{ language.language_id }}][short]" value="{{ tvcmsbanners_main[language.language_id] ? tvcmsbanners_main[language.language_id].short }}"
+                               placeholder="{{ entry_main_des }}" id="input-name{{ language.language_id }}" class="form-control" />
+                            </div>    
+                          </div>
+                        {% endif %}
+                        {% if status_main_image %}
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-tvcmsbanners_main_short{{ language.language_id }}">{{ entry_main_ban }}</label>
+                            <div class="col-sm-10">
+                              <a href="" id="thumb-image{{ language.language_id }}" data-toggle="image" class="img-thumbnail">
+                              <img src="{{ img[language.language_id] }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                              </a>
+                              <input type="hidden" name="tvcmsbanners_main[{{ language.language_id }}][img]" value="{{ tvcmsbanners_main[language.language_id] ? tvcmsbanners_main[language.language_id].img }}" id="input-tvcmsimageslidersub_image{{ language.language_id }}" />
+                            </div>
+                          </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                  </div>
+              </div>
+            </div>
+          {% endif %}
+          
+          {% if status_record_form %}
+            <div class="form-group">
+              <center><h1>{{ entry_main_ban }}</h1></center>
+            </div>
+
+            <div class="table-responsive">
+              <table id="special" class="table table-bordered table-hover tvcmsbanners">
+                <thead>
+                  <tr>
+                    {% if status_title %}<td class="text-left">{{ entry_title }}</td>{% endif %}
+                    {% if status_description %}<td class="text-left">{{ entry_des }}</td>{% endif %}
+                    {% if status_short_description %}<td class="text-center">{{ entry_short }}</td>{% endif %}
+                    <td class="text-center">{{ entry_record_btncaption }}</td>
+
+                    {% if status_image %}<td class="text-left">{{ entry_image }}</td>{% endif %}
+                    {% if status_link %}<td class="text-left">{{ entry_link }}</td>{% endif %}
+                    <td class="text-left">{{ entry_grid }}</td>
+                    <td class="text-left">{{ entry_height }}</td>
+                    <td class="text-left">{{ entry_width }}</td>
+                    <td class="text-left">{{ entry_status }}</td>
+                    <td class="text-left">{{ entry_sort }}</td>
+                    <td class="text-left">{{ entry_action }}</td>
+                  </tr>
+                </thead>
+                 <tbody>
+                {% set tvcmsbanners_row = 0 %}
+                {% for tvcmsbanners in tvcmsbanners_form %}     
+                <tr id="recordsArray_{{ tvcmsbanners.tvcmsbanners_id }}" class="special-row{{ tvcmsbanners_row }}">
+
+                  {% if status_title %}
+                    <td class="text-left">
+                      {% for language in languages %}
+                          <div class="input-group"><span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>
+                            <input type="text" name="tvcmsbanners_form[{{ tvcmsbanners_row }}][language][{{ language.language_id }}][title]" value="{{ tvcmsbanners.language[language.language_id].title }}" placeholder="{{ entry_title }}" class="form-control" />
+                          </div>
+                      {% endfor %}
+                    </td>
+                  {% endif %}
+                  {% if status_description %}
+                    <td class="text-left">
+                      {% for language in languages %}
+                          <div class="input-group"><span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>
+                            <input type="text" name="tvcmsbanners_form[{{ tvcmsbanners_row }}][language][{{ language.language_id }}][des]" value="{{ tvcmsbanners.language[language.language_id].des }}" placeholder="{{ entry_title }}" class="form-control" />
+                          </div>
+                      {% endfor %}
+                    </td>
+                  {% endif %}
+                  {% if status_short_description %}
+                    <td class="text-left">
+                        {% for language in languages %}
+                            <div class="input-group"><span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>
+                              <input type="text" name="tvcmsbanners_form[{{ tvcmsbanners_row }}][language][{{ language.language_id }}][short]" value="{{ tvcmsbanners.language[language.language_id].short }}" placeholder="{{ entry_title }}" class="form-control" />
+                            </div>
+                        {% endfor %}
+                     </td>
+                  {% endif %}
+                  <td class="text-left">
+                              <label class="radio-inline">
+                                <input type="radio"  {% if tvcmsbanners.btncap == 'ttv-banner-contant-left' %} checked="checked" {% endif %} name="tvcmsbanners_form[{{ tvcmsbanners_row }}][btncap]"  value="ttv-banner-contant-left"/>
+                                {{ text_left }}
+                              </label>
+                              <label class="radio-inline">
+                                <input type="radio" {% if tvcmsbanners.btncap == 'ttv-banner-contant-center' %} checked="checked" {% endif %} name="tvcmsbanners_form[{{ tvcmsbanners_row }}][btncap]" value="ttv-banner-contant-center"/>
+                                {{ text_center }}
+                              </label>
+                              <label class="radio-inline">
+                                <input type="radio" {% if tvcmsbanners.btncap == 'ttv-banner-contant-right' %} checked="checked" {% endif %} name="tvcmsbanners_form[{{ tvcmsbanners_row }}][btncap]" value="ttv-banner-contant-right"/>
+                                {{ text_right }}
+                              </label>
+                              <label class="radio-inline">
+                                <input type="radio" {% if tvcmsbanners.btncap == 'ttv-banner-contant-none' %} checked="checked" {% endif %} name="tvcmsbanners_form[{{ tvcmsbanners_row }}][btncap]" value="ttv-banner-contant-none"/>
+                                {{ text_hide }}
+                              </label>
+               </td>
+                  {% if status_image %}
+                      <td class="text-center">
+                        <a href="" id="thumb-image{{ tvcmsbanners_row }}" data-toggle="image" class="img-thumbnail"><img src="{{ tvcmsbanners.form_image }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a>
+                        <input type="hidden" name="tvcmsbanners_form[{{ tvcmsbanners_row }}][tvcmsbanners_img]" value="{{ tvcmsbanners.tvcmsbanners_img }}" id="input-image{{ tvcmsbanners_row }}" placeholder="{{ entry_image }}" />
+                        {% if error[tvcmsbanners_row] %}
+                          <div class="text-danger">{{ error[tvcmsbanners_row] }}</div>
+                        {% endif %}
+
+                      </td>
+                  {% endif %}
+                  {% if status_link %}
+                    <td class="text-right">
+                      <input type="text" name="tvcmsbanners_form[{{ tvcmsbanners_row }}][tvcmsbanners_link]" value="{{ tvcmsbanners.tvcmsbanners_link }}" placeholder="{{ entry_priority }}" class="form-control" />
+                    </td>
+                  {% endif %}
+                  
+                      <td class="text-center">
+                        <select name="tvcmsbanners_form[{{ tvcmsbanners_row }}][tvcmsbanners_grid]" class="form-control">
+                          {% for i in 1..12 %}
+                            <option {% if i == tvcmsbanners.tvcmsbanners_grid %} selected="selected" {% endif %}value="{{ i }}">{{ i }}</option>
+                          {% endfor %}
+                        </select>
+                      </td>
+                      <td class="text-center">
+                        <input type="text" name="tvcmsbanners_form[{{ tvcmsbanners_row }}][tvcmsbanners_height]" value="{{ tvcmsbanners.tvcmsbanners_height }}" id="input-image{{ tvcmsbanners_row }}" class="form-control" placeholder="{{ entry_image }}" />
+                      </td>
+                      <td class="text-center">
+                        <input type="text" name="tvcmsbanners_form[{{ tvcmsbanners_row }}][tvcmsbanners_width]" value="{{ tvcmsbanners.tvcmsbanners_width }}" id="input-image{{ tvcmsbanners_row }}" class="form-control" placeholder="{{ entry_image }}" />
+                      </td>
+
+                      <td class="text-left">                      
+                        <label class="radio-inline"> {% if tvcmsbanners.tvcmsbanners_status %}
+                        <input type="radio" name="tvcmsbanners_form[{{ tvcmsbanners_row }}][tvcmsbanners_status]" value="1" checked="checked" />
+                        {{ text_yes }}
+                        {% else %}
+                        <input type="radio" name="tvcmsbanners_form[{{ tvcmsbanners_row }}][tvcmsbanners_status]" value="1" />
+                        {{ text_yes }}
+                        {% endif %} </label>
+                        <label class="radio-inline"> {% if not tvcmsbanners.tvcmsbanners_status %}
+                        <input type="radio" name="tvcmsbanners_form[{{ tvcmsbanners_row }}][tvcmsbanners_status]" value="0" checked="checked" />
+                        {{ text_no }}
+                        {% else %}
+                        <input type="radio" name="tvcmsbanners_form[{{ tvcmsbanners_row }}][tvcmsbanners_status]" value="0" />
+                        {{ text_no }}
+                        {% endif %} </label>
+                      </td>
+                      <td class="text-center">
+                        <input type="text" name="tvcmsbanners_form[{{ tvcmsbanners_row }}][tvcmsbanners_sort]" value="{{ tvcmsbanners.tvcmsbanners_sort }}" id="input-image{{ tvcmsbanners_row }}" class="form-control" placeholder="{{ entry_sort }}" />
+                      </td>
+                  <td class="text-left"><button type="button" onclick="$('.special-row{{ tvcmsbanners_row }}').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>
+                </tr>
+                {% set tvcmsbanners_row = tvcmsbanners_row + 1 %}
+                {% endfor %}
+                  </tbody>
+                
+                <tfoot>
+                  <tr>
+                    <td colspan="11"></td>
+                    <td class="text-left"><button type="button" onclick="addrow();" data-toggle="tooltip" title="{{ button_special_add }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
+                  </tr>
+                </tfoot>       
+              </table>
+            </div>
+          {% endif %}
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="view/javascript/themewebvolty/tvcmsjquery.ui.core.min.js
+"></script> 
+<script type="text/javascript" src="view/javascript/themewebvolty/tvcmsjquery.ui.widget.min.js"></script> 
+<script type="text/javascript" src="view/javascript/themewebvolty/tvcmsjquery.ui.mouse.min.js"></script> 
+<script type="text/javascript" src="view/javascript/themewebvolty/tvcmsjquery.sortable.js"></script> 
+<script type="text/javascript" src="view/javascript/themewebvolty/tvcmsjquery-ui.js"></script> 
+
+<script type="text/javascript"><!--
+$('#language a:first').tab('show');
+var tvcmsbanners_row = {{ tvcmsbanners_row }};
+function addrow() {
+    html  = '<tr class="special-row' + tvcmsbanners_row + '">';
+    
+    {% if status_title %}
+      html += '  <td class="text-left">';
+          {% for language in languages %}
+          html += '       <div class="input-group"><span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>\
+                              <input type="text" name="tvcmsbanners_form[' + tvcmsbanners_row + '][language][{{ language.language_id }}][title]" value="" placeholder="{{ entry_title }}" class="form-control" />\
+                            </div>';
+          {% endfor %}
+          html += ' </td>';
+    {% endif %}
+    {% if status_description %}
+          html += '  <td class="text-left">';
+          {% for language in languages %}
+          html += '       <div class="input-group"><span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>\
+                              <input type="text" name="tvcmsbanners_form[' + tvcmsbanners_row + '][language][{{ language.language_id }}][des]" value="" placeholder="{{ entry_title }}" class="form-control" />\
+                            </div>';
+          {% endfor %}
+          html += ' </td>';
+    {% endif %}
+
+    {% if status_short_description %}
+      html += '  <td class="text-left">';
+          {% for language in languages %}
+          html += '       <div class="input-group"><span class="input-group-addon"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /></span>\
+                              <input type="text" name="tvcmsbanners_form[' + tvcmsbanners_row + '][language][{{ language.language_id }}][short]" value="" placeholder="{{ entry_title }}" class="form-control" />\
+                            </div>';
+          {% endfor %}
+          html += ' </td>';
+    {% endif %}
+           html += '  <td class="text-left">\
+                              <label class="radio-inline">\
+                                <input type="radio" name="tvcmsbanners_form[' + tvcmsbanners_row + '][btncap]"  value="ttv-banner-contant-left"/>\
+                                {{ text_left }}\
+                              </label>\
+                              <label class="radio-inline">\
+                                <input type="radio" name="tvcmsbanners_form[' + tvcmsbanners_row + '][btncap]" value="ttv-banner-contant-center"/>\
+                                {{ text_center }}\
+                              </label>\
+                              <label class="radio-inline">\
+                                <input type="radio" name="tvcmsbanners_form[' + tvcmsbanners_row + '][btncap]" value="ttv-banner-contant-right"/>\
+                                {{ text_right }}\
+                              </label>\
+                              <label class="radio-inline">\
+                                <input type="radio" name="tvcmsbanners_form[' + tvcmsbanners_row + '][btncap]" value="ttv-banner-contant-none"/>\
+                                {{ text_hide }}\
+                    </label> </td>';
+
+    {% if status_image %}
+      html += '  <td class="text-center"><a href="" id="thumb-image' + tvcmsbanners_row + '" data-toggle="image" class="img-thumbnail"><img src="{{ placeholder }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a><input type="hidden" name="tvcmsbanners_form[' + tvcmsbanners_row + '][tvcmsbanners_img]" value="" id="input-image' + tvcmsbanners_row + '" /></td>';
+      {% endif %}
+    {% if status_link %}
+      html += '  <td class="text-right"><input type="text" name="tvcmsbanners_form[' + tvcmsbanners_row + '][tvcmsbanners_link]" value="" placeholder="{{ entry_link }}" class="form-control" /></td>';
+    {% endif %}
+
+
+      html += '  <td class="text-center"><select name="tvcmsbanners_form[' + tvcmsbanners_row + '][tvcmsbanners_grid]" class="form-control">{% for i in 1..12 %}<option {% if i == tvcmsbanners_form.tvcmsbanners_grid %} selected="selected" {% endif %}value="{{ i }}">{{ i }}</option>{% endfor %}</select></td>';
+      html += '  <td class="text-center"><input class="form-control" type="text" name="tvcmsbanners_form[' + tvcmsbanners_row + '][tvcmsbanners_height]" value="" id="input-image' + tvcmsbanners_row + '" placeholder="{{ entry_height }}" /></td>';
+      html += '  <td class="text-center"><input class="form-control" type="text" name="tvcmsbanners_form[' + tvcmsbanners_row + '][tvcmsbanners_width]" value="" id="input-image' + tvcmsbanners_row + '" placeholder="{{ entry_width }}" /></td>';
+   
+      html += '  <td class="text-left"><label class="radio-inline"><input type="radio" name="tvcmsbanners_form[' + tvcmsbanners_row + '][tvcmsbanners_status]" value="1" checked="checked" /> {{ text_yes }} </label><label class="radio-inline"><input type="radio" name="tvcmsbanners_form[' + tvcmsbanners_row + '][tvcmsbanners_status]" value="1" /> {{ text_no }}</label></td>';
+     html += '  <td class="text-center"><input class="form-control" type="text" name="tvcmsbanners_form[' + tvcmsbanners_row + '][tvcmsbanners_sort]" value="" id="input-image' + tvcmsbanners_row + '" placeholder="{{ entry_sort }}" /></td>';
+    html += '  <td class="text-left"><button type="button" onclick="$(\'.special-row' + tvcmsbanners_row + '\').remove();" data-toggle="tooltip" title="{{ button_remove }}" class="btn btn-danger"><i class="fa fa-minus-circle"></i></button></td>';
+    html += '</tr>';
+    $('#special tbody').append(html);
+    tvcmsbanners_row++;
+}
+//--></script> 
+
+{{ footer }}

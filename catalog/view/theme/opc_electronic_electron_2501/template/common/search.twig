@@ -1,0 +1,94 @@
+<div id="ttvsearch" class="search-widget ttvcmsheader-search">
+	<div class="ttvsearch-top-wrapper">
+		<div class="ttvheader-sarch-display">
+			<div class="ttvheader-search-display-icon">
+				<div class="ttvsearch-open"></div>
+			</div>
+			<div class="ttvsearch-close"><i class="fa fa-times" aria-hidden="true"></i></div>
+		</div>
+		<div class="ttvsearch-header-display-full">
+			<div class="ttvsearch-header-display-wrappper">
+				<div class="ttvheader-search-main">
+					<div class="ttvheader-top-search">
+						<div class="ttvheader-top-search-wrapper-info-box">
+							<input type="text" name="search" value="{{ search }}" placeholder="{{ tv_lang_search_label }}" class="ttvcmssearch-words" />
+						</div>
+					</div>
+					<div class="ttvheader-top-search-wrapper">
+						<button type="submit" class="ttvheader-search-btn" id="searchclick">
+							<i class="fa fa-search" aria-hidden="true"></i>
+							<span class="ttvserach-name">{{ tv_lang_search_text_label }}</span>
+						</button>
+					</div>
+				</div>
+				<div class="ttvsearch-result"></div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	/* Search  Click*/
+	$(document).on("click", ".ttvsearch-more-search ,#searchclick", function() {
+		var url 	= $('base').attr('href') + 'index.php?route=product/search';
+		var value 	= $('#ttvsearch input[name=\'search\']').val();
+		if (value) {
+			url += '&search=' + encodeURIComponent(value);
+		}
+		location = url;
+	});
+	/* Search  Click*/
+
+	/* Search  enter*/
+		$('.ttvheader-top-search-wrapper-info-box input[name=\'search\']').bind('keydown', function(e) {
+			if (e.keyCode == 13) {
+				$('#searchclick').trigger('click');
+			}
+		});
+	/* Search  enter*/
+
+	/* Search Keyup*/
+	$('input[name=\'search\']').keyup(function() {
+		var obj = $('.ttvsearch-header-display-wrappper').parent().find('.ttvsearch-result');
+		obj.html('');
+		obj.show();
+
+		var search_words = $(this).val();
+
+		if (search_words.length != 0) {
+			$.ajax({
+				type: 'POST',
+				url: 'index.php?route=common/tvcmscustomlink/autocomplete&filter_name=' + encodeURIComponent(search_words),
+				cache: false,
+				success: function(data) {
+					obj.html('');
+					obj.append(data);
+				},
+				error: function(jqXHR, textStatus, errorThrown) {
+					console.log(textStatus, errorThrown);
+				}
+			});
+		}
+	});
+	/* Search Keyup*/
+});
+
+
+/********************* Start Search DropDown js *****************************************/
+$(document).on('click', '#header .ttvsearch-top-wrapper .ttvsearch-open', function() {
+	// removeDefaultDropdown();    
+	$('#header .ttvsearch-top-wrapper .ttvsearch-open').hide();
+	$('#header .ttvsearch-top-wrapper .ttvsearch-close').show();
+	$('#header .ttvsearch-header-display-wrappper').addClass('open');
+});
+$(document).on('click', '#header .ttvsearch-dropdown-close-wrapper', function() {
+	$('#header .ttvsearch-top-wrapper .ttvsearch-open').show();
+	$('#header .ttvsearch-top-wrapper .ttvsearch-close').hide();
+
+	$('#header .ttvcmssearch-words').val('');
+	$(this).parent().parent().parent().find('.ttvsearch-result').html('');
+
+	$('#header .ttvsearch-header-display-wrappper').removeClass('open');
+});
+/********************* End Search DropDown js *****************************************/
+</script>

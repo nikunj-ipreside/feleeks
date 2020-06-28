@@ -1,0 +1,159 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-module" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-module" class="form-horizontal">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="input-name">{{ entry_name }}</label>
+          <div class="col-sm-10">
+            <input type="text" name="name" value="{{ name }}" placeholder="{{ entry_name }}" id="input-name" class="form-control" />
+            {% if error_name %}
+            <div class="text-danger">{{ error_name }}</div>
+            {% endif %}
+          </div>
+        </div>   
+        <div class="form-group"> 
+          <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+          <div class="col-sm-10">
+            <select name="status" id="input-status" class="form-control">
+              {% if status %}
+              <option value="1" selected="selected">{{ text_enabled }}</option>
+              <option value="0">{{ text_disabled }}</option>
+              {% else %}
+              <option value="1">{{ text_enabled }}</option>
+              <option value="0" selected="selected">{{ text_disabled }}</option>
+              {% endif %}
+            </select>
+          </div>
+        </div>
+        <div class="panel-body">
+            <div class="tab-content">
+              
+                  
+                 
+                  
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">{{ text_imgstaus }}</label>
+                    <div class="col-sm-10">
+                      <label class="radio-inline"> {% if tvcmsnewsletterpopup.img_status %}
+                        <input type="radio" name="tvcmsnewsletterpopup[img_status]" value="1" checked="checked" />
+                        {{ text_yes }}
+                        {% else %}
+                        <input type="radio" name="tvcmsnewsletterpopup[img_status]" value="1" />
+                        {{ text_yes }}
+                        {% endif %} </label>
+                      <label class="radio-inline"> {% if not tvcmsnewsletterpopup.img_status %}
+                        <input type="radio" name="tvcmsnewsletterpopup[img_status]" value="0" checked="checked" />
+                        {{ text_no }}
+                        {% else %}
+                        <input type="radio" name="tvcmsnewsletterpopup[img_status]" value="0" />
+                        {{ text_no }}
+                        {% endif %} </label>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">{{ text_bgimgstaus }}</label>
+                    <div class="col-sm-10">
+                      <label class="radio-inline"> {% if tvcmsnewsletterpopup.bgimg_status %}
+                        <input type="radio" name="tvcmsnewsletterpopup[bgimg_status]" value="1" checked="checked" />
+                        {{ text_yes }}
+                        {% else %}
+                        <input type="radio" name="tvcmsnewsletterpopup[bgimg_status]" value="1" />
+                        {{ text_yes }}
+                        {% endif %} </label>
+                      <label class="radio-inline"> {% if not tvcmsnewsletterpopup.bgimg_status %}
+                        <input type="radio" name="tvcmsnewsletterpopup[bgimg_status]" value="0" checked="checked" />
+                        {{ text_no }}
+                        {% else %}
+                        <input type="radio" name="tvcmsnewsletterpopup[bgimg_status]" value="0" />
+                        {{ text_no }}
+                        {% endif %} </label>
+                    </div>
+                  </div>
+
+                  <ul class="nav nav-tabs" id="language_2">
+                    {% for language in languages %}
+                    <li><a href="#language_2{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+                    {% endfor %}
+                  </ul>
+
+                  <div class="tab-content">{% for language in languages %}
+                    <div class="tab-pane" id="language_2{{ language.language_id }}">
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-img{{ language.language_id }}">{{ entry_image }}</label>
+                          <div class="col-sm-10">
+                            <a href="" id="thumb-img{{ language.language_id }}" data-toggle="image" class="img-thumbnail">
+                              <img src="{{ img_3[language.language_id] }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                            </a>
+                            <input type="hidden" name="tvcmsnewsletterpopup[lang_text][{{ language.language_id }}][img]" value="{{ tvcmsnewsletterpopup.lang_text[language.language_id] ? tvcmsnewsletterpopup.lang_text[language.language_id].img }}" id="input-img{{ language.language_id }}" />
+                          </div>
+                        </div>
+
+                         <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-bgimage{{ language.language_id }}">{{ entry_bgimage }}</label>
+                          <div class="col-sm-10">
+                            <a href="" id="thumb-bgimage{{ language.language_id }}" data-toggle="image" class="img-thumbnail">
+                              <img src="{{ img_4[language.language_id] }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                            </a>
+                            <input type="hidden" name="tvcmsnewsletterpopup[lang_text][{{ language.language_id }}][bgimg]" value="{{ tvcmsnewsletterpopup.lang_text[language.language_id] ? tvcmsnewsletterpopup.lang_text[language.language_id].bgimg }}" id="input-bgimage{{ language.language_id }}" />
+                          </div>
+                        </div>
+
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ text_tab_title }}</label>
+                          <div class="col-sm-10">
+                            <input type="text" name="tvcmsnewsletterpopup[lang_text][{{ language.language_id }}][title]" 
+                            value="{{ tvcmsnewsletterpopup.lang_text[language.language_id] ? tvcmsnewsletterpopup.lang_text[language.language_id].title }}" placeholder="{{ text_tab_title }}" id="input-name{{ language.language_id }}" class="form-control" />
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ text_tab_htitle }}</label>
+                          <div class="col-sm-10">
+                            <input type="text" name="tvcmsnewsletterpopup[lang_text][{{ language.language_id }}][subtitle]" value="{{ tvcmsnewsletterpopup.lang_text[language.language_id] ? tvcmsnewsletterpopup.lang_text[language.language_id].subtitle }}" placeholder="{{ text_tab_htitle }}" id="input-name{{ language.language_id }}" class="form-control" />
+                          </div>
+                        </div>
+                     
+                        
+                      
+                        
+                   
+                    </div>
+                    {% endfor %}
+                  </div>
+            </div>
+            </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+  <script type="text/javascript"><!--
+$('#language_2 a:first').tab('show');
+$('#option a:first').tab('show');
+//--></script>
+
+
+{{ footer }}

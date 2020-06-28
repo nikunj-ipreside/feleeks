@@ -1,0 +1,26 @@
+{# {% if status_main_form %}
+{% if status_main_image %} {{ main_image }}{% endif %}
+{% if status_main_title %} {{ main_title }}{% endif %}
+{% if status_main_short_description %} {{ main_short_description }}{% endif %}
+{% if status_main_description %} {{ main_description }}{% endif %}
+{% endif %}
+{% if status_record_form %}
+{% for payement_data in paymenticon_data %}
+{% if status_link %} {{ payement_data['tvcmspaymenticonmain_link'] }} {% endif %}
+{% if status_title %} {{ payement_data['tvcmspaymenticonsub_title'] }} {% endif %}
+{% if status_image %} {{ payement_data['tvcmspaymenticonmain_image'] }} {% endif %}
+{% endfor %}
+{% endif %}
+#}
+<div class="ttvfooter-payment-icon-img-block">
+	{% if status_main_form %}
+	{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_maintitle_design.twig' with {'main_title': main_title,'main_short_des': main_short_description,'main_des': main_description,'main_img': main_image } %}
+	{% endif %}
+	<div class="ttvfooter-payment-icon-wrapper">
+		{% for payement_data in paymenticon_data %}
+		<div class="ttvfooter-payment-content-block">
+			<div class="ttvfooter-payment-icon"><a href="{{ payement_data['tvcmspaymenticonmain_link'] }}"><img src="{{ payement_data['tvcmspaymenticonmain_image'] }}" alt="{{ payement_data['tvcmspaymenticonsub_title'] }}"></a></div>
+		</div>
+		{% endfor %}
+	</div>
+</div>

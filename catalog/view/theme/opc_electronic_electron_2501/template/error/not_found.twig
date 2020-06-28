@@ -1,0 +1,21 @@
+{{ header }}
+<div id="wrapper">
+	<div id="error-not-found" class="container">
+		{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_breadcrumbs_design.twig' with {'breadcrumbs': breadcrumbs} %}
+		<div class="row">{{ column_left }} {% if column_left and column_right %} {% set class = 'col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12' %} {% elseif column_left or column_right %} {% set class = 'col-xl-10 col-lg-12 col-md-12 col-sm-12 col-xs-12' %} {% else %} {% set class = 'col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12' %} {% endif %}
+			<div id="content" class="{{ class }}">{{ content_top }}
+				<div id="main">
+					<div class="ttv-sub-pages-inner-content">
+						<p class="ttv-notfound-content">{{ text_error }}</p>
+						<div class="buttons clearfix">
+							<div class="pull-right"><a href="{{ continue }}" class="btn btn-primary ttv-innerpage-button">{{ button_continue }}</a></div>
+						</div>
+						{{ content_bottom }}
+					</div>
+				</div>
+			</div>
+			{{ column_right }}
+		</div>
+	</div>
+</div>
+{{ footer }}

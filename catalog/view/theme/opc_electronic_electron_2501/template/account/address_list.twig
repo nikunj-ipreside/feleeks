@@ -1,0 +1,42 @@
+{{ header }}
+<div id="wrapper">
+	<div id="account-address" class="container">
+		{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_breadcrumbs_design.twig' with {'breadcrumbs': breadcrumbs} %}
+		{% if success %}
+		<div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}</div>
+		{% endif %} {% if error_warning %}
+		<div class="alert alert-warning"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}</div>
+		{% endif %}
+		<div class="row">{{ column_left }} {% if column_left and column_right %} {% set class = 'col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12' %} {% elseif column_left or column_right %} {% set class = 'col-xl-10 col-lg-12 col-md-12 col-sm-12 col-xs-12' %} {% else %} {% set class = 'col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12' %} {% endif %}
+			<div id="content" class="{{ class }}">{{ content_top }}
+				<div id="main">
+					<div class="ttvpage-header-title-wrapper">
+						<h2 class="ttvpage-header-title">{{ text_address_book }}</h2>
+					</div>
+					<div class="ttv-sub-pages-inner-content">
+						{% if addresses %}
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover">
+								{% for result in addresses %}
+								<tr>
+									<td class="text-left">{{ result.address }}</td>
+									<td class="text-right"><a href="{{ result.update }}" class="btn btn-info">{{ button_edit }}</a> &nbsp; <a href="{{ result.delete }}" class="btn btn-danger">{{ button_delete }}</a></td>
+								</tr>
+								{% endfor %}
+							</table>
+						</div>
+						{% else %}
+						<p class="ttv-notfound-content">{{ text_empty }}</p>
+						{% endif %}
+						<div class="buttons clearfix">
+							<div class="pull-left"><a href="{{ back }}" class="btn btn-primary ttv-innerpage-button">{{ button_back }}</a></div>
+							<div class="pull-right"><a href="{{ add }}" class="btn btn-primary ttv-innerpage-button">{{ button_new_address }}</a></div>
+						</div>
+						{{ content_bottom }}
+					</div>
+				</div>
+			</div>
+			{{ column_right }}</div>
+	</div>
+</div>
+{{ footer }}

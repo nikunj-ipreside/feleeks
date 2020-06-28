@@ -1,0 +1,35 @@
+<div class='ttvcmssearch-dropdown'>    
+    <div class='ttvsearch-dropdown-close-wrapper'>
+        <div class='ttvsearch-dropdown-close'><i class="fa fa-times" aria-hidden="true"></i></div>
+    </div>
+    <div class="ttvsearch-dropdown-total-wrapper">
+        <div class="ttvsearch-dropdown-total">Search Result:({{ product_total }})</div>
+    </div>
+    {% if product_total %}
+        {% for product in products %}
+            <div class='ttvsearch-all-dropdown-wrapper'>
+                <div class='ttvsearch-dropdown-wrapper'>
+                    <a href="{{ product.link }}" >
+                        <div class='ttvsearch-dropdown-img-block'>
+                            <img src="{{ product.image }}"  alt="{{ product.name }}"  />
+                        </div>
+                        <div class='ttvsearch-dropdown-content-box'>
+                            <div class='ttvsearch-dropdown-title'>{{ product.name }}</div>
+                            <div class='product-price-and-shipping'>
+                                    <span class='price'>{{ product.price }}</span>
+                                    <span class='regular-price'>{{ product.special }}</span>
+                                
+                            </div> 
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+                    
+        <div class='ttvsearch-more-search-wrapper'>
+            <div class='ttvsearch-more-search ttv-innerpage-button'>{{ text_moreresult }}</div>
+        </div>
+    {% else %}
+        <div class='ttvsearch-emptydropdown-wrapper'>{{ text_noproduct }}</div>
+    {% endif %}
+</div>

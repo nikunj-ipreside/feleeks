@@ -1,0 +1,46 @@
+<div class="ttvcmsspecial-product container-fluid">
+	<div class="ttvspecial-product-wrapper-box container">
+		<div class="ttvspecial-product-all-box">
+			<div class="ttvspecial-main-title-wrapper">
+				{% if status_special_main_form %}
+				<div class="ttvcmsmain-title-wrapper">
+					{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_maintitle_design.twig' with {'main_title': special_hometitle,'main_short_des': special_homesubtitle,'main_des': special_homedes } %}
+				</div>
+				{% endif %}
+				<div class="ttvspecial-pagination-wrapper ttv-pagination-wrapper">
+					<div class="ttvspecial-pagination">
+						<div class="ttvcmsspecial-pagination">
+							<div class="ttvcmsspecial-next-pre-btn ttvcms-next-pre-btn">
+								<div class="ttvcmsspecial-prev ttvcmsprev-btn" data-parent="ttvcmsspecial-product"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+								<div class="ttvcmsspecial-next ttvcmsnext-btn" data-parent="ttvcmsspecial-product"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="ttvspecial-product-offer-banner">
+				{% if bannerstatus %}
+				<div class="ttvall-product-branner">
+					<div class=" ttvall-block-box-shadows">
+						<div class="ttvbanner-hover-wrapper">
+							<div class="ttvbanner-hover"></div><img src="{{ special_img }}" alt="">
+							<div class="tvbanner-hover1"></div>
+						</div>
+					</div>
+				</div>
+				{% endif %}
+				<div class="ttvspecial-product-content ttvimage-true">
+					<div class="ttvall-block-box-shadows">
+						{% if special_products %}
+						<div class="ttvspecial-product">
+							<div class="products owl-theme owl-carousel ttvspecial-product-wrapper ttvproduct-wrapper-content-box">
+								{% for product in special_products %} {% include 'opc_electronic_electron_2501/template/extension/module/tvcmshelp_specialproduct_design.twig' with {'product': product} %} {% endfor %}
+							</div>
+						</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

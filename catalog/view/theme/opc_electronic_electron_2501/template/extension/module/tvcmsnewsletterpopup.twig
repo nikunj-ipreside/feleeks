@@ -1,0 +1,118 @@
+<div id="ttvcmsNewsLetterPopup" class="modal fade" tabindex="-1" role="dialog">
+	<div class="ttvcmsNewsLetterPopup-i modal-dialog" role="document">
+		<button type="button" class="close ttvclose-btn" data-dismiss="modal">
+			<i class="ttvnewsletterpopup-button-icon"></i>
+		</button>
+		<div class="ttvcmsnewsletterpopup">
+			<div class="ttvnewslatter-popup-img-wrapper">
+				{% if image %}
+					<img src="{{ image }}" alt="{{ image }}">
+				{% endif %}
+				</div>
+				<div id="newsletter_block_popup" class="block d-flex">
+					<div class="block_content">
+						<div id="msg"></div>
+						<form method="post">
+							{% if title %}
+							<div class="newsletter_title"><h3 class="h3">{{ title }}</h3>
+							</div>
+							{% endif %}
+							{% if sub_title %}
+							<div class="ttvcmsnewsletterpopupContent">{{ sub_title }}</div>
+							{% endif %}
+							<div class="ttvcmsnewsletterpopupAlert"></div>
+							<div class="ttvnewsletterpopup-input">
+								<input class="inputNew" id="ttvcmsnewsletterpopupnewsletter" type="text" name="email" placeholder="{{ text_place_enter }}"></div>
+							<div id="ttvnewsletter-email-subscribe" class="send-reqest button_unique">{{ text_newsletterbtn }}</div>
+						</form>
+						<div class="newsletter_block_popup-bottom d-flex justify-content-center">
+							<div class="subscribe-bottom">
+								<input id="ttvcmsnewsletterpopup_newsletter_dont_show_again" type="checkbox">
+							</div>
+							<label class="ttvcmsnewsletterpopup_newsletter_dont_show_again" for="ttvcmsnewsletterpopup_newsletter_dont_show_again">{{ text_newpopupshow }}</label>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+	
+	/********* newsletter popup ********************/
+	function getCookie(cname) {
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for (var i = 0; i < ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
+
+	$('#ttvcmsnewsletterpopup_newsletter_dont_show_again').on("click", countChecked);
+
+	function countChecked() {
+		var cname = "newsletterpopopstatus";
+		var cvalue = "true";
+		var d = new Date();
+		d.setTime(d.getTime() + (24 * 60 * 60 * 1000));
+		var expires = "expires=" + d.toUTCString();
+		document.cookie = cname + "=" + cvalue + ";" + expires + "/";
+	}
+
+	$(document).ready(function() {
+
+		if (getCookie("newsletterpopopstatus") != "true") {
+			var obj = $(document).find('#ttvnewsletter-email-subscribe');
+			$("#ttvcmsNewsLetterPopup").modal({ show: true }).bind();
+		}
+
+	});
+	/********* end newsletter popup ********************/
+
+	/* NEWSLETTER*/
+	$('#ttvnewsletter-email-subscribe').click(function() {
+		var email = $('#ttvcmsnewsletterpopupnewsletter').val();
+
+
+		$.ajax({
+			url: 'index.php?route=extension/module/tvcmsnewsletterpopup/ajaxdata&email=' + encodeURIComponent(email),
+			type: 'post',
+			dataType: 'json',
+			cache: false,
+			contentType: false,
+			processData: false,
+			beforeSend: function() {
+				$('#ttvnewsletter-email-subscribe').button('loading');
+			},
+			complete: function() {
+				$('#ttvnewsletter-email-subscribe').button('reset');
+			},
+			success: function(json) {
+				console.log(json);
+				if (json['text_error_email']) {
+					$('#msg').html(json['text_error_email']);
+				}
+				if (json['text_repeat_email']) {
+					$('#msg').html(json['text_repeat_email']);
+				}
+				if (json['text_enter_email']) {
+					$('#msg').html(json['text_enter_email']);
+				}
+				if (json['text_success_email']) {
+					$('#msg').html(json['text_success_email']);
+				}
+			},
+			error: function(xhr, ajaxOptions, thrownError) {
+				alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			}
+		});
+	});
+	/* NEWSLETTER*/
+	</script>

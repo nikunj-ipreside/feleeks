@@ -1,0 +1,557 @@
+	{% if warning %}
+	{% else %}
+		{% set item_show = 5 %}
+		{% if tvcms_menutype == "vertical" %}
+		{% set count = 0 %}
+		<div class="ttvvertical-menu-top-wrapper clearfix">
+			<div class="ttvmain-menu ttvvertical-menu-top" id="ttvmain-menu-{{ module_id }}">
+				{% if items %}
+				<div class="ttvvertical-menu-wrapper">
+					<a href="javascript:void(0)" class="ttvmenu-bars">
+						<div class="ttvleft-right-title-wrapper">
+							<div class="left">
+								<span class='ttvleft-right-title facet-label'>{{ text_vertical_bar }}</span>
+								<i class="fa fa-angle-down hidden-lg-up" aria-hidden="true"></i>
+							</div>							
+						</div>
+					</a>
+					<ul class="ttvmain-menu-top-items">
+						{% for top_item in items %}
+						{% if top_item.status %}
+						{% set count = count + 1 %}
+						<li class="ttvmenu-main-wrapper {{ top_item.item_align }} {{ (count > item_show) ? 'over' : '' }}">
+							{% if top_item.tvcms_has_link %}
+							<a class="ttvmenu-link ttvmenu-items" href="{{ top_item.link }}">
+								{% if top_item.icon %}
+								<div class="ttvtop-icon-wrapper">
+									<img src="{{ top_item.icon }}" class="ttvtop-icon" />
+								</div>
+								{% endif %}
+								{% if top_item.tvcms_has_title %}
+								<span>{{ top_item.title }}</span>
+								{% endif %}								
+							</a>
+							{% if top_item.tvcms_has_child %}
+								<div class="ttvmnu-toggle-icon jsttvmnu-toggle-icon">
+								<i class="fa fa-angle-right" aria-hidden="true"></i>
+							</div>
+							{% endif %}
+							{% else %}
+							<a class="ttvmenu-link ttvmenu-items" href="javascript:void(0)">
+								{% if top_item.icon %}
+								<div class="ttvtop-icon-wrapper">
+									<img src="{{ top_item.icon }}" class="ttvtop-icon" />
+								</div>
+								{% endif %}
+								{% if top_item.tvcms_has_title %}
+								<span>{{ top_item.title }}</span>
+								{% endif %}								
+							</a>
+							{% if top_item.tvcms_has_child %}
+								<div class="ttvmnu-toggle-icon">
+								<i class="fa fa-angle-right" aria-hidden="true"></i>
+								</div>
+							{% endif %}
+							{% endif %}
+							{% if top_item.tvcms_has_child %}
+							<!-- Mega Menu -->
+							{% if top_item.sub_tvcms_menutype == "mega" %}
+							{% if top_item.sub_tvcms_menucontent_type == 'children' %}
+							<div class="ttvmega-menu-container ttvsub-menu-container {% if tvcms_menusetting.mega_tvcms_menuwidth == '100%' %} full-width {% endif %}">
+								{% if top_item.sub_items|length > 0 %}
+								{% for sub_item2 in top_item.sub_items %}
+								{% if sub_item2.status %}
+								<div class="{% if top_item.sub_tvcms_menucontent_columns %}col-md-{{ top_item.sub_tvcms_menucontent_columns }}{% endif %} ttvsub-item-content-two" {% if top_item.sub_tvcms_menucontent_columns==false %} style="width: 20%;" data-cols="12/5" {% else %} data-cols="{{ top_item.sub_tvcms_menucontent_columns }}" {% endif %}>
+									<h4><a class="ttvmenu-link-two" href="{{ sub_item2.link }}">{{ sub_item2.title }}</a></h4>
+									{% if sub_item2.sub_items|length > 0 %}
+									<div class="ttvsub-menu-item-three">
+										{% for sub_item3 in sub_item2.sub_items %}
+										{% if sub_item3.status %}
+										<h5><a class="ttv-menu-third-link" href="{{ sub_item3.link }}">{{ sub_item3.title }}</a></h5>
+										{% endif %}
+										{% endfor %}
+									</div>
+									{% endif %}
+								</div>
+								{% endif %}
+								{% endfor %}
+								{% endif %}
+							</div>
+							{% else %}
+							{% if top_item.sub_tvcms_menucontent|length > 0 %}
+								
+								<div class="ttvmega-menu-container ttvsub-menu-container {% if tvcms_menusetting.mega_tvcms_menuwidth == '100%' %} full-width {% endif %} {% set i = 1 %}{% for type,widgets in top_item.sub_tvcms_menucontent %}{% if type == "widget" %}{% if widgets|length > 0 %}{% for widget in widgets %}{% if widget.type == "product" and i == 1%}ttvheadermenuproduct owl-theme owl-carousel {% endif %}{% set i = i + 1 %}{% endfor %}{% endif %}{% endif %}{% endfor %}">								
+										{% for type,widgets in top_item.sub_tvcms_menucontent %}
+										{% if type == "category" %}
+										{% if widgets|length > 0 %}
+										{% for widget in widgets %}
+										<div class="col-md-{{ widget.cols }} ttvsub-item-content-two" data-cols="{{ widget.cols }}">
+											{% if widget.image %}
+											<img src="{{ widget.image }}" alt="{{ widget.title }}" class="ttvmega-menu-second-image" />
+											{% endif %}
+											<h4><a class="ttvmenu-link-two" href="{{ widget.link }}">{{ widget.title }}</a></h4>
+											{% if widget.children|length > 0 %}
+											<div class="ttvsub-menu-item-three">
+												{% for c_category in widget.children %}
+												<h5><a class="ttv-menu-third-link" href="{{ c_category.link }}">{{ c_category.title }}</a></h5>
+												{% endfor %}
+											</div>
+											{% endif %}
+										</div>
+										{% endfor %}
+										{% endif %}
+										{% endif %}
+										{% if type == "widget" %}
+										{% if widgets|length > 0 %}
+										{% for widget in widgets %}
+										{% if widget.type == "category" %}
+										<div class="col-md-{{ widget.cols }} ttvsub-item-content-two" data-cols="{{ widget.cols }}">
+											{% if widget.image %}
+											<img src="{{ widget.image }}" alt="{{ widget.title }}" class="ttvmega-menu-second-image" />
+											{% endif %}
+											<h4><a class="ttvmenu-link-two" href="{{ widget.link }}">{{ widget.title }}</a></h4>
+											{% if widget.children|length > 0 %}
+											<div class="ttvsub-menu-item-three">
+												{% for c_category in widget.children %}
+												<h5><a class="ttv-menu-third-link" href="{{ c_category.link }}">{{ c_category.title }}</a></h5>
+												{% endfor %}
+											</div>
+											{% endif %}
+										</div>
+										{% endif %}
+										{% if widget.type == "product" %}
+										<div class="ttvsub-item-content-two item" data-cols="{{ widget.cols }}">
+											<div class="text-center">
+												{% if widget.image %}
+												<img src="{{ widget.image }}" alt="{{ widget.title }}" class="ttvmega-menu-second-image" />
+												{% endif %}
+												<h4><a class="ttvmenu-link-two" href="{{ widget.link }}">{{ widget.title }}</a></h4>
+												<div class="ttv-product-price">
+													<div class="ttvproduct-name-price-wrapper">
+														{% if widget.price %}
+														<div class="product-price-and-shipping">
+															{% if not widget.special %}
+															<span class="price">{{ widget.price }}</span>
+															{% else %}
+															<span class="regular-price">{{ widget.price }}</span>
+															<span class="price">{{ widget.special }}</span>
+															{% endif %}
+															{% if widget.tax %}
+															<span class="price-tax">{{ text_tax }}{{ widget.tax }}</span>
+															{% endif %}
+														</div>
+														{% endif %}
+													</div>
+												</div>
+											</div>
+										</div>									
+										{% endif %}
+										{% if widget.type == "html" %}
+										<div class="col-md-{{ widget.cols }} ttvsub-item-content-two" data-cols="{{ widget.cols }}">
+											{% if widget.title %}
+											<h4><strong>{{ widget.title }}</strong></h4>
+											{% endif %}
+											{{ widget.content }}
+										</div>
+										{% endif %}
+										{% if widget.type == "link" %}
+										<div class="col-md-{{ widget.cols }} ttvsub-item-content-two" data-cols="{{ widget.cols }}">
+											<h4><a class="ttvmenu-link-two a-widget-link" href="{{ widget.link }}">{{ widget.title }}</a></h4>
+										</div>
+										{% endif %}
+										{% endfor %}
+										{% endif %}
+										{% endif %}
+										{% endfor %}
+									</div>
+							{% endif %}
+							{% endif %}
+							{% endif %}
+							<!-- Flyout Menu -->
+							{% if top_item.sub_tvcms_menutype == "flyout" %}
+							{% if top_item.sub_tvcms_menucontent_type == 'children' %}
+							{% if top_item.sub_items|length > 0 %}
+							<div class="ttvflyout-menu-container ttvsub-menu-container {{ top_item.item_align }}">
+								<ul class="ttvfly-secound-menu">
+									{% for sub_item2 in top_item.sub_items %}
+									{% if sub_item2.status %}
+									<li class="ttvmenu-secound-item">
+										<a href="{{ sub_item2.link }}" class="ttvmenu-link-secound ttvmenu-items">
+											<span class="ttvmenu-secound-title">{{ sub_item2.title }}</span>											
+										</a>
+										{% if sub_item2.sub_items|length > 0 %}
+											<div class="ttvmnu-toggle-icon">
+												<i class="fa fa-angle-right" aria-hidden="true"></i>
+											</div>
+										{% endif %}
+										{% if sub_item2.sub_items|length > 0 %}
+										<div class="ttvflyout-third-items {{ top_item.item_align }}">
+											<ul class="ttvfly-third-items-menu">
+												{% for sub_item3 in sub_item2.sub_items %}
+												{% if sub_item3.status %}
+												<li class="ttvli-third-items">
+													<a href="{{ sub_item3.link }}" class="ttvfly-menu-third-link"><span class="ttvflumenu-third-title">{{ sub_item3.title }}</span></a>
+												</li>
+												{% endif %}
+												{% endfor %}
+											</ul>
+										</div>
+										{% endif %}
+									</li>
+									{% endif %}
+									{% endfor %}
+								</ul>
+							</div>
+							{% endif %}
+							{% endif %}
+							{% if top_item.sub_tvcms_menucontent_type == 'category' %}
+							{% if top_item.sub_tvcms_menucontent|length > 0 %}
+							<div class="ttvflyout-menu-container ttvsub-menu-container {{ top_item.item_align }}">
+								<ul class="ttvfly-secound-menu">
+									{% for type,widgets in top_item.sub_tvcms_menucontent %}
+									{% if type == "category" %}
+									{% if widgets|length > 0 %}
+									{% for widget in widgets %}
+									<li class="ttvmenu-secound-item">
+										<a href="{{ widget.link }}" class="ttvmenu-link-secound ttvmenu-items">
+											<span class="ttvmenu-secound-title">{{ widget.title }}</span>
+										</a>
+										{% if widget.children|length > 0 %}
+											<div class="ttvmnu-toggle-icon">	
+												<i class="fa fa-angle-right" aria-hidden="true"></i>
+											</div>
+										{% endif %}
+										{% if widget.children|length > 0 %}
+										<div class="ttvflyout-third-items {{ top_item.item_align }}">
+											<ul class="ttvfly-third-items-menu">
+												{% for c_category in widget.children %}
+												<li class="ttvli-third-items">
+													<a href="{{ c_category.link }}" class="ttvfly-menu-third-link"><span class="ttvflumenu-third-title">{{ c_category.title }}</span></a>
+												</li>
+												{% endfor %}
+											</ul>
+										</div>
+										{% endif %}
+									</li>
+									{% endfor %}
+									{% endif %}
+									{% endif %}
+									{% endfor %}
+								</ul>
+							</div>
+							{% endif %}
+							{% endif %}
+							{% endif %}
+							{% endif %}
+						</li>
+						{% endif %}
+						{% endfor %}
+						{% if count > item_show %}
+						<li class="ttvmenu-main-wrapper li-over li-plus">
+							<a href="javascript:void(0);" class="ttvmenu-link a-plus a-over">
+								<span>{{ text_more }}</span>
+								<i class="fa fa-angle-down" aria-hidden="true"></i>
+							</a>
+						</li>
+						<li class="ttvmenu-main-wrapper li-over li-minus over">
+							<a href="javascript:void(0);" class="ttvmenu-link a-minus a-over">
+								<span>{{ text_close }}</span>
+								<i class="fa fa-angle-up" aria-hidden="true"></i>
+							</a>
+						</li>
+						{% endif %}
+					</ul>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+		{% endif %}
+
+		{% if tvcms_menutype == "horizontal" %}
+			<div class="ttvjsgetdivinmobile"> 
+				<div class="col-xl-10 col-lg-9 col-md-10 ttvmain-menu ttvhorizontal-menu ttvmenu-bars" id="ttvmain-menu-{{ module_id }}">
+					{% if items %}
+					<div class="ttvhorizontal-menu-icon hidden-lg-up">
+						<div class="ttvhorizontal-icon-toggle"></div>
+					</div>
+					<ul class="ttvmain-menu-top-items">
+						<div class="ttvmenu-close-btn">
+						</div>
+						{% for top_item in items %}
+						{% if top_item.status %}
+						<li class="ttvmenu-main-wrapper {{ top_item.item_align }}" >
+							{% if top_item.tvcms_has_link %}
+							<a class="ttvmenu-link" href="{{ top_item.link }}">
+								{% if top_item.icon %}
+								<img src="{{ top_item.icon }}" class="ttvtop-icon" />
+								{% endif %}
+								{% if top_item.tvcms_has_title %}
+								<span>{{ top_item.title }}</span>
+								{% endif %}
+							</a>
+								{% if top_item.tvcms_has_child %}
+								<div class="ttvmobileherozintal">
+									<i class="fa fa-angle-down" aria-hidden="true"></i>
+								</div>
+								{% endif %}
+							{% else %}
+							<a class="ttvmenu-link ttvmenu-items" href="javascript:void(0)">
+								{% if top_item.icon %}
+								<img src="{{ top_item.icon }}" class="ttvtop-icon" />
+								{% endif %}
+								{% if top_item.tvcms_has_title %}
+								<span>{{ top_item.title }}</span>
+								{% endif %}
+							</a>
+								{% if top_item.tvcms_has_child %}
+								<div class="ttvmobileherozintal">
+									<i class="fa fa-angle-down" aria-hidden="true"></i>
+								</div>
+								{% endif %}
+							{% endif %}
+							{% if top_item.tvcms_has_child %}
+							<!-- Mega Menu -->
+							{% if top_item.sub_tvcms_menutype == "mega" %}
+							{% if top_item.sub_tvcms_menucontent_type == 'children' %}
+							<div class="ttvmega-menu-container ttvsub-menu-container {{ top_item.item_align }} {% if tvcms_menusetting.mega_tvcms_menuwidth == '100%' %} full-width {% endif %}">
+								{% if top_item.sub_items|length > 0 %}
+								{% for sub_item2 in top_item.sub_items %}
+								{% if sub_item2.status %}
+								<div class="{% if top_item.sub_tvcms_menucontent_columns %}col-md-{{ top_item.sub_tvcms_menucontent_columns }}{% endif %} ttvsub-item-content-two" {% if top_item.sub_tvcms_menucontent_columns==false %} style="width: 20%;" data-cols="12/5" {% else %} data-cols="{{ top_item.sub_tvcms_menucontent_columns }}" {% endif %}>
+									<h4><a class="ttvmenu-link-two" href="{{ sub_item2.link }}">{{ sub_item2.title }}</a></h4>
+									{% if sub_item2.sub_items|length > 0 %}
+									<div class="ttvsub-menu-item-three">
+										{% for sub_item3 in sub_item2.sub_items %}
+										{% if sub_item3.status %}
+										<h5><a class="ttv-menu-third-link" href="{{ sub_item3.link }}">{{ sub_item3.title }}</a></h5>
+										{% endif %}
+										{% endfor %}
+									</div>
+									{% endif %}
+								</div>
+								{% endif %}
+								{% endfor %}
+								{% endif %}
+							</div>
+							{% endif %}
+							{% if top_item.sub_tvcms_menucontent_type == 'category' %}
+							{% if top_item.sub_tvcms_menucontent|length > 0 %}
+							<div class="ttvmega-menu-container ttvsub-menu-container {{ top_item.item_align }} {% if tvcms_menusetting.mega_tvcms_menuwidth == '100%' %} full-width {% endif %}">
+								<div class="row">
+									{% for type,widgets in top_item.sub_tvcms_menucontent %}
+									{% if type == "category" %}
+									{% if widgets|length > 0 %}
+									{% for widget in widgets %}
+									<div class="col-md-{{ widget.cols }} ttvsub-item-content-two" data-cols="{{ widget.cols }}">
+										{% if widget.image %}
+										<img src="{{ widget.image }}" alt="{{ widget.title }}" class="ttvmega-menu-second-image" />
+										{% endif %}
+										<h4><a class="ttvmenu-link-two" href="{{ widget.link }}">{{ widget.title }}</a></h4>
+										{% if widget.children|length > 0 %}
+										<div class="ttvsub-menu-item-three">
+											{% for c_category in widget.children %}
+											<h5><a class="ttv-menu-third-link" href="{{ c_category.link }}">{{ c_category.title }}</a></h5>
+											{% endfor %}
+										</div>
+										{% endif %}
+									</div>
+									{% endfor %}
+									{% endif %}
+									{% endif %}
+									{% endfor %}
+								</div>
+							</div>
+							{% endif %}
+							{% endif %}
+							{% if top_item.sub_tvcms_menucontent_type == 'widget' %}
+							{% if top_item.sub_tvcms_menucontent|length > 0 %}
+							<div class="ttvmega-menu-container ttvsub-menu-container {{ top_item.item_align }} {% if tvcms_menusetting.mega_tvcms_menuwidth == '100%' %} full-width {% endif %}">
+								<div class="row">
+									{% for type,widgets in top_item.sub_tvcms_menucontent %}
+									{% if type == "widget" %}
+									{% if widgets|length > 0 %}
+									{% for widget in widgets %}
+									{% if widget.type == "category" %}
+									<div class="col-md-{{ widget.cols }} ttvsub-item-content-two ttvsub-item2-category-content" data-cols="{{ widget.cols }}">
+										{% if widget.image %}
+										<img src="{{ widget.image }}" alt="{{ widget.title }}" class="ttvmega-menu-second-image" />
+										{% endif %}
+										<h4><a class="ttvmenu-link-two" href="{{ widget.link }}">{{ widget.title }}</a></h4>
+										{% if widget.children|length > 0 %}
+										<div class="ttvsub-menu-item-three">
+											{% for c_category in widget.children %}
+											<h5><a class="ttv-menu-third-link" href="{{ c_category.link }}">{{ c_category.title }}</a></h5>
+											{% endfor %}
+										</div>
+										{% endif %}
+									</div>
+									{% endif %}
+									{% if widget.type == "product" %}
+									<div class="col-md-{{ widget.cols }} ttvsub-item-content-two sub-product" data-cols="{{ widget.cols }}">
+										{% if widget.image %}
+										<a href="{{ widget.link }}">
+											<img src="{{ widget.image }}" alt="{{ widget.title }}" class="ttvmega-menu-second-image" />
+										</a>
+										{% endif %}
+										<h4><a class="ttvmenu-link-two" href="{{ widget.link }}">{{ widget.title }}</a>	</h4>
+										<div class="price-box">
+											{% if not widget.special %}
+											<p class="regular-price">
+												<span class="price">{{ widget.price }}</span>
+											</p>
+											{% else %}
+											<p class="special-price">
+												<span class="price">{{ widget.special }}</span>
+											</p>
+											<p class="old-price">
+												<span class="price">{{ widget.price }}</span>
+											</p>
+											{% endif %}
+										</div>
+									</div>
+									{% endif %}
+									{% if widget.type == "html" %}
+									<div class="col-md-{{ widget.cols }} ttvsub-item-content-two" data-cols="{{ widget.cols }}">
+										<p class="widget-html-title">{{ widget.title }}</p>
+										<div class="static-bottom-menu ttvbanner-hover-wrapper">{{ widget.content }}</div>
+									</div>
+									{% endif %}
+									{% if widget.type == "link" %}
+									<div class="col-md-{{ widget.cols }} ttvsub-item-content-two" data-cols="{{ widget.cols }}">
+										<h4>
+											<a class="ttvmenu-link-two a-widget-link" href="{{ widget.link }}">
+												{{ widget.title }}
+											</a>
+										</h4>
+									</div>
+									{% endif %}
+									{% endfor %}
+									{% endif %}
+									{% endif %}
+									{% endfor %}
+								</div>
+							</div>
+							{% endif %}
+							{% endif %}
+							{% endif %}
+							<!-- Flyout Menu -->
+							{% if top_item.sub_tvcms_menutype == "flyout" %}
+							{% if top_item.sub_tvcms_menucontent_type == 'children' %}
+							{% if top_item.sub_items|length > 0 %}
+							<div class="ttvflyout-menu-container ttvsub-menu-container {{ top_item.item_align }}">
+								<ul class="ttvfly-secound-menu">
+									{% for sub_item2 in top_item.sub_items %}
+									{% if sub_item2.status %}
+									<li class="ttvmenu-secound-item">
+										<a href="{{ sub_item2.link }}" class="ttvmenu-link-secound ttvmenu-items">
+											<span class="ttvmenu-secound-title">{{ sub_item2.title }}</span>
+										</a>
+										<div class="ttvjssubmenufluottype">
+											{% if sub_item2.sub_items|length > 0 %}
+												{% if top_item.item_align == 'left' %}
+												<i class="fa fa-angle-right" aria-hidden="true"></i>
+												{% endif %}
+											{% endif %}
+										</din>
+										{% if top_item.item_align == 'right' %}
+											<div class="ttvmnu-toggle-icon">
+												<i class="fa fa-angle-left" aria-hidden="true"></i>
+											</div>
+										{% endif %}
+										{% if sub_item2.sub_items|length > 0 %}
+										<div class="ttvflyout-third-items {{ top_item.item_align }}">
+											<ul class="ttvfly-third-items-menu">
+												{% for sub_item3 in sub_item2.sub_items %}
+												{% if sub_item3.status %}
+												<li class="ttvli-third-items">
+													<a href="{{ sub_item3.link }}" class="ttvfly-menu-third-link">
+														<span class="ttvflumenu-third-title">{{ sub_item3.title }}</span>
+													</a>
+												</li>
+												{% endif %}
+												{% endfor %}
+											</ul>
+										</div>
+										{% endif %}
+									</li>
+									{% endif %}
+									{% endfor %}
+								</ul>
+							</div>
+							{% endif %}
+							{% endif %}
+							{% if top_item.sub_tvcms_menucontent_type == 'category' %}
+							{% if top_item.sub_tvcms_menucontent|length > 0 %}
+							<div class="ttvflyout-menu-container ttvsub-menu-container {{ top_item.item_align }}">
+								<ul class="ttvfly-secound-menu">
+									{% for type,widgets in top_item.sub_tvcms_menucontent %}
+									{% if type == "category" %}
+									{% if widgets|length > 0 %}
+									{% for widget in widgets %}
+									<li class="ttvmenu-secound-item">
+										<a href="{{ widget.link }}" class="ttvmenu-link-secound ttvmenu-items">
+											<span class="ttvmenu-secound-title">{{ widget.title }}</span>
+										</a>
+										<div class="ttvjssubsubmenufluottype">
+											{% if widget.children|length > 0 %}
+												{% if top_item.item_align == 'left' %}
+												<i class="fa fa-angle-right" aria-hidden="true"></i>
+												{% endif %}
+												{% if top_item.item_align == 'right' %}
+												<i class="fa fa-angle-left" aria-hidden="true"></i>
+												{% endif %}
+											{% endif %}
+										</div>
+										{% if widget.children|length > 0 %}
+										<div class="ttvflyout-third-items {{ top_item.item_align }}">
+											<ul class="ttvfly-third-items-menu">
+												{% for c_category in widget.children %}
+												<li class="ttvli-third-items">
+													<a href="{{ c_category.link }}" class="ttvfly-menu-third-link"><span class="ttvflumenu-third-title">{{ c_category.title }}</span></a>
+												</li>
+												{% endfor %}
+											</ul>
+										</div>
+										{% endif %}
+									</li>
+									{% endfor %}
+									{% endif %}
+									{% endif %}
+									{% endfor %}
+								</ul>
+							</div>
+							{% endif %}
+							{% endif %}
+							{% endif %}
+							{% endif %}
+						</li>
+						{% endif %}
+						{% endfor %}
+					</ul>
+					{% endif %}
+				</div>
+			</div>
+		{% endif %}
+
+		
+
+	{% endif %}
+<script type="text/javascript">
+$(document).ready(function() {
+	$('.ttvheadermenuproduct').owlCarousel({
+		loop: true,
+		dots: false,
+		nav: true,
+		autoplayTimeout: 5000,
+		autoplayHoverPause: true,
+		responsive: {
+			0: { items: 1 },
+			320: { items: 1, slideBy: 1 },
+			575: { items: 2, slideBy: 1 },
+			768: { items: 2, slideBy: 1 },
+			1024: { items: 3, slideBy: 1 },
+			1399: { items: 3, slideBy: 1 },
+		},
+	});
+});
+</script>

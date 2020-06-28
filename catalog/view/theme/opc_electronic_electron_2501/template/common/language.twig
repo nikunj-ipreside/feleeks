@@ -1,0 +1,28 @@
+{% if languages|length > 1 %}
+<div id="ttvcmsdesktop-language-selector" class="ttvcms-header-language">
+	<div class="ttvheader-language-wrapper">
+		<form action="{{ action }}" method="post" enctype="multipart/form-data" id="tvcmsform-language">
+			<div class="ttvheader-language-btn-wrapper">
+				<button class="btn-unstyle ttv-language-btn" data-toggle="dropdown">
+					<span class="ttv-language-span">{{ confid_l_id }}</span><i class="fa fa-angle-down expand-more" aria-hidden="true"></i>
+				</button>
+				<ul class="ttv-language-dropdown ttv-dropdown">
+					{% for language in languages %}
+					<li><a class="language-select" title="{{ language.code }}" class="dropdown-item">{{ language.name }}</a></li>
+					{% endfor %}
+				</ul>
+			</div>
+			<input type="hidden" name="code" value="" />
+			<input type="hidden" name="redirect" value="{{ redirect }}" />
+		</form>
+	</div>
+</div>
+{% endif %}
+<script type="text/javascript">
+// Language
+	$('#tvcmsform-language .language-select').on('click', function(e) {
+		e.preventDefault();
+		$('#tvcmsform-language input[name=\'code\']').val($(this).attr('title'));
+		$('#tvcmsform-language').submit();
+	});
+</script>

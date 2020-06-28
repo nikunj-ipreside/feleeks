@@ -1,0 +1,30 @@
+{% if currencies|length > 1 %}
+<div id="ttvcmsdesktop-currency-selector" class="ttvcms-header-currency">
+	<form action="{{ action }}" method="post" enctype="multipart/form-data" id="tvcmsform-currency">
+		<div class="ttvheader-currency-wrapper">
+			<button class="btn-unstyle ttv-currency-btn" data-toggle="dropdown">
+				<span class="ttv-currency-span">{{ config_car_id }}</span><i class="fa fa-angle-down expand-more" aria-hidden="true"></i>
+			</button>
+			<ul class="ttv-currency-dropdown ttv-dropdown">
+				{% for currency in currencies %}
+				<li>
+					<a class="currency-select" title="{{ currency.code }}">{{ currency.code }}</a>
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+		<input type="hidden" name="code" value="" />
+		<input type="hidden" name="redirect" value="{{ redirect }}" />
+	</form>
+</div>
+{% endif %}
+<script type="text/javascript">
+// Currency
+  $('#tvcmsform-currency .currency-select').on('click', function(e) {
+    e.preventDefault();
+
+    $('#tvcmsform-currency input[name=\'code\']').val($(this).attr('title'));
+
+    $('#tvcmsform-currency').submit();
+  });
+</script>

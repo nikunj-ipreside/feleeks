@@ -1,0 +1,256 @@
+<?php
+class ControllerExtensionModuleTvcmsmap extends Controller {
+	private $error = array();
+	public function index() {
+		$this->load->language('extension/module/tvcmsmap');
+
+		$this->document->setTitle($this->language->get('heading_title'));
+
+		$this->load->model('setting/module');
+		$this->load->model('tool/image');
+		$this->load->model('localisation/language');
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+			
+			if (!isset($this->request->get['module_id'])) {
+				$this->model_setting_module->addModule('tvcmsmap', $this->request->post);
+			} else {
+				$this->model_setting_module->editModule($this->request->get['module_id'], $this->request->post);
+			}
+
+			$this->session->data['success'] = $this->language->get('text_success');
+
+			$this->response->redirect($this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module', true));
+		}
+
+		if (isset($this->error['warning'])) {
+			$data['error_warning'] 	= $this->error['warning'];
+		} else {
+			$data['error_warning'] 	= '';
+		}
+
+		if (isset($this->error['name'])) {
+			$data['error_name'] 	= $this->error['name'];
+		} else {
+			$data['error_name'] 	= '';
+		}
+
+		$data['breadcrumbs'] 		= array();
+
+		$data['breadcrumbs'][] = array(
+			'text' => $this->language->get('text_home'),
+			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true)
+		);
+
+		$data['breadcrumbs'][] = array(
+			'text' => $this->language->get('text_extension'),
+			'href' => $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module', true)
+		);
+
+		if (!isset($this->request->get['module_id'])) {
+			$data['breadcrumbs'][] = array(
+				'text' => $this->language->get('heading_title'),
+				'href' => $this->url->link('extension/module/tvcmsmap', 'user_token=' . $this->session->data['user_token'], true)
+			);
+		} else {
+			$data['breadcrumbs'][] = array(
+				'text' => $this->language->get('heading_title'),
+				'href' => $this->url->link('extension/module/tvcmsmap', 'user_token=' . $this->session->data['user_token'] . '&module_id=' . $this->request->get['module_id'], true)
+			);
+		}
+
+		$status 						= $this->status();
+
+		$data['main_form'] 				= $status['main_form'];
+    	$data['main_title'] 			= $status['main_title'];
+    	$data['main_short_description'] = $status['main_short_description'];
+    	$data['main_description'] 		= $status['main_description'];
+    	$data['main_image'] 			= $status['main_image'];
+
+    	$data['image']	 				= $status['image'];
+    	$data['short_description'] 		= $status['short_description'];
+    	$data['description'] 			= $status['description'];
+    	$data['btn_title'] 				= $status['btn_title'];
+		$data['api_key'] 				= $status['api_key'];
+    	$data['map_type'] 				= $status['map_type'];
+    	$data['zoom'] 					= $status['zoom'];
+    	$data['letitude'] 				= $status['letitude'];
+    	$data['longitude'] 				= $status['longitude'];
+    	
+
+		$data['languages'] 	= $this->model_localisation_language->getLanguages();
+
+		$data['entry_title'] = $this->language->get('entry_title');
+		$data['entry_short_des'] = $this->language->get('entry_short_des');
+		$data['entry_des'] = $this->language->get('entry_des');
+		$data['entry_img'] = $this->language->get('entry_img');
+		$data['entry_logo_img'] = $this->language->get('entry_logo_img');
+		$data['entry_btn_title'] = $this->language->get('entry_btn_title');
+		$data['entry_api_key'] = $this->language->get('entry_api_key');
+		$data['entry_map_type'] = $this->language->get('entry_map_type');
+		$data['entry_let'] = $this->language->get('entry_let');
+		$data['entry_lon'] = $this->language->get('entry_lon');
+		$data['entry_zoom'] = $this->language->get('entry_zoom');
+		$data['entry_main_des'] = $this->language->get('entry_main_des');
+		$data['entry_sub_title'] = $this->language->get('entry_sub_title');
+
+		if (!isset($this->request->get['module_id'])) {
+			$data['action'] = $this->url->link('extension/module/tvcmsmap', 'user_token=' . $this->session->data['user_token'], true);
+		} else {
+			$data['action'] = $this->url->link('extension/module/tvcmsmap', 'user_token=' . $this->session->data['user_token'] . '&module_id=' . $this->request->get['module_id'], true);
+		}
+
+		$data['cancel'] = $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module', true);
+
+		if (isset($this->request->get['module_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
+			$module_info = $this->model_setting_module->getModule($this->request->get['module_id']);
+		}
+
+		$this->load->model('localisation/language');
+
+		$data['languages'] = $this->model_localisation_language->getLanguages();
+
+		$data['user_token'] = $this->session->data['user_token'];
+
+		if (isset($this->request->post['name'])) {
+			$data['name'] = $this->request->post['name'];
+		} elseif (!empty($module_info)) {
+			$data['name'] = $module_info['name'];
+		} else {
+			$data['name'] = '';
+		}
+
+		if (isset($this->request->post['status'])) {
+			$data['status'] = $this->request->post['status'];
+		} elseif (!empty($module_info)) {
+			$data['status'] = $module_info['status'];
+		} else {
+			$data['status'] = "";
+		}
+
+		if(!empty($data['map_type'])){
+			if (isset($this->request->post['map'])) {
+				$data['map'] = $this->request->post['map'];
+			} elseif (!empty($module_info)) {
+				$data['map'] = $module_info['map'];
+			} else {
+				$data['map'] = "";
+			}
+		}
+		if(!empty($data['zoom'])){
+			if (isset($this->request->post['zoom'])) {
+				$data['zoom'] = $this->request->post['zoom'];
+			} elseif (!empty($module_info)) {
+				$data['zoom'] = $module_info['zoom'];
+			} else {
+				$data['zoom'] = "";
+			}
+		}
+		if(!empty($data['api_key'])){
+			if (isset($this->request->post['api_key'])) {
+				$data['api_key'] = $this->request->post['api_key'];
+			} elseif (!empty($module_info)) {
+				$data['api_key'] = $module_info['api_key'];
+			} else {
+				$data['api_key'] = "";
+			}
+		}
+		if(!empty($data['letitude'])){
+			if (isset($this->request->post['let'])) {
+				$data['let'] = $this->request->post['let'];
+			} elseif (!empty($module_info)) {
+				$data['let'] = $module_info['let'];
+			} else {
+				$data['let'] = "";
+			}
+		}
+		if(!empty($data['longitude'])){
+			if (isset($this->request->post['lon'])) {
+				$data['lon'] = $this->request->post['lon'];
+			} elseif (!empty($module_info)) {
+				$data['lon'] = $module_info['lon'];
+			} else {
+				$data['lon'] = "";
+			}
+		}
+		if(!empty($data['main_form'])){
+			$default_image = $this->model_tool_image->resize('no_image.png', 100, 100);
+			if (isset($this->request->post['tvcmsmap_des'])) {
+				$data['tvcmsmap_des'] = $this->request->post['tvcmsmap_des'];
+
+				foreach ($this->request->post['tvcmsmap_des'] as $key => $value) {
+					if($value['main_img']){
+						$data['main_img'][$key] =  $this->model_tool_image->resize($value['main_img'], 100, 100);				
+					}else{
+						$data['main_img'][$key] =  $default_image;
+					}
+					if($value['sub_logo_img']) {
+						$data['logo_img'][$key] =  $this->model_tool_image->resize($value['sub_logo_img'], 100, 100);				
+					}else{
+						$data['logo_img'][$key] =  $default_image;
+					}
+				}
+			} elseif (!empty($module_info)) {
+				$data['tvcmsmap_des'] = $module_info['tvcmsmap_des'];
+				foreach ($module_info['tvcmsmap_des'] as $key => $value) {
+					if($value['main_img']){
+						$data['main_img'][$key] =  $this->model_tool_image->resize($value['main_img'], 100, 100);				
+					}else{
+						$data['main_img'][$key] =  $default_image;
+					}
+					if($value['sub_logo_img']) {
+						$data['logo_img'][$key] =  $this->model_tool_image->resize($value['sub_logo_img'], 100, 100);				
+					}else{
+						$data['logo_img'][$key] =  $default_image;
+					}			
+				}
+			} else {
+				foreach ($data['languages'] as $key => $value) {
+					$data['main_img'][$value['language_id']] =  $default_image;				
+					$data['logo_img'][$value['language_id']] =  $default_image;
+				}
+				$data['tvcmsmap_des'] = array();
+			}
+		}
+
+		$data['header'] 		= $this->load->controller('common/header');
+		$data['column_left'] 	= $this->load->controller('common/column_left');
+		$data['footer']	 		= $this->load->controller('common/footer');
+
+		$this->response->setOutput($this->load->view('extension/module/tvcmsmap', $data));
+	}
+	public function install() {
+
+		$main 				= array();
+		$main['name'] 		= "Map";
+		$main['status'] 	= 1;
+		$main['map'] 		= "roadmap";
+		$main['zoom'] 		= "4";
+		$main['let'] 	    = "46.1368608";
+		$main['api_key'] 	= "AIzaSyDSrw_1-p0jP2VhAPnp6udFfnVFiFJSKug";
+		$main['lon'] 		= "2.4359758";
+
+		$this->load->model('setting/module');
+		$this->load->model('localisation/language');
+
+		$languages = $this->model_localisation_language->getLanguages();
+
+        foreach ($languages as $value) {
+        	$main['tvcmsmap_des'][$value['language_id']] =  array('main_title'=>"Main Title",'main_short_des'=>"Main short description",'main_des'=>"Main description",'main_img'=>"catalog/themevolty/map/demo_main_img.jpg",'sub_logo_img'=>"catalog/themevolty/map/demo_main_img.jpg",'sub_des1'=>"Sub description",'sub_short_des'=>"Sub short description",'sub_des2'=>"Sub description",'sub_btn_title'=>"See Map");
+		}
+
+		$this->model_setting_module->addModule('tvcmsmap', $main);		
+	}
+	protected function status(){
+		return $this->Tvcmsthemevoltystatus->mapstatus();
+	}
+	protected function validate() {
+		if (!$this->user->hasPermission('modify', 'extension/module/tvcmsmap')) {
+			$this->error['warning'] = $this->language->get('error_permission');
+		}
+		if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 64)) {
+			$this->error['name'] = $this->language->get('error_name');
+		}
+		return !$this->error;
+	}
+}

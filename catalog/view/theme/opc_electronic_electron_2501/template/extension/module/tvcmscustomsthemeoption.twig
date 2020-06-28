@@ -1,0 +1,97 @@
+
+<div class="ttvcmstheme-control">
+    <div class="ttvtheme-control">
+        <div class="ttvtheme-control-icon"><i class="fa fa-cog" aria-hidden="true"></i></div>
+        <div class="ttvtheme-control-wrapper">
+            <div>
+                <div class="ttvtheme-control-title-name"></div>
+                <div class="ttvtheme-control-title-name-reset-btn">
+                    <p>{{ text_themeoption }}</p>
+                </div>
+            </div>
+            <table>
+                <tbody>
+                    <tr class="ttvselect-theme ttvall-theme-content">
+                        <td>
+                            <div class="ttvselect-theme-name">{{ text_theme }}</div><select class="ttvselect-theme-select" id="select_theme">
+                                <option value="" data-color="">{{ text_theme }} 1</option>
+                                <option value="theme2" data-color="#2619b3">{{ text_theme }} 2</option>
+                                <option value="theme3" data-color="#188c14">{{ text_theme }} 3</option>
+                                <option value="theme4" data-color="#a81472">{{ text_theme }} 4</option>
+                                <option value="theme_custom" data-color="">{{ text_custom }}</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr class="ttvtheme-color-one ttvall-theme-content" style="display: none;">
+                        <td>
+                            <div class="ttvcolor-theme-name">{{ text_custome_color_1 }}</div>
+                            <div class="ttvtheme-color-box">
+                                <div class="minicolors minicolors-theme-default minicolors-position-bottom minicolors-position-left"><input type="text" id="themecolor1" class="ttvtheme-color-box-1 minicolors-input" data-control="saturation" size="7"><span class="minicolors-swatch minicolors-sprite minicolors-input-swatch"><span class="minicolors-swatch-color"></span></span>
+                                    <div class="minicolors-panel minicolors-slider-hue">
+                                        <div class="minicolors-slider minicolors-sprite">
+                                            <div class="minicolors-picker" style="top: 0px;"></div>
+                                        </div>
+                                        <div class="minicolors-opacity-slider minicolors-sprite">
+                                            <div class="minicolors-picker"></div>
+                                        </div>
+                                        <div class="minicolors-grid minicolors-sprite" style="background-color: rgb(255, 0, 0);">
+                                            <div class="minicolors-grid-inner"></div>
+                                            <div class="minicolors-picker" style="top: 150px; left: 0px;">
+                                                <div></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr class="ttvtheme-color-two ttvall-theme-content">
+                        <td>
+                            <div class="ttvcolor-theme-name">{{ text_custome_color }} 2</div>
+                            <div class="ttvtheme-color-box"><input type="text" id="themecolor2" class="ttvtheme-color-box-2" data-control="saturation"></div>
+                        </td>
+                    </tr>
+                    <tr class="ttvtheme-box-layout ttvall-theme-content">
+                        <td>
+                            <div class="ttvtheme-layout-name">{{ text_box_layout }}</div>
+                            <label class="checkbox-inline ttvtheme-option ttvtheme-box-layout-option">
+                                <input type="checkbox" data-toggle="toggle">
+                            </label>
+                        </td>
+                    </tr>
+                    <tr class="ttvtheme-background-patten ttvall-theme-content" style="display: none;">
+                        <td>
+                            <div class="ttvtheme-background-pattern-name">{{ text_background_pattern }}</div>
+                            <div class="ttvtheme-all-pattern-wrapper">
+                                {% for i in 1..30 %}
+                                    <div class="ttvtheme-all-pattern">
+                                        <div id="pattern{{ i }}" class="ttvtheme-pattern-image ttvtheme-pattern-image{{ i }}" style="background-image:url('{{ dir_pattern }}{{ i }}.png')"></div>
+                                    </div>
+                                {% endfor %}
+                            </div>
+                            <p class="notice">{{ text_bgadmin }}</p>
+                        </td>
+                    </tr>
+                    <tr class="ttvtheme-background-color ttvall-theme-content">
+                        <td>
+                            <div class="ttvbgcolor-theme-name">{{ text_bgcolor }}</div>
+                            <div class="ttvtheme-bgcolor-box">
+                                <input type="text" id="themebgcolor2" data-control="saturation" class="ttvtheme-bgcolor-box-2">
+                            </div>
+                        </td>
+                    </tr>   
+                    <tr class="ttvtheme-menu-sticky ttvall-theme-content">
+                        <td>
+                            <div class="ttvtheme-menu-sticky-name">{{ text_menusticky }}</div>
+                            <label class="checkbox-inline ttvtheme-option ttvtheme-menu-sticky-option">
+                                <input type="checkbox" data-toggle="toggle" checked>
+                            </label>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <button class="ttvtheme-control-reset">{{ text_reset }}</button>
+        </div>
+    </div>
+</div>
+

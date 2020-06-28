@@ -1,0 +1,172 @@
+{{ header }}
+<div id="wrapper">
+	<div id="module-ttvcmsproductcompare-productcomparelist">
+		<div id="product-compare" class="container">
+			<div class="row">
+				{{ column_left }} {% if column_left and column_right %} {% set class = 'col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12' %} {% elseif column_left or column_right %} {% set class = 'col-xl-10 col-lg-12 col-md-12 col-sm-12 col-xs-12' %} {% else %} {% set class = 'col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12' %} {% endif %}
+				<div id="content" class="{{ class }}">
+					{{ content_top }} {% if products %}
+					<div id="main">
+						<header>
+							<div class="ttvpage-header-title-wrapper">
+								<div class="ttvpage-header-title">{{ heading_title }}</div>
+							</div>
+						</header>
+						<div class="ttv-sub-pages-inner-content">
+							<div class="products_block table-responsive">
+								<table class="table table-bordered active ttvcmscomparison">
+									<thead>
+										<tr>
+											<td colspan="{{ products|length + 1 }}"><strong class="ttvpage-sub-title">{{ text_product }}</strong></td>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="ttv-comparedata-title">{{ text_image }}</td>
+											{% for product in products %}
+											<td class="text-center">
+												<div class="remove">
+													<a href="{{ product.remove }}" class="ttvcmsproduct-compare-list" comp-val="remove" title="Remove">
+														<i class="ion-android-remove-circle"></i>
+													</a>
+												</div>
+												<div class="thumbnail-container ttvproduct-wrapper">
+													<a href="{{ product.href }}" class="product-thumbnail ttvproduct-image">
+														<img src="{{ product.compare_thumb }}" alt="When In Rome Graphic Tee">
+														<img class="ttvproduct-hover-img" src="{{ product.hoverimage }}" alt="When In Rome Graphic Tee">
+													</a>
+												</div>
+											</td>
+											{% endfor %}
+										</tr>
+										<tr>
+											<td class="ttv-comparedata-title">{{ text_name }}</td>
+											{% for product in products %}
+											<td>
+												<div class="ttvproduct-name">
+													<div class="product-title"><a href="{{ product.href }}">{{ product.name }}</a></div>
+												</div>
+											</td>
+											{% endfor %}
+										</tr>
+										<tr>
+											<td class="ttv-comparedata-title">{{ text_price }}</td>
+											{% for product in products %}
+											<td>{% if product.price %}
+												<div class="product-price-and-shipping">
+													{% if not product.special %}
+													<div class="price">{{ product.price }}</div>
+													{% else %}
+													<strike class="regular-price">{{ product.price }}</strike>
+													<span class="price">{{ product.special }}</span>
+													{% endif %}
+												</div>
+												{% endif %}</td>
+											{% endfor %}
+										</tr>
+										<tr>
+											<td class="ttv-comparedata-title">{{ text_model }}</td>
+											{% for product in products %}
+											<td class="ttvproduct-model">{{ product.model }}</td>
+											{% endfor %}
+										</tr>
+										<tr>
+											<td class="ttv-comparedata-title">{{ text_manufacturer }}</td>
+											{% for product in products %}
+											<td class="ttvproduct-brand">{{ product.manufacturer }}</td>
+											{% endfor %}
+										</tr>
+										<tr>
+											<td class="ttv-comparedata-title">{{ text_availability }}</td>
+											{% for product in products %}
+											<td class="ttvproduct-stock-status">{{ product.availability }}</td>
+											{% endfor %}
+										</tr>
+										{% if review_status %}
+										<tr>
+											<td class="ttv-comparedata-title">{{ text_rating }}</td>
+											{% for product in products %}
+											<td>
+												<div class="ttvall-product-star-icon">
+													<div class="comments_note">
+														<div class="star_content">
+															{% for i in 1..5 %}
+															{% if product.rating < i %} <div class="star"><i class="fa fa-star" aria-hidden="true"></i></div>
+														{% else %}
+														<div class="star star_on"><i class="fa fa-star" aria-hidden="true"></i></div>
+														{% endif %}
+														{% endfor %}
+													</div>
+													<div class="ttvall-product-review">{{ product.reviews }}</div>
+												</div>
+							</div>
+							{% endfor %}
+							</tr>
+							{% endif %}
+							<tr>
+								<td class="ttv-comparedata-title">{{ text_summary }}</td>
+								{% for product in products %}
+								<td class="description">{{ product.description }}</td>
+								{% endfor %}
+							</tr>
+							<tr>
+								<td class="ttv-comparedata-title">{{ text_weight }}</td>
+								{% for product in products %}
+								<td class="ttvproduct-weight">{{ product.weight }}</td>
+								{% endfor %}
+							</tr>
+							<tr>
+								<td class="ttv-comparedata-title">{{ text_dimension }}</td>
+								{% for product in products %}
+								<td class="ttvproduct-dimension">{{ product.length }} x {{ product.width }} x {{ product.height }}</td>
+								{% endfor %}
+							</tr>
+							</tbody>
+							{% for attribute_group in attribute_groups %}
+							<thead>
+								<tr>
+									<td colspan="{{ products|length + 1 }}"><strong>{{ attribute_group.name }}</strong></td>
+								</tr>
+							</thead>
+							{% for key, attribute in attribute_group.attribute %}
+							<tbody>
+								<tr>
+									<td class="ttv-comparedata-title">{{ attribute.name }}</td>
+									{% for product in products %} {% if product.attribute[key] %}
+									<td> {{ product.attribute[key] }}</td>
+									{% else %}
+									<td></td>
+									{% endif %} {% endfor %}
+								</tr>
+							</tbody>
+							{% endfor %} {% endfor %}
+							<tr class="product-description">
+								<td></td>
+								{% for product in products %}
+								<td class="product-add-to-cart">
+									<button onclick="cart.add1('{{ product.product_id }}', '{{ product.minimum }}');" data-button-action="add-to-cart" class="btn btn-primary ttvproduct-add-to-cart" data-toggle="ttvtooltip" data-placement="top" title="{{ button_cart }}">
+										<i class="fa fa-shopping-cart" aria-hidden="true"></i> {{ button_cart }} </span></button>
+								</td>
+								{% endfor %}
+							</tr>
+							</table>
+						</div>
+				</div>
+</div>
+{% else %}
+<div class="ttv-noproduct">
+	<p>{{ text_empty }}</p>
+	<div class="buttons">
+		<div class="pull-right">
+			<a href="{{ continue }}" class="btn btn-default">{{ button_continue }}</a>
+		</div>
+	</div>
+</div>
+{% endif %} {{ content_bottom }}
+</div>
+{{ column_right }}
+</div>
+</div>
+</div>
+</div>
+{{ footer }}

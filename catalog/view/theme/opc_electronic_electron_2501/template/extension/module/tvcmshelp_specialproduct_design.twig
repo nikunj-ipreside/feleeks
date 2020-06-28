@@ -1,0 +1,76 @@
+<article class="product-miniature js-product-miniature  ttvall-product-wrapper-info-box">
+	<div class="thumbnail-container">
+		<div class="ttvproduct-wrapper grid">
+			<div class="ttvproduct-image">
+				<a href="{{ product.href }}" class="product-thumbnail">
+					<img src="{{ product.thumb }}" alt="{{ product.name }}">
+					<img class="ttvproduct-hover-img" src="{{ product.hoverimage }}" alt="{{ product.name }}">
+				</a>
+				<div class="ttvproduct-hover-btn">
+					<div class="ttvproduct-quick-btn quickview" data-quickviewid="{{ product.product_id }}" title="{{ text_quickview }}" data-link-action="{{ text_quickview }}" data-toggle="ttvtooltip" data-placement="top" data-html="true" data-original-title="{{ text_quickview }}">
+						<div class="ttvproduct-quick-icon"><i class="fa fa-search search" aria-hidden="true"></i></div>
+						<div class="ttvproduct-quick-lable">{{ text_quickview }}</div>
+					</div>
+					<div class="ttvproduct-cart-btn">
+						<div data-button-action="add-to-cart" class="add-to-cart ttvproduct-add-to-cart" onclick="cart.add1('{{ product.product_id }}');" title="{{ button_cart }}" data-link-action="{{ button_cart }}" data-toggle="ttvtooltip" data-placement="top" data-html="true" data-original-title="{{ button_cart }}">
+							<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+							<span class="ttvproduct-add-to-cart-label">{{ button_cart }}</span>
+						</div>
+					</div>
+					{% if comparedisplay %}
+					<div class="ttvcompare-wrapper">
+						<div class="ttvproduct-compare">
+							<div onclick="compare.add1('{{ product.product_id }}');" class="ttvcmsproduct-compare-btn ttvproduct-compare-icon" title="{{ button_compare }}" data-link-action="{{ button_compare }}" data-toggle="ttvtooltip" data-placement="top" data-html="true" data-original-title="{{ button_compare }}">
+								<i class="fa fa-ban remove hide" aria-hidden="true"></i>
+								<i class="fa fa-exchange add" aria-hidden="true"></i>
+								<span class="ttvproduct-add-to-compare-label">{{ button_compare }}</span>
+							</div>
+						</div>
+					</div>
+					{% endif %}
+					{% if wishlistdisplay %}
+					<div class="ttvproduct-wishlist">
+						<div onclick="wishlist.add1('{{ product.product_id }}');" class="ttvquick-view-popup-wishlist" title="{{ button_wishlist }}" data-link-action="{{ button_wishlist }}" data-toggle="ttvtooltip" data-placement="top" data-html="true" data-original-title="{{ button_wishlist }}">
+							<div class="panel-product-line panel-product-actions ttvproduct-wishlist-icon">
+								<i class="fa fa-heart"></i>
+								<span class="ttvproduct-add-to-wishlist-label">{{ button_wishlist }}</span>
+							</div>
+						</div>
+					</div>
+					{% endif %}
+				</div>
+			</div>
+			<div class="ttvproduct-info-box-wrapper">
+				<div class="product-description">
+					<div class="ttvproduct-name">
+						<div class="product-title"><a href="{{ product.href }}">
+								<h6>{{ product.name }}</h6>
+							</a></div>
+						<div class="ttvproduct-cat-name">{{ product.categoryname }}</div>
+					</div>
+					<div class="ttvall-product-star-icon">
+						{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_rating_design.twig' with {'rating': product.rating} %}
+					</div>
+					<div class="ttv-product-price">
+						<div class="ttvproduct-name-price-wrapper">
+							{% if product.price %}
+							<div class="product-price-and-shipping">
+								{% if not product.special %}
+								<span class="price">{{ product.price }}</span>
+								{% else %}
+								<span class="regular-price">{{ product.price }}</span>
+								<span class="price">{{ product.special }}</span>
+								{% endif %}
+								{% if product.tax %}
+								<span class="price-tax">{{ text_tax }}{{ product.tax }}</span>
+								{% endif %}
+							</div>
+							{% endif %}
+						</div>
+					</div>
+					{% if product.date_end and product.date_end != "0000-00-00" %} {% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_timelimit_design.twig' with {'productdate': product.date_end} %}{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</article>

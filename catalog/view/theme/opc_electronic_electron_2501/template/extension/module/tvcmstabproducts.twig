@@ -1,0 +1,369 @@
+{#
+{% if status_cust_main_form %}
+{% if cust_pro_info_status %}
+{% if status_cust_main_title %} {{ cust_pro_info_maintitle }}{% endif %}
+{% if status_cust_main_sub_title %} {{ cust_pro_info_subtitle }}{% endif %}
+{% if status_cust_main_description %} {{ cust_pro_info_description }}{% endif %}
+{% if status_cust_main_image %} {{ cust_pro_info_img }}{% endif %}
+{% endif %}
+{{ cust_pro_info_bannerside }}
+{{ cust_pro_info_bannerstatus }}
+{% endif %}
+{% if status_featured_main_form %}
+{% if featured_tab_status %}
+{% if status_featured_tab_title %} {{ featured_tab_title }}{% endif %}
+{% if status_featured_num_of_prod %} {{ featured_num_of_prod }}{% endif %}
+{% if status_featured_prod_cat %} {{ featured_prod_cat }}{% endif %}
+{% if status_featured_random_prod %} {{ featured_random_prod }}{% endif %}
+{% if status_featured_display_in_tab %} {{ featured_display_in_tab }}{% endif %}
+{% if status_featured_home_title %} {{ featured_home_title }}{% endif %}
+{% if status_featured_home_sub_title %} {{ featured_home_sub_title }}{% endif %}
+{% if status_featured_home_description %} {{ featured_home_description }}{% endif %}
+{% if status_featured_home_image %} {{ featured_home_image }}{% endif %}
+{% endif %}
+{{ featured_bannerside }}
+{{ featured_bannerstatus }}
+{% endif %}
+{% if status_new_main_form %}
+{% if new_tab_status %}
+{% if status_new_tab_title %}{{ new_tabtitle }}{% endif %}
+{% if status_new_num_of_prod %}{{ new_no_pro }}{% endif %}
+{% if status_new_num_of_days %}{{ new_cate_pro }}{% endif %}
+{% if status_new_display_in_tab %}{{ new_dis_tap }}{% endif %}
+{% if status_new_home_title %}{{ new_hometitle }}{% endif %}
+{% if status_new_home_sub_title %}{{ new_homesubtitle }}{% endif %}
+{% if status_new_home_description %}{{ new_homedes }}{% endif %}
+{% if status_new_home_image %}{{ new_img }}{% endif %}
+{% endif %}
+{{ new_bannerside }}
+{{ new_bannerstatus }}
+{% endif %}
+{% if status_best_main_form %}
+{% if best_tab_status %}
+{% if best_tabtitle %} {{ status_best_tab_title }} {% endif %}
+{% if best_no_pro %} {{ status_best_num_of_prod }}{% endif %}
+{% if best_dis_tap %} {{ status_best_display_in_tab }}{% endif %}
+{% if best_hometitle %} {{ status_best_home_title }}{% endif %}
+{% if best_homesubtitle %} {{ status_best_home_sub_title }}{% endif %}
+{% if best_homedes %}{{ status_best_home_description }} {% endif %}
+{% if best_img %} {{ status_best_home_image }}{% endif %}
+{% endif %}
+{{ best_bannerside }}
+{{ best_bannerstatus }}
+{% endif %}
+{% if status_special_main_form %}
+{% if special_tab_status %}
+{% if status_special_tab_title %}{{ special_tabtitle }}{% endif %}
+{% if status_special_home_title %}{{ special_hometitle }}{% endif %}
+{% if status_special_num_of_prod %}{{ special_no_pro }}{% endif %}
+{% if status_special_display_in_tab %}{{ special_dis_tap }}{% endif %}
+{% if status_special_home_sub_title %}{{ special_homesubtitle }}{% endif %}
+{% if status_special_home_description %}{{ special_homedes }}{% endif %}
+{% endif %}
+{{ special_bannerside }}
+{{ special_bannerstatus }}
+{% endif %}
+#}
+<div class="ttvcmstab-title-product container-fluid">
+	<div class="ttvtab-product-wrapper container">
+		<div class="ttvtab-product-all-box">
+			<div class="ttvtab-product-branner">
+				<div class="ttvtab-product-all-pagination ">
+					<div class="ttvall-block-box-shadows">
+						<div class="ttvtab-product">
+							{% if cust_pro_info_status %}
+							<div class="ttvtab-main-title-wrapper">
+								{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_maintitle_design.twig' with {'main_title': cust_pro_info_maintitle,'main_short_des': cust_pro_info_subtitle,'main_des': cust_pro_info_description,'main_img': cust_pro_info_img } %}
+							</div>
+							{% endif %}
+							<div class="ttvtab-title-wrapper">
+								<div class="ttvtab-title">
+									<ul class="ttvtabs-products">
+										{% set tmp = 1 %}
+										{% if featured_tab_status and featured_display_in_tab %}
+										<li class="ttvtab-name tab-index {% if tmp == '1' %}active {% set tmp = 0 %}{% endif %}" data-tab-data="ttvcmstab-featured-product" data-tab-paging="ttvtab-featured"><span>{{ featured_tab_title }}</span></li>
+										{% endif %} {% if new_tab_status and new_dis_tap %}
+										<li class="ttvtab-name tab-index {% if tmp == '1' %}active {% set tmp = 0 %}{% endif %}" data-tab-data="ttvcmstab-new-product" data-tab-paging="ttvtab-new"><span>{{ new_tabtitle }}</span></li>
+										{% endif %} {% if best_tab_status and best_dis_tap %}
+										<li class="ttvtab-name tab-index {% if tmp == '1' %}active {% set tmp = 0 %}{% endif %}" data-tab-data="ttvcmstab-best-seller-product" data-tab-paging="ttvtab-best-seller"><span>{{ best_tabtitle }}</span></li>
+										{% endif %} {% if special_tab_status and status_special_display_in_tab %}
+										<li class="ttvtab-name tab-index {% if tmp == '1' %}active {% set tmp = 0 %}{% endif %}" data-tab-data="ttvcmstab-special-product" data-tab-paging="ttvtab-special"><span>{{ special_tabtitle }}</span></li>
+										{% endif %}
+									</ul>
+								</div>
+								{% set tmp = 1 %}
+								<div class="ttvtab-pagination-wrapper ttv-pagination-wrapper {% if tmp == '1' %}active {% set tmp = 0 %}{% endif %}">
+									<div class="ttvtab-featured-pagination ttvtab-pagination active" style="display: block;"></div>
+									<div class="ttvtab-featured-pagination ttvtab-pagination active" style="display: block;">
+										<div class="ttvtab-featured-pagination-next-pre-btn ttvcms-next-pre-btn">
+											<div class="ttvtab-featured-product-prev ttvcmsprev-btn" data-parent="ttvcmstab-featured-product"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+											<div class="ttvtab-featured-product-next ttvcmsnext-btn" data-parent="ttvcmstab-featured-product"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+										</div>
+									</div>
+								</div>
+								<div class="ttvtab-pagination-wrapper ttv-pagination-wrapper {% if tmp == '1' %}active {% set tmp = 0 %}{% endif %}">
+									<div class="ttvtab-new-pagination ttvtab-pagination "></div>
+									<div class="ttvtab-new-pagination ttvtab-pagination ">
+										<div class="ttvtab-new-pagination-next-pre-btn ttvcms-next-pre-btn">
+											<div class="ttvtab-new-product-prev ttvcmsprev-btn" data-parent="ttvcmstab-new-product"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+											<div class="ttvtab-new-product-next ttvcmsnext-btn" data-parent="ttvcmstab-new-product"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+										</div>
+									</div>
+								</div>
+								<div class="ttvtab-pagination-wrapper ttv-pagination-wrapper {% if tmp == '1' %}active {% set tmp = 0 %}{% endif %}">
+									<div class="ttvtab-best-seller-pagination ttvtab-pagination "></div>
+									<div class="ttvtab-best-seller-pagination ttvtab-pagination ">
+										<div class="ttvtab-best-seller-pagination-next-pre-btn ttvcms-next-pre-btn">
+											<div class="ttvtab-best-seller-product-prev ttvcmsprev-btn" data-parent="ttvcmstab-best-seller-product"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+											<div class="ttvtab-best-seller-product-next ttvcmsnext-btn" data-parent="ttvcmstab-best-seller-product"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+										</div>
+									</div>
+								</div>
+								<div class="ttvtab-pagination-wrapper ttv-pagination-wrapper {% if tmp == '1' %}active {% set tmp = 0 %}{% endif %}">
+									<div class="ttvtab-special-pagination ttvtab-pagination "></div>
+									<div class="ttvtab-special-pagination ttvtab-pagination ">
+										<div class="ttvtab-special-pagination-next-pre-btn ttvcms-next-pre-btn">
+											<div class="ttvtab-special-product-prev ttvcmsprev-btn" data-parent="ttvcmstab-special-product"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+											<div class="ttvtab-special-product-next ttvcmsnext-btn" data-parent="ttvcmstab-special-product"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ttvtab-product-list-wrapper">
+							{% set tmp = 1 %}
+							{% if featured_tab_status and featured_display_in_tab %}
+							<div id="ttvcmstab-featured-product" class="ttvcmstab-product ttvtab-featured-product ttvcmstab-product-detail {% if tmp == '1' %}active {% set tmp = 0 %}{% endif %}">
+								<div class="products owl-theme owl-carousel ttvproduct-wrapper-content-box ttvall-tab-product-block ttvtab-featured-product">
+									{% if doublerow %}
+										{% set count = 1 %}
+										{% set singleRow = false %}
+									{% else %}
+										{% set count = 5 %}
+										{% set singleRow = true %}
+									{% endif %}
+
+									{% for product in feature_tab_products %}
+									{% if count == '1' %}
+									<div class='item'>
+										{% set tabdoublefirst = "ttvtab-first-product" %}
+										{% endif %}
+										{% include 'opc_electronic_electron_2501/template/extension/module/tvcmshelp_product_design.twig' with {'product': product,'tabdoublefirst': tabdoublefirst} %}
+										{% set tabdoublefirst = "" %}
+										{% if count == '2' %}
+									</div>
+									{% set count = 0 %}
+									{% endif %}
+									{% set count = count + 1 %}
+									{% endfor %}
+								{% if count != '1' and not singleRow %}
+								</div>
+								{% endif %}
+							</div>
+						</div>
+						{% endif %}
+						{% if new_tab_status and new_dis_tap %}
+						<div id="ttvcmstab-new-product" class="ttvcmstab-product ttvtab-new-product ttvcmstab-product-detail {% if tmp == '1' %}active {% set tmp = 0 %}{% endif %}">
+							<div class="products owl-theme owl-carousel ttvproduct-wrapper-content-box ttvall-tab-product-block ttvtab-new-product">
+								{% if doublerow %}
+									{% set count = 1 %}
+									{% set singleRow = false %}
+								{% else %}
+									{% set count = 5 %}
+									{% set singleRow = true %}
+								{% endif %}
+									
+								{% for product in new_products %}
+								{% if count == '1' %}
+								<div class='item'>
+									{% set tabdoublefirst = "ttvtab-first-product" %}
+									{% endif %}
+									{% include 'opc_electronic_electron_2501/template/extension/module/tvcmshelp_product_design.twig' with {'product': product,'tabdoublefirst': tabdoublefirst} %}
+									{% set tabdoublefirst = "" %}
+									{% if count == '2' %}
+								</div>
+								{% set count = 0 %}
+								{% endif %}
+								{% set count = count + 1 %}
+								{% endfor %}
+								{% if count != '1' and not singleRow %}
+							</div>
+							{% endif %}
+						</div>
+					</div>
+					{% endif %}
+					{% if best_tab_status and best_dis_tap %}
+					<div id="ttvcmstab-best-seller-product" class="ttvcmstab-product ttvtab-best-seller-product ttvcmstab-product-detail {% if tmp == '1' %}active {% set tmp = 0 %}{% endif %}">
+						<div class="products owl-theme owl-carousel ttvproduct-wrapper-content-box ttvall-tab-product-block ttvtab-best-seller-product">
+							{% if doublerow %}
+								{% set count = 1 %}
+								{% set singleRow = false %}
+							{% else %}
+								{% set count = 5 %}
+								{% set singleRow = true %}
+							{% endif %}
+
+							{% for product in best_products %}
+							{% if count == '1' %}
+							<div class='item'>
+								{% set tabdoublefirst = "ttvtab-first-product" %}
+								{% endif %}
+								{% include 'opc_electronic_electron_2501/template/extension/module/tvcmshelp_product_design.twig' with {'product': product,'tabdoublefirst': tabdoublefirst} %}
+								{% set tabdoublefirst = "" %}
+								{% if count == '2' %}
+							</div>
+							{% set count = 0 %}
+							{% endif %}
+							{% set count = count + 1 %}
+							{% endfor %}
+							{% if count != '1' and not singleRow %}
+						</div>
+						{% endif %}
+					</div>
+				</div>
+				{% endif %}
+				{% if special_tab_status and status_special_display_in_tab %}
+				<div id="ttvcmstab-special-product" class="ttvcmstab-product ttvtab-special-product ttvcmstab-product-detail {% if tmp == '1' %}active {% set tmp = 0 %}{% endif %}">
+					<div class="products owl-theme owl-carousel ttvproduct-wrapper-content-box ttvall-tab-product-block ttvtab-special-product">
+						{% if doublerow %}
+							{% set count = 1 %}
+							{% set singleRow = false %}
+						{% else %}
+							{% set count = 5 %}
+							{% set singleRow = true %}
+						{% endif %}
+						{% for product in special_products %}
+						{% if count == '1' %}
+						<div class='item'>
+							{% set tabdoublefirst = "ttvtab-first-product" %}
+							{% endif %}
+							{% include 'opc_electronic_electron_2501/template/extension/module/tvcmshelp_product_design.twig' with {'product': product,'tabdoublefirst': tabdoublefirst} %}
+							{% set tabdoublefirst = "" %}
+							{% if count == '2' %}
+						</div>
+						{% set count = 0 %}
+						{% endif %}
+						{% set count = count + 1 %}
+						{% endfor %}
+						{% if count != '1' and not singleRow %}
+					</div>
+					{% endif %}
+				</div>
+			</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+/*******************************tabproduct*******************************/
+var mobileViewSize = 991;
+
+$(document).ready(function() {
+	/********************** Start Tab js *****************************/
+	$('.tab-index').click(function(e) {
+		$id = $(this).attr('data-tab-data');
+		$paging = $(this).attr('data-tab-paging');
+		$('.tab-index').removeClass('active');
+
+		$('.ttvcmstab-product').removeClass('active');
+		$('.ttvtab-pagination').removeClass('active');
+
+		$('.ttvcmstab-product').hide();
+		$('.ttvtab-pagination').hide();
+
+		$(this).addClass('active');
+		$('#' + $id).addClass('active').fadeIn('500');
+		$('.' + $paging + '-pagination').addClass('active').show();
+	});
+
+	$('.ttvcmstab-product.active').fadeIn();
+	$('.ttvtab-pagination.active').fadeIn();
+
+	$('.ttvcmstab-title-product .ttvtab-pagination-wrapper').insertAfter('.ttvcmstab-title-product .ttvtab-title-wrapper .ttvtab-title');
+
+	/********************** End Tab js *****************************/
+
+	/****************** Start Tab Product Slider Js *******************************************/
+	var owlClass = [
+		//['slider className','navigation nextClass','navigation prevClass']
+		['.ttvtab-featured-product .ttvproduct-wrapper-content-box', '.ttvtab-featured-product-next', '.ttvtab-featured-product-prev'],
+		['.ttvtab-new-product .ttvproduct-wrapper-content-box', '.ttvtab-new-product-next', '.ttvtab-new-product-prev'],
+		['.ttvtab-special-product .ttvproduct-wrapper-content-box', '.ttvtab-special-product-next', '.ttvtab-special-product-prev'],
+		['.ttvtab-best-seller-product .ttvproduct-wrapper-content-box', '.ttvtab-best-seller-product-next', '.ttvtab-best-seller-product-prev'],
+	];
+
+	for (var i = 0; i < owlClass.length; i++) {
+		var owl = $(owlClass[i][0]).owlCarousel({
+			loop: false,
+			dots: false,
+			nav: false,
+			responsive: {
+				0: { items: 1 },
+				320: { items: 1, slideBy: 1 },
+				576: { items: 2, slideBy: 1 },
+				768: { items: 2, slideBy: 1 },
+				992: { items: 3, slideBy: 1 },
+				1399: { items: 4, slideBy: 1 },
+				1599: { items: 5, slideBy: 1 },
+				1800: { items: 5, slideBy: 1 }
+			}
+		});
+
+		$(owlClass[i][1]).on('click', function(e) {
+			e.preventDefault();
+			$('#' + $(this).attr('data-parent') + ' .owl-nav .owl-next').trigger('click');
+		});
+		$(owlClass[i][2]).on('click', function(e) {
+			e.preventDefault();
+			$('#' + $(this).attr('data-parent') + ' .owl-nav .owl-prev').trigger('click');
+		});
+		// $('#featuredid').insertAfter('#ttvcmstab-featured-product .ttvtab-featured-product');
+		// $('#newid').insertAfter('#ttvcmstab-new-product .ttvtab-new-product');
+		// $('#bestid').insertAfter('#ttvcmstab-best-seller-product .ttvtab-best-seller-product');
+		// $('#specialid').insertAfter('#ttvcmstab-special-product .ttvtab-special-product');
+	}
+	/****************** End Tab Product Slider Js *******************************************/
+	/****************** Start Single Products Slider Js *******************************************/
+	var swiperClass = [
+		//['slider className','navigation nextClass','navigation prevClass','paging className']
+		['.ttvcmsfeatured-product .ttvfeatured-product-wrapper', '.ttvcmsfeatured-next', '.ttvcmsfeatured-prev', '.ttvcmsfeatured-product'],
+		['.ttvcmsnew-product .ttvnew-product-wrapper', '.ttvcmsnew-next', '.ttvcmsnew-prev', '.ttvcmsnew-product'],
+		['.ttvcmsspecial-product .ttvspecial-product-wrapper', '.ttvcmsspecial-next', '.ttvcmsspecial-prev', '.ttvcmsspecial-product'],
+		['.ttvcmsbest-seller-product .ttvbest-seller-product-wrapper', '.ttvcmsbest-seller-next', '.ttvcmsbest-seller-prev', '.ttvcmsbest-seller-product'],
+	];
+
+	for (var i = 0; i < swiperClass.length; i++) {
+		$(swiperClass[i][0]).owlCarousel({
+			loop: false,
+			dots: false,
+			nav: false,
+			responsive: {
+				0: { items: 1 },
+				320: { items: 1, slideBy: 1 },
+				576: { items: 2, slideBy: 1 },
+				768: { items: 2, slideBy: 1 },
+				992: { items: 3, slideBy: 1 },
+				1399: { items: 4, slideBy: 1 },
+				1599: { items: 4, slideBy: 1 },
+				1800: { items: 4, slideBy: 1 }
+			},
+		});
+
+		$(swiperClass[i][1]).on('click', function(e) {
+			e.preventDefault();
+			$('.' + $(this).attr('data-parent') + ' .owl-nav .owl-next').trigger('click');
+		});
+		$(swiperClass[i][2]).on('click', function(e) {
+			e.preventDefault();
+			$('.' + $(this).attr('data-parent') + ' .owl-nav .owl-prev').trigger('click');
+		});
+		// $(swiperClass[i][3]+' .ttv-pagination-wrapper').insertAfter(swiperClass[i][3]+' .ttvproduct-wrapper-content-box');
+	}
+	/****************** End Single Product Sliders Js *******************************************/
+
+});
+</script>

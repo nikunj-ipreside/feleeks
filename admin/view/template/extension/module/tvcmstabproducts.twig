@@ -1,0 +1,839 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-module" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-module" class="form-horizontal">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-2 control-label" for="input-name">{{ entry_name }}</label>
+          <div class="col-sm-10">
+            <input type="text" name="name" value="{{ name }}" placeholder="{{ entry_name }}" id="input-name" class="form-control" />
+            {% if error_name %}
+            <div class="text-danger">{{ error_name }}</div>
+            {% endif %}
+          </div>
+        </div>   
+        <div class="form-group"> 
+          <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+          <div class="col-sm-10">
+            <select name="status" id="input-status" class="form-control">
+              {% if status %}
+              <option value="1" selected="selected">{{ text_enabled }}</option>
+              <option value="0">{{ text_disabled }}</option>
+              {% else %}
+              <option value="1">{{ text_enabled }}</option>
+              <option value="0" selected="selected">{{ text_disabled }}</option>
+              {% endif %}
+            </select>
+          </div>
+        </div>
+        <div class="panel-body">
+            <ul class="nav nav-tabs">
+              {% if featured_prod.main_form %}<li class="active"><a href="#tab-featured" data-toggle="tab">{{ tab_fea }}</a></li>{% endif %}
+              {% if new_prod.main_form %}<li><a href="#tab-new" data-toggle="tab">{{ tab_new }}</a></li>{% endif %}
+              {% if best_seller_prod.main_form %}<li><a href="#tab-best" data-toggle="tab">{{ tab_bes }}</a></li>{% endif %}
+              {% if special_prod.main_form %}<li><a href="#tab-special" data-toggle="tab">{{ tab_spe }}</a></li>{% endif %}
+             {% if cust_prod.main_form %} <li><a href="#tab-custom" data-toggle="tab">{{ tab_cus }}</a></li>{% endif %}
+            </ul>
+            <div class="tab-content">
+              {% if featured_prod.main_form %}
+              <div class="tab-pane active" id="tab-featured">
+                {% if featured_prod.home_image_status %}
+                  <div class="form-group"> 
+                    <label class="col-sm-4 control-label" for="input-status">{{ entry_cust_dis }}</label>
+                    <div class="col-sm-8">
+                      <select name="tvcmstabproducts_pro_fea[status]" id="input-status" class="form-control">
+                        {% if tvcmstabproducts_pro_fea.status %}
+                        <option value="1" selected="selected">{{ text_enabled }}</option>
+                        <option value="0">{{ text_disabled }}</option>
+                        {% else %}
+                        <option value="1">{{ text_enabled }}</option>
+                        <option value="0" selected="selected">{{ text_disabled }}</option>
+                        {% endif %}
+                      </select>
+                    </div>
+                  </div>
+                {% endif %}
+                {% if featured_prod.num_of_prod %}
+                  <div class="form-group required">
+                    <label class="col-sm-4 control-label" for="input-tvcmstabproducts_no_pro">{{ text_tab_nopro }}</label>
+                    <div class="col-sm-8">
+                      <input type="text" name="tvcmstabproducts_pro_fea[no_pro]" value="{{ tvcmstabproducts_pro_fea.no_pro }}" placeholder="{{ text_tab_nopro }}" id="input-tvcmstabproducts_pro_fea_no_pro" class="form-control" />
+                      <input type="hidden" name="tvcmstabproducts_pro_fea[tab_name_id]" value="ttvcmstab-featured-product"  class="form-control" />
+                      <input type="hidden" name="tvcmstabproducts_pro_fea[tab_name_class_slider]" value="ttvtab-featured-product"  class="form-control" />
+                      <input type="hidden" name="tvcmstabproducts_pro_fea[tab_name_class_pagination]" value="ttvtab-featured"  class="form-control" />
+                    </div>
+                  </div>
+                {% endif %}
+                {% if featured_prod.prod_cat %}
+                  <div class="form-group required">
+                    <label class="col-sm-4 control-label" for="input-tvcmstabproducts_pro_feacate_pro">{{ text_tab_cateprodis }}</label>
+                    <div class="col-sm-8">
+                      <input type="text" name="product_name" value="" placeholder="{{ entry_product }}" id="input-product" class="form-control" />
+                      <div id="featured-product" class="well well-sm" style="height: 150px; overflow: auto;">
+                        {% for product in products %}
+                        <div id="featured-product{{ product.product_id }}"><i class="fa fa-minus-circle"></i>{{ product.name }}
+                          <input type="hidden" name="tvcmstabproducts_pro_fea[cate_pro][]" value="{{ product.product_id }}" />
+                        </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+                {% if featured_prod.random_prod %}
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">{{ text_tab_disradpro }}</label>
+                    <div class="col-sm-8">
+                      <label class="radio-inline"> {% if tvcmstabproducts_pro_fea.dis_rand %}
+                        <input type="radio" name="tvcmstabproducts_pro_fea[dis_rand]" value="1" checked="checked" />
+                        {{ text_yes }}
+                        {% else %}
+                        <input type="radio" name="tvcmstabproducts_pro_fea[dis_rand]" value="1" />
+                        {{ text_yes }}
+                        {% endif %} </label>
+                      <label class="radio-inline"> {% if not tvcmstabproducts_pro_fea.dis_rand %}
+                        <input type="radio" name="tvcmstabproducts_pro_fea[dis_rand]" value="0" checked="checked" />
+                        {{ text_no }}
+                        {% else %}
+                        <input type="radio" name="tvcmstabproducts_pro_fea[dis_rand]" value="0" />
+                        {{ text_no }}
+                        {% endif %} </label>
+                    </div>
+                  </div>
+                {% endif %}
+                {% if featured_prod.display_in_tab %}
+                  <div class="form-group hidden">
+                    <label class="col-sm-4 control-label">{{ text_tab_distab }}</label>
+                    <div class="col-sm-8">
+                      <label class="radio-inline"> {% if tvcmstabproducts_pro_fea.dis_tap %}
+                        <input type="radio" name="tvcmstabproducts_pro_fea[dis_tap]" value="1" checked="checked" />
+                        {{ text_yes }}
+                        {% else %}
+                        <input type="radio" name="tvcmstabproducts_pro_fea[dis_tap]" value="1" />
+                        {{ text_yes }}
+                        {% endif %} </label>
+                      <label class="radio-inline"> {% if not tvcmstabproducts_pro_fea.dis_tap %}
+                        <input type="radio" name="tvcmstabproducts_pro_fea[dis_tap]" value="0" checked="checked" />
+                        {{ text_no }}
+                        {% else %}
+                        <input type="radio" name="tvcmstabproducts_pro_fea[dis_tap]" value="0" />
+                        {{ text_no }}
+                        {% endif %} </label>
+                    </div>
+                  </div>
+                {% endif %}
+                
+                  <div class="form-group hidden"> 
+                    <label class="col-sm-4 control-label" for="input-bannerside">{{ text_bannerside }}</label>
+                    <div class="col-sm-8">
+                      <select name="tvcmstabproducts_pro_fea[bannerside]" id="input-bannerside" class="form-control">
+                        {% if tvcmstabproducts_pro_fea.bannerside == "left" %}
+                        <option value="left" selected="selected">{{ text_leftside }}</option>
+                        <option value="right">{{ text_rightside }}</option>
+                        {% else %}
+                        <option value="left">{{ text_leftside }}</option>
+                        <option value="right" selected="selected">{{ text_rightside }}</option>
+                        {% endif %}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group hidden">
+                    <label class="col-sm-4 control-label">{{ text_banner }}</label>
+                    <div class="col-sm-8">
+                      <label class="radio-inline"> {% if tvcmstabproducts_pro_fea.bannerstatus %}
+                        <input type="radio" name="tvcmstabproducts_pro_fea[bannerstatus]" value="1" checked="checked" />
+                        {{ text_yes }}
+                        {% else %}
+                        <input type="radio" name="tvcmstabproducts_pro_fea[bannerstatus]" value="1" />
+                        {{ text_yes }}
+                        {% endif %} </label>
+                      <label class="radio-inline"> {% if not tvcmstabproducts_pro_fea.bannerstatus %}
+                        <input type="radio" name="tvcmstabproducts_pro_fea[bannerstatus]" value="0" checked="checked" />
+                        {{ text_no }}
+                        {% else %}
+                        <input type="radio" name="tvcmstabproducts_pro_fea[bannerstatus]" value="0" />
+                        {{ text_no }}
+                        {% endif %} </label>
+                    </div>
+                  </div>
+                  
+                
+                {% if featured_prod.tab_title or featured_prod.home_title or featured_prod.home_sub_title or featured_prod.home_description or featured_prod.home_image %}
+                  <ul class="nav nav-tabs" id="language_1">
+                    {% for language in languages %}
+                    <li><a href="#language_1{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+                <div class="tab-content">{% for language in languages %}
+                  <div class="tab-pane" id="language_1{{ language.language_id }}">
+                    {% if featured_prod.tab_title %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ text_tab_title }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="tvcmstabproducts_pro_fea[lang_text][{{ language.language_id }}][tabtitle]" 
+                          value="{{ tvcmstabproducts_pro_fea.lang_text[language.language_id] ? tvcmstabproducts_pro_fea.lang_text[language.language_id].tabtitle }}" placeholder="{{ text_tab_title }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if featured_prod.home_title %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ text_tab_htitle }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="tvcmstabproducts_pro_fea[lang_text][{{ language.language_id }}][hometitle]" value="{{ tvcmstabproducts_pro_fea.lang_text[language.language_id] ? tvcmstabproducts_pro_fea.lang_text[language.language_id].hometitle }}" placeholder="{{ text_tab_htitle }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if featured_prod.home_sub_title %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ text_tab_hstitle }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="tvcmstabproducts_pro_fea[lang_text][{{ language.language_id }}][homesubtitle]" value="{{ tvcmstabproducts_pro_fea.lang_text[language.language_id] ? tvcmstabproducts_pro_fea.lang_text[language.language_id].homesubtitle }}" placeholder="{{ text_tab_hstitle }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if featured_prod.home_description %}
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ text_tab_hdes }}</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="tvcmstabproducts_pro_fea[lang_text][{{ language.language_id }}][homedes]" value="{{ tvcmstabproducts_pro_fea.lang_text[language.language_id] ? tvcmstabproducts_pro_fea.lang_text[language.language_id].homedes }}" placeholder="{{ text_tab_hdes }}" id="input-name{{ language.language_id }}" class="form-control" />
+                      </div>
+                    </div>
+                    {% endif %}
+                    {% if featured_prod.home_image %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-tvcmstabproducts_pro_fea_img{{ language.language_id }}">{{ entry_fea_ban }}</label>
+                        <div class="col-sm-10">
+                          
+                          <a href="" id="tvcmstabproducts_pro_fea_img{{ language.language_id }}" data-toggle="image" class="img-thumbnail">
+                            <img src="{{ img_2[language.language_id] }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                          </a>
+                          <input type="hidden" name="tvcmstabproducts_pro_fea[lang_text][{{ language.language_id }}][img]" value="{{ tvcmstabproducts_pro_fea.lang_text[language.language_id] ? tvcmstabproducts_pro_fea.lang_text[language.language_id].img }}" id="input-tvcmstabproducts_pro_fea_img{{ language.language_id }}" />
+                        </div>
+                      </div> 
+                    {% endif %}  
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+              {% endif %}
+              {% if new_prod.main_form %}
+              <div class="tab-pane" id="tab-new">
+                {% if new_prod.home_image_status %}
+                  <div class="form-group"> 
+                    <label class="col-sm-4 control-label" for="input-status">{{ entry_cust_dis }}</label>
+                    <div class="col-sm-8">
+                      <select name="tvcmstabproducts_pro_new[status]" id="input-status" class="form-control">
+                        {% if tvcmstabproducts_pro_new.status %}
+                        <option value="1" selected="selected">{{ text_enabled }}</option>
+                        <option value="0">{{ text_disabled }}</option>
+                        {% else %}
+                        <option value="1">{{ text_enabled }}</option>
+                        <option value="0" selected="selected">{{ text_disabled }}</option>
+                        {% endif %}
+                      </select>
+                    </div>
+                  </div>
+                {% endif %}
+                {% if new_prod.num_of_prod %}
+                  <div class="form-group required">
+                    <label class="col-sm-4 control-label" for="input-tvcmstabproducts_pro_newno_pro">{{ text_tab_new_nopro }}</label>
+                    <div class="col-sm-8">
+                      <input type="text" name="tvcmstabproducts_pro_new[no_pro]" value="{{ tvcmstabproducts_pro_new.no_pro }}" placeholder="{{ text_tab_new_nopro }}" id="input-tvcmstabproducts_pro_newno_pro" class="form-control" />
+                       <input type="hidden" name="tvcmstabproducts_pro_new[tab_name_id]" value="ttvcmstab-new-product"  class="form-control" />    
+                       <input type="hidden" name="tvcmstabproducts_pro_new[tab_name_class_slider]" value="ttvtab-new-product"  class="form-control" />    
+                       <input type="hidden" name="tvcmstabproducts_pro_new[tab_name_class_pagination]" value="ttvtab-new"  class="form-control" />    
+                    </div>
+                  </div>
+                 {% endif %}
+                 {% if new_prod.num_of_days %}
+                  <div class="form-group required">
+                    <label class="col-sm-4 control-label" for="input-tvcmstabproducts_pro_newcate_pro">{{ text_tab_new_cateprodis }}</label>
+                    <div class="col-sm-8">
+                      <input type="text" name="tvcmstabproducts_pro_new[cate_pro]" value="{{ tvcmstabproducts_pro_new.cate_pro }}" placeholder="{{ text_tab_cateprodis }}" id="input-tvcmstabproducts_pro_newcate_pro" class="form-control" />
+                    </div>
+                  </div>
+                 {% endif %}
+                 
+                {% if new_prod.display_in_tab %}
+                  <div class="form-group hidden">
+                    <label class="col-sm-4 control-label">{{ text_tab_distab }}</label>
+                    <div class="col-sm-8">
+                      <label class="radio-inline"> {% if tvcmstabproducts_pro_new.dis_tap %}
+                        <input type="radio" name="tvcmstabproducts_pro_new[dis_tap]" value="1" checked="checked" />
+                        {{ text_yes }}
+                        {% else %}
+                        <input type="radio" name="tvcmstabproducts_pro_new[dis_tap]" value="1" />
+                        {{ text_yes }}
+                        {% endif %} </label>
+                      <label class="radio-inline"> {% if not tvcmstabproducts_pro_new.dis_tap %}
+                        <input type="radio" name="tvcmstabproducts_pro_new[dis_tap]" value="0" checked="checked" />
+                        {{ text_no }}
+                        {% else %}
+                        <input type="radio" name="tvcmstabproducts_pro_new[dis_tap]" value="0" />
+                        {{ text_no }}
+                        {% endif %} </label>
+                    </div>
+                  </div>
+                {% endif %}
+                
+                <div class="form-group hidden"> 
+                  <label class="col-sm-4 control-label" for="input-bannerside">{{ text_bannerside }}</label>
+                  <div class="col-sm-8">
+                    <select name="tvcmstabproducts_pro_new[bannerside]" id="input-bannerside" class="form-control">
+                      {% if tvcmstabproducts_pro_new.bannerside == "left" %}
+                      <option value="left" selected="selected">{{ text_leftside }}</option>
+                      <option value="right">{{ text_rightside }}</option>
+                      {% else %}
+                      <option value="left">{{ text_leftside }}</option>
+                      <option value="right" selected="selected">{{ text_rightside }}</option>
+                      {% endif %}
+                    </select>
+                  </div>
+                </div>
+                <div class="form-group hidden">
+                  <label class="col-sm-4 control-label">{{ text_banner }}</label>
+                  <div class="col-sm-8">
+                    <label class="radio-inline"> {% if tvcmstabproducts_pro_new.bannerstatus %}
+                      <input type="radio" name="tvcmstabproducts_pro_new[bannerstatus]" value="1" checked="checked" />
+                      {{ text_yes }}
+                      {% else %}
+                      <input type="radio" name="tvcmstabproducts_pro_new[bannerstatus]" value="1" />
+                      {{ text_yes }}
+                      {% endif %} </label>
+                    <label class="radio-inline"> {% if not tvcmstabproducts_pro_new.bannerstatus %}
+                      <input type="radio" name="tvcmstabproducts_pro_new[bannerstatus]" value="0" checked="checked" />
+                      {{ text_no }}
+                      {% else %}
+                      <input type="radio" name="tvcmstabproducts_pro_new[bannerstatus]" value="0" />
+                      {{ text_no }}
+                      {% endif %} </label>
+                  </div>
+                </div>
+               
+
+                {% if new_prod.tab_title or new_prod.home_title or new_prod.home_sub_title or new_prod.home_description or new_prod.home_image %}
+                  <ul class="nav nav-tabs" id="language_2">
+                    {% for language in languages %}
+                    <li><a href="#language_2{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+
+                <div class="tab-content">{% for language in languages %}
+                  <div class="tab-pane" id="language_2{{ language.language_id }}">
+                    {% if new_prod.tab_title %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ text_tab_title }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="tvcmstabproducts_pro_new[lang_text][{{ language.language_id }}][tabtitle]" 
+                          value="{{ tvcmstabproducts_pro_new.lang_text[language.language_id] ? tvcmstabproducts_pro_new.lang_text[language.language_id].tabtitle }}" placeholder="{{ text_tab_title }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if new_prod.home_title %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ text_tab_htitle }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="tvcmstabproducts_pro_new[lang_text][{{ language.language_id }}][hometitle]" value="{{ tvcmstabproducts_pro_new.lang_text[language.language_id] ? tvcmstabproducts_pro_new.lang_text[language.language_id].hometitle }}" placeholder="{{ text_tab_htitle }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if new_prod.home_sub_title %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ text_tab_hstitle }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="tvcmstabproducts_pro_new[lang_text][{{ language.language_id }}][homesubtitle]" value="{{ tvcmstabproducts_pro_new.lang_text[language.language_id] ? tvcmstabproducts_pro_new.lang_text[language.language_id].homesubtitle }}" placeholder="{{ text_tab_hstitle }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if new_prod.home_description %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ text_tab_hdes }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="tvcmstabproducts_pro_new[lang_text][{{ language.language_id }}][homedes]" value="{{ tvcmstabproducts_pro_new.lang_text[language.language_id] ? tvcmstabproducts_pro_new.lang_text[language.language_id].homedes }}" placeholder="{{ text_tab_hdes }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if new_prod.home_image %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-tvcmstabproducts_pro_new_img{{ language.language_id }}">{{ entry_new_ban }}</label>
+                        <div class="col-sm-10">
+                          <a href="" id="thumb-tvcmstabproducts_pro_new_img{{ language.language_id }}" data-toggle="image" class="img-thumbnail">
+                            <img src="{{ img_3[language.language_id] }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                          </a>
+                          <input type="hidden" name="tvcmstabproducts_pro_new[lang_text][{{ language.language_id }}][img]" value="{{ tvcmstabproducts_pro_new.lang_text[language.language_id] ? tvcmstabproducts_pro_new.lang_text[language.language_id].img }}" id="input-tvcmstabproducts_pro_new_img{{ language.language_id }}" />
+                        </div>
+                      </div>
+                    {% endif %}
+                 
+                  </div>
+                  {% endfor %}
+                </div>
+
+              </div>
+              {% endif %}
+              {% if best_seller_prod.main_form %}
+              <div class="tab-pane" id="tab-best">
+                {% if best_seller_prod.home_image_status %}
+                  <div class="form-group"> 
+                    <label class="col-sm-4 control-label" for="input-status">{{ entry_cust_dis }}</label>
+                    <div class="col-sm-8">
+                      <select name="tvcmstabproducts_pro_best[status]" id="input-status" class="form-control">
+                        {% if tvcmstabproducts_pro_best.status %}
+                        <option value="1" selected="selected">{{ text_enabled }}</option>
+                        <option value="0">{{ text_disabled }}</option>
+                        {% else %}
+                        <option value="1">{{ text_enabled }}</option>
+                        <option value="0" selected="selected">{{ text_disabled }}</option>
+                        {% endif %}
+                      </select>
+                    </div>
+                  </div>
+                {% endif %}
+
+                {% if best_seller_prod.num_of_prod %}
+                  <div class="form-group required">
+                    <label class="col-sm-4 control-label" for="input-tvcmstabproducts_pro_bestno_pro">{{ text_tab_new_nopro }}</label>
+                    <div class="col-sm-8">
+                      <input type="text" name="tvcmstabproducts_pro_best[no_pro]" value="{{ tvcmstabproducts_pro_best.no_pro }}" placeholder="{{ text_tab_new_nopro }}" id="input-tvcmstabproducts_pro_bestno_pro" class="form-control" />
+                       <input type="hidden" name="tvcmstabproducts_pro_best[tab_name_id]" value="ttvcmstab-best-seller-product"  class="form-control" />    
+                       <input type="hidden" name="tvcmstabproducts_pro_best[tab_name_class_slider]" value="ttvtab-best-seller-product"  class="form-control" />    
+                       <input type="hidden" name="tvcmstabproducts_pro_best[tab_name_class_pagination]" value="ttvtab-best-seller"  class="form-control" />
+                    </div>
+                  </div>
+                {% endif %}
+
+                {% if best_seller_prod.display_in_tab %}
+                  <div class="form-group hidden">
+                    <label class="col-sm-4 control-label">{{ text_tab_distab }}</label>
+                    <div class="col-sm-8">
+                      <label class="radio-inline"> {% if tvcmstabproducts_pro_best.dis_tap %}
+                        <input type="radio" name="tvcmstabproducts_pro_best[dis_tap]" value="1" checked="checked" />
+                        {{ text_yes }}
+                        {% else %}
+                        <input type="radio" name="tvcmstabproducts_pro_best[dis_tap]" value="1" />
+                        {{ text_yes }}
+                        {% endif %} </label>
+                      <label class="radio-inline"> {% if not tvcmstabproducts_pro_best.dis_tap %}
+                        <input type="radio" name="tvcmstabproducts_pro_best[dis_tap]" value="0" checked="checked" />
+                        {{ text_no }}
+                        {% else %}
+                        <input type="radio" name="tvcmstabproducts_pro_best[dis_tap]" value="0" />
+                        {{ text_no }}
+                        {% endif %} </label>
+                    </div>
+                  </div>
+                {% endif %}
+
+                  <div class="form-group hidden"> 
+                    <label class="col-sm-4 control-label" for="input-bannerside">{{ text_bannerside }}</label>
+                    <div class="col-sm-8">
+                      <select name="tvcmstabproducts_pro_best[bannerside]" id="input-bannerside" class="form-control">
+                        {% if tvcmstabproducts_pro_best.bannerside == "left" %}
+                        <option value="left" selected="selected">{{ text_leftside }}</option>
+                        <option value="right">{{ text_rightside }}</option>
+                        {% else %}
+                        <option value="left">{{ text_leftside }}</option>
+                        <option value="right" selected="selected">{{ text_rightside }}</option>
+                        {% endif %}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group hidden">
+                    <label class="col-sm-4 control-label">{{ text_banner }}</label>
+                    <div class="col-sm-8">
+                      <label class="radio-inline"> {% if tvcmstabproducts_pro_best.bannerstatus %}
+                        <input type="radio" name="tvcmstabproducts_pro_best[bannerstatus]" value="1" checked="checked" />
+                        {{ text_yes }}
+                        {% else %}
+                        <input type="radio" name="tvcmstabproducts_pro_best[bannerstatus]" value="1" />
+                        {{ text_yes }}
+                        {% endif %} </label>
+                      <label class="radio-inline"> {% if not tvcmstabproducts_pro_best.bannerstatus %}
+                        <input type="radio" name="tvcmstabproducts_pro_best[bannerstatus]" value="0" checked="checked" />
+                        {{ text_no }}
+                        {% else %}
+                        <input type="radio" name="tvcmstabproducts_pro_best[bannerstatus]" value="0" />
+                        {{ text_no }}
+                        {% endif %} </label>
+                    </div>
+                  </div>
+                 
+
+                {% if best_seller_prod.tab_title or best_seller_prod.home_title or best_seller_prod.home_sub_title or best_seller_prod.home_description or best_seller_prod.home_image %}
+                  <ul class="nav nav-tabs" id="language_3">
+                    {% for language in languages %}
+                    <li><a href="#language_3{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+
+                <div class="tab-content">{% for language in languages %}
+                  <div class="tab-pane" id="language_3{{ language.language_id }}">
+                    {% if best_seller_prod.tab_title %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ text_tab_title }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="tvcmstabproducts_pro_best[lang_text][{{ language.language_id }}][tabtitle]" 
+                          value="{{ tvcmstabproducts_pro_best.lang_text[language.language_id] ? tvcmstabproducts_pro_best.lang_text[language.language_id].tabtitle }}" placeholder="{{ text_tab_title }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if best_seller_prod.home_title %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ text_tab_htitle }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" value="{{ tvcmstabproducts_pro_best.lang_text[language.language_id] ? tvcmstabproducts_pro_best.lang_text[language.language_id].hometitle }}"
+                          name="tvcmstabproducts_pro_best[lang_text][{{ language.language_id }}][hometitle]" value="tvcmstabproducts_pro_best.lang_text[{{ language.language_id }}][hometitle]" placeholder="{{ text_tab_htitle }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if best_seller_prod.home_sub_title %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ text_tab_hstitle }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" value="{{ tvcmstabproducts_pro_best.lang_text[language.language_id] ? tvcmstabproducts_pro_best.lang_text[language.language_id].homesubtitle }}" name="tvcmstabproducts_pro_best[lang_text][{{ language.language_id }}][homesubtitle]" placeholder="{{ text_tab_hstitle }}"  id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if best_seller_prod.home_description %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ text_tab_hdes }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" value="{{ tvcmstabproducts_pro_best.lang_text[language.language_id] ? tvcmstabproducts_pro_best.lang_text[language.language_id].homedes }}"  name="tvcmstabproducts_pro_best[lang_text][{{ language.language_id }}][homedes]" placeholder="{{ text_tab_hdes }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if best_seller_prod.home_image %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-tvcmstabproducts_pro_best_img{{ language.language_id }}">{{ entry_best_ban }}</label>
+                        <div class="col-sm-10">
+                          <a href="" id="thumb-tvcmstabproducts_pro_best_img{{ language.language_id }}" data-toggle="image" class="img-thumbnail">
+                            <img src="{{ img_4[language.language_id] }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                          </a>
+                          <input type="hidden" value="{{ tvcmstabproducts_pro_best.lang_text[language.language_id] ? tvcmstabproducts_pro_best.lang_text[language.language_id].img }}"  name="tvcmstabproducts_pro_best[lang_text][{{ language.language_id }}][img]" id="input-tvcmstabproducts_pro_best_img{{ language.language_id }}" />
+                        </div>
+                      </div>
+                    {% endif %} 
+                  </div>
+                  {% endfor %}
+                </div>
+
+              </div>
+              {% endif %}
+              {% if special_prod.main_form %}
+              <div class="tab-pane" id="tab-special">
+                {% if special_prod.home_image_status %}
+                  <div class="form-group"> 
+                    <label class="col-sm-4 control-label" for="input-status">{{ entry_cust_dis }}</label>
+                    <div class="col-sm-8">
+                      <select name="tvcmstabproducts_pro_spe[status]" id="input-status" class="form-control">
+                        {% if tvcmstabproducts_pro_spe.status %}
+                        <option value="1" selected="selected">{{ text_enabled }}</option>
+                        <option value="0">{{ text_disabled }}</option>
+                        {% else %}
+                        <option value="1">{{ text_enabled }}</option>
+                        <option value="0" selected="selected">{{ text_disabled }}</option>
+                        {% endif %}
+                      </select>
+                    </div>
+                  </div>
+                {% endif %}
+                {% if special_prod.num_of_prod %}
+                  <div class="form-group required">
+                    <label class="col-sm-4 control-label" for="input-tvcmstabproducts_pro_speno_pro">{{ text_tab_new_nopro }}</label>
+                    <div class="col-sm-8">
+                      <input type="text" name="tvcmstabproducts_pro_spe[no_pro]" value="{{ tvcmstabproducts_pro_spe.no_pro }}" placeholder="{{ text_tab_new_nopro }}" id="input-tvcmstabproducts_pro_newno_spe" class="form-control" />
+                      <input type="hidden" name="tvcmstabproducts_pro_spe[tab_name_id]" value="ttvcmstab-special-product"  class="form-control" />    
+                      <input type="hidden" name="tvcmstabproducts_pro_spe[tab_name_class_slider]" value="ttvtab-special-product"  class="form-control" />    
+                      <input type="hidden" name="tvcmstabproducts_pro_spe[tab_name_class_pagination]" value="ttvtab-special"  class="form-control" />
+                    </div>
+                  </div>
+                {% endif %}
+                {% if special_prod.display_in_tab %}
+                  <div class="form-group hidden">
+                    <label class="col-sm-4 control-label">{{ text_tab_distab }}</label>
+                    <div class="col-sm-8">
+                      <label class="radio-inline"> {% if tvcmstabproducts_pro_spe.dis_tap %}
+                        <input type="radio" name="tvcmstabproducts_pro_spe[dis_tap]" value="1" checked="checked" />
+                        {{ text_yes }}
+                        {% else %}
+                        <input type="radio" name="tvcmstabproducts_pro_spe[dis_tap]" value="1" />
+                        {{ text_yes }}
+                        {% endif %} </label>
+                      <label class="radio-inline"> {% if not tvcmstabproducts_pro_spe.dis_tap %}
+                        <input type="radio" name="tvcmstabproducts_pro_spe[dis_tap]" value="0" checked="checked" />
+                        {{ text_no }}
+                        {% else %}
+                        <input type="radio" name="tvcmstabproducts_pro_spe[dis_tap]" value="0" />
+                        {{ text_no }}
+                        {% endif %} </label>
+                    </div>
+                  </div>
+                {% endif %}
+                  <div class="form-group"> 
+                    <label class="col-sm-4 control-label" for="input-bannerside">{{ text_bannerside }}</label>
+                    <div class="col-sm-8">
+                      <select name="tvcmstabproducts_pro_spe[bannerside]" id="input-bannerside" class="form-control">
+                        {% if tvcmstabproducts_pro_spe.bannerside == "left" %}
+                        <option value="left" selected="selected">{{ text_leftside }}</option>
+                        <option value="right">{{ text_rightside }}</option>
+                        {% else %}
+                        <option value="left">{{ text_leftside }}</option>
+                        <option value="right" selected="selected">{{ text_rightside }}</option>
+                        {% endif %}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-4 control-label">{{ text_banner }}</label>
+                    <div class="col-sm-8">
+                      <label class="radio-inline"> {% if tvcmstabproducts_pro_spe.bannerstatus %}
+                        <input type="radio" name="tvcmstabproducts_pro_spe[bannerstatus]" value="1" checked="checked" />
+                        {{ text_yes }}
+                        {% else %}
+                        <input type="radio" name="tvcmstabproducts_pro_spe[bannerstatus]" value="1" />
+                        {{ text_yes }}
+                        {% endif %} </label>
+                      <label class="radio-inline"> {% if not tvcmstabproducts_pro_spe.bannerstatus %}
+                        <input type="radio" name="tvcmstabproducts_pro_spe[bannerstatus]" value="0" checked="checked" />
+                        {{ text_no }}
+                        {% else %}
+                        <input type="radio" name="tvcmstabproducts_pro_spe[bannerstatus]" value="0" />
+                        {{ text_no }}
+                        {% endif %} </label>
+                    </div>
+                  </div>
+                 
+
+                {% if special_prod.tab_title or special_prod.home_title or special_prod.home_sub_title or special_prod.home_description or special_prod.home_image %}
+                <ul class="nav nav-tabs" id="language_4">
+                  {% for language in languages %}
+                  <li><a href="#language_4{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+                  {% endfor %}
+                </ul>
+                {% endif %}
+                <div class="tab-content">{% for language in languages %}
+                  <div class="tab-pane" id="language_4{{ language.language_id }}">
+                    {% if special_prod.tab_title %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ text_tab_title }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="tvcmstabproducts_pro_spe[lang_text][{{ language.language_id }}][tabtitle]" value="{{ tvcmstabproducts_pro_spe.lang_text[language.language_id] ? tvcmstabproducts_pro_spe.lang_text[language.language_id].tabtitle }}" placeholder="{{ text_tab_title }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if special_prod.home_title %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ text_tab_htitle }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="tvcmstabproducts_pro_spe[lang_text][{{ language.language_id }}][hometitle]" value="{{ tvcmstabproducts_pro_spe.lang_text[language.language_id] ? tvcmstabproducts_pro_spe.lang_text[language.language_id].hometitle }}" placeholder="{{ text_tab_htitle }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if special_prod.home_sub_title %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ text_tab_hstitle }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="tvcmstabproducts_pro_spe[lang_text][{{ language.language_id }}][homesubtitle]" value="{{ tvcmstabproducts_pro_spe.lang_text[language.language_id] ? tvcmstabproducts_pro_spe.lang_text[language.language_id].homesubtitle }}" placeholder="{{ text_tab_hstitle }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if special_prod.home_description %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ text_tab_hdes }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="tvcmstabproducts_pro_spe[lang_text][{{ language.language_id }}][homedes]" value="{{ tvcmstabproducts_pro_spe.lang_text[language.language_id] ? tvcmstabproducts_pro_spe.lang_text[language.language_id].homedes }}" placeholder="{{ text_tab_hdes }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if special_prod.home_image %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-tvcmstabproducts_pro_spe_img{{ language.language_id }}">{{ entry_spe_ban }}</label>
+                        <div class="col-sm-10">
+                          <a href="" id="thumb-tvcmstabproducts_pro_spe_img{{ language.language_id }}" data-toggle="image" class="img-thumbnail">
+                            <img src="{{ img_5[language.language_id] }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                          </a>
+                          <input type="hidden" name="tvcmstabproducts_pro_spe[lang_text][{{ language.language_id }}][img]" value="{{ tvcmstabproducts_pro_spe.lang_text[language.language_id] ? tvcmstabproducts_pro_spe.lang_text[language.language_id].img }}" id="input-tvcmstabproducts_pro_spe_img{{ language.language_id }}" />
+                        </div>
+                      </div> 
+                    {% endif %}
+                    
+                  </div>
+                  {% endfor %}
+                </div>
+
+              </div>
+              {% endif %}
+              {% if cust_prod.main_form %} 
+                <div class="tab-pane" id="tab-custom">
+                    <div class="form-group"> 
+                      <label class="col-sm-2 control-label" for="input-status">{{ entry_cust_dis }}</label>
+                      <div class="col-sm-10">
+                        <select name="tvcmstabproducts_pro_cus[status]" id="input-status" class="form-control">
+                          {% if tvcmstabproducts_pro_cus.status %}
+                          <option value="1" selected="selected">{{ text_enabled }}</option>
+                          <option value="0">{{ text_disabled }}</option>
+                          {% else %}
+                          <option value="1">{{ text_enabled }}</option>
+                          <option value="0" selected="selected">{{ text_disabled }}</option>
+                          {% endif %}
+                        </select>
+                        <input type="hidden" name="tvcmstabproducts_pro_cus[tab_name_id]" value="ttvcmstab-special-product"  class="form-control" />    
+                        <input type="hidden" name="tvcmstabproducts_pro_cus[tab_name_class_slider]" value="ttvtab-special-product"  class="form-control" />    
+                        <input type="hidden" name="tvcmstabproducts_pro_cus[tab_name_class_pagination]" value="ttvtab-special"  class="form-control" />
+                      
+                      </div>
+                    </div>
+                  <div class="form-group hidden"> 
+                    <label class="col-sm-2 control-label" for="input-bannerside">{{ text_bannerside }}</label>
+                    <div class="col-sm-10">
+                      <select name="tvcmstabproducts_pro_cus[bannerside]" id="input-bannerside" class="form-control">
+                        {% if tvcmstabproducts_pro_cus.bannerside == "left" %}
+                        <option value="left" selected="selected">{{ text_leftside }}</option>
+                        <option value="right">{{ text_rightside }}</option>
+                        {% else %}
+                        <option value="left">{{ text_leftside }}</option>
+                        <option value="right" selected="selected">{{ text_rightside }}</option>
+                        {% endif %}
+                      </select>
+                    </div>
+                  </div>
+                  <div class="form-group hidden">
+                    <label class="col-sm-2 control-label">{{ text_banner }}</label>
+                    <div class="col-sm-10">
+                      <label class="radio-inline"> {% if tvcmstabproducts_pro_cus.bannerstatus %}
+                        <input type="radio" name="tvcmstabproducts_pro_cus[bannerstatus]" value="1" checked="checked" />
+                        {{ text_yes }}
+                        {% else %}
+                        <input type="radio" name="tvcmstabproducts_pro_cus[bannerstatus]" value="1" />
+                        {{ text_yes }}
+                        {% endif %} </label>
+                      <label class="radio-inline"> {% if not tvcmstabproducts_pro_cus.bannerstatus %}
+                        <input type="radio" name="tvcmstabproducts_pro_cus[bannerstatus]" value="0" checked="checked" />
+                        {{ text_no }}
+                        {% else %}
+                        <input type="radio" name="tvcmstabproducts_pro_cus[bannerstatus]" value="0" />
+                        {{ text_no }}
+                        {% endif %} </label>
+                    </div>
+                  </div>
+                  
+                  {% if cust_prod.main_title or cust_prod.main_sub_title or cust_prod.main_description or cust_prod.main_image %}
+                    <ul class="nav nav-tabs" id="language_5">
+                      {% for language in languages %}
+                      <li><a href="#language_5{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
+                  <div class="tab-content">{% for language in languages %}
+                    <div class="tab-pane" id="language_5{{ language.language_id }}">
+                      {% if cust_prod.main_title %}
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ text_tab_main }}</label>
+                          <div class="col-sm-10">
+                            <input type="text" name="tvcmstabproducts_pro_cus[lang_text][{{ language.language_id }}][maintitle]" value="{{ tvcmstabproducts_pro_cus.lang_text[language.language_id] ? tvcmstabproducts_pro_cus.lang_text[language.language_id].maintitle }}" placeholder="{{ text_tab_main }}" id="input-name{{ language.language_id }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% endif %}
+                      {% if cust_prod.main_sub_title %}
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ text_tab_cust_hdes }}</label>
+                          <div class="col-sm-10">
+                            <input type="text" name="tvcmstabproducts_pro_cus[lang_text][{{ language.language_id }}][subtitle]" value="{{ tvcmstabproducts_pro_cus.lang_text[language.language_id] ? tvcmstabproducts_pro_cus.lang_text[language.language_id].subtitle }}" placeholder="{{ text_tab_cust_hdes }}" id="input-name{{ language.language_id }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% endif %}
+                      {% if cust_prod.main_description %}
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-name{{ language.language_id }}">{{ entry_cust_des }}</label>
+                          <div class="col-sm-10">
+                            <input type="text" name="tvcmstabproducts_pro_cus[lang_text][{{ language.language_id }}][des]" value="{{ tvcmstabproducts_pro_cus.lang_text[language.language_id] ? tvcmstabproducts_pro_cus.lang_text[language.language_id].des }}" placeholder="{{ entry_cust_des }}" id="input-name{{ language.language_id }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% endif %}
+                      {% if cust_prod.main_image %}
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-tvcmscategoryslider_main_img{{ language.language_id }}">{{ entry_cust_main }}</label>
+                          <div class="col-sm-10">
+                            <a href="" id="thumb-image{{ language.language_id }}" data-toggle="image" class="img-thumbnail">
+                              <img src="{{ img_1[language.language_id] }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                            </a>
+                            <input type="hidden" name="tvcmstabproducts_pro_cus[lang_text][{{ language.language_id }}][img]" value="{{ tvcmstabproducts_pro_cus.lang_text[language.language_id] ? tvcmstabproducts_pro_cus.lang_text[language.language_id].img }}" id="input-tvcmscategoryslider_main_img{{ language.language_id }}" />
+                          </div>
+                        </div>
+                      {% endif %}
+                      
+                    </div>
+                    {% endfor %}
+                  </div>
+
+                </div>
+              {% endif %}
+            </div>
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+  <script type="text/javascript"><!--
+$('#language_1 a:first').tab('show');
+$('#language_2 a:first').tab('show');
+$('#language_3 a:first').tab('show');
+$('#language_4 a:first').tab('show');
+$('#language_5 a:first').tab('show');
+$('#option a:first').tab('show');
+//--></script>
+
+<script type="text/javascript"><!--
+$('input[name=\'product_name\']').autocomplete({
+  source: function(request, response) {
+    $.ajax({
+      url: 'index.php?route=extension/module/tvcmstabproducts/autocomplete&user_token={{ user_token }}&filter_name=' +  encodeURIComponent(request),
+      dataType: 'json',
+      success: function(json) {
+        response($.map(json, function(item) {
+          return {
+            label: item['name'],
+            value: item['category_id']
+          }
+        }));
+      }
+    });
+  },
+  select: function(item) {
+    $('input[name=\'product_name\']').val('');
+    
+    $('#featured-product' + item['value']).remove();
+    
+    $('#featured-product').append('<div id="featured-product' + item['value'] + '"><i class="fa fa-minus-circle"></i> ' + item['label'] + '<input type="hidden" name="tvcmstabproducts_pro_fea[cate_pro][]" value="' + item['value'] + '" /></div>');  
+  }
+});
+  
+$('#featured-product').delegate('.fa-minus-circle', 'click', function() {
+  $(this).parent().remove();
+});
+//--></script>
+{{ footer }}

@@ -1,0 +1,106 @@
+<div id="products" class="grid">
+	{% if products %}
+	<div>
+		<div class="ttvleft-penal-product-top clearfix">
+			<div id="js-product-list-top" class="products-selection ttvcenter-block-product-section ttvall-block-box-shadows clearfix">
+				<div class="col-sm-6 col-md-6 col-lg-2 ttv-left-search-totle-product">
+					<div class="ttvcms-left-column-wrapper">
+						<div class="ttv-left-pannal-btn-wrapper" data-toggle="ttvtooltip" data-placement="top" data-html="true" title="" data-original-title="left panel"><i class="fa fa-th grid" aria-hidden="true"></i>
+							<span class="">{{ text_viewleftcolumn }}</span></div>
+					</div>
+					<div class="ttv-total-product">
+						<p class="ttv-total-product-number">There is {{ no_product }} product.</p>
+					</div>
+				</div>
+				<div class="col-sm-6 col-md-6 col-lg-3 ttv-grid-list-all-wrapper">
+					<div class="ttvcmsproduct-grid-list clearfix">
+						<div class="ttvproduct-view ttvproduct-grid" data-toggle="ttvtooltip" data-placement="top" data-html="true" title="" data-original-title="Grid"><i class="fa fa-th grid" aria-hidden="true"></i>
+							<span class="ttvgrid-wrapper">{{ text_grid }}</span></div>
+						<div class="ttvproduct-view ttvproduct-grid-2" data-toggle="ttvtooltip" data-placement="top" data-html="true" title="" data-original-title="Grid 2"><i class="fa fa-th grid-2" aria-hidden="true"></i>
+							<span class="ttvgrid-2-wrapper">{{ text_grid }}</span></div>
+						<div class="ttvproduct-view ttvproduct-list" data-toggle="ttvtooltip" data-placement="top" data-html="true" title="" data-original-title="List"><i class="fa fa-list list" aria-hidden="true"></i>
+							<span class="ttvlist-wrapper">{{ text_list }}</span></div>
+						<div class="ttvproduct-view ttvproduct-list-2" data-toggle="ttvtooltip" data-placement="top" data-html="true" title="" data-original-title="List 2"><i class="fa fa-list list-2" aria-hidden="true"></i>
+							<span class="ttvlist-wrapper">{{ text_list2 }}</span></div>
+						<div class="ttvproduct-view ttvproduct-catalog" data-toggle="ttvtooltip" data-placement="top" data-html="true" title="" data-original-title="catalog"><i class="fa fa-list catalog" aria-hidden="true"></i>
+							<span class="ttvlist-wrapper">{{ text_catalog }}</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 col-md-6 col-lg-3 ttvall-page-shortby ttv-show-dropdown">
+					<div class="row sort-by-row"><span class="col-sm-3 col-md-3 hidden-sm-down sort-by">{{ text_limit }}</span>
+						<div class="col-sm-9 col-xs-8 col-md-9 products-sort-order dropdown">
+							
+							<button class="btn-unstyle select-title" rel="nofollow" data-toggle="dropdown" ><span id="selecttitleshowset">Limit</span><i class="fa fa-caret-down float-xs-right" aria-hidden="true"></i>
+							</button>
+						    <div class="dropdown-menu">
+						    	{% for limits in limits %}
+						    		{% if limits.value == limit %}
+										<a href="{{ limits.href }}" class="select-list current js-search-link" id="selecttitleshowget">{{ limits.text }}</a>
+									{% else %}
+										<a href="{{ limits.href }}" class="select-list current js-search-link">{{ limits.text }}</a>
+									{% endif %} 
+								{% endfor %}
+						    </div>
+
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-12 col-md-6 col-lg-3 ttvall-page-shortby ttv-sort-dropdown">
+					<div class="row sort-by-row">
+						<span class="col-sm-3 col-md-3 hidden-sm-down sort-by">{{ text_sort }}</span>
+						<div class="col-sm-9 col-xs-8 col-md-9 products-sort-order">
+						    <button class="btn-unstyle select-title" rel="nofollow" data-toggle="dropdown" ><span id="selecttitlesortset">Sort</span><i class="fa fa-caret-down float-xs-right" aria-hidden="true"></i>
+							</button>
+						    <div class="dropdown-menu">
+						    	{% for sorts in sorts %}
+						    		{% if sorts.value == '%s-%s'|format(sort, order) %}
+										<a href="{{ sorts.href }}" class="select-list current js-search-link" id="selecttitlesortget">{{ sorts.text }}</a>
+									{% else %}
+										<a href="{{ sorts.href }}" class="select-list current js-search-link">{{ sorts.text }}</a>
+									{% endif %} 
+								{% endfor %}
+						    </div>
+						</div>
+					</div>
+				</div>
+				<div class="ttvcms-right-column-wrapper col-xs-12 col-md-1 col-lg-1">
+					<div class="ttvcms-right-column-wrapper">
+					    <div class="ttv-right-pannal-btn-wrapper" data-toggle="ttvtooltip" data-placement="top" data-html="true" title="" data-original-title="Right panel">
+					        <i class="fa fa-th grid" aria-hidden="true"></i>
+					        <span class="">{{ text_viewrightcolumn }}</span>
+					    </div>
+					 </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="">
+		<div id="js-product-list" class="ttvall-block-box-shadows">
+			<div class="ttvgrid-list-view-product">
+				<div class="products">
+					{% for product in products %}
+					<article class="item  product-miniature js-product-miniature col-xl-3 col-lg-3 col-md-4 col-sm-6 col-xs-12 ttv-grid-list-wrapper-info-box ttvall-product-wrapper-info-box">
+						<div class="thumbnail-container">
+							{# Start Grid View #}
+							{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_product_grid_view_design.twig' with {'product': product,'class_name': 'grid' } %}
+							{# End Grid View #}
+							{# Start Grid View #}
+							{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_product_grid_view_design.twig' with {'product': product,'class_name': 'grid-2' } %}
+							{# End Grid-2 View #}
+							{# Start List View #}
+							{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_product_list_view_design.twig' with {'product': product} %}
+							{# End List View #}
+							{# Start catalog View #}
+							{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_product_catalog_view_design.twig' with {'product': product} %}
+							{# End catalog View #}
+						</div>
+					</article>
+					{% endfor %}
+				</div>
+			</div>
+			{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_pagination_design.twig' with {'pagination': pagination} %}
+		</div>
+	</div>
+	{% endif %}
+</div>

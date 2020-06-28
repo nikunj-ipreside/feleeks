@@ -1,0 +1,215 @@
+{{ header }}
+<div id="wrapper">
+	<div id="singleblog-singleblog" class="container">
+		<!-- single blog page -->
+			<div id="module-ttvcmsblog-single">
+				<div class="container ttv-left-layout">
+					{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_breadcrumbs_design.twig' with {'breadcrumbs': breadcrumbs} %}
+					<div id="content-wrapper">
+						<div id="main">
+							<div id="content" class="page-content card card-block">
+								<div class="kr_blog_post_area single">
+									<div class="kr_blog_post_inner">
+										<article id="blog_post" class="blog_post blog_post_video clearfix">
+											<div class="blog_post_content">
+												<div class="blog_post_content_top col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+													<div class="post_thumbnail">
+														{% if tvcmsblog_main_posttype == "video" %}
+														<a href="{{ tvcmsblog_main_video }}?autoplay=1" class="item swiper-slide various fancybox fancybox.iframe img_content" style='width:100%;'>
+															<div class="ttvnews-event-hoverbtn">	
+																<div class="ttvblog-content-img ttvblog-balance-height">
+																	<img src="https://img.youtube.com/vi/{{ youtube_id }}/0.jpg" alt="">
+																</div>
+																<div class="ttvnews-event-overly"></div>
+																<div class="ttvnews-event-buttons">
+																	 <i class="fa fa-play-circle" aria-hidden="true"></i>
+																</div>
+															</div>
+														</a>
+														{% elseif tvcmsblog_main_posttype == "gallery" %}
+														<div class="ttvnews-event-hoverbtn">
+															<div class="post_format_items ttvcmsblog-video-slider ttvblog-balance-height ttvcmsblog-gallery-slider-2" data-slider-id="ttvcmsblog-gallery-slider-2">
+																<div class="ttvblog-wrapper-slider owl-theme owl-carousel">
+																	{% for galleryimage in gallery %}	                
+																   	<a href="{{ tvcmsblog_main_link }}" style="width:100%;">
+																   		<div class="ttvnews-event-hoverbtn">
+																   			<div class="ttvblog-content-img ttvblog-balance-height">
+																   				<img src="{{ galleryimage }}" alt="">
+																   			</div>
+																   		</div>
+																   	</a>
+																   {% endfor %}
+																</div>
+															</div>	
+															<div class="ttvcmsblog-gallery-slider-pagination">
+																<div class="ttvcmsblog-gallery-next-pre-btn">
+																	<div class="ttvcmsblog-gallery-slider-prev">
+																		<i class="fa fa-angle-left" aria-hidden="true"></i>
+																	</div>
+																	<div class="ttvcmsblog-gallery-slider-next">
+																		<i class="fa fa-angle-right" aria-hidden="true"></i>
+																	</div>
+																</div>
+															</div>
+														</div>
+														{% else %}
+														<div class="ttvnews-event-hoverbtn">
+															<img class="ttvcmsblog_img img-responsive" src="{{ tvcmsblog_main_featureimage }}" alt="{{ tvcmsblog_sub_title }}">
+														</div>
+														{% endif %}
+													</div>
+												</div>
+												<div class="post_content col-xl-6 col-lg-12 col-md-12 col-sm-12 col-xs-12"><h3 class="post_title">{{ tvcmsblog_sub_title }}</h3>
+													<div class="post_meta clearfix">
+														<p class="meta_author">{{ text_blogpostby }} <span>{{ store_owner }}</span></p>
+														<p class="meta_date"><i class="fa fa-calendar-o" aria-hidden="true"></i> {{ tvcmsblog_main_adddate }}</p>
+														<p class="meta_category">{{ category_title }}</p>
+													</div>
+													<div class="post_description">
+														<p>{{ tvcmsblog_sub_content }}</p>
+													</div>
+												</div>
+											</div>
+										</article>
+									</div>
+								</div>
+								<!-- begin comment-list -->
+								{% if tvcmsblog_main_commentstatus %}
+								<div class="comments_area" id="comments">
+									{% if comment_info %}
+									<div class="comments_title">{{ text_allcomments }}</div>
+									{% endif %}
+									<ol class="comment_list">
+										{% for comment_data in comment_info %}
+										{% if comment_data.tvcmsblog_comment_status %}
+											<li class="comment" id="comment_1">
+												<article class="comment_body clearfix">
+													<div class="comment_author vcard">
+														<img alt="" class="ttvcmsblog_img avatar avatar-70 photo" height="70" src="{{ comment_image }}" width="70">
+													</div>
+													<div class="comment_content">
+														<div class="comment_meta">
+															<div class="comment_meta_author">
+																<b class="fn">{{ comment_data.tvcmsblog_comment_name }}</b>
+															</div>
+															<div class="comment_meta_date">
+																<time datetime="{{ comment_data.tvcmsblog_comment_adddate }}">{{ comment_data.tvcmsblog_comment_adddate }}</time>
+															</div>
+														</div>
+														<div class="comment_content_bottom">
+															<p>{{ comment_data.tvcmsblog_comment_comment }}</p>
+														</div>
+													</div>
+												</article>
+											</li>
+										{% endif %}
+										{% endfor %}
+									</ol>
+								</div>
+								{% if success %}
+								<div class="alert alert-success alert-dismissible">
+									<i class="fa fa-check-circle"></i> {{ success }}
+								</div>
+								{% endif %}
+								<!-- end comment-list -->
+
+								<!-- begin comment -->
+								<div class="comment_respond clearfix m_bottom_50 ttvcms-blog-inner-page" id="respond"><h3 class="comment_reply_title" id="reply-title">{{ text_leave }}</h3>
+									<form class="comment_form" action="{{ action }}" method="post" enctype="multipart/form-data">
+										<div class="form-group ttvcmsblogs_message"></div>
+										<div class="form-group ttvcmsblog_name_parent clearfix">
+											<label class="col-xs-12 col-sm-12 col-md-3 col-lg-3">{{ text_comment_name }}</label>
+											<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+												<input type="text" name="tvcmsblog_comment_name" value="{{ tvcmsblog_comment_name }}" placeholder="{{ text_comment_name }}" class="form-control" />
+												<input type="hidden" name="tvcmsblog_main_id" value="{{ tvcmsblog_main_id }}" class="form-control" />
+												{% if error_name %}
+													<div class="text-danger">{{ error_name }}</div>
+												{% endif %}
+											</div>
+										</div>
+
+										<div class="form-group ttvcmsblog_email_parent clearfix">
+											<label class="col-xs-12 col-sm-12 col-md-3 col-lg-3">{{ text_comment_email }}</label>
+											<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+												<input class="form-control" name="tvcmsblog_comment_email" type="email" value="{{ tvcmsblog_comment_email }}" placeholder="{{ text_comment_email }}"> 
+												{% if error_email %}
+													<div class="text-danger">{{ error_email }}</div>
+												{% endif %}
+											</div>
+										</div>
+
+										<div class="form-group ttvcmsblog_website_parent clearfix">
+											<label class="col-xs-12 col-sm-12 col-md-3 col-lg-3">{{ text_comment_url }}</label>
+											<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+												<input type="text" name="tvcmsblog_comment_website_url" value="{{ tvcmsblog_comment_website_url }}" id="input-url" placeholder="{{ entry_url }}" class="form-control" />
+											</div>
+										</div>
+
+										<div class="form-group ttvcmsblog_subject_parent clearfix">
+											<label class="col-xs-12 col-sm-12 col-md-3 col-lg-3">{{ text_comment_subject }}</label>
+											<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+												<input type="text" name="tvcmsblog_comment_subject" value="{{ tvcmsblog_comment_subject }}" id="input-comment" placeholder="{{ entry_url }}" class="form-control" />
+											</div>
+										</div>
+
+										<div class="form-group ttvcmsblog_content_parent clearfix">
+											<label class="col-xs-12 col-sm-12 col-md-3 col-lg-3">{{ text_comment_comment }}</label>
+											<div class="col-xs-12 col-sm-12 col-md-9 col-lg-9">
+												<textarea rows="15" class="form-control" name="tvcmsblog_comment_comment" placeholder="How can we help?">{{ tvcmsblog_comment_comment }}</textarea>
+												{% if error_enquiry %}
+													<div class="text-danger">{{ error_enquiry }}</div>
+												{% endif %}
+											</div>
+										</div>
+										
+										<div class="ttvblob-all-submit-btn">
+											<input type="submit" class="btn btn-info pull-left ttvcmsblog_submit_btn" value="{{ button_submit }}">
+										</div>
+									</form>
+								</div>  
+								{% endif %} 
+								<!-- end comment -->
+							</div>
+							<footer class="page-footer">
+								<!-- Footer content -->
+							</footer>
+						</div>
+					</div>
+				</div>
+			</div>
+		<!-- end single blog page -->
+	</div>
+</div>
+{{ footer }}
+<script type="text/javascript">
+/****************** Start Brand list Slider Js *******************************************/
+$(document).ready(function() {
+	$('#module-ttvcmsblog-single .ttvblog-wrapper-slider').owlCarousel({
+		loop: false,
+		dots: false,
+		nav: false,
+		responsive: {
+			0: { items: 1 },
+			320: { items: 1, slideBy: 1 },
+			400: { items: 1, slideBy: 1 },
+			768: { items: 1, slideBy: 1 },
+			992: { items: 1, slideBy: 1 },
+			1200: { items: 1, slideBy: 1 },
+			1600: { items: 1, slideBy: 1 },
+			1800: { items: 1, slideBy: 1 }
+		},
+	});
+	$('#module-ttvcmsblog-single .ttvcmsblog-gallery-slider-prev').click(function(e) {
+		e.preventDefault();
+		$('#module-ttvcmsblog-single .owl-nav .owl-prev').trigger('click');
+	});
+
+	$('#module-ttvcmsblog-single .ttvcmsblog-gallery-slider-next').click(function(e) {
+		e.preventDefault();
+		$('#module-ttvcmsblog-single .owl-nav .owl-next').trigger('click');
+	});
+
+});
+
+/****************** End Brand list Slider Js *******************************************/
+</script>

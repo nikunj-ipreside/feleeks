@@ -1,0 +1,20 @@
+{% if empty %}
+	<div class="ttvtabcategory-not-found">
+		<div>{{ empty }}</div>
+	</div>
+{% else %}
+	<div class='ttvtabcategory-all-product-content-box'>
+		<div class='ttvtabcategory-all-product-slider owl-theme owl-carousel'>
+			{% for product in products %} {% include 'opc_electronic_electron_2501/template/extension/module/tvcmshelp_specialproduct_design.twig' with {'product': product} %} {% endfor %}
+		</div>
+	</div>
+
+	<div class="ttvtabcategory-product-pagination">
+	    <div class="ttvtabcategory-product-next-pre-btn">
+	        <div class="ttvtabcategory-product-prev swiper-button-prev ttvcmsprev-btn"><i class='material-icons'>&#xe314;</i></div>
+	        <div class="ttvtabcategory-product-next swiper-button-next ttvcmsnext-btn"><i class='material-icons'>&#xe315;</i></div>
+	    </div>
+	</div>
+{% endif %}
+
+

@@ -1,0 +1,87 @@
+{% if status_main_form %}
+{% if status_main_title %} {{ main_title }} {% endif %}
+{% if status_main_short_description %} {{ main_short_description }} {% endif %}
+{% if status_main_description %} {{ main_description }} {% endif %}
+{% if status_main_image %} {{ main_image }} {% endif %}
+{% if status_image %} {{ sub_logo_img }} {% endif %}
+{% if status_short_description %} {{ sub_short_description }} {% endif %}
+{% if status_description %} {{ sub_second_description }} {% endif %}
+{% endif %}
+{% if status_btn_title %} {{ main_map_btn_title }} {% endif %}
+{% if status_map_type %} {{ maptype }} {% endif %}
+{% if status_zoom %} {{ zoom }} {% endif %}
+{% if status_letitude %} {{ letitude }} {% endif %}
+{% if status_api_key %} {{ apikey }} {% endif %}
+{% if status_main_title %} {{ longitude }} {% endif %}
+<button>
+	<div class="ttvloation-icon"><i class="ion-ios-location"></i></div>
+	{% if status_btn_title %}
+	<div class="ttvfooter-map-text-box">
+		<span> {{ main_map_btn_title }} </span>
+	</div>
+	{% endif %}
+	<div class="ttvmap-show-hide-icon">
+		<i class="ion-ios-arrow-down ttvmapshow"></i>
+		<i class="ion-ios-arrow-up ttvmaphidden"></i>
+	</div>
+</button>
+<script>
+if (document.body.clientWidth >= 575) {
+	$("#sitemap .ttvsitemap").balance();
+} else {
+	$("#sitemap .ttvsitemap").css('min-height', 'auto');
+}
+
+if (document.body.clientWidth <= 1199) {
+	$('.ttvfooter-block').find('.ttvfooter-map').insertBefore('.ttvcmsfooter-social-icon');
+} else {
+	$('.ttvfooter-block').find('.ttvfooter-map').insertAfter('.ttvcmsfooter-social-icon');
+}
+
+$('.ttvcmsmap-show').ready(function() {
+	$('.ttvcmsmap-show').slideUp(500);
+
+});
+
+$('.ttvfooter-map button').on('click', function() {
+	$('.ttvcmsmap-show').slideToggle(500);
+});
+
+function initMap() {
+	var ttvcms_lat = { { letitude } };
+	var ttvcms_lng = { { longitude } };
+	var ttvcms_zoom = { { zoom } };
+	var ttvcms_map_type = '{{ maptype }}';
+
+
+	var uluru = { lat: ttvcms_lat, lng: ttvcms_lng };
+	var map = new google.maps.Map(document.getElementById('ttvmap-show'), {
+		zoom: ttvcms_zoom,
+		center: uluru,
+		mapTypeId: ttvcms_map_type
+	});
+	var marker = new google.maps.Marker({
+		position: uluru,
+		map: map
+	});
+
+	var title = '{{ main_map_main_title }}';
+	var shortDesc = '{{ main_map_short_des }}';
+	var contentString = '<div class=\'ttvmap-info-box\'><div class=\'ttvmap-info-title\'>' + title + '</div><div class=\'ttvmap-description\'>' + shortDesc + '</div></div>';
+
+	var infowindow = new google.maps.InfoWindow({
+		content: contentString
+	});
+
+	var marker = new google.maps.Marker({
+		position: uluru,
+		map: map,
+		title: title,
+	});
+	marker.addListener('click', function() {
+		infowindow.open(map, marker);
+	});
+}
+</script>
+<script async defer src="https://maps.googleapis.com/maps/api/js?key={{ apikey }}&callback=initMap">
+</script>

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<!--[if IE 8 ]><html dir="{{ direction }}" lang="{{ lang }}" class="ie8"><![endif]-->
+<!--[if IE 9 ]><html dir="{{ direction }}" lang="{{ lang }}" class="ie9"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!-->
+<html dir="{{ direction }}" lang="{{ lang }}">
+<!--<![endif]-->
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>{% if title %}{{ title }}{% else %} title {% endif %}</title>
+	<base href="{{ base }}" /> {% if description %}
+	<meta name="description" content="{{ description }}" /> {% endif %} {% if keywords %}
+	<meta name="keywords" content="{{ keywords }}" /> {% endif %}
+	<script src="catalog/view/javascript/jquery/jquery-2.1.1.min.js" ></script>
+	<script src="catalog/view/javascript/bootstrap/js/bootstrap.min.js" ></script>
+	<!-- font -->
+	<link href="catalog/view/javascript/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+	<link href="catalog/view/theme/opc_electronic_electron_2501/assets/fonts/Poppins.css" rel="stylesheet">
+	<link href="catalog/view/theme/opc_electronic_electron_2501/assets/fonts/Roboto.css" rel="stylesheet">
+	<!-- font -->
+	<!-- common CSS START-->
+	<link href="catalog/view/javascript/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen" />
+	<link href="catalog/view/theme/opc_electronic_electron_2501/assets/css/owl.carousel.min.css" rel="stylesheet" />
+	<link href="catalog/view/theme/opc_electronic_electron_2501/assets/css/nivo.css" rel="stylesheet" />
+    <link href="catalog/view/theme/opc_electronic_electron_2501/assets/css/jquery.fancybox.css" rel="stylesheet" />
+	<link href="catalog/view/theme/opc_electronic_electron_2501/assets/css/jquery.minicolors.css" rel="stylesheet" />
+    <link href="catalog/view/theme/opc_electronic_electron_2501/assets/css/bootstrap-toggle.min.css" rel="stylesheet" />
+        <link href="catalog/view/theme/opc_electronic_electron_2501/assets/css/tvcmsmenu.css" rel="stylesheet" />
+
+
+	<!-- common CSS END -->
+	<!-- common JS START -->
+	<script src="catalog/view/javascript/common.js" ></script>
+	<script type="text/javascript" src="catalog/view/theme/opc_electronic_electron_2501/assets/js/owl.js"></script>
+	<script type="text/javascript" src="catalog/view/theme/opc_electronic_electron_2501/assets/js/nivo.js"></script>
+	<script type="text/javascript" src="catalog/view/theme/opc_electronic_electron_2501/assets/js/jquery.fancybox.js"></script>
+	<script type="text/javascript" src="catalog/view/theme/opc_electronic_electron_2501/assets/js/jquery.minicolors.js"></script>
+    <script type="text/javascript" src="catalog/view/theme/opc_electronic_electron_2501/assets/js/bootstrap-toggle.min.js"></script>
+	<script type="text/javascript" src="catalog/view/theme/opc_electronic_electron_2501/assets/js/jquery.storageapi.min.js"></script>
+	<script type="text/javascript" src="catalog/view/theme/opc_electronic_electron_2501/assets/js/jquery.balance.js"></script>
+    <script type="text/javascript" src="catalog/view/theme/opc_electronic_electron_2501/assets/js/tvcmsmenu.js" ></script>
+	<!-- common JS END -->
+
+	{% if theme_option_status %}
+	<link href="catalog/view/theme/opc_electronic_electron_2501/assets/css/tvcmscustomsthemeoption.css" rel="stylesheet" />
+	<script type="text/javascript" src="catalog/view/theme/opc_electronic_electron_2501/assets/js/tvcmscustomsthemeoption.js"></script> 
+	{% endif %}
+
+	<!-- themevolty custom Theme JS START -->
+	<script type="text/javascript" src="catalog/view/theme/opc_electronic_electron_2501/assets/js/commonthemevolty.js" ></script>
+	<script type="text/javascript" src="catalog/view/theme/opc_electronic_electron_2501/assets/js/custom.js" ></script>
+	<!-- themevolty custom Theme JS END -->
+	<!-- themevolty custom Theme CSS START -->
+	<link href="catalog/view/theme/opc_electronic_electron_2501/assets/css/theme.css" rel="stylesheet" />
+	<link href="catalog/view/theme/opc_electronic_electron_2501/assets/css/common.css" rel="stylesheet" />
+	<link href="catalog/view/theme/opc_electronic_electron_2501/assets/css/custom.css" rel="stylesheet" />
+	<!-- themevolty custom Theme CSS END -->
+	{% for style in styles %}
+		<link href="{{ style.href }}" type="text/css" rel="{{ style.rel }}" media="{{ style.media }}" />
+	{% endfor %}
+	{% for script in scripts %}
+		<script src="{{ script }}" ></script>
+	{% endfor %}
+	{% for link in links %}
+		<link href="{{ link.href }}" rel="{{ link.rel }}" />
+	{% endfor %}
+	{% for analytic in analytics %} {{ analytic }} {% endfor %}
+</head>
+
+<body id="{% if homeid %}{{ homeid }}{% else %}noid{% endif %}" class="lang-es {% if direction != 'ltr' %} lang-rtl {% endif %}  country-us currency-usd layout-full-width page-index tax-display-disabled" data-menu-sticky='{{ mainmenustickystatus }}' {# style="{% HRXCMSCUSTOMSETTING_BACKGROUND_STYLE_SHEET %}" #}>
+	{{ themeoption }}
+	{% if bottomoption %}<div class="bottomoption hidden">{{ bottomoption }}</div>{% endif %}
+	{% if mousehoverimage %}<div class="mousehoverimage hidden">{{ mousehoverimage }}</div>{% endif %}
+	{% if mainmenustickystatus %}<div class="mainmenustickystatus hidden">{{ mainmenustickystatus }}</div>{% endif %}
+			{% if pageloader %}
+			<div class="ttvcms-loading-overlay">
+				<div class="ttvcms-loading-inner">
+					<img class="logo img-responsive" src="{{ logo }}" alt="{{ name }}">
+					<img src="{{ loader_img }}" alt="{{ name }}">
+				</div>
+			</div>
+			{% endif %}
+			<div class="ttv-main-div{% if boxlayout %}ttv-box-layout container{% endif %}">
+				<header id="header">
+					<div class="ttvcmsheader-banner"></div>
+					<div class="ttvcmsdesktop-top-header-wrapper">
+						{# <div class="container-fluid ttvcmsdesktop-top-header">
+							<div class="container">
+								<div class="row ttvcmsdesktop-top-wrapper">
+									<div class="col-sm-12 col-md-6 col-lg-4">
+										
+										<div class="ttvcmsstore-time">
+											{% if headeremail %}
+											<div class="ttvstore-email-wrapper">
+												<div class="ttvstore-email-icon"><i class="fa fa-envelope-o" aria-hidden="true"></i></div>
+												<div class="ttvstore-email-text">{{ headeremail }}</div>
+											</div>
+											{% endif %}
+											{% if headeropen %}
+											<div class="ttvstore-time-infowrapper">
+												<div class="ttvstore-time-icon"><i class="fa fa-clock-o" aria-hidden="true"></i></div>
+												<div class="ttvstore-time-text"> {{ headeropen }}</div>
+											</div>
+											{% endif %}
+										</div>
+										
+									</div>
+									{% if custom_text %}
+									<div class="ttvheader-offer-wrapper col-xl-4 col-lg-4 col-md-6 col-sm-12">
+										<div class="ttvheader-nav-offer-text">
+											<i class="fa fa-tag" aria-hidden="true"></i>
+											<span>{{ custom_text }}</span>
+										</div>
+									</div>
+									{% endif %}
+									<div class="col-sm-12 col-md-12 col-lg-4 ttvcmsdesktop-language-selector">
+										{{ headertab }}
+									</div>
+								</div>
+							</div>
+						</div> #}
+						<div class="ttvcmshesder-sticy">
+							<div class="container-fluid ttvcmsdesktop-top-second hidden-md-down">
+								<div class="container">
+									<div class="row ttvcmsdesktop-top-header-box">
+										<div class="col-md-2 col-sm-12 ttvcms-header-logo-wrapper">
+											<div class="hidden-sm-down ttvcms-header-logo" id="ttvcmsdesktop-logo">
+												<div class="ttv-header-logo">
+													{% if logo %}
+													<a href="{{ home }}" class="ttvheader-top-logo-wrapper">
+														<img class="logo img-responsive" src="{{ logo }}" title="{{ name }}" alt="{{ name }}">
+													</a> {% else %}
+													<h1><a href="{{ home }}" class="ttvheader-top-logo-wrapper">{{ name }}</a></h1> {% endif %}
+												</div>
+											</div>
+										</div>
+										<div class="col-sm-12 col-lg-6 col-md-6 ttvcmsheader-search">
+											<div class="ttvcmssearch-wrapper" id="_desktop_search">
+												<!-- begin catalog\view\theme\opc_electronic_electron_2501\template\common\search.twig -->
+												{{ search }}
+												<!-- end catalog\view\theme\opc_electronic_electron_2501\template\common\search.twig -->
+											</div>
+										</div>
+										<div class="col-sm-12 col-lg-6 col-md-6 ttvcmsheader-nav-right">
+											<div class="ttv-contact-account-cart-wrapper">
+												{# {% if headerphone %}
+												<div class="ttvcontact-wrapper">
+													<div class="ttvcontect-inner">
+														<!-- begin module:ps_contactinfo/nav.tpl -->
+														<!-- begin D:\xampp\htdocs\themevolty_ELECTRON\ttv_electronic_electron_1_7_v1/themes/ttv_electronic_electron_1_7_v1/modules/ps_contactinfo/nav.tpl -->
+														{# <div id="_desktop_contact_link">
+															<div id="contact-link">
+																<span>{{ headerphone }}</span>
+																<i class="fa fa-phone" aria-hidden="true"></i>
+															</div>
+														</div> 
+														<!-- end D:\xampp\htdocs\themevolty_ELECTRON\ttv_electronic_electron_1_7_v1/themes/ttv_electronic_electron_1_7_v1/modules/ps_contactinfo/nav.tpl -->
+														<!-- end module:ps_contactinfo/nav.tpl -->
+													</div>
+												</div>
+												{% endif %} #}
+												<!-- begin module:opc_electronic_electron_2501\template\common\cart.twig -->
+												<!-- begin D:\xampp\htdocs\opencart\hrx\hrx_101\catalog\view\theme\opc_electronic_electron_2501\template\common\cart.twig -->
+												{{ cart }}
+												<!-- end D:\xampp\htdocs\opencart\hrx\hrx_101\catalog\view\theme\opc_electronic_electron_2501\template\common\cart.twig -->
+												<!-- end module:opc_electronic_electron_2501\template\common\cart.twig -->
+												<div class="ttvcms-header-myaccount">
+													<div class="ttv-header-account">
+														<div class="ttv-account-wrapper"><button class="btn-unstyle ttv-myaccount-btn"><span>Sign In</span> <i class="fa fa-user" aria-hidden="true"></i>
+															</button>
+															<div class="dropdown-menu ttv-account-dropdown ttv-dropdown" style="display: none;">
+																<!-- begin module:opc_electronic_electron_2501\template\common\language.twig -->
+																<!-- begin D:\xampp\htdocs\opencart\hrx\hrx_101\catalog\view\theme\opc_electronic_electron_2501\template\common\language.twig -->
+																{{ language }}
+																<!-- end D:\xampp\htdocs\opencart\hrx\hrx_101\catalog\view\theme\opc_electronic_electron_2501\template\common\language.twig -->
+																<!-- end module:opc_electronic_electron_2501\template\common\language.twig -->
+																<!-- begin module:opc_electronic_electron_2501\template\common\currency.twig -->
+																<!-- begin  D:\xampp\htdocs\opencart\hrx\hrx_101\catalog\view\theme\opc_electronic_electron_2501\template\common\currency.twig -->
+																{{ currency }}
+																<!-- end  D:\xampp\htdocs\opencart\hrx\hrx_101\catalog\view\theme\opc_electronic_electron_2501\template\common\currency.twig -->
+																<!-- end module:opc_electronic_electron_2501\template\common\currency.twig -->
+																<div id="ttvcmsdesktop-user-info" class="ttvcms-header-sign">
+																	<div class="user-info ttvheader-sign">
+																		{% if logged %}
+																		<a class="logout ttvhedaer-sign-btn" href="{{ logout }}"> {{ text_logout }}</a>
+																		<a class="account ttvhedaer-sign-btn" href="{{ account }}" title="View my customer account"><span class="ttvhedaer-sign-span">{{ text_account }}</span></a>
+																		{% else %}
+																		<a href="{{ login }}" class="ttvhedaer-sign-btn" title="Log in to your customer account">
+																			<span class="ttvhedaer-sign-span">{{ text_login }}</span>
+																		</a>
+																		{% endif %}
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="ttvcms-header-menu-offer-wrapper hidden-md-down">
+								<div class="position-static ttvcms-header-menu container">
+									<div class="row">
+										<div class="ttvcmsmain-menu-wrapper col-md-10">
+											<!-- begin module:opc_electronic_electron_2501\template\common\menu.twig -->
+											<!-- begin D:\xampp\htdocs\opencart\hrx\hrx_101\catalog\view\theme\opc_electronic_electron_2501\template\common\menu.twig -->
+											{{ menu }}
+											<!-- end D:\xampp\htdocs\opencart\hrx\hrx_101\catalog\view\theme\opc_electronic_electron_2501\template\common\menu.twig -->
+											<!-- end module:opc_electronic_electron_2501\template\common\menu.twig -->
+										</div>
+										{# {% if text_todayoffer %}
+										<div class="ttvcmsmain-offer-text-wrapper col-md-2">
+											<!-- begin modules/ttvcmsoffertext/views/templates/front/display_home.tpl -->
+											<div class="ttvoffer-text-inner">
+												<div class="ttvoffer-text-img-wrapper">
+													<div class="ttvoffer-text-icon">
+														<i class="fa fa-percent" aria-hidden="true"></i>
+													</div>
+													<div class="ttvoffer-text-title">{{ text_todayoffer }}</div>
+												</div>
+											</div>
+											<!-- end modules/ttvcmsoffertext/views/templates/front/display_home.tpl -->
+										</div>
+										{% endif %} #}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div id="ttvcms-mobile-view-header" class="hidden-lg-up">
+						<div class="ttvcmsmobile-header-upper">
+							<div class="ttvcmsmobile-header-logo-right-wrapper row">
+								<div id="ttvcmsmobile-header-logo" class="col-sm-3 col-xs-12"></div>
+								<div id="ttvcmsmobile-header-right" class="col-sm-9 col-xs-12"></div>
+							</div>
+						</div>
+						<div class="row ttvcmsmobile-header-search-wrapper">
+							<div class="ttvcmsmobile-header-search">
+								<div id="ttvcmsmobile-search">
+									<!-- begin catalog\view\theme\opc_electronic_electron_2501\template\common\search.twig -->
+									{{ search }}
+									<!-- end catalog\view\theme\opc_electronic_electron_2501\template\common\search.twig -->
+								</div>
+							</div>
+						</div>
+						<div class="row ttvcmsmobile-header-menu-offer-text">
+							<div class="ttvcmsmobile-header-menu col-sm-6 col-xs-6">
+								<div id="ttvcmsmobile-horizontal-menu"></div>
+							</div>
+							{% if text_todayoffer %}
+							<div class="col-sm-6 col-xs-6">
+								<!-- begin modules/ttvcmsoffertext/views/templates/front/display_home.tpl -->
+								<div class="ttvoffer-text-inner">
+									<div class="ttvoffer-text-img-wrapper">
+										<div class="ttvoffer-text-icon">
+											<i class="fa fa-percent" aria-hidden="true"></i>
+										</div>
+										<div class="ttvoffer-text-title">{{ text_todayoffer }}</div>
+										<!-- end modules/ttvcmsoffertext/views/templates/front/display_home.tpl -->
+									</div>
+								</div><!-- <div class="ttvcmsmobile-header-right"><div id='ttvcmsmobile-horizontal-menu-left'></div></div> -->
+							</div>
+							{% endif %}
+				</header>

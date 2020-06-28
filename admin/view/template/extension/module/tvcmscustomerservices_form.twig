@@ -1,0 +1,184 @@
+
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-imageslider" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid"> {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-imageslider" class="form-horizontal">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_form }}</h3>
+        </div>
+        <div class="panel-body">
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+            <div class="col-sm-10">
+              <select name="status" id="input-status" class="form-control">
+                {% if status %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+            </div>         
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-name">{{ entry_name }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="name" value="{{ name }}" placeholder="{{ entry_name }}" id="input-name" class="form-control" />
+              {% if error_name %}
+              <div class="text-danger">{{ error_name }}</div>
+              {% endif %}
+            </div>
+          </div>
+
+            <div class="tab-content">
+              <div class="tab-pane active" id="tab-general">
+                {% if main_form or record_form %}
+                  <ul class="nav nav-tabs" id="language">
+                    {% for language in languages %}
+                    <li><a href="#language{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+                <div class="tab-content">{% for language in languages %}
+                  <div class="tab-pane" id="language{{ language.language_id }}">
+                  {% if main_form %}
+                    {% if main_title %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-tvcmscustomerservices_main_title{{ language.language_id }}">{{ entry_title }}</label>
+                        <div class="col-sm-10">
+                         <input type="text" name="tvcmscustomerservices_main[{{ language.language_id }}][tvcmscustomerservices_main_title]" value="{{ tvcmscustomerservices_main[language.language_id] ? tvcmscustomerservices_main[language.language_id].tvcmscustomerservices_main_title }}"
+                           placeholder="{{ entry_title }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>                 
+                    {% endif %}
+
+                    {% if main_short_description %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-tvcmscustomerservices_main_short_des{{ language.language_id }}">{{ entry_short_des }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="tvcmscustomerservices_main[{{ language.language_id }}][tvcmscustomerservices_main_short_des]" value="{{ tvcmscustomerservices_main[language.language_id] ? tvcmscustomerservices_main[language.language_id].tvcmscustomerservices_main_short_des }}" placeholder="{{ entry_short_des }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+                    {% endif %}
+
+                    {% if main_description %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-tvcmscustomerservices_main_des{{ language.language_id }}">{{ entry_des }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="tvcmscustomerservices_main[{{ language.language_id }}][tvcmscustomerservices_main_des]" value="{{ tvcmscustomerservices_main[language.language_id] ? tvcmscustomerservices_main[language.language_id].tvcmscustomerservices_main_des }}" placeholder="{{ entry_des }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+                    {% endif %}
+
+                    {% if main_image %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-tvcmscustomerservices_main_img{{ language.language_id }}">{{ entry_img }}</label>
+                        <div class="col-sm-10">
+                          <a href="" id="thumb-image{{ language.language_id }}" data-toggle="image" class="img-thumbnail">
+                            <img src="{{ img_1[language.language_id] }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                          </a>
+                            <input type="hidden" name="tvcmscustomerservices_main[{{ language.language_id }}][tvcmscustomerservices_main_img]" value="{{ tvcmscustomerservices_main[language.language_id] ? tvcmscustomerservices_main[language.language_id].tvcmscustomerservices_main_img }}" id="input-tvcmscustomerservices_main_img{{ language.language_id }}" />
+                        </div>
+                      </div>
+                    {% endif %}
+                  {% endif %}
+
+                    <div class="form-group">
+                      <div class="col-sm-12 text-center">
+                        <h1> SERVICES </h1>
+                      </div>
+                    </div>
+                  {% if record_form %}
+                    {% for i in 1..num_services %}
+                      {% if image_upload %}
+                        {% set img = "tvcmscustomerservices_img_" ~ i %}
+                        {% set imgerror = "error_tvcmscustomerservices_img_" ~ i %}
+                        {% set imgsrc = "img_1" ~ i %}
+                        <div class="form-group {% if image_upload %} {% else %} hidden {% endif %}">
+                          <label class="col-sm-2 control-label" for="input-{{ img }}{{ language.language_id }}">{{ column_image1 }} {{ i }}</label>
+                          <div class="col-sm-10">
+                            <a href="" id="{{ img }}{{ language.language_id }}" data-toggle="image" class="img-thumbnail">
+                              <img src="{{ aa[language.language_id]['img_' ~ i] }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                            </a>
+
+                            <input type="hidden" name="tvcmscustomerservices[{{ language.language_id }}][{{ img }}]" value="{{ tvcmscustomerservices[language.language_id] ? tvcmscustomerservices[language.language_id]['tvcmscustomerservices_img_' ~ i] }}" id="input-{{ img }}{{ language.language_id }}" />
+
+                            {% if error[i][language.language_id] %}
+                              <div class="text-danger">{{ error[i][language.language_id] }}</div>
+                            {% endif %}
+                          </div>
+                        </div>
+                      {% endif %}
+
+                      {% set cap = "tvcmscustomerservices_cap_" ~ i %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-{{ cap }}{{ language.language_id }}">{{ column_cap1 }} {{ i }}</label>
+                        <div class="col-sm-10">
+                          <input type="hidden" name="tvcmscustomerservices[{{ language.language_id }}][lang_id]" value="{{ language.language_id }}" id="input-lang_id{{ language.language_id }}" class="form-control" />
+                          <input type="text" name="tvcmscustomerservices[{{ language.language_id }}][{{ cap }}]" value="{{ tvcmscustomerservices[language.language_id] ? tvcmscustomerservices[language.language_id]['tvcmscustomerservices_cap_' ~ i] }}"
+                           placeholder="{{ column_cap1 }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>  
+
+                      {% set des = "tvcmscustomerservices_des_" ~ i %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-{{ des }}{{ language.language_id }}">{{ column_des1 }} {{ i }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="tvcmscustomerservices[{{ language.language_id }}][{{ des }}]" value="{{ tvcmscustomerservices[language.language_id] ? tvcmscustomerservices[language.language_id]['tvcmscustomerservices_des_' ~ i] }}" placeholder="{{ column_des1 }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+
+                      {% set status = "tvcmscustomerservices_status_" ~ i %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-{{ status }}">{{ column_status1 }} {{ i }}</label>
+                        <div class="col-sm-10">
+                          <select name="tvcmscustomerservices[{{ language.language_id }}][{{ status }}]" id="input-status" class="form-control">
+                            {% if tvcmscustomerservices[language.language_id]['tvcmscustomerservices_status_' ~ i] %}
+                            <option value="1" selected="selected">{{ text_enabled }}</option>
+                            <option value="0">{{ text_disabled }}</option>
+                            {% else %}
+                            <option value="1">{{ text_enabled }}</option>
+                            <option value="0" selected="selected">{{ text_disabled }}</option>
+                            {% endif %}
+                          </select>
+                        </div>
+                      </div>
+                    {% endfor %}
+                  {% endif %}
+                  </div>
+                  {% endfor %}</div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
+  <link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
+  <script type="text/javascript" src="view/javascript/summernote/summernote-image-attributes.js"></script> 
+  <script type="text/javascript" src="view/javascript/summernote/opencart.js"></script> 
+  <script type="text/javascript"><!--
+    $('#language a:first').tab('show');
+   //--></script></div>
+{{ footer }} 

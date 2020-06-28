@@ -1,0 +1,15 @@
+2020-03-26 6:21:03 - PHP Warning:  mysqli::__construct(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/vj3egonq8a83/public_html/ipreside.in/dev1/system/library/db/mysqli.php on line 7
+2020-03-26 6:21:03 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /home/vj3egonq8a83/public_html/ipreside.in/dev1/system/library/db/mysqli.php on line 10
+2020-03-26 6:21:03 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /home/vj3egonq8a83/public_html/ipreside.in/dev1/system/library/db/mysqli.php on line 10
+2020-03-26 6:21:03 - PHP Notice:  Undefined variable: mysql in /home/vj3egonq8a83/public_html/ipreside.in/dev1/install/controller/install/step_3.php on line 280
+2020-03-26 6:21:03 - PHP Notice:  Trying to get property 'connect_error' of non-object in /home/vj3egonq8a83/public_html/ipreside.in/dev1/install/controller/install/step_3.php on line 280
+2020-03-26 6:21:43 - PHP Warning:  mysqli::__construct(): (28000/1045): Access denied for user 'root'@'localhost' (using password: YES) in /home/vj3egonq8a83/public_html/ipreside.in/dev1/system/library/db/mysqli.php on line 7
+2020-03-26 6:21:43 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /home/vj3egonq8a83/public_html/ipreside.in/dev1/system/library/db/mysqli.php on line 10
+2020-03-26 6:21:43 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /home/vj3egonq8a83/public_html/ipreside.in/dev1/system/library/db/mysqli.php on line 10
+2020-03-26 6:21:43 - PHP Notice:  Undefined variable: mysql in /home/vj3egonq8a83/public_html/ipreside.in/dev1/install/controller/install/step_3.php on line 280
+2020-03-26 6:21:43 - PHP Notice:  Trying to get property 'connect_error' of non-object in /home/vj3egonq8a83/public_html/ipreside.in/dev1/install/controller/install/step_3.php on line 280
+2020-03-26 6:23:21 - PHP Warning:  mysqli::__construct(): (28000/1045): Access denied for user 'root'@'localhost' (using password: NO) in /home/vj3egonq8a83/public_html/ipreside.in/dev1/system/library/db/mysqli.php on line 7
+2020-03-26 6:23:21 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /home/vj3egonq8a83/public_html/ipreside.in/dev1/system/library/db/mysqli.php on line 10
+2020-03-26 6:23:21 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /home/vj3egonq8a83/public_html/ipreside.in/dev1/system/library/db/mysqli.php on line 10
+2020-03-26 6:23:21 - PHP Notice:  Undefined variable: mysql in /home/vj3egonq8a83/public_html/ipreside.in/dev1/install/controller/install/step_3.php on line 280
+2020-03-26 6:23:21 - PHP Notice:  Trying to get property 'connect_error' of non-object in /home/vj3egonq8a83/public_html/ipreside.in/dev1/install/controller/install/step_3.php on line 280

@@ -1,0 +1,36 @@
+<div class="ttvcmsnew-product container-fluid">
+	<div class="ttvnew-product-wrapper-box container">
+		<div class="ttvnew-product-all-box">
+			<div class="ttvnew-product-offer-banner">
+				<div class="ttvnew-product-content ">
+					<div class="ttvall-block-box-shadows">
+						<div class="ttvnew-main-title-wrapper">
+							<div class="ttvcmsmain-title-wrapper">
+								{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_maintitle_design.twig' with {'main_title': new_hometitle,'main_short_des': new_homesubtitle,'main_des': new_homedes,'main_img': new_img } %}
+							</div>
+							<div class="ttvnew-pagination-wrapper ttv-pagination-wrapper">
+								<div class="ttvnew-pagination">
+									<div class="ttvcmsnew-pagination">
+										<div class="ttvcmsnew-next-pre-btn ttvcms-next-pre-btn">
+											<div class="ttvcmsnew-prev ttvcmsprev-btn" data-parent="ttvcmsnew-product">
+												<i class="fa fa-angle-left" aria-hidden="true"></i>
+											</div>
+											<div class="ttvcmsnew-next ttvcmsnext-btn" data-parent="ttvcmsnew-product">
+												<i class="fa fa-angle-right" aria-hidden="true"></i>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ttvnew-product">
+							<div class="products owl-theme owl-carousel ttvnew-product-wrapper ttvproduct-wrapper-content-box">
+								{% for product in products %} {% include 'opc_electronic_electron_2501/template/extension/module/tvcmshelp_product_design.twig' with {'product': product} %} {% endfor %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

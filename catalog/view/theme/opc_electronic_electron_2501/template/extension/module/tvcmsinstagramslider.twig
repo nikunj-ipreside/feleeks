@@ -1,0 +1,70 @@
+<div class="container-fluid ttvcmsinstagram-slider">
+	<div class='ttvinstagram-slider'>
+		{% if title %}
+		<div class="ttvinstagram-slider-title-wrapper">
+			<div class="ttvinstagram-slider-title-inner">
+				<div class="ttvinstagram-slider-title-outer">
+					<span class="ttvinstagram-title">{{ title }}</span>
+					{% if tvcmsinstagramslider_username %}
+						<a href="https://www.instagram.com/{{ tvcmsinstagramslider_username }}/">
+							<span class="ttvinstagram-user-name">@{{ tvcmsinstagramslider_username }}</span>
+
+						</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		{% endif %}
+		{% if instagram_pics %}
+		<div class="ttvinstagram-slider-inner">
+			<div class='ttvinstagram-slider-content-box owl-theme owl-carousel'>
+				{% for pic in instagram_pics %}
+					<div class="item ttvinstagram-slider-wrapper-info wow zoomIn ttvall-block-box-shadows">
+						<div class="ttvinsta-img-block">
+							<a class='ttvinsta-img-block-link' href="{{ pic.link }}" title="{{ pic.caption }}" target="_blank" rel="nofollow">
+								<img src="{{ pic.image }}" alt="{{ pic.caption }}" />
+								<i class="fa fa-instagram" aria-hidden="true"></i>
+							</a>
+						</div>
+					</div>	
+				{% endfor %}
+			</div>
+			<div class='ttvcms-instagram-pagination-wrapper'>
+				<div class="ttvcms-instagram-pagination">
+					<div class="ttvcms-instagram-next-pre-btn">
+					  	<div class="ttvinstagram-slider-prev ttvcmsprev-btn"><i class='material-icons'>&#xe5cb;</i></div>
+					  	<div class="ttvinstagram-slider-next ttvcmsnext-btn"><i class='material-icons'>&#xe5cc;</i></div>
+					</div>
+				</div>
+		  	</div>
+	  	</div>
+	  	{% endif %}
+	</div>
+</div>	
+<script type="text/javascript">
+	$(document).ready(function() {
+		  	$('.ttvinstagram-slider-content-box').owlCarousel({
+			    loop: false,
+			    dots: false,
+			    nav: false,
+			    responsive: {
+			      0: { items: 1},
+			      320:{ items: 1, slideBy: 1},
+			      400:{ items: 2, slideBy: 1},
+			      768:{ items: 3, slideBy: 1},
+			      992:{ items: 4, slideBy: 1},
+			      1200:{ items: 5, slideBy: 1},
+			      1600:{ items: 5, slideBy: 1},
+			      1800:{ items: 6, slideBy: 1}
+			    }
+		  	});
+			$('.ttvinstagram-slider-prev').click(function(e){
+			    e.preventDefault();
+			    $('.ttvcmsinstagram-slider .owl-nav .owl-prev').trigger('click');
+			});
+		  	$('.ttvinstagram-slider-next').click(function(e){
+		    	e.preventDefault();
+		    	$('.ttvcmsinstagram-slider .owl-nav .owl-next').trigger('click');
+		  	});
+		});
+</script>

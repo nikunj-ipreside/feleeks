@@ -1,0 +1,182 @@
+<footer id="footer">
+	<!-- quick view -->
+	<!-- Trigger the modal with a button -->
+	<!-- quick view modal -->
+	<div id="quickviewdata" class="modal fade quickview" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-body"></div>
+				<button type="button" class="close ttvquickview-close-btn" data-dismiss="modal">&times;</button>
+			</div>
+		</div>
+	</div>
+	<!-- quick view modal -->
+	<div class="ttvfooter-before">
+		<div class="container-fluid">
+			<div class="container">
+				<div class="row"></div>
+			</div>
+		</div>
+	</div>
+	<div class="footer-container">
+		<div class="container ttvfooter-logo-link-wrapper">
+			{# <div class="ttvfooter-storelogo-weapper">
+				<div class="ttvfooter-storelogo-inner clearfix">
+					{{ footerlogo }}
+				</div>
+			</div> #}
+			<div class="ttvfooter-storelogo-imformation row">
+				<div class="links col-xl-3 col-lg-3 col-md-12">
+					<div class="ttvfooter-address">
+						{% if text_contact_us %}
+						<div class="ttvfooter-title-wrapper" data-target="#footer_sub_menu_store_info" data-toggle="collapse">
+							<span class="ttvfooter-title">{{ text_contact_us }}</span>
+							<span class="float-xs-right ttvfooter-toggle-icon-wrapper">
+								<span class="navbar-toggler collapse-icons ttvfooter-toggle-icon">
+									<i class="fa fa-angle-down add" aria-hidden="true"></i>
+									<i class="fa fa-angle-up remove" aria-hidden="true"></i>
+								</span>
+							</span>
+						</div>
+						{% endif %}
+						<div id="footer_sub_menu_store_info" class="collapse">
+							<div class="ttvfooter-addresses">
+								<div class="ttvfooter-address-lable">{{ text_address }}</div>{{ country_name }}<br>{{ country_name }}
+							</div>
+							<div class="ttvfooter-store-link"> {{ text_email_us }} <a href="{{ email }}" class="dropdown">{{ email }}</a></div>
+							<div class="ttvfooter-store-link-content"> {{ text_call_us }} <span>{{ telephone }}</span></div>
+							{% if tvcmsstoretime_status %}
+							<div class="ttvfooter-column-wrapper ttvcmsfooter-store-time">
+								<div class="ttvfooter-store-time-info-box">
+									<div id="footer_sub_menu_store_time" class="collapse ttvfooter-time-wrapper">
+										<div class="ttvfooter-open-time-wrapper"><i class="fa fa-clock-o" aria-hidden="true"></i>
+											<div class="ttvfooter-opentime-lable">{{ tvcmsstoretime_title }}</div>
+											<div class="ttvfooter-opentime-content">{{ tvcmsstoretime_monday_friday }}</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-2 col-lg-2 col-md-12 ttvfooter-account-link">
+					<div class="ttvfooter-account-wrapper">
+						<div class="ttvfooter-title-wrapper" data-target="#footer_sub_menu_link" data-toggle="collapse">
+							{% if text_cust_ser %}<span class="ttvfooter-title">{{ text_cust_ser }}</span>{% endif %}
+							<span class="float-xs-right ttvfooter-toggle-icon-wrapper">
+								<span class="navbar-toggler collapse-icons ttvfooter-toggle-icon">
+									<i class="fa fa-angle-down add" aria-hidden="true"></i>
+									<i class="fa fa-angle-up remove" aria-hidden="true"></i>
+								</span>
+							</span>
+						</div>
+						<ul id="footer_sub_menu_link" class="collapse ttvfooter-link-wrapper">
+							{% if text_account %}
+							<li><a class="cms-page-link" href="{{ account }}" title="{{ text_account }}">{{ text_account }}</a></li>
+							{% endif %}
+							{% if text_order %}
+							<li><a class="cms-page-link" href="{{ order }}" title="{{ text_order }}">{{ text_order }}</a></li>
+							{% endif %}
+							{% if text_wishlist %}
+							<li><a class="cms-page-link" href="{{ wishlist }}" title="{{ text_wishlist }}">{{ text_wishlist }}</a></li>
+							{% endif %}
+							{% if text_newsletter %}
+							<li><a class="cms-page-link" href="{{ newsletter }}" title="{{ text_newsletter }}">{{ text_newsletter }}</a></li>
+							{% endif %}
+							{% if text_manufacturer %}
+							<li><a class="cms-page-link" href="{{ manufacturer }}" title="{{ text_manufacturer }}">{{ text_manufacturer }}</a></li>
+							{% endif %}
+						</ul>
+					</div>
+				</div>
+				<div class="col-xl-2 col-lg-2 col-md-12 ttvfooter-account-link">
+					<div class="ttvfooter-account-wrapper">
+						<div class="ttvfooter-title-wrapper" data-target="#footer_sub_menu_linksecond" data-toggle="collapse">
+							{% if text_youraccount %}<span class="ttvfooter-title">{{ text_youraccount }}</span>{% endif %}
+							<span class="float-xs-right ttvfooter-toggle-icon-wrapper">
+								<span class="navbar-toggler collapse-icons ttvfooter-toggle-icon">
+									<i class="fa fa-angle-down add" aria-hidden="true"></i>
+									<i class="fa fa-angle-up remove" aria-hidden="true"></i>
+								</span>
+							</span>
+						</div>
+						<ul id="footer_sub_menu_linksecond" class="collapse ttvfooter-link-wrapper">
+							<li>
+								<a href="{{ special }}">{{ text_special }}</a>
+							</li>
+							<li>
+								<a href="{{ affiliate }}">{{ text_affiliate }}</a>
+							</li>
+							<li>
+								<a href="{{ return }}" title="{{ text_return }}" rel="nofollow">{{ text_return }}</a>
+							</li>
+							<li>
+								<a href="{{ contact }}">{{ text_contact }}</a>
+							</li>
+							<li>
+								<a href="{{ sitemap }}">{{ text_sitemap }}</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div id="block_myaccount_infos" class="col-xl-2 col-lg-2 col-md-12">
+					<div class="ttvfooter-title-wrapper" data-target="#footer_sub_menu_myaccount" data-toggle="collapse">
+						{% if text_information %}<span class="ttvfooter-title">{{ text_information }}</span>{% endif %}
+						<span class="float-xs-right ttvfooter-toggle-icon-wrapper">
+							<span class="navbar-toggler collapse-icons ttvfooter-toggle-icon">
+								<i class="fa fa-angle-down add" aria-hidden="true"></i>
+								<i class="fa fa-angle-up remove" aria-hidden="true"></i>
+							</span>
+						</span>
+					</div>
+					{% if informations %}
+					<ul id="footer_sub_menu_myaccount" class="collapse account-list">
+						{% for information in informations %}
+						<li>
+							<a class="cms-page-link" href="{{ information.href }}" title="Our terms and conditions of delivery">
+								{{ information.title }}
+							</a>
+						</li>
+						{% endfor %}
+					</ul>
+					{% endif %}
+				</div>
+				{{ newsletterdata }}
+			</div>
+			{% if text_gotop %}<div class="ttvbottom-to-top"><a href="javascript:" class="ttvbottom-to-top-icon"><span>{{ text_gotop }}</span><i class="fa fa-angle-up" aria-hidden="true"></i></a></div>{% endif %}
+		</div>
+		<div class="ttvfooter-copy-payment-icon-wrapper">
+			<div class="container ttvfooter-copy-payment-icon-content">
+				<div class="row ttvfooter-copy-payment-icon-inner">
+					<div class="col-xl-4 col-md-4 col-sm-12">
+						{{ paymenticon }}
+					</div>
+					<div class="ttvcopylink col-xl-4 col-md-4 col-sm-12">
+						<a href="#">
+							<p>{% if customsetting_customtext %}{{ customsetting_customtext }}{% endif %}</p>
+						</a>
+					</div>
+					<div class="col-xl-4 col-md-4 col-sm-12">
+						{{ socialicon }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+</div>
+<div class="ttvcms-custom-theme"></div>
+{% if tvcmscustomsetting_theme_css_path %}
+<link href="catalog/view/theme/opc_fashion_merci_701/assets/css/{{ tvcmscustomsetting_theme_css_path }}" rel="stylesheet" />
+{% endif %}
+{% for script in scripts %}
+<script src="{{ script }}" type="text/javascript"></script>
+{% endfor %}
+<!--
+OpenCart is open source software and you are free to remove the powered by OpenCart if you want, but its generally accepted practise to make a small donation.
+Please donate via PayPal to donate@opencart.com
+//-->
+</body>
+
+</html>

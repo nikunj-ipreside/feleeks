@@ -1,0 +1,79 @@
+{#
+{% if status_main_form %}
+{% if status_main_title %} {{ tvcmscategoryslider_main_title }}{% endif %}
+{% if status_main_short_description %} {{ tvcmscategoryslider_main_shortdescription }} {% endif %}
+{% if status_main_description %} {{ tvcmscategoryslider_main_description}}{% endif %}
+{% if status_main_image %} {{ tvcmscategoryslider_main_img }} {% endif %}
+{% endif %}
+{% if status_record_form %}
+{% for data in categoryimg_data %}
+{% if status_category_title %}{% endif %}
+{% if status_image %}{{ data.tvcmscategoryslidermain_image }}{% endif %}
+{% if status_title %}{{ data.tvcmscategoryslidersub_name }}{% endif %}
+{% if status_short_description %}{{ data.tvcmscategoryslidersub_des }}{% endif %}
+{% endfor %}
+{% endif %}#}
+<div class='ttvcmscategory-slider container-fluid'>
+	<div class='ttvcategory-slider container'>
+		{% if status_main_form %}
+		<div class='ttvcategory-slider-main-title-wrapper'>
+			{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_maintitle_design.twig' with {'main_title': tvcmscategoryslider_main_title,'main_short_des': tvcmscategoryslider_main_shortdescription,'main_des': tvcmscategoryslider_main_description,'main_img': tvcmscategoryslider_main_img } %}
+			<div class='ttvcategory-slider-pagination-wrapper ttv-pagination-wrapper'>
+				<div class="ttvcategory-slider-pagination">
+					<div class="ttvcategory-slider-next-pre-btn ttvcms-next-pre-btn">
+						<div class="ttvcategory-slider-prev ttvcmsprev-btn"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+						<div class="ttvcategory-slider-next ttvcmsnext-btn"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endif %}
+		<div class="ttvcategory-slider-inner-info-box">
+			<div class='ttvcategory-slider-content-box owl-theme owl-carousel'>
+				{% for data in categoryimg_data %}
+				<div class="item ttvcategory-slider-wrapper-info">
+					{% if status_image %}
+					<div class="ttvcategory-img-block">
+						<img src="{{ data.tvcmscategoryslidermain_image }}" alt="{{ data.tvcmscategoryslidersub_name }}">
+					</div>
+					{% endif %}
+					{% if status_title %}
+					<div class="ttvcategory-slider-info-box">
+						<div class="ttvcategory-slider-title">{{ data.tvcmscategoryslidersub_name }}</div>
+					</div>
+					{% endif %}
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+
+	/*******************************categoryslider*******************************/
+	$('.ttvcategory-slider-inner-info-box .ttvcategory-slider-content-box').owlCarousel({
+		loop: false,
+		dots: false,
+		nav: false,
+		responsive: {
+			0: { items: 1 },
+			320: { items: 2, slideBy: 1 },
+			640: { items: 3, slideBy: 1 },
+			992: { items: 6, slideBy: 1 },
+			1200: { items: 6, slideBy: 1 },
+			1399: { items: 6, slideBy: 1 },
+		},
+		
+	});
+	$('.ttvcategory-slider-next-pre-btn .ttvcategory-slider-prev').click(function(e) {
+		e.preventDefault();
+		$('.ttvcategory-slider .owl-nav .owl-prev').trigger('click');
+	});
+	$('.ttvcategory-slider-next-pre-btn .ttvcategory-slider-next').click(function(e) {
+		e.preventDefault();
+		$('.ttvcategory-slider .owl-nav .owl-next').trigger('click');
+	});
+	/******************************* end categoryslider*******************************/
+});
+</script>

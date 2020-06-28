@@ -1,0 +1,88 @@
+   {# {% if status_main_form %}
+{% if status_main_image %} {{ main_image }}{% endif %}
+{% if status_main_title %} {{ main_title }}{% endif %}
+{% if status_main_short_description %} {{ main_short_description }}{% endif %}
+{% if status_main_description %} {{ main_description }}{% endif %}
+{% endif %}
+{% if status_record_form %}
+{% for data in imagegallery_data %}
+{% if status_link %} {{ data['tvcmsimagegallerymain_link'] }} {% endif %}
+{% if status_title %} {{ data['tvcmsimagegallerysub_title'] }} {% endif %}
+{% if status_image %} {{ data['tvcmsimagegallerymain_image'] }} {% endif %}
+{% endfor %}
+{% endif %}
+#}
+
+
+<div class="container-fluid ttvcmsimagegallery-slider">
+	<div class='ttvimagegallery-slider container'>
+
+		{% if status_main_form %}
+			{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_maintitle_design.twig' with {'main_title': main_title,'main_short_des': main_short_description,'main_des': main_description,'main_img': main_image } %}
+		{% endif %}
+		{% if status_record_form %}
+
+			<div class="ttvimagegallery-slider-inner">
+				<div class='ttvimagegallery-slider-content-box owl-theme owl-carousel'>
+					{% for data in imagegallery_data %}
+						<div class="item ttvimagegallery-slider-wrapper-info wow zoomIn ttvall-block-box-shadows">
+							<div class="ttvbrand-img-block">
+								{% if status_link %} <a href="{{ data['tvcmsimagegallerymain_link'] }}" title="{{ data['tvcmsimagegallerysub_title'] }}"> {% endif %}
+									{% if status_image %} <img src="{{ data['tvcmsimagegallerymain_image'] }}"  alt="{{ data['tvcmsimagegallerysub_title'] }}" /> {% endif %}
+								{% if status_link %}</a>{% endif %}
+							</div>
+							{# <div class='ttvimagegallery-slider-info-box'>
+								{% if status_title %} <div class="ttvimagegallery-slider-title">{{ data['tvcmsimagegallerysub_title'] }}</div> {% endif %}
+							</div> #}
+						</div>
+					{% endfor %}
+				</div>
+			</div>	
+		
+			<div class='ttvcms-imagegallery-pagination-wrapper ttv-pagination-wrapper'>
+				<div class="ttvcms-imagegallery-pagination">
+					<div class="ttvcms-imagegallery-next-pre-btn ttvcms-next-pre-btn">
+					  	<div class="ttvimagegallery-slider-prev ttvcmsprev-btn"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+					  	<div class="ttvimagegallery-slider-next ttvcmsnext-btn"><i class="fa fa-angle-right" aria-hidden="true"></i> </div>
+					</div>
+				</div>
+		  	</div>
+	  	{% endif %}
+	</div>
+</div>	
+
+<script type="text/javascript">
+/****************** Start Image Gallery Slider Js *******************************************/
+$(document).ready(function(){
+  $('.ttvcmsimagegallery-slider .ttvimagegallery-slider-content-box').owlCarousel({
+    loop: true,
+    dots: false,
+    autoplay:true,
+    autoplayTimeout:5000,
+    autoplayHoverPause:false,
+    nav: false,
+    responsive: {
+      0: { items: 1},
+      320:{ items: 1, slideBy: 1},
+      400:{ items: 3, slideBy: 1},
+      768:{ items: 3, slideBy: 1},
+      992:{ items: 4, slideBy: 1},
+      1200:{ items: 5, slideBy: 1},
+      1600:{ items: 6, slideBy: 1},
+      1800:{ items: 6, slideBy: 1}
+    },
+  });
+  $('.ttvimagegallery-slider-prev').click(function(e){
+    e.preventDefault();
+    $('.ttvcmsimagegallery-slider .owl-nav .owl-prev').trigger('click');
+  });
+
+  $('.ttvimagegallery-slider-next').click(function(e){
+    e.preventDefault();
+    $('.ttvcmsimagegallery-slider .owl-nav .owl-next').trigger('click');
+  });
+  
+  $('.ttvcmsimagegallery-slider .ttvcms-imagegallery-pagination-wrapper').insertAfter('.ttvcmsimagegallery-slider .ttvcmsimagegallery-slider-main-title-wrapper .ttvcmsmain-title-wrapper');
+});
+/****************** End Image Gallery Slider Js *******************************************/
+</script>

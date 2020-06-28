@@ -1,0 +1,70 @@
+[28-Mar-2020 05:22:59 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "extension/payment/payu.twig" (looked into: /home/vj3egonq8a83/public_html/ipreside.in/opencart/storage/modification/admin/view/template, /home/vj3egonq8a83/public_html/ipreside.in/opencart/admin/view/template). in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('extension/payme...')
+#1 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('extension/payme...')
+#2 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Environment.php(378): Twig_Environment->getTemplateClass('extension/payme...', NULL)
+#3 /home/vj3egonq8a83/public_html/ipreside.in/opencart/storage/modification/system/library/template/twig.php(42): Twig_Environment->l in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Loader/Filesystem.php on line 215
+[28-Mar-2020 09:06:17 UTC] PHP Fatal error:  Uncaught Exception: Error: Duplicate entry '49-0' for key 'PRIMARY'<br />Error No: 1062<br />INSERT INTO oc_product_to_store SET product_id = '49', store_id = '0' in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db.php(45): DB\MySQLi->query('INSERT INTO oc_...')
+#1 /home/vj3egonq8a83/public_html/ipreside.in/opencart/admin/model/catalog/product.php(18): DB->query('INSERT INTO oc_...')
+#2 /home/vj3egonq8a83/public_html/ipreside.in/opencart/storage/modification/system/engine/loader.php(248): ModelCatalogProduct->addProduct(Array)
+#3 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#4 /home/vj3egonq8a83/public_html/ipreside.in/opencart/admin/controller/catalog/product.php(23): Proxy->__call('addProduct', Array)
+#5 /home/vj3egonq8a83/public_html/ipreside.in/opencart/storage/modification/system/engine/action.php(79): ControllerCatalo in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db/mysqli.php on line 40
+[28-Mar-2020 12:16:26 UTC] PHP Fatal error:  Uncaught Exception: Error: Table 'db_opencart26.oc_tvcmsnewsletter' doesn't exist<br />Error No: 1146<br />SELECT * FROM oc_tvcmsnewsletter in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM o...')
+#1 /home/vj3egonq8a83/public_html/ipreside.in/opencart/admin/model/catalog/tvcmsnewsletterlist.php(43): DB->query('SELECT * FROM o...')
+#2 /home/vj3egonq8a83/public_html/ipreside.in/opencart/storage/modification/system/engine/loader.php(248): ModelCatalogtvcmsnewsletterlist->getTotallist(Array)
+#3 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#4 /home/vj3egonq8a83/public_html/ipreside.in/opencart/admin/controller/extension/module/tvcmsnewsletterlist.php(83): Proxy->__call('getTotallist', Array)
+#5 /home/vj3egonq8a83/public_html/ipreside.in/opencart/storage/modification/system/engine/action in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db/mysqli.php on line 40
+[28-Mar-2020 12:16:30 UTC] PHP Fatal error:  Uncaught Exception: Error: Table 'db_opencart26.oc_tvcmsnewsletter' doesn't exist<br />Error No: 1146<br />SELECT * FROM oc_tvcmsnewsletter in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM o...')
+#1 /home/vj3egonq8a83/public_html/ipreside.in/opencart/admin/model/catalog/tvcmsnewsletterlist.php(43): DB->query('SELECT * FROM o...')
+#2 /home/vj3egonq8a83/public_html/ipreside.in/opencart/storage/modification/system/engine/loader.php(248): ModelCatalogtvcmsnewsletterlist->getTotallist(Array)
+#3 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#4 /home/vj3egonq8a83/public_html/ipreside.in/opencart/admin/controller/extension/module/tvcmsnewsletterlist.php(83): Proxy->__call('getTotallist', Array)
+#5 /home/vj3egonq8a83/public_html/ipreside.in/opencart/storage/modification/system/engine/action in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db/mysqli.php on line 40
+[28-Mar-2020 15:26:32 UTC] PHP Fatal error:  Uncaught Exception: Error: Table 'db_opencart26.oc_tvcmsmenu' doesn't exist<br />Error No: 1146<br />SELECT * FROM `oc_tvcmsmenu` in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home/vj3egonq8a83/public_html/ipreside.in/opencart/admin/model/extension/module/tvcmsverticalmenu.php(310): DB->query('SELECT * FROM `...')
+#2 /home/vj3egonq8a83/public_html/ipreside.in/opencart/storage/modification/system/engine/loader.php(248): ModelExtensionModuletvcmsverticalmenu->getMenuList()
+#3 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#4 /home/vj3egonq8a83/public_html/ipreside.in/opencart/admin/controller/extension/module/tvcmsverticalmenu.php(109): Proxy->__call('getMenuList', Array)
+#5 /home/vj3egonq8a83/public_html/ipreside.in/opencart/storage/modification/system/engine/action.php in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db/mysqli.php on line 40
+[28-Mar-2020 15:26:38 UTC] PHP Fatal error:  Uncaught Exception: Error: Table 'db_opencart26.oc_tvcmsmenu' doesn't exist<br />Error No: 1146<br />SELECT * FROM `oc_tvcmsmenu` in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM `...')
+#1 /home/vj3egonq8a83/public_html/ipreside.in/opencart/admin/model/extension/module/tvcmsverticalmenu.php(310): DB->query('SELECT * FROM `...')
+#2 /home/vj3egonq8a83/public_html/ipreside.in/opencart/storage/modification/system/engine/loader.php(248): ModelExtensionModuletvcmsverticalmenu->getMenuList()
+#3 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#4 /home/vj3egonq8a83/public_html/ipreside.in/opencart/admin/controller/extension/module/tvcmsverticalmenu.php(109): Proxy->__call('getMenuList', Array)
+#5 /home/vj3egonq8a83/public_html/ipreside.in/opencart/storage/modification/system/engine/action.php in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db/mysqli.php on line 40
+[29-Mar-2020 05:42:01 UTC] PHP Fatal error:  Uncaught Exception: Error: Table 'db_opencart26.oc_tvcmsblog_comment' doesn't exist<br />Error No: 1146<br />SELECT * FROM oc_tvcmsblog_comment in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM o...')
+#1 /home/vj3egonq8a83/public_html/ipreside.in/opencart/admin/model/catalog/tvcmscommentlist.php(43): DB->query('SELECT * FROM o...')
+#2 /home/vj3egonq8a83/public_html/ipreside.in/opencart/storage/modification/system/engine/loader.php(248): ModelCatalogtvcmscommentlist->getTotallist(Array)
+#3 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#4 /home/vj3egonq8a83/public_html/ipreside.in/opencart/admin/controller/extension/module/tvcmscommentlist.php(83): Proxy->__call('getTotallist', Array)
+#5 /home/vj3egonq8a83/public_html/ipreside.in/opencart/storage/modification/system/engine/action.php( in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db/mysqli.php on line 40
+[29-Mar-2020 05:42:08 UTC] PHP Fatal error:  Uncaught Exception: Error: Table 'db_opencart26.oc_tvcmsnewsletter' doesn't exist<br />Error No: 1146<br />SELECT * FROM oc_tvcmsnewsletter in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM o...')
+#1 /home/vj3egonq8a83/public_html/ipreside.in/opencart/admin/model/catalog/tvcmsnewsletterlist.php(43): DB->query('SELECT * FROM o...')
+#2 /home/vj3egonq8a83/public_html/ipreside.in/opencart/storage/modification/system/engine/loader.php(248): ModelCatalogtvcmsnewsletterlist->getTotallist(Array)
+#3 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#4 /home/vj3egonq8a83/public_html/ipreside.in/opencart/admin/controller/extension/module/tvcmsnewsletterlist.php(83): Proxy->__call('getTotallist', Array)
+#5 /home/vj3egonq8a83/public_html/ipreside.in/opencart/storage/modification/system/engine/action in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db/mysqli.php on line 40
+[21-Apr-2020 03:12:26 UTC] PHP Warning:  require_once(/home/vj3egonq8a83/public_html/ipreside.in/opencart/system/startup.php): failed to open stream: No such file or directory in /home/vj3egonq8a83/public_html/ipreside.in/feleeks/admin/index.php on line 17
+[21-Apr-2020 03:12:26 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/vj3egonq8a83/public_html/ipreside.in/opencart/system/startup.php' (include_path='.:/opt/alt/php73/usr/share/pear') in /home/vj3egonq8a83/public_html/ipreside.in/feleeks/admin/index.php on line 17
+[21-Apr-2020 03:12:32 UTC] PHP Warning:  require_once(/home/vj3egonq8a83/public_html/ipreside.in/opencart/system/startup.php): failed to open stream: No such file or directory in /home/vj3egonq8a83/public_html/ipreside.in/feleeks/admin/index.php on line 17
+[21-Apr-2020 03:12:32 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/vj3egonq8a83/public_html/ipreside.in/opencart/system/startup.php' (include_path='.:/opt/alt/php73/usr/share/pear') in /home/vj3egonq8a83/public_html/ipreside.in/feleeks/admin/index.php on line 17
+[21-Apr-2020 03:12:43 UTC] PHP Warning:  require_once(/home/vj3egonq8a83/public_html/ipreside.in/opencart/system/startup.php): failed to open stream: No such file or directory in /home/vj3egonq8a83/public_html/ipreside.in/feleeks/admin/index.php on line 17
+[21-Apr-2020 03:12:43 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/vj3egonq8a83/public_html/ipreside.in/opencart/system/startup.php' (include_path='.:/opt/alt/php73/usr/share/pear') in /home/vj3egonq8a83/public_html/ipreside.in/feleeks/admin/index.php on line 17
+[21-Apr-2020 03:13:19 UTC] PHP Warning:  require_once(/home/vj3egonq8a83/public_html/ipreside.in/opencart/system/startup.php): failed to open stream: No such file or directory in /home/vj3egonq8a83/public_html/ipreside.in/feleeks/admin/index.php on line 17
+[21-Apr-2020 03:13:19 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/vj3egonq8a83/public_html/ipreside.in/opencart/system/startup.php' (include_path='.:/opt/alt/php73/usr/share/pear') in /home/vj3egonq8a83/public_html/ipreside.in/feleeks/admin/index.php on line 17

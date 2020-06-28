@@ -1,0 +1,71 @@
+[27-Mar-2020 08:04:22 UTC] PHP Fatal error:  Uncaught Exception: Error: MySQL server has gone away<br />Error No: 2006<br />SELECT * FROM oc_theme WHERE store_id = '0' AND theme = 'opc_electronic_electron_2501' AND route = 'extension/module/tvcmsinstagramslider' in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM o...')
+#1 /home/vj3egonq8a83/public_html/ipreside.in/opencart/catalog/model/design/theme.php(4): DB->query('SELECT * FROM o...')
+#2 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/storage/modification/system/engine/loader.php(248): ModelDesignTheme->getTheme('extension/modul...', 'opc_electronic_...')
+#3 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#4 /home/vj3egonq8a83/public_html/ipreside.in/opencart/catalog/controller/event/theme.php(42): Proxy->__call('getTheme', Array)
+#5 /home/vj3egonq8a83/public_html/ in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db/mysqli.php on line 40
+[27-Mar-2020 09:53:57 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unexpected end of template in "opc_electronic_electron_2501/template/common/home.twig" at line 24. in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/TokenStream.php:59
+Stack trace:
+#0 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/TokenParser/If.php(40): Twig_TokenStream->next()
+#1 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Parser.php(187): Twig_TokenParser_If->parse(Object(Twig_Token))
+#2 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Parser.php(100): Twig_Parser->subparse(NULL, false)
+#3 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Environment.php(619): Twig_Parser->parse(Object(Twig_TokenStream))
+#4 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Environment.php(671): Twig_Environment->parse(Object(Twig_TokenStream))
+#5 /home/vj3egonq8a83/public_html/ipreside.in/opencart/sy in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/TokenStream.php on line 59
+[27-Mar-2020 09:54:10 UTC] PHP Fatal error:  Uncaught Twig_Error_Syntax: Unexpected end of template in "opc_electronic_electron_2501/template/common/home.twig" at line 24. in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/TokenStream.php:59
+Stack trace:
+#0 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/TokenParser/If.php(40): Twig_TokenStream->next()
+#1 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Parser.php(187): Twig_TokenParser_If->parse(Object(Twig_Token))
+#2 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Parser.php(100): Twig_Parser->subparse(NULL, false)
+#3 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Environment.php(619): Twig_Parser->parse(Object(Twig_TokenStream))
+#4 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Environment.php(671): Twig_Environment->parse(Object(Twig_TokenStream))
+#5 /home/vj3egonq8a83/public_html/ipreside.in/opencart/sy in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/TokenStream.php on line 59
+[28-Mar-2020 20:33:52 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "default/template/extension/module/tvcmsimageslider.twig" (looked into: /home/vj3egonq8a83/public_html/ipreside.in/opencart/catalog/view/theme). in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('default/templat...')
+#1 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('default/templat...')
+#2 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Environment.php(378): Twig_Environment->getTemplateClass('default/templat...', NULL)
+#3 /home/vj3egonq8a83/public_html/ipreside.in/opencart/storage/modification/system/library/template/twig.php(42): Twig_Environment->loadTemplate('default/templat...')
+#4 /home/vj3egonq8a83/public_html in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Loader/Filesystem.php on line 215
+[28-Mar-2020 20:33:57 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "default/template/extension/module/tvcmsimageslider.twig" (looked into: /home/vj3egonq8a83/public_html/ipreside.in/opencart/catalog/view/theme). in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('default/templat...')
+#1 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('default/templat...')
+#2 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Environment.php(378): Twig_Environment->getTemplateClass('default/templat...', NULL)
+#3 /home/vj3egonq8a83/public_html/ipreside.in/opencart/storage/modification/system/library/template/twig.php(42): Twig_Environment->loadTemplate('default/templat...')
+#4 /home/vj3egonq8a83/public_html in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Loader/Filesystem.php on line 215
+[28-Mar-2020 20:38:48 UTC] PHP Fatal error:  Uncaught Twig_Error_Loader: Unable to find template "default/template/extension/module/tvcmsimageslider.twig" (looked into: /home/vj3egonq8a83/public_html/ipreside.in/opencart/catalog/view/theme). in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Loader/Filesystem.php:215
+Stack trace:
+#0 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Loader/Filesystem.php(139): Twig_Loader_Filesystem->findTemplate('default/templat...')
+#1 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Environment.php(312): Twig_Loader_Filesystem->getCacheKey('default/templat...')
+#2 /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Environment.php(378): Twig_Environment->getTemplateClass('default/templat...', NULL)
+#3 /home/vj3egonq8a83/public_html/ipreside.in/opencart/storage/modification/system/library/template/twig.php(42): Twig_Environment->loadTemplate('default/templat...')
+#4 /home/vj3egonq8a83/public_html in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/template/Twig/Loader/Filesystem.php on line 215
+[16-Apr-2020 05:31:05 UTC] PHP Warning:  require_once(/home/vj3egonq8a83/public_html/ipreside.in/opencart/system/startup.php): failed to open stream: No such file or directory in /home/vj3egonq8a83/public_html/ipreside.in/fl/index.php on line 17
+[16-Apr-2020 05:31:05 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/vj3egonq8a83/public_html/ipreside.in/opencart/system/startup.php' (include_path='.:/opt/alt/php73/usr/share/pear') in /home/vj3egonq8a83/public_html/ipreside.in/fl/index.php on line 17
+[16-Apr-2020 09:32:59 UTC] PHP Warning:  require_once(/home/vj3egonq8a83/public_html/ipreside.in/opencart/system/startup.php): failed to open stream: No such file or directory in /home/vj3egonq8a83/public_html/ipreside.in/fl/index.php on line 17
+[16-Apr-2020 09:32:59 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/vj3egonq8a83/public_html/ipreside.in/opencart/system/startup.php' (include_path='.:/opt/alt/php73/usr/share/pear') in /home/vj3egonq8a83/public_html/ipreside.in/fl/index.php on line 17
+[16-Apr-2020 09:33:16 UTC] PHP Warning:  require_once(/home/vj3egonq8a83/public_html/ipreside.in/opencart/system/startup.php): failed to open stream: No such file or directory in /home/vj3egonq8a83/public_html/ipreside.in/fl/index.php on line 17
+[16-Apr-2020 09:33:16 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/vj3egonq8a83/public_html/ipreside.in/opencart/system/startup.php' (include_path='.:/opt/alt/php73/usr/share/pear') in /home/vj3egonq8a83/public_html/ipreside.in/fl/index.php on line 17
+[16-Apr-2020 09:33:35 UTC] PHP Warning:  require_once(/home/vj3egonq8a83/public_html/ipreside.in/opencart/system/startup.php): failed to open stream: No such file or directory in /home/vj3egonq8a83/public_html/ipreside.in/fl/index.php on line 17
+[16-Apr-2020 09:33:35 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/vj3egonq8a83/public_html/ipreside.in/opencart/system/startup.php' (include_path='.:/opt/alt/php73/usr/share/pear') in /home/vj3egonq8a83/public_html/ipreside.in/fl/index.php on line 17
+[16-Apr-2020 09:36:51 UTC] PHP Warning:  require_once(/home/vj3egonq8a83/public_html/ipreside.in/opencart/system/startup.php): failed to open stream: No such file or directory in /home/vj3egonq8a83/public_html/ipreside.in/feleeks/index.php on line 17
+[16-Apr-2020 09:36:51 UTC] PHP Fatal error:  require_once(): Failed opening required '/home/vj3egonq8a83/public_html/ipreside.in/opencart/system/startup.php' (include_path='.:/opt/alt/php73/usr/share/pear') in /home/vj3egonq8a83/public_html/ipreside.in/feleeks/index.php on line 17
+[23-Apr-2020 14:37:30 UTC] PHP Fatal error:  Uncaught Exception: Error: MySQL server has gone away<br />Error No: 2006<br />SELECT * FROM oc_theme WHERE store_id = '0' AND theme = 'opc_electronic_electron_2501' AND route = 'extension/module/tvcmsinstagramslider' in /home/vj3egonq8a83/public_html/ipreside.in/feleeks/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home/vj3egonq8a83/public_html/ipreside.in/feleeks/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM o...')
+#1 /home/vj3egonq8a83/public_html/ipreside.in/feleeks/catalog/model/design/theme.php(4): DB->query('SELECT * FROM o...')
+#2 /home/vj3egonq8a83/public_html/ipreside.in/feleeks/storage/modification/system/engine/loader.php(248): ModelDesignTheme->getTheme('extension/modul...', 'opc_electronic_...')
+#3 /home/vj3egonq8a83/public_html/ipreside.in/feleeks/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#4 /home/vj3egonq8a83/public_html/ipreside.in/feleeks/catalog/controller/event/theme.php(42): Proxy->__call('getTheme', Array)
+#5 /home/vj3egonq8a83/public_html/ipreside.in/f in /home/vj3egonq8a83/public_html/ipreside.in/feleeks/system/library/db/mysqli.php on line 40
+[23-Apr-2020 14:38:02 UTC] PHP Fatal error:  Uncaught Exception: Error: MySQL server has gone away<br />Error No: 2006<br />SELECT * FROM oc_theme WHERE store_id = '0' AND theme = 'opc_electronic_electron_2501' AND route = 'extension/module/tvcmsinstagramslider' in /home/vj3egonq8a83/public_html/ipreside.in/feleeks/system/library/db/mysqli.php:40
+Stack trace:
+#0 /home/vj3egonq8a83/public_html/ipreside.in/feleeks/system/library/db.php(45): DB\MySQLi->query('SELECT * FROM o...')
+#1 /home/vj3egonq8a83/public_html/ipreside.in/feleeks/catalog/model/design/theme.php(4): DB->query('SELECT * FROM o...')
+#2 /home/vj3egonq8a83/public_html/ipreside.in/feleeks/storage/modification/system/engine/loader.php(248): ModelDesignTheme->getTheme('extension/modul...', 'opc_electronic_...')
+#3 /home/vj3egonq8a83/public_html/ipreside.in/feleeks/system/engine/proxy.php(47): Loader->{closure}(Array, Array)
+#4 /home/vj3egonq8a83/public_html/ipreside.in/feleeks/catalog/controller/event/theme.php(42): Proxy->__call('getTheme', Array)
+#5 /home/vj3egonq8a83/public_html/ipreside.in/f in /home/vj3egonq8a83/public_html/ipreside.in/feleeks/system/library/db/mysqli.php on line 40

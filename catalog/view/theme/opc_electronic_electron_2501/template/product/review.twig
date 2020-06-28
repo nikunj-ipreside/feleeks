@@ -1,0 +1,21 @@
+{% if reviews %} {% for review in reviews %}
+<table class="table table-striped table-bordered">
+	<tr>
+		<td style="width: 50%;"><strong>{{ review.author }}</strong></td>
+		<td class="text-right">{{ review.date_added }}</td>
+	</tr>
+	<tr>
+		<td colspan="2">
+			<p>{{ review.text }}</p>
+			<div class="ttvall-product-star-icon">
+		        					{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_rating_design.twig' with {'rating': product.rating} %}
+
+		    </div>
+		</td>
+	</tr>
+</table>
+{% endfor %}
+<div class="text-right">{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_pagination_design.twig' with {'pagination': pagination} %}</div>
+{% else %}
+<p>{{ text_no_reviews }}</p>
+{% endif %}

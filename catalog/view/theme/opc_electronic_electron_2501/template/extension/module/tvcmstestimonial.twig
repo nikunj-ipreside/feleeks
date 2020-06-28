@@ -1,0 +1,94 @@
+{#
+{% if status_main_form %}
+{% if status_main_title %}{{ main_title }}{% endif %}
+{% if status_main_short_descrition %}{{ main_short_des }}{% endif %}
+{% if status_main_descrition %}{{ main_des }}{% endif %}
+{% if status_main_image %}{{ main_img }}{% endif %}
+{% endif %}
+{% if status_record_form %}
+{% for data in testimoniallist_data %}
+{% if status_link %}{{ data.tvcmstestimonialmain_link }} {% endif %}
+{% if status_image %}{{ data.tvcmstestimonial_img }} {% endif %}
+{% if status_signature_image %}{{ data.tvcmstestimonial_sing_img }} {% endif %}
+{% if status_signature_text %}{{ data.tvcmstestimonial_sing_text }} {% endif %}
+{% if status_short_description %}{{ data.tvcmstestimonialsub_short_description }} {% endif %}
+{% if status_title %}{{ data.tvcmstestimonialsub_title }} {% endif %}
+{% if status_designation %}{{ data.tvcmstestimonialsub_designation }} {% endif %}
+{% if status_description %}{{ data.tvcmstestimonialsub_description }} {% endif %}
+{% endfor %}
+{% endif %}
+#}
+{% if status_record_form %}
+<div class="container-fluid ttvcmstestimonial ttvcms-all-testimonial">
+	<div class="container ttvtestimonial">
+		<div class="ttvtestimonial-main">
+			{% if status_main_form %}
+			<div class="ttvcmstestimonial-main-title-wrapper">
+				{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_maintitle_design.twig' with {'main_title': main_title,'main_short_des': main_short_des,'main_des': main_des,'main_img': main_img } %}
+			</div>
+			{% endif %}
+			<div class="ttvtestimonial-slider-inner">
+				<div class="ttvtestimonial-content-box owl-theme owl-carousel">
+					{% for data in testimoniallist_data %}
+					<div class="item ttvtestimonial-wrapper-info">
+						<div class="ttvtestimonial-inner-content-box">
+							{% if status_image %}
+							<div class="ttvtestimonial-img-block">
+								<img src="{{ data.tvcmstestimonial_img }}" alt="{{ data.tvcmstestimonial_img }}">
+							</div>
+							{% endif %}
+							<div class="ttvtestimonial-info-box">								
+								{% if status_description %}
+								<div class="ttvtestimonial-dec">
+									{{ data.tvcmstestimonialsub_description }}
+								</div>
+								{% endif %}
+								<div class="ttvtestimonial-title-des">
+									{% if status_title %}<div class="ttvtestimonial-title">{% if status_link %}<a href="{{ data.tvcmstestimonialmain_link }}">{% endif %}{{ data.tvcmstestimonialsub_title }}{% if status_link %}</a>{% endif %}</div>{% endif %}
+									{% if status_designation %}<div class="ttvtestimonial-designation">{{ data.tvcmstestimonialsub_designation }}</div>{% endif %}
+								</div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="ttvcms-testimonial-pagination-wrapper">
+				<div class="ttvcms-testimonial-pagination">
+					<div class="ttvcms-testimonial-next-pre-btn">
+						<div class="ttvtestimonial-prev ttvcmsprev-btn"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+					<div class="ttvtestimonial-next ttvcmsnext-btn"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+	<script type="text/javascript">
+	/*******************************testimonial*******************************/
+	$('.ttvtestimonial-slider-inner .ttvtestimonial-content-box').owlCarousel({
+		loop: true,
+		dots: false,
+		nav: false,
+		autoplay:true,
+		autoplayTimeout:2000,
+		autoplayHoverPause:true,
+		pagination: true,
+		responsive: {
+			0: { items: 1 },
+			768: { items: 1, slideBy: 1 },
+			1200: { items: 1, slideBy: 1 },
+			1800: { items: 1, slideBy: 1 }
+		},
+	});
+	$('.ttvcms-testimonial-next-pre-btn .ttvtestimonial-prev').click(function(e) {
+		e.preventDefault();
+		$('.ttvtestimonial-slider-inner .owl-nav .owl-prev').trigger('click');
+	});
+	$('.ttvcms-testimonial-next-pre-btn .ttvtestimonial-next').click(function(e) {
+		e.preventDefault();
+		$('.ttvtestimonial-slider-inner .owl-nav .owl-next').trigger('click');
+	});
+	/*******************************end testimonial*******************************/
+	</script>
+	{% endif %}

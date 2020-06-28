@@ -1,0 +1,85 @@
+{% if status_left_feature %}
+<div class="ttvcmsleft-featured-product ttvleft-right-penal-all-block ttvall-block-box-shadows">
+	<div class="ttvleft-featured-product">
+		{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_left_column_title_design.twig' with {'title': left_feature_title} %}
+		<div class="ttvleft-product-wrapper-info clearfix">
+			<div class="products ttvleft-product-wrapper">
+				{% for product in feature_tab_products %}
+				{% include 'opc_electronic_electron_2501/template/extension/module/tvcmshelp_leftproduct_design.twig' with {'product': product} %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+{% if status_left_best %}
+<div class="ttvcmsleft-best-seller-product  ttvleft-right-penal-all-block ttvall-block-box-shadows">
+	<div class="ttvleft-best-seller-product">
+		{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_left_column_title_design.twig' with {'title': left_best_title} %}
+		<div class="ttvleft-product-wrapper-info clearfix">
+			<div class="products ttvleft-product-wrapper">
+				{% for product in best_products %}
+				{% include 'opc_electronic_electron_2501/template/extension/module/tvcmshelp_leftproduct_design.twig' with {'product': product} %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+{% if status_left_special %}
+<div class="ttvcmsleft-special-product ttvleft-right-penal-all-block ttvall-block-box-shadows">
+	<div class="ttvleft-special-product">
+		{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_left_column_title_design.twig' with {'title': left_special_title} %}
+		<div class="ttvleft-product-wrapper-info clearfix">
+			<div class="products ttvleft-product-wrapper">
+				{% for product in special_products %}
+				{% include 'opc_electronic_electron_2501/template/extension/module/tvcmshelp_leftproduct_design.twig' with {'product': product} %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+{% if status_left_new %}
+<div class="ttvcmsleft-new-product  ttvleft-right-penal-all-block ttvall-block-box-shadows">
+	<div class="ttvleft-new-product">
+		{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_left_column_title_design.twig' with {'title': left_new_title} %}
+		<div class="ttvleft-product-wrapper-info clearfix">
+			<div class="products ttvleft-product-wrapper">
+				{% for product in new_products %}
+				{% include 'opc_electronic_electron_2501/template/extension/module/tvcmshelp_leftproduct_design.twig' with {'product': product} %}
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}
+<script type="text/javascript">
+$(document).ready(function() {
+	var mobileViewSize = 991;
+
+	/*************** Start left Right  Product Toggle in Mobile Size ***************************************************/
+	leftRightProductTitleToggle();
+	$(window).resize(function() {
+		$('.ttvleft-right-penal-all-block .ttvleft-right-title-toggle, .ttvleft-right-penal-all-block .ttvleft-product-wrapper-info').removeClass('open');
+		leftRightProductTitleToggle();
+	});
+
+	function leftRightProductTitleToggle() {
+		$('.ttvleft-right-penal-all-block .ttvleft-right-title-toggle').on('click', function(e) {
+			e.preventDefault();
+			if (document.body.clientWidth <= mobileViewSize) {
+				if (!$(this).hasClass('open')) {
+					$(this).removeClass('open');
+					$(this).parent().parent().find('.ttvleft-product-wrapper-info').removeClass('open').stop(false).slideUp(500, "swing");
+				} else {
+					$(this).addClass('open');
+					$(this).parent().parent().find('.ttvleft-product-wrapper-info').addClass('open').stop(false).slideDown(500, "swing");
+				}
+			}
+			e.stopPropagation();
+		});
+	}
+	/*************** End left Right  Product Toggle in Mobile Size ***************************************************/
+});
+</script>

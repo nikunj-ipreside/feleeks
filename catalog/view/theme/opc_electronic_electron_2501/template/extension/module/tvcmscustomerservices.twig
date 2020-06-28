@@ -1,0 +1,99 @@
+{% if status_image_upload %}
+{% if status_main_form %}
+{% if status_main_title %}
+{{ tvcmscustomerservices_main_title }}
+{% endif %}
+{% if status_main_short_description %}
+{{ tvcmscustomerservices_main_short_des }}
+{% endif %}
+{% if status_main_description %}
+{{ tvcmscustomerservices_main_des }}
+{% endif %}
+{% if status_main_image %}
+{{ tvcmscustomerservices_main_img }}
+{% endif %}
+{% endif %}
+{% endif %}
+{% if status_record_form %}
+<div class="ttvcmscustomer-services ttvservices-home container-fluid">
+	<div class="ttvcustomer-services container">
+		<div class="ttvservice-inner">
+			{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_maintitle_design.twig' with {'main_title': main_title,'main_short_des': main_short_des,'main_des': main_des,'main_img': main_img } %}
+			<div class="ttvservice-all-block-wrapper">
+				<div class="ttvservices-all-block">
+					<div class="ttv-all-service wrapper card-deck">
+						<div class="ttvservices-center card odd ttvservice-payment">
+							<div class="ttvall-block-box-shadows">
+								<div class="ttvservices-1 ttvall-services-block">
+									<div class="ttvservices-wrapper">
+										<div class="ttvservices-img-conut">
+											<div class="ttvservices-img"><i class="fa fa-smile-o" aria-hidden="true"></i></div>
+										</div> 
+										<div class="ttvservices-content-box">
+											<div class="ttvservices-info">
+												<div class="ttvservices-title">{{ tvcmscustomerservices_cap_1 }}</div>
+												<div class="ttvservice-dec">{{ tvcmscustomerservices_des_1 }}.</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ttvservices-center card even ttvservice-cash-trustpay">
+							<div class="ttvall-block-box-shadows">
+								<div class="ttvservices-2 ttvall-services-block">
+									<div class="ttvservices-wrapper">
+										<div class="ttvservices-img-conut">
+											<div class="ttvservices-img"><i class="fa fa-ship" aria-hidden="true"></i></div>
+										</div> 
+										<div class="ttvservices-content-box">
+											<div class="ttvservices-info">
+												<div class="ttvservices-title">{{ tvcmscustomerservices_cap_2 }}</div>
+												<div class="ttvservice-dec">{{ tvcmscustomerservices_des_2 }}</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ttvservices-center card odd ttvservice-supprt">
+							<div class="ttvall-block-box-shadows">
+								<div class="ttvservices-3 ttvall-services-block">
+									<div class="ttvservices-wrapper">
+										<div class="ttvservices-img-conut">
+											<div class="ttvservices-img"><i class="fa fa-truck" aria-hidden="true"></i></div>
+										</div>
+										<div class="ttvservices-content-box">
+											<div class="ttvservices-info">
+												<div class="ttvservices-title">{{ tvcmscustomerservices_cap_3 }}</div>
+												<div class="ttvservice-dec">{{ tvcmscustomerservices_des_3 }}</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="ttvservices-center card even ttvservice-shopon">
+							<div class="ttvall-block-box-shadows">
+								<div class="ttvservices-4 ttvall-services-block">
+									<div class="ttvservices-wrapper">
+										<div class="ttvservices-img-conut">
+											<div class="ttvservices-img"><i class="fa fa-usd" aria-hidden="true"></i></div>
+										</div>
+										<div class="ttvservices-content-box">
+											<div class="ttvservices-info">
+												<div class="ttvservices-title">{{ tvcmscustomerservices_cap_4 }}</div>
+												<div class="ttvservice-dec">{{ tvcmscustomerservices_des_4 }}</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>			
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}

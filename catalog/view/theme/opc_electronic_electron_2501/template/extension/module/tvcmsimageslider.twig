@@ -1,0 +1,94 @@
+<div class="ttvcms-slider-offerbanner-wrapper container-fluid">
+	<div class="row">
+		<div class="col-md-12 col-lg-12 ttvcmsmain-slider-wrapper" data-speed="{{ speed }}" data-pause-hover="{{ hover }}">
+			<div class='ttvcms-main-slider'>
+				<div class='ttv-main-slider'>
+					<div id='ttvmain-slider' class="owl-theme owl-carousel">
+						{% set i = 0 %}
+						{% for data in imagesliderlist_data %}
+						{% if data.btn_caption is empty or data.ttvcmsimageslidersub_textaligment == 'ttvmain-slider-contant-none' %}
+						{% if record_targeturl %}<a href="{{ data.ttvcmsimageslidersub_link }}"> {% endif %}
+							{% endif %}
+							{% if record_image %}<img class="ttvmain-slider-img" alt='#ttvmain-slider-img-{{ i }}' src="{{ data.ttvcmsimageslidersub_image }}" data-caption-id='ttvmain-slider-img-{{ i }}'>{% endif %}
+							{% if data.btn_caption is empty or data.ttvcmsimageslidersub_textaligment == 'ttvmain-slider-contant-none' %}
+							{% if record_targeturl %}</a> {% endif %}
+						{% endif %}
+						{% set i = i + 1 %}
+						{% endfor %}
+					</div>
+					<div class="ttvmain-slider-next-pre-btn">
+						<div class="ttvcmsmain-prev ttvcmsprev-btn">
+							<i class="fa fa-angle-left" aria-hidden="true"></i>
+						</div>
+						<div class="ttvcmsmain-next ttvcmsnext-btn">
+							<i class="fa fa-angle-right" aria-hidden="true"></i>
+						</div>
+					</div>
+				</div>
+				
+			</div>
+		</div>
+		<!-- begin catalog\view\theme\opc_electronic_electron_2501\template\extension\module\tvcmssliderofferbanner.twig -->
+		{{ sliderofferbanner }}
+		<!-- end catalog\view\theme\opc_electronic_electron_2501\template\extension\module\tvcmssliderofferbanner.twig -->
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function($) {
+
+	/*************** Start Main Slider Js*****************************************/
+	var ttvMainSliderSpeed = $('.ttvcmsmain-slider-wrapper').attr('data-speed');
+	var ttvMainSliderPause = '';
+	if ($('.ttvcmsmain-slider-wrapper').attr('data-pause-hover') == 'true') {
+		ttvMainSliderPause = true;
+	}
+
+	var mainSliderHomePage = $('.ttv-main-slider #ttvmain-slider');
+	mainSliderHomePage.owlCarousel({
+		loop: true,
+		dots: true,
+		nav: false,
+		autoplayTimeout: ttvMainSliderSpeed,
+		autoplayHoverPause: ttvMainSliderPause,
+		responsive: {
+			0: { items: 1 },
+			320: { items: 1, slideBy: 1 },
+			640: { items: 1, slideBy: 1 },
+			768: { items: 1, slideBy: 1 },
+			1024: { items: 1, slideBy: 1 },
+			1399: { items: 1, slideBy: 1 },
+		},
+	});
+
+	$('.ttvmain-slider-next-pre-btn .ttvcmsmain-prev').click(function(e) {
+		e.preventDefault();
+		$('.ttv-main-slider .owl-nav .owl-prev').trigger('click');
+	});
+
+	$('.ttvmain-slider-next-pre-btn .ttvcmsmain-next').click(function(e) {
+		e.preventDefault();
+		$('.ttv-main-slider .owl-nav .owl-next').trigger('click');
+	});
+
+	mainSliderHomePage.on('translated.owl.carousel', function(event) {
+		mainSliderHomePageJs();
+	});
+
+	function mainSliderHomePageJs() {
+		var num_index = $('#ttvmain-slider .owl-dots').find('.owl-dot.active').index();
+		$('.ttvmain-slider-content-wrapper .ttvmain-slider-content-inner').removeClass('active');
+		$('.ttvmain-slider-content-wrapper .ttvmain-slider-content-inner').eq(num_index).addClass('active');
+	}
+
+	$(document).on('click', '.ttvmain-slider-content-wrapper .ttvmain-slider-content-inner', function() {
+		var num_index = $(this).attr('data-index');
+		$('.ttvmain-slider-content-wrapper .ttvmain-slider-content-inner').removeClass('active');
+		$(this).addClass('active');
+		$('#ttvmain-slider .owl-dots .owl-dot').eq(num_index).trigger('click')
+	});
+
+	/*************** End Main Slider Js*****************************************/
+});
+
+/*main slider*/
+</script>

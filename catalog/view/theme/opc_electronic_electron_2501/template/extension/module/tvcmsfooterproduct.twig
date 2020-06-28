@@ -1,0 +1,199 @@
+{% set display_prod = 4 %}
+<div class="ttvfooter-product-box-layout container-fluid">
+    <div class="ttvcmsmain-all-product ttvmain-box-layout-content-wrapper container">
+        <div class="ttvmain-all-product">
+            <div class="ttvmain-product-all-wrapper-box row">
+
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 ttvcmsfooter-featured-product">
+                    <div class="ttvfooter-product-title-product ttvall-block-box-shadows"> 
+                        <div class="ttvcms-main-title ttvcmsmain-title-wrapper">
+
+                            <div class="ttv-main-title ttvcms-main-title">
+                                <div class="ttvtitle ttvmain-title">
+                                    <h2>{{ title_featureproduct }}</h2>
+                                </div>
+                            </div>
+                            <div class='ttvfooter-featured-product-pagination-wrapper'>
+                                <div class="ttvfooter-featured-product-pagination-pagination">
+                                    <div class="ttvfooter-featured-product-pagination-next-pre-btn">
+                                        <div class="ttvfooter-featured-product-prev ttvcmsprev-btn" data-parent='ttvcmsfooter-featured-product'><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+                                        <div class="ttvfooter-featured-product-next ttvcmsnext-btn" data-parent='ttvcmsfooter-featured-product'><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="ttvmain-all-product-wrapper ttvfooter-featured-prod-slider">
+                            <div class="ttvmain-featured-product-wrapper">
+                                <div class="ttvmain-featured-product-wrapper-info-box owl-theme owl-carousel">
+		                       
+                                    {% set count = 1 %}
+                                    {% for product in feature_tab_products %}
+                                        {% if count == 1 %}
+                                            <div class="item ttvmain-footer-tab-prod-slider col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        {% endif %}
+
+                                       {% include 'opc_electronic_electron_2501/template/extension/module/tvcmshelp_footerproduct_design.twig' with {'product': product} %}
+
+                                        {% if count == display_prod %}
+                                            </div>
+                                            {% set count = 0 %}
+                                        {% endif %}
+                                        {% set count = count + 1 %}
+                                    {% endfor %}
+
+                                    {% if count != '1' %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 ttvcmsfooter-new-product">
+                   
+                    <div class="ttvfooter-product-title-product ttvall-block-box-shadows"> 
+                        
+                        <div class="ttvcms-main-title ttvcmsmain-title-wrapper">
+                            <div class="ttv-main-title ttvcms-main-title">
+                                <div class="ttvtitle ttvmain-title">
+                                    <h2>{{ title_newproduct }}</h2>
+                                </div>
+                            </div>
+                            
+                            <div class='ttvfooter-new-product-pagination-wrapper'>
+                                <div class="ttvfooter-new-product-pagination-pagination">
+                                    <div class="ttvfooter-new-product-pagination-next-pre-btn">
+                                        <div class="ttvfooter-new-product-prev ttvcmsprev-btn" data-parent='ttvcmsfooter-new-product'><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+                                        <div class="ttvfooter-new-product-next ttvcmsnext-btn" data-parent='ttvcmsfooter-new-product'><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="ttvmain-all-product-wrapper ttvfooter-new-prod-slider">
+                            <div class="ttvmain-new-product-wrapper">
+                                <div class="ttvmain-new-product-wrapper-info-box owl-theme owl-carousel">
+                                    {% set count = 1 %}
+                                    {% for product in new_products %}
+                                        {% if count == 1 %}
+                                            <div class="item ttvmain-footer-tab-prod-slider col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        {% endif %}
+
+                                        {% include 'opc_electronic_electron_2501/template/extension/module/tvcmshelp_footerproduct_design.twig' with {'product': product} %}
+
+                                        {% if count == display_prod %}
+                                            </div>
+                                            {% set count = 0 %}
+                                        {% endif %}
+                                        {% set count = count + 1 %}
+                                    {% endfor %}
+
+                                    {% if count != '1' %}
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-xs-12 ttvcmsfooter-best-seller-product">
+                   
+                    <div class="ttvfooter-product-title-product ttvall-block-box-shadows"> 
+                     
+                        <div class="ttvcms-main-title ttvcmsmain-title-wrapper">
+                            <div class="ttv-main-title ttvcms-main-title">
+                                <div class="ttvtitle ttvmain-title">
+                                    <h2>{{ title_bestproduct }}</h2>
+                                </div>
+                            </div>
+                            <div class='ttvfooter-best-seller-product-pagination-wrapper'>
+                                <div class="ttvfooter-best-seller-product-pagination-pagination">
+                                    <div class="ttvfooter-best-seller-product-pagination-next-pre-btn">
+                                        <div class="ttvfooter-best-seller-product-prev ttvcmsprev-btn" data-parent="ttvcmsfooter-best-seller-product"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+                                        <div class="ttvfooter-best-seller-product-next ttvcmsnext-btn" data-parent="ttvcmsfooter-best-seller-product"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                        <div class="ttvmain-all-product-wrapper ttvfooter-besr-prod-slider">
+                            <div class="ttvmain-best-product-wrapper">
+                                <div class="ttvmain-new-product-wrapper-info-box owl-theme owl-carousel">
+                                {% set count = 1 %}
+                                {% for product in best_products %}    
+                                    {% if count == 1 %}
+                                        <div class="item ttvmain-footer-tab-prod-slider col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    {% endif %}
+
+                                    {% include 'opc_electronic_electron_2501/template/extension/module/tvcmshelp_footerproduct_design.twig' with {'product': product} %}
+
+                                    {% if count == display_prod %}
+                                        </div>
+                                        {% set count = 0 %}
+                                    {% endif %}
+                                    {% set count = count + 1 %}
+                                {% endfor %}
+                                {% if count != '1' %}
+                                    </div>
+                                {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+
+var mobileViewSize  = 991;
+
+$(document).ready(function(){
+
+
+  /****************** Start Footer Product Slider Js *******************************************/
+  var customFooterproductSlider = [
+    //['slider className','navigation nextClass','navigation prevClass']
+    ['.ttvcmsfooter-featured-product .ttvmain-featured-product-wrapper-info-box','.ttvfooter-featured-product-next','.ttvfooter-featured-product-prev'],
+    ['.ttvcmsfooter-new-product .ttvmain-new-product-wrapper-info-box','.ttvfooter-new-product-next','.ttvfooter-new-product-prev'],
+    ['.ttvcmsfooter-best-seller-product .ttvmain-new-product-wrapper-info-box','.ttvfooter-best-seller-product-next','.ttvfooter-best-seller-product-prev'],
+  ];
+
+  for (var i = 0; i < customFooterproductSlider.length; i++) {
+     var owl = $(customFooterproductSlider[i][0]).owlCarousel({
+      loop: false,
+      dots: false,
+      nav: false,
+      responsive: {
+        0: { items: 1},
+        320:{ items: 1, slideBy: 1},
+        576:{ items: 1, slideBy: 1},
+        768:{ items: 1, slideBy: 1},
+        992:{ items: 1, slideBy: 1},
+        1200:{ items: 1, slideBy: 1},
+        1600:{ items: 2, slideBy: 1},
+        1800:{ items: 2, slideBy: 1}
+      }
+    });
+
+    $(customFooterproductSlider[i][1]).on('click', function(e){
+      e.preventDefault();
+      $('.'+$(this).attr('data-parent')+' .owl-nav .owl-next').trigger('click');
+    });
+    
+    $(customFooterproductSlider[i][2]).on('click', function(e){
+      e.preventDefault();
+      $('.'+$(this).attr('data-parent')+' .owl-nav .owl-prev').trigger('click');
+    });
+  }
+  /****************** End Footer Product Slider Js *******************************************/
+  
+});
+</script>

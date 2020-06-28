@@ -1,0 +1,3 @@
+2020-04-07 14:56:13 - PHP Warning:  mysqli::__construct(): (42000/1044): Access denied for user 'user_ipre'@'localhost' to database 'db_test_ipre' in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db/mysqli.php on line 7
+2020-04-07 14:56:13 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db/mysqli.php on line 10
+2020-04-07 14:56:13 - PHP Warning:  DB\MySQLi::__construct(): Couldn't fetch mysqli in /home/vj3egonq8a83/public_html/ipreside.in/opencart/system/library/db/mysqli.php on line 10

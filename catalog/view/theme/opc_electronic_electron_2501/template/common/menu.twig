@@ -1,0 +1,47 @@
+<!-- begin module:opc_electronic_electron_2501\template\common\menu.twig -->
+<!-- begin D:\xampp\htdocs\opencart\hrx\hrx_101\catalog\view\theme\opc_electronic_electron_2501\template\common\menu.twig -->
+<div id="ttvcmsdesktop-main-menu">
+	<div class="ttvcmsmain-menu-wrapper">
+		{% if categories %}
+		<ul class="ttv-header-menu" id="ttv-top-menu" data-depth="0">
+			<li class="category ttvmain-menu-wrapper {{ menuhomeactive }}">
+				<div class="ttvmenu-link-wrapper"><a href="{{ category.href }}" data-depth="0" class="ttvmenu-link"><span class="ttvmain-menu-text-box">{{ text_home }}</span></a></div>
+			</li>
+			{% for category in categories %} {% if category.children %}
+			<li class="category ttvmain-menu-wrapper {% if category.category_id == category_id %} current {% endif %} {% if category.children %} ttv-has-child {% endif %}">
+				<div class="ttvmenu-link-wrapper">
+					<a href="{{ category.href }}" class="ttvmenu-link" data-depth="0"><span class="ttvmain-menu-text-box">{{ category.name }}</span>
+					</a>
+					<span class="ttvmenu-toggle-icon"><i class="fa fa-angle-down ttvhorizontal-menu-drop-down-icon" aria-hidden="true"></i>		</span>
+				</div>
+				<div class="ttvmain-menu-dropdown ttvmain-menu-sub-menu ttvmain-menu-mobile-dropdown">
+					{% for children in category.children|batch(category.children|length / category.column|round(1, 'ceil')) %}
+					<ul class="ttv-header-menu clearfix" data-depth="1">
+						{% for child in children %}
+						<li class="category ttvmain-menu-wrapper">
+							<div class="ttvmenu-link-wrapper">
+								<a href="{{ child.href }}" data-depth="1"><span class="ttvmain-menu-text-box">{{ child.name }}</span></a>
+							</div>
+						</li>
+						{% endfor %}
+					</ul>
+					{% endfor %}
+				</div>
+			</li>
+			{% else %}
+			<li class="category ttvmain-menu-wrapper {% if category.category_id == category_id %} current {% endif %}">
+				<div class="ttvmenu-link-wrapper"><a href="{{ category.href }}" class="ttvmenu-link" data-depth="0"><span class="ttvmain-menu-text-box">{{ category.name }}</span></a></div>
+			</li>
+			{% endif %} {% endfor %}
+		</ul>
+		{% endif %} <div class="clearfix"></div>
+		<div class="ttvmenu-button-wrapper">
+			<div class="ttvmenu-button">
+				<span>{{ text_menu }}</span>
+				<i class="fa fa-bars" aria-hidden="true"></i>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end D:\xampp\htdocs\opencart\hrx\hrx_101\catalog\view\theme\opc_electronic_electron_2501\template\common\menu.twig -->
+<!-- end module:opc_electronic_electron_2501\template\common\menu.twig -->

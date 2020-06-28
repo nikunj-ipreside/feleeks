@@ -1,0 +1,1747 @@
+{{ header }}
+<link href="view/stylesheet/tvcmsjquery.minicolors.css" rel="stylesheet" />
+<script type="text/javascript" src="view/javascript/tvcmsjquery.minicolors.js"></script>
+<style type="text/css">
+/***********************START THEME_CONTOL*****************/
+  .ttvcmstheme-control .ttvtheme-option{
+      border: 2px solid #e6e6e6;
+      margin: 0;
+  }
+  .ttvcmstheme-control{
+      position: fixed;
+      z-index: 100;
+      top:80px;
+      right: -300px;
+      -webkit-transition: all 0.6s ease-in-out;
+      -moz-transition: all 0.6s ease-in-out;
+      -ms-transition: all 0.6s ease-in-out;
+      -o-transition: all 0.6s ease-in-out;
+      transition: all 0.6s ease-in-out;
+  }
+  .ttvcmstheme-control.open {
+      right: 0;
+      -webkit-transition: all 0.6s ease-in-out;
+      -moz-transition: all 0.6s ease-in-out;
+      -ms-transition: all 0.6s ease-in-out;
+      -o-transition: all 0.6s ease-in-out;
+      transition: all 0.6s ease-in-out;
+  }
+  .ttvcmstheme-control table{
+      width: 100%;
+  }
+  .ttvcmstheme-control .ttvtheme-control-icon{
+      width: 44px;
+      height: 44px;
+      background-color: #222222;
+      line-height: 47px;
+      text-align: center;
+      float: left;
+      position: absolute;
+      left: -44px;
+      cursor: pointer;
+      box-shadow: -1px 0px 5px 0px rgba(0, 0, 0, 0.30);
+      -webkit-transition: 0.3s ease-in-out;
+      -o-transition: 0.3s ease-in-out;
+      -ms-transition: 0.3s ease-in-out;
+      -moz-transition: 0.3s ease-in-out;
+      transition: 0.3s ease-in-out;
+  }
+  .ttvcmstheme-control open{
+    display: block;
+  }
+  .ttvcmstheme-control .ttvtheme-control-icon:hover{
+     background-color: #000;
+    
+  }
+  .ttvcmstheme-control .ttvtheme-control-icon i{
+      font-size: 24px;
+      color: #FFF;
+      position: relative;
+      top: 0px;
+      height: 45px;
+      line-height: 45px;
+      -webkit-animation-name: spin;
+        -webkit-animation-duration: 3000ms;
+        -webkit-animation-iteration-count: infinite;
+        -webkit-animation-timing-function: linear;
+        -moz-animation-name: spin;
+        -moz-animation-duration: 3000ms;
+        -moz-animation-iteration-count: infinite;
+        -moz-animation-timing-function: linear;
+        -ms-animation-name: spin;
+        -ms-animation-duration: 3000ms;
+        -ms-animation-iteration-count: infinite;
+        -ms-animation-timing-function: linear;
+        -o-transition: rotate(3600deg);
+       -webkit-transition: 0.3s ease-in-out;
+      -o-transition: 0.3s ease-in-out;
+      -ms-transition: 0.3s ease-in-out;
+      -moz-transition: 0.3s ease-in-out;
+      transition: 0.3s ease-in-out;
+  }
+  .ttvcmstheme-control .ttvtheme-control-icon:hover i{
+      color: #FFF;
+  }
+
+  @-moz-keyframes spin {
+      from { -moz-transform: rotate(0deg); }
+      to { -moz-transform: rotate(360deg); }
+  }
+  @-webkit-keyframes spin {
+      from { -webkit-transform: rotate(0deg); }
+      to { -webkit-transform: rotate(360deg); }
+  }
+  @keyframes spin {
+      from {transform:rotate(0deg);}
+      to {transform:rotate(360deg);}
+  }
+  .ttvcmstheme-control .ttvselect-theme select{
+      padding: 0;
+      width: 165px;
+      font-size: 12px;
+      height: 30px;
+      border: 1px solid #e6e6e6;
+  }
+  .ttvcmstheme-control .ttvselect-theme select:focus{
+      outline: none;
+  }
+  .ttvcmstheme-control 
+      width:250px;
+      height: auto;
+      padding:15px 30px;
+      background-color: #fafafc;
+      overflow: hidden;
+      border-radius: 0 7px 7px 7px;
+      box-shadow: 0 14px 27px rgba(0,0,0,.1);
+      border: 1px solid #e6e6e6;
+      display: block;
+  }
+  #order-confirmation .ttvcmstheme-control table td{
+      border: none;
+  }
+
+
+  .ttvcmstheme-control.active {
+      right: 0;
+  } 
+
+
+      color: #222222;
+  }
+  .ttvselect-theme-name,
+  .ttvcolor-theme-name,
+  .ttvtheme-layout-name,
+  .ttvtheme-animation-name,
+  .ttvtheme-page-loader-name,
+  .ttvtheme-left-sticky-name,
+  .ttvtheme-right-sticky-name,
+  .ttvtheme-menu-sticky-name,
+  .ttvbgcolor-theme-name,
+  .ttvtheme-background-pattern-name{
+      font-size: 12px;
+  }
+
+  .ttvtheme-color-box{
+      float: left;
+  }
+  .ttvtheme-color-box input{
+      width: 165px;
+  }
+  .ttvall-theme-content{
+      margin-bottom: 15px;
+  }
+
+
+  .ttvtheme-color-one{
+      margin-bottom: 10px;
+      overflow: hidden;
+  }
+  td{
+      padding:4px 0;
+  }
+  .ttvtheme-option .btn-primary{
+      background-color: #222222;
+      color: #FFF;
+      text-align: center;
+      border: none;
+      font-weight: 500;
+      margin: 0;
+      text-transform: uppercase;
+  }
+  .ttvtheme-option .btn-default{
+      background-color: #888;
+      color: #FFF;
+      text-align: center;
+      margin: 0;
+      border: none;
+      text-transform: uppercase;
+  }
+  .ttvtheme-option .toggle-handle{
+      background-color: #FFF;
+      padding: 0px 20px;
+  }
+  .ttvtheme-color-box input{
+      border:none;
+      height: 25px;
+      padding: 0 32px;
+      border: 1px solid #e6e6e6;
+      font-size: 12px;
+  }
+  .ttvtheme-control-title-name{
+      float: left;
+  }
+  .ttvtheme-control-reset{
+      background-color:#999;
+      margin-bottom: 5px;
+      border: none;
+      color: #FFF;
+      padding: 5px 15px;
+      text-transform: uppercase;
+      border:1px solid #eee;
+      cursor: pointer;
+      -webkit-transition: 0.3s ease-in-out;
+      -o-transition: 0.3s ease-in-out;
+      -ms-transition: 0.3s ease-in-out;
+      -moz-transition: 0.3s ease-in-out;
+      transition: 0.3s ease-in-out;
+      display: inline-block;
+  }
+
+  .ttvtheme-control-title-name-reset-btn{
+      width: 100%;
+      overflow: hidden;
+      display: block;
+      text-align: center;
+  }
+  .ttvtheme-control-title-name-reset-btn p{
+      font-size: 14px;
+      text-transform: capitalize;
+      margin-bottom: 5px;
+      color: #222222;
+  }
+  .ttvtheme-control-reset:focus{
+      outline: none;
+  }
+  .ttvtheme-all-pattern-wrapper{
+      width: 185px;
+  }
+
+  .ttvtheme-all-pattern{
+      width: 22px;
+      height: 22px;
+      background-color: #FFF;
+      float: left;
+      margin: 0 5px 5px 0;
+      cursor: pointer;
+  }
+  .ttvtheme-all-pattern .ttvtheme-pattern-image:hover,
+  .ttvtheme-all-pattern .ttvtheme-pattern-image.active{
+      border: 2px solid #909090;
+  }
+  .ttvtheme-all-pattern .ttvtheme-pattern-image{
+      width: 22px;
+      height: 22px;
+      border:1px solid #eee;
+  }
+  .ttvcms_theme_active{
+      border: 2px solid #f00 !important;
+  }
+  .ttvtheme-bgcolor-box input{
+      width: 165px;
+      border: 1px solid #e6e6e6;
+      height: 25px;
+      padding: 0 32px;
+      font-size: 12px;
+  }
+  .ttvtheme-background-patten p.notice{
+      font-size: 10px;
+      display: block;
+      float: left;
+  }
+  .ttvtheme-left-sticky {
+      display: none;
+  }
+  .ttvtheme-option .toggle-off.btn {
+      padding: 8px 0 8px 20px;
+  }
+  .ttvtheme-option .toggle-on.btn {
+      padding: 8px 20px 8px 0px;
+  }
+  .toggle-group .toggle-on,
+  .toggle-group .toggle-off {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      align-items: center;
+  }
+
+  @media (max-width: 767px){
+          .ttvcmstheme-control{
+              display: none;
+          }
+  }
+
+  .ttvtheme-color-two{
+      display: none !important;
+  }
+  .ttvtheme-control-reset:hover {
+      background-color: #222222;
+  }
+  .ttvcmstheme-control .ttvtheme-background-patten p.notice {
+      color: #222222;
+      margin-bottom: 0;
+  }
+  .lang-rtl  .ttvtheme-color-box ,
+  .lang-rtl .ttvtheme-all-pattern {
+      float: right;
+  }
+/***********************END THEME_CONTOL*****************/
+</style>
+{{ column_left }}
+
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-module" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    {% if error_main %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_main }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+    <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-module" class="form-horizontal">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+        </div>
+           
+         <div class="form-group">
+          <label class="col-sm-2 control-label" for="input-tvcmscustomsetting_status">{{ entry_status }}</label>
+          <div class="col-sm-10">
+             <select name="tvcmscustomsetting_status" id="input-tvcmscustomsetting_status" class="form-control">
+                {% if tvcmscustomsetting_status %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+          </div>
+        </div>   
+        
+        <div class="panel-body">
+            <ul class="nav nav-tabs">
+              {% if form_1 %}<li class="active"><a href="#tab-themeconfiguration" data-toggle="tab">{{ tab_confi }}</a></li>{% endif %}
+              {% if form_2 %}<li><a href="#tab-offer" data-toggle="tab">{{ tab_offer }}</a></li>{% endif %}
+              {% if form_3 %}<li><a href="#tab-app" data-toggle="tab">{{ tab_app }}</a></li>{% endif %}
+              {% if form_4 %}<li><a href="#tab-cust" data-toggle="tab">{{ tab_cust }}</a></li>{% endif %}
+              <li><a href="#tab-imagesetting" data-toggle="tab">{{ text_imagesetting }}</a></li>
+            </ul>
+
+            <div class="tab-content">
+              {% if form_1 %}
+                <div class="tab-pane active" id="tab-themeconfiguration">
+                    <div class="form-group"> 
+                        <label class="col-sm-2 control-label" for="input-status">{{ text_theme_op }}</label>                 
+                        <div class="col-sm-10">
+                          <label class="radio-block">
+                            <input type="radio" class="themecolor" {% if tvcmscustomsetting_configuration.themeoption == "theme1" %} checked="checked" {% endif %} name="tvcmscustomsetting_configuration[themeoption]" value="theme1" /> {{ text_theme_op1 }}
+                          </label><br>
+                          
+                          <label class="radio-block">
+                            <input type="radio" class="themecolor" {% if tvcmscustomsetting_configuration.themeoption == "theme_custom" %} checked="checked" {% endif %} name="tvcmscustomsetting_configuration[themeoption]" value="theme_custom"  /> {{ text_theme_op5 }}
+                          </label><br>
+
+                          {{ text_theme_opdes }}
+                        </div>
+                    </div>
+                   
+                    <div class="form-group input-customthemecolor {% if tvcmscustomsetting_configuration.themeoption == "theme1" %} hidden {% endif %}"> 
+                      <label class="col-sm-2 control-label" for="input-customthemecolor">{{ text_theme_colo }}</label>
+                      <div class="col-sm-10">
+                        <input type="text" id='custom_theme_color' name="tvcmscustomsetting_configuration[customthemecolor]" value="{{ tvcmscustomsetting_configuration.customthemecolor }}" placeholder="{{ text_tab_nopro }}" id="input-tvcmscustomsetting_configuration_no_pro" class="form-control" />
+                      </div>
+                    </div>
+                   
+                    <div class="form-group"> 
+                      <label class="col-sm-2 control-label" for="input-boxlayout">{{ text_theme_box }}</label>
+                      <div class="col-sm-10">
+                        
+                        <label class="radio-inline"> {% if tvcmscustomsetting_configuration.boxlayout %}
+                          <input type="radio" class="themebox" name="tvcmscustomsetting_configuration[boxlayout]" value="1" checked="checked" />
+                          {{ entry_yes }}
+                          {% else %}
+                          <input type="radio" class="themebox" name="tvcmscustomsetting_configuration[boxlayout]" value="1" />
+                          {{ entry_yes }}
+                          {% endif %} </label>
+                        <label class="radio-inline"> {% if not tvcmscustomsetting_configuration.boxlayout %}
+                          <input type="radio" class="themebox" name="tvcmscustomsetting_configuration[boxlayout]" value="0" checked="checked" />
+                          {{ entry_no}}
+                          {% else %}
+                          <input type="radio" class="themebox" name="tvcmscustomsetting_configuration[boxlayout]" value="0" />
+                          {{ entry_no }}
+                          {% endif %} </label><br>
+                          {{ text_theme_box_des }}
+                      </div>
+                    </div>
+                    <div class="form-group themebox1 {% if not tvcmscustomsetting_configuration.boxlayout %} hidden {% endif %}" >
+                      <label class="col-sm-2 control-label" for="input-backgroundtheme">{{ text_theme_bgcol }}</label>
+                      <div class="col-sm-10">
+
+                        
+                        <label class="radio-inline">
+
+                          <input type="radio" class="patternselect" {% if tvcmscustomsetting_configuration.backgroundtheme == "bgcolor" %} checked="checked" {% endif %} name="tvcmscustomsetting_configuration[backgroundtheme]" value="bgcolor"  />
+                          {{ text_theme_bgcol_col }}</label>
+                         <label class="radio-inline">
+                          <input type="radio" {% if tvcmscustomsetting_configuration.backgroundtheme == "pattern" %} checked="checked" {% endif %} class="patternselect" name="tvcmscustomsetting_configuration[backgroundtheme]" value="pattern" />{{ text_theme_bgcol_patt }}</label><br>
+                          
+                           
+                       
+                          {{ text_theme_bgcol_des }}
+                      </div>
+                    </div>
+                    <div class="form-group themebox1 pattencolor {% if not tvcmscustomsetting_configuration.boxlayout %} hidden {% endif %}">
+                      <label class="col-sm-2 control-label" for="input-backgroundthemecolor">{{ text_theme_bgcol_col_col }}</label>
+                      <div class="col-sm-10">
+                        
+                        <input type="text" id='background_theme_color'name="tvcmscustomsetting_configuration[backgroundthemecolor]" value="{{ tvcmscustomsetting_configuration.backgroundthemecolor }}" placeholder="{{ text_tab_nopro }}" id="input-tvcmscustomsetting_configuration_no_pro" class="form-control" />
+                        
+
+                      </div>
+                    </div>
+                    <div class="form-group themebox1 patten {% if not tvcmscustomsetting_configuration.boxlayout %} hidden {% endif %}">
+                      <label class="col-sm-2 control-label" for="input-backgroundpattern">{{ text_theme_bgpatt }}</label>
+                      <div class="col-sm-10">
+                          <div class="ttvtheme-all-pattern-wrapper">
+                           {% for i in 1..30 %}
+                           
+                                <div class="ttvtheme-all-pattern">
+                                    <div id="pattern{{ i }}" class="{% if tvcmscustomsetting_configuration.backgroundpattern == 'pattern' ~ i %} active {% endif %}ttvtheme-pattern-image hrxtheme-pattern-image{{ i }}" style="background-image:url('{{ dir_pattern }}{{ i }}.png')"></div>
+                                </div>
+                            {% endfor %} 
+                          </div>
+                        <input type="text" name="tvcmscustomsetting_configuration[backgroundpattern]" value="{{ tvcmscustomsetting_configuration.backgroundpattern }}" placeholder="{{ text_tab_nopro }}" id="idpatternval" class="form-control hidden" />
+                        {{ text_theme_bgpatt_des }}
+                      </div>
+                    </div>
+                    <div class="form-group"> 
+                      <label class="col-sm-2 control-label" for="input-themeoptionstatus">{{ text_theme_op_st }}</label>
+                      <div class="col-sm-10">
+                        
+                        <label class="radio-inline"> 
+                          
+                          <input type="radio" {% if tvcmscustomsetting_configuration.themeoptionstatus == "1" %} checked="checked" {% endif %} name="tvcmscustomsetting_configuration[themeoptionstatus]" value="1" />
+                          {{ entry_yes }}</label>
+                           <label class="radio-inline"> 
+                          <input type="radio" {% if tvcmscustomsetting_configuration.themeoptionstatus != "1" %} checked="checked" {% endif %} name="tvcmscustomsetting_configuration[themeoptionstatus]" value="0" />
+                          {{ entry_no }}
+                           </label>
+                        <br>
+                          {{ ttext_theme_op_st_des }}
+                      </div>
+                    </div>
+                    {% if page_loader %}
+                    <div class="form-group"> 
+                      <label class="col-sm-2 control-label" for="input-pageloader">{{ text_theme_pa_lo }}</label>
+                      <div class="col-sm-10">
+
+                        <label class="radio-inline"> {% if tvcmscustomsetting_configuration.pageloader %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[pageloader]" value="1" checked="checked" />
+                          {{ entry_yes }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[pageloader]" value="1" />
+                          {{ entry_yes }}
+                          {% endif %} </label>
+                        <label class="radio-inline"> {% if not tvcmscustomsetting_configuration.pageloader %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[pageloader]" value="0" checked="checked" />
+                          {{ entry_no }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[pageloader]" value="0" />
+                          {{ entry_no }}
+                          {% endif %} </label>
+
+                          <br>
+                          {{ text_theme_pa_lo_des }}
+                      </div>
+                    </div>
+                    {% endif %}
+                    {% if wow_js %}
+                      <div class="form-group hidden"> 
+                        <label class="col-sm-2 control-label" for="input-wowjs">{{ text_theme_wow }}</label>
+                        <div class="col-sm-10">
+
+                          <label class="radio-inline"> {% if tvcmscustomsetting_configuration.wowjs %}
+                            <input type="radio" name="tvcmscustomsetting_configuration[wowjs]" value="1" checked="checked" />
+                            {{ entry_yes }}
+                            {% else %}
+                            <input type="radio" name="tvcmscustomsetting_configuration[wowjs]" value="1" />
+                            {{ entry_yes }}
+                            {% endif %} </label>
+                          <label class="radio-inline"> {% if not tvcmscustomsetting_configuration.wowjs %}
+                            <input type="radio" name="tvcmscustomsetting_configuration[wowjs]" value="0" checked="checked" />
+                            {{ entry_no }}
+                            {% else %}
+                            <input type="radio" name="tvcmscustomsetting_configuration[wowjs]" value="0" />
+                            {{ entry_no }}
+                            {% endif %} </label>
+                          <br>
+                            {{ text_theme_wow_des }}
+                        </div>
+                      </div>
+                    {% endif %}
+                    {% if mouse_hover_image %}
+                    <div class="form-group"> 
+                      <label class="col-sm-2 control-label" for="input-mousehoverimage">{{ text_theme_mouse }}</label>
+                      <div class="col-sm-10">
+
+                        <label class="radio-inline"> {% if tvcmscustomsetting_configuration.mousehoverimage %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[mousehoverimage]" value="1" checked="checked" />
+                          {{ entry_yes }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[mousehoverimage]" value="1" />
+                          {{ entry_yes }}
+                          {% endif %} </label>
+                        <label class="radio-inline"> {% if not tvcmscustomsetting_configuration.mousehoverimage %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[mousehoverimage]" value="0" checked="checked" />
+                          {{ entry_no }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[mousehoverimage]" value="0" />
+                          {{ entry_no }}
+                          {% endif %} </label>
+                        <br>
+                          {{ text_theme_mouse_des }}
+                      </div>
+                    </div>
+                    {% endif %}
+                    {% if tab_product_double_row %}
+                    <div class="form-group hidden"> 
+                      <label class="col-sm-2 control-label" for="input-tabproductdoublerow">{{ text_theme_tap }}</label>
+                      <div class="col-sm-10">
+
+                        <label class="radio-inline"> {% if tvcmscustomsetting_configuration.tabproductdoublerow %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[tabproductdoublerow]" value="1" checked="checked" />
+                          {{ entry_yes }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[tabproductdoublerow]" value="1" />
+                          {{ entry_yes }}
+                          {% endif %} </label>
+                        <label class="radio-inline"> {% if not tvcmscustomsetting_configuration.tabproductdoublerow %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[tabproductdoublerow]" value="0" checked="checked" />
+                          {{ entry_no }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[tabproductdoublerow]" value="0" />
+                          {{ entry_no }}
+                          {% endif %} </label>
+                        <br>
+                          {{ text_theme_tap_des }}
+                      </div>
+                    </div>
+                    {% endif %}
+                    {% if product_color %}
+                    <div class="form-group hidden"> 
+                      <label class="col-sm-2 control-label" for="input-productcolor">{{ text_theme_pro_col }}</label>
+                      <div class="col-sm-10">
+                        <label class="radio-inline"> {% if tvcmscustomsetting_configuration.productcolor %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[productcolor]" value="1" checked="checked" />
+                          {{ entry_yes }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[productcolor]" value="1" />
+                          {{ entry_yes }}
+                          {% endif %} </label>
+                        <label class="radio-inline"> {% if not tvcmscustomsetting_configuration.productcolor %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[productcolor]" value="0" checked="checked" />
+                          {{ entry_no }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[productcolor]" value="0" />
+                          {{ entry_no }}
+                          {% endif %} </label>
+                        <br>
+                          {{ text_theme_pro_col_des }}
+                      </div>
+                    </div>
+                    {% endif %}
+                    {% if main_menu_sticky %}
+                    <div class="form-group"> 
+                      <label class="col-sm-2 control-label" for="input-mainmenustickystatus">{{ text_theme_main }}</label>
+                      <div class="col-sm-10">
+
+                        <label class="radio-inline"> {% if tvcmscustomsetting_configuration.mainmenustickystatus %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[mainmenustickystatus]" value="1" checked="checked" />
+                          {{ entry_yes }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[mainmenustickystatus]" value="1" />
+                          {{ entry_yes }}
+                          {% endif %} </label>
+                        <label class="radio-inline"> {% if not tvcmscustomsetting_configuration.mainmenustickystatus %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[mainmenustickystatus]" value="0" checked="checked" />
+                          {{ entry_no }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[mainmenustickystatus]" value="0" />
+                          {{ entry_no }}
+                          {% endif %} </label>
+                        <br>
+                          {{ text_theme_main_des }}
+                      </div>
+                    </div>
+                    {% endif %}
+                    {% if bottom_sticky %}
+                    <div class="form-group"> 
+                      <label class="col-sm-2 control-label" for="input-bottomoption">{{ text_theme_bott_op }}</label>
+                      <div class="col-sm-10">
+
+                        <label class="radio-inline"> {% if tvcmscustomsetting_configuration.bottomoption %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[bottomoption]" value="1" checked="checked" />
+                          {{ entry_yes }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[bottomoption]" value="1" />
+                          {{ entry_yes }}
+                          {% endif %} </label>
+                        <label class="radio-inline"> {% if not tvcmscustomsetting_configuration.bottomoption %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[bottomoption]" value="0" checked="checked" />
+                          {{ entry_no }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[bottomoption]" value="0" />
+                          {{ entry_no }}
+                          {% endif %} </label>
+                        <br>
+                          {{ text_theme_bott_op_des }}
+                      </div>
+                    </div>
+                    {% endif %}
+                     {% if tab_product_double_row %}
+                    <div class="form-group"> 
+                      <label class="col-sm-2 control-label" for="input-doublerow">{{ text_theme_double_pro }}</label>
+                      <div class="col-sm-10">
+
+                        <label class="radio-inline"> {% if tvcmscustomsetting_configuration.doublerow %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[doublerow]" value="1" checked="checked" />
+                          {{ entry_yes }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[doublerow]" value="1" />
+                          {{ entry_yes }}
+                          {% endif %} </label>
+                        <label class="radio-inline"> {% if not tvcmscustomsetting_configuration.doublerow %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[doublerow]" value="0" checked="checked" />
+                          {{ entry_no }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[doublerow]" value="0" />
+                          {{ entry_no }}
+                          {% endif %} </label>
+                        <br>
+                          {{ text_theme_double_pro_des }}
+                      </div>
+                    </div>
+                    {% endif %}
+                    {% if vertical_menu_open %}
+                    <div class="form-group hidden"> 
+                      <label class="col-sm-2 control-label" for="input-verticalmenuopen">{{ text_theme_ver }}</label>
+                      <div class="col-sm-10">
+
+                        <label class="radio-inline"> {% if tvcmscustomsetting_configuration.verticalmenuopen %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[verticalmenuopen]" value="1" checked="checked" />
+                          {{ entry_yes }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[verticalmenuopen]" value="1" />
+                          {{ entry_yes }}
+                          {% endif %} </label>
+                        <label class="radio-inline"> {% if not tvcmscustomsetting_configuration.verticalmenuopen %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[verticalmenuopen]" value="0" checked="checked" />
+                          {{ entry_no }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[verticalmenuopen]" value="0" />
+                          {{ entry_no }}
+                          {% endif %} </label>
+                        <br>
+                          {{ text_theme_ver_des }}
+                      </div>
+                    </div>
+                    {% endif %}
+                    <div class="form-group"> 
+                      <label class="col-sm-2 control-label" for="input-htmlminify">{{ text_theme_htmlminify }}</label>
+                      <div class="col-sm-10">
+
+                        <label class="radio-inline"> {% if tvcmscustomsetting_configuration.htmlminify %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[htmlminify]" value="1" checked="checked" />
+                          {{ entry_yes }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[htmlminify]" value="1" />
+                          {{ entry_yes }}
+                          {% endif %} </label>
+                        <label class="radio-inline"> {% if not tvcmscustomsetting_configuration.htmlminify %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[htmlminify]" value="0" checked="checked" />
+                          {{ entry_no }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[htmlminify]" value="0" />
+                          {{ entry_no }}
+                          {% endif %} </label>
+                          <br>
+                          {{ text_theme_htmlminify_des }}
+                        <br>
+                      </div>
+                    </div>
+                    <div class="form-group"> 
+                      <label class="col-sm-2 control-label" for="input-comparedisplay">{{ text_theme_comparepro }}</label>
+                      <div class="col-sm-10">
+                        <label class="radio-inline"> {% if tvcmscustomsetting_configuration.comparedisplay %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[comparedisplay]" value="1" checked="checked" />
+                          {{ entry_yes }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[comparedisplay]" value="1" />
+                          {{ entry_yes }}
+                          {% endif %} </label>
+                        <label class="radio-inline"> {% if not tvcmscustomsetting_configuration.comparedisplay %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[comparedisplay]" value="0" checked="checked" />
+                          {{ entry_no }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[comparedisplay]" value="0" />
+                          {{ entry_no }}
+                          {% endif %} </label>
+                          <br>
+                        <br>
+                      </div>
+                    </div>
+                    <div class="form-group"> 
+                      <label class="col-sm-2 control-label" for="input-wishlistdisplay">{{ text_theme_wishlistpro }}</label>
+                      <div class="col-sm-10">
+                        <label class="radio-inline"> {% if tvcmscustomsetting_configuration.wishlistdisplay %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[wishlistdisplay]" value="1" checked="checked" />
+                          {{ entry_yes }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[wishlistdisplay]" value="1" />
+                          {{ entry_yes }}
+                          {% endif %} </label>
+                        <label class="radio-inline"> {% if not tvcmscustomsetting_configuration.wishlistdisplay %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[wishlistdisplay]" value="0" checked="checked" />
+                          {{ entry_no }}
+                          {% else %}
+                          <input type="radio" name="tvcmscustomsetting_configuration[wishlistdisplay]" value="0" />
+                          {{ entry_no }}
+                          {% endif %} </label>
+                          <br>
+                        <br>
+                      </div>
+                    </div>
+                     <div class="form-group"> 
+                        <label class="col-sm-2 control-label" for="input-status">{{ text_theme_blog }}</label>                 
+                        <div class="col-sm-10">
+                          <input type="text" name="tvcmscustomsetting_configuration[bloglimit]" value="{{ tvcmscustomsetting_configuration.bloglimit }}" placeholder="{{ text_tab_nopro }}" id="input-tvcmscustomsetting_configuration_no_pro" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group"> 
+                        <label class="col-sm-2 control-label" for="input-status">{{ text_theme_search }}</label>                 
+                        <div class="col-sm-10">
+                          <input type="text" name="tvcmscustomsetting_configuration[searchlimit]" value="{{ tvcmscustomsetting_configuration.searchlimit }}" placeholder="{{ text_tab_nopro }}" id="input-tvcmscustomsetting_configuration_no_pro" class="form-control" />
+                        </div>
+                    </div>
+                   
+
+                </div>
+              {% endif %}
+              {% if form_2 %}
+                <div class="tab-pane" id="tab-offer">
+                  {% if top_offer_banner_status %}
+                    <div class="form-group"> 
+                      <label class="col-sm-2 control-label" for="input-top">{{ text_off_status }}</label>
+                      <div class="col-sm-10">
+                        <select name="tvcmscustomsetting_offerbannarmain[top]" id="input-top" class="form-control">
+                          {% if tvcmscustomsetting_offerbannarmain.top %}
+                          <option value="1" selected="selected">{{ entry_yes }}</option>
+                          <option value="0">{{ entry_no }}</option>
+                          {% else %}
+                          <option value="1">{{ entry_yes }}</option>
+                          <option value="0" selected="selected">{{ entry_no }}</option>
+                          {% endif %}
+                        </select>
+                          {{ text_off_status_des }}
+                      </div>
+                    </div>
+                  {% endif %}
+                  
+                  <ul class="nav nav-tabs" id="language_2">
+                    {% for language in languages %}
+                    <li><a href="#language_2{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+                    {% endfor %}
+                  </ul>
+                  <div class="tab-content">{% for language in languages %}
+                    <div class="tab-pane" id="language_2{{ language.language_id }}">
+                        {% if top_offer_banner %}
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-tvcmscustomsetting_offerbannarsub_topimg{{ language.language_id }}">{{ text_off_top }}</label>
+                            <div class="col-sm-10">
+                              <a href="" id="thumb-tvcmscustomsetting_offerbannarsub_topimg{{ language.language_id }}" data-toggle="image" class="img-thumbnail">
+                                <img src="{{ top[language.language_id] }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                              </a>
+                              <input type="hidden" name="tvcmscustomsetting_offerbannarsub[lang_text][{{ language.language_id }}][topimg]" value="{{ tvcmscustomsetting_offerbannarsub.lang_text[language.language_id] ? tvcmscustomsetting_offerbannarsub.lang_text[language.language_id].topimg }}" id="input-tvcmscustomsetting_offerbannarsub_img{{ language.language_id }}" />
+                              {{ text_off_top_des }}
+                            </div>
+                          </div>
+                        {% endif %}
+                        {% if left_offer_banner %}
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-offerbannarsub_leftimg{{ language.language_id }}">{{ text_off_left }}</label>
+                            <div class="col-sm-10">
+                              <a href="" id="thumb-offerbannarsub_leftimg{{ language.language_id }}" data-toggle="image" class="img-thumbnail">
+                                <img src="{{ left[language.language_id] }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                              </a>
+                              <input type="hidden" name="offerbannarsub[lang_text][{{ language.language_id }}][leftimg]" value="{{ offerbannarsub.lang_text[language.language_id] ? offerbannarsub.lang_text[language.language_id].leftimg }}" id="input-offerbannarsub{{ language.language_id }}" />
+                              {{ text_off_left_des }}
+                            </div>
+                          </div>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              {% endif %}
+              {% if form_3 %}
+              <div class="tab-pane" id="tab-app">
+                {% if app_link_status %}
+                  <div class="form-group"> 
+                    <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+                    <div class="col-sm-10">
+                      <select name="tvcmscustomsetting_appmain[status]" id="input-status" class="form-control">
+                        {% if tvcmscustomsetting_appmain.status %}
+                        <option value="1" selected="selected">{{ text_enabled }}</option>
+                        <option value="0">{{ text_disabled }}</option>
+                        {% else %}
+                        <option value="1">{{ text_enabled }}</option>
+                        <option value="0" selected="selected">{{ text_disabled }}</option>
+                        {% endif %}
+                      </select>
+                      {{ text_cust_sta_des }}
+                    </div>
+                  </div>
+                {% endif %}
+                <ul class="nav nav-tabs" id="language_3">
+                  {% for language in languages %}
+                  <li><a href="#language_3{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+                  {% endfor %}
+                </ul>
+                <div class="tab-content">{% for language in languages %}
+                  <div class="tab-pane" id="language_3{{ language.language_id }}">
+                      
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-tvcmscustomsetting_appsub_topimg1{{ language.language_id }}">{{ text_off_top }}</label>
+                        <div class="col-sm-10">
+                          <a href="" id="thumb-tvcmscustomsetting_appsub_topimg1{{ language.language_id }}" data-toggle="image" class="img-thumbnail">
+                            <img src="{{ top1[language.language_id] }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                          </a>
+                          <input type="hidden" name="tvcmscustomsetting_appsub[lang_text][{{ language.language_id }}][topimg1]" value="{{ tvcmscustomsetting_appsub.lang_text[language.language_id] ? tvcmscustomsetting_appsub.lang_text[language.language_id].topimg1 }}" id="input-tvcmscustomsetting_appsub_topimg1{{ language.language_id }}" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-image-compare">{{ ttv_customsetting_appimg }}</label>
+                        <div class="col-sm-10">
+                          <div class="row">
+                            <div class="col-sm-6">
+                               <input type="text" name="tvcmscustomsetting_appsub[lang_text][{{ language.language_id }}][topimg1_width]" value="{{ tvcmscustomsetting_appsub.lang_text[language.language_id] ? tvcmscustomsetting_appsub.lang_text[language.language_id].topimg1_width }}"  placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                            </div>
+                            <div class="col-sm-6">
+                              <input type="text" name="tvcmscustomsetting_appsub[lang_text][{{ language.language_id }}][topimg1_height]" value="{{ tvcmscustomsetting_appsub.lang_text[language.language_id] ? tvcmscustomsetting_appsub.lang_text[language.language_id].topimg1_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {% if apple_app_link %}
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-offerbannarlink{{ language.language_id }}">{{ text_app_link }}</label>
+                          <div class="col-sm-10">
+                            <input type="text" name="tvcmscustomsetting_appsub[lang_text][{{ language.language_id }}][link]" 
+                            value="{{ tvcmscustomsetting_appsub.lang_text[language.language_id] ? tvcmscustomsetting_appsub.lang_text[language.language_id].link }}" placeholder="{{ text_app_link }}" id="input-offerbannarlink{{ language.language_id }}" class="form-control" />
+                          {{ text_app_link_des }}
+                          </div>
+                        </div>
+                      {% endif %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-tvcmscustomsetting_appsub_topimg2{{ language.language_id }}">{{ text_off_top }}</label>
+                        <div class="col-sm-10">
+                          <a href="" id="thumb-tvcmscustomsetting_appsub_topimg2{{ language.language_id }}" data-toggle="image" class="img-thumbnail">
+                            <img src="{{ top2[language.language_id] }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                          </a>
+                          <input type="hidden" name="tvcmscustomsetting_appsub[lang_text][{{ language.language_id }}][topimg2]" value="{{ tvcmscustomsetting_appsub.lang_text[language.language_id] ? tvcmscustomsetting_appsub.lang_text[language.language_id].topimg2 }}" id="input-tvcmscustomsetting_appsub_topimg2{{ language.language_id }}" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-image-compare">{{ ttv_customsetting_appimg }}</label>
+                        <div class="col-sm-10">
+                          <div class="row">
+                            <div class="col-sm-6">
+                              <input type="text" name="tvcmscustomsetting_appsub[lang_text][{{ language.language_id }}][topimg2_width]" value="{{ tvcmscustomsetting_appsub.lang_text[language.language_id] ? tvcmscustomsetting_appsub.lang_text[language.language_id].topimg2_width }}"  placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                            </div>
+                            <div class="col-sm-6">
+                              <input type="text" name="tvcmscustomsetting_appsub[lang_text][{{ language.language_id }}][topimg2_height]" value="{{ tvcmscustomsetting_appsub.lang_text[language.language_id] ? tvcmscustomsetting_appsub.lang_text[language.language_id].topimg2_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {% if google_app_link %}
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-google{{ language.language_id }}">{{ text_app_google }}</label>
+                          <div class="col-sm-10">
+                            <input type="text" name="tvcmscustomsetting_appsub[lang_text][{{ language.language_id }}][google]" 
+                            value="{{ tvcmscustomsetting_appsub.lang_text[language.language_id] ? tvcmscustomsetting_appsub.lang_text[language.language_id].google }}" placeholder="{{ text_app_google }}" id="input-google{{ language.language_id }}" class="form-control" />
+                          {{ text_app_google_des }}
+                          </div>
+                        </div>
+                      {% endif %}
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-tvcmscustomsetting_appsub_topimg3{{ language.language_id }}">{{ text_off_top }}</label>
+                        <div class="col-sm-10">
+                          <a href="" id="thumb-tvcmscustomsetting_appsub_topimg3{{ language.language_id }}" data-toggle="image" class="img-thumbnail">
+                            <img src="{{ top3[language.language_id] }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                          </a>
+                          <input type="hidden" name="tvcmscustomsetting_appsub[lang_text][{{ language.language_id }}][topimg3]" value="{{ tvcmscustomsetting_appsub.lang_text[language.language_id] ? tvcmscustomsetting_appsub.lang_text[language.language_id].topimg3 }}" id="input-tvcmscustomsetting_appsub_topimg3{{ language.language_id }}" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-image-compare">{{ ttv_customsetting_appimg }}</label>
+                        <div class="col-sm-10">
+                          <div class="row">
+                            <div class="col-sm-6">
+                              
+                              <input type="text" name="tvcmscustomsetting_appsub[lang_text][{{ language.language_id }}][topimg3_width]" value="{{ tvcmscustomsetting_appsub.lang_text[language.language_id] ? tvcmscustomsetting_appsub.lang_text[language.language_id].topimg3_width }}"  placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                            </div>
+                            <div class="col-sm-6">
+                              <input type="text" name="tvcmscustomsetting_appsub[lang_text][{{ language.language_id }}][topimg3_height]" value="{{ tvcmscustomsetting_appsub.lang_text[language.language_id] ? tvcmscustomsetting_appsub.lang_text[language.language_id].topimg3_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {% if microsoft_app_link %}
+                        <div class="form-group">
+                          <label class="col-sm-2 control-label" for="input-micro{{ language.language_id }}">{{ text_app_micro }}</label>
+                          <div class="col-sm-10">
+                            <input type="text" name="tvcmscustomsetting_appsub[lang_text][{{ language.language_id }}][micro]" 
+                            value="{{ tvcmscustomsetting_appsub.lang_text[language.language_id] ? tvcmscustomsetting_appsub.lang_text[language.language_id].micro }}" placeholder="{{ text_app_micro }}" id="input-micro{{ language.language_id }}" class="form-control" />
+                          {{ text_app_micro_des }}
+                          </div>
+                        </div>
+                      {% endif %}
+                  </div>
+                  {% endfor %}
+                </div>
+              </div>
+              {% endif %}
+              {% if form_4 %}
+              <div class="tab-pane" id="tab-cust">
+                  {% if copy_right_text_status %}
+                    <div class="form-group"> 
+                      <label class="col-sm-2 control-label" for="input-copyrighttextstatus">{{ text_cust_status }}</label>
+                      <div class="col-sm-10">
+                        <select name="tvcmscustomsetting_custommain[copyrighttextstatus]" id="input-copyrighttextstatus" class="form-control">
+                          {% if tvcmscustomsetting_custommain.copyrighttextstatus %}
+                          <option value="1" selected="selected">{{ text_enabled }}</option>
+                          <option value="0">{{ text_disabled }}</option>
+                          {% else %}
+                          <option value="1">{{ text_enabled }}</option>
+                          <option value="0" selected="selected">{{ text_disabled }}</option>
+                          {% endif %}
+                        </select>
+                        {{ text_cust_status_des }}
+                      </div>
+                    </div>
+                  {% endif %}
+                    <div class="form-group"> 
+                      <label class="col-sm-2 control-label" for="input-customtextstatus">{{ text_custom_text_status }}</label>
+                      <div class="col-sm-10">
+                        <select name="tvcmscustomsetting_custommain[customtextstatus]" id="input-customtextstatus" class="form-control">
+                          {% if tvcmscustomsetting_custommain.customtextstatus %}
+                          <option value="1" selected="selected">{{ text_enabled }}</option>
+                          <option value="0">{{ text_disabled }}</option>
+                          {% else %}
+                          <option value="1">{{ text_enabled }}</option>
+                          <option value="0" selected="selected">{{ text_disabled }}</option>
+                          {% endif %}
+                        </select>
+                      </div>
+                    </div>
+                  
+                  <ul class="nav nav-tabs" id="language_4">
+                    {% for language in languages %}
+                    <li><a href="#language_4{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+                    {% endfor %}
+                  </ul>
+                  <div class="tab-content">{% for language in languages %}
+                    <div class="tab-pane" id="language_4{{ language.language_id }}">
+                        {% if copy_right_text %}
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-tvcmscustomsetting_customsubtext{{ language.language_id }}">{{ text_cust_text }}</label>
+                            <div class="col-sm-10">
+                              <input type="text" name="tvcmscustomsetting_customsub[lang_text][{{ language.language_id }}][text]" value="{{ tvcmscustomsetting_customsub.lang_text[language.language_id] ? tvcmscustomsetting_customsub.lang_text[language.language_id].text }}" placeholder="{{ text_cust_text }}" id="input-tvcmscustomsetting_customsubtext{{ language.language_id }}" class="form-control" />
+                              {{ text_cust_text_des }}
+                            </div>
+                          </div>
+                        {% endif %}
+                        {% if copy_right_link %}
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-customlink{{ language.language_id }}">{{ text_cust_link }}</label>
+                            <div class="col-sm-10">
+                              <input type="text" name="tvcmscustomsetting_customsub[lang_text][{{ language.language_id }}][link]" value="{{ tvcmscustomsetting_customsub.lang_text[language.language_id] ? tvcmscustomsetting_customsub.lang_text[language.language_id].link }}" placeholder="{{ text_cust_link }}" id="input-customlink{{ language.language_id }}" class="form-control" />
+                              {{ text_cust_link_des }}
+                            </div>
+                          </div>
+                        {% endif %}
+                        {% if status_custom_text %}
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-customlink{{ language.language_id }}">{{ text_custom_text }}</label>
+                            <div class="col-sm-10">
+                              <input type="text" name="tvcmscustomsetting_customsub[lang_text][{{ language.language_id }}][customtext]" value="{{ tvcmscustomsetting_customsub.lang_text[language.language_id] ? tvcmscustomsetting_customsub.lang_text[language.language_id].customtext }}" placeholder="{{ text_custom_text }}" id="input-customlink{{ language.language_id }}" class="form-control" />
+                              {{ text_custom_text_des }}
+                            </div>
+                          </div>
+                        {% endif %}
+                          {% if news_letter_title %}
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-customlink{{ language.language_id }}">{{ entry_newsletter_title }}</label>
+                            <div class="col-sm-10">
+                              <input type="text" name="tvcmscustomsetting_customsub[lang_text][{{ language.language_id }}][newslettertitle]" value="{{ tvcmscustomsetting_customsub.lang_text[language.language_id] ? tvcmscustomsetting_customsub.lang_text[language.language_id].newslettertitle }}" placeholder="{{ entry_newsletter_title }}" id="input-customlink{{ language.language_id }}" class="form-control" />
+                              {{ entry_newsletter_title_des }}
+                            </div>
+                          </div>
+                          {% endif %}
+                          {% if news_letter_short_desc %}
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-customlink{{ language.language_id }}">{{ entry_newsletter_des }}</label>
+                            <div class="col-sm-10">
+                              <input type="text" name="tvcmscustomsetting_customsub[lang_text][{{ language.language_id }}][newslettersubtitle]" value="{{ tvcmscustomsetting_customsub.lang_text[language.language_id] ? tvcmscustomsetting_customsub.lang_text[language.language_id].newslettersubtitle }}" placeholder="{{ entry_newsletter_des }}" id="input-customlink{{ language.language_id }}" class="form-control" />
+                              {{ entry_newsletter_des_des }}
+                            </div>
+                          </div>         
+                          {% endif %}
+                    </div>
+                    {% endfor %}
+                  </div>
+              </div>
+              {% endif %}
+              <div class="tab-pane" id="tab-imagesetting">
+                   <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_advance_mainimg }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_advanceblock_mainimg_width" value="{{ tvcmscustomsetting_advanceblock_mainimg_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_advanceblock_mainimg_height" value="{{ tvcmscustomsetting_advanceblock_mainimg_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% if error_advanceblock_mainimg %}
+                          <div class="text-danger">{{ error_advanceblock_mainimg }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_advance_blockimg }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_advanceblock_sub_mainimg_width" value="{{ tvcmscustomsetting_advanceblock_sub_mainimg_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_advanceblock_sub_mainimg_height" value="{{ tvcmscustomsetting_advanceblock_sub_mainimg_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% if error_advanceblock_sub_mainimg %}
+                          <div class="text-danger">{{ error_advanceblock_sub_mainimg }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_advance_subimg }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_advanceblock_img_width" value="{{ tvcmscustomsetting_advanceblock_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_advanceblock_img_height" value="{{ tvcmscustomsetting_advanceblock_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% if error_advanceblock_img %}
+                        <div class="text-danger">{{ error_advanceblock_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+
+                   <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_brand_mainimg }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_brand_mainimg_width" value="{{ tvcmscustomsetting_brand_mainimg_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_brand_mainimg_height" value="{{ tvcmscustomsetting_brand_mainimg_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% if error_brand_mainimg %}
+                          <div class="text-danger">{{ error_brand_mainimg }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_brand_subimg }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_brand_img_width" value="{{ tvcmscustomsetting_brand_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_brand_img_height" value="{{ tvcmscustomsetting_brand_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% if error_brand_img %}
+                          <div class="text-danger">{{ error_brand_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_tabproduct_bestproimage }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_bestproduct_mainimg_width" value="{{ tvcmscustomsetting_bestproduct_mainimg_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_bestproduct_mainimg_height" value="{{ tvcmscustomsetting_bestproduct_mainimg_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% if error_bestproduct_mainimg %}
+                          <div class="text-danger">{{ error_bestproduct_mainimg }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ entry_blog_gall_home }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tvcmsbloggallhome_img_width" value="{{ tvcmscustomsetting_tvcmsbloggallhome_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tvcmsbloggallhome_img_height" value="{{ tvcmscustomsetting_tvcmsbloggallhome_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                       {% if error_tvcmsbloggallhome_img %}
+                        <div class="text-danger">{{ error_tvcmsbloggallhome_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ entry_blog_gall_all }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tvcmsbloggallall_img_width" value="{{ tvcmscustomsetting_tvcmsbloggallall_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tvcmsbloggallall_img_height" value="{{ tvcmscustomsetting_tvcmsbloggallall_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                       {% if error_tvcmsbloggallall_img %}
+                        <div class="text-danger">{{ error_tvcmsbloggallall_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ entry_blog_gall_single }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tvcmsbloggallsin_img_width" value="{{ tvcmscustomsetting_tvcmsbloggallsin_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tvcmsbloggallsin_img_height" value="{{ tvcmscustomsetting_tvcmsbloggallsin_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                       {% if error_tvcmsbloggallsin_img %}
+                        <div class="text-danger">{{ error_tvcmsbloggallsin_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ entry_blog_fea_home }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tvcmsblogfeahome_img_width" value="{{ tvcmscustomsetting_tvcmsblogfeahome_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tvcmsblogfeahome_img_height" value="{{ tvcmscustomsetting_tvcmsblogfeahome_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                       {% if error_tvcmsblogfeahome_img %}
+                        <div class="text-danger">{{ error_tvcmsblogfeahome_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ entry_blog_fea_all }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tvcmsblogfeaall_img_width" value="{{ tvcmscustomsetting_tvcmsblogfeaall_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tvcmsblogfeaall_img_height" value="{{ tvcmscustomsetting_tvcmsblogfeaall_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                       {% if error_tvcmsblogfeaall_img %}
+                        <div class="text-danger">{{ error_tvcmsblogfeaall_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ entry_blog_fea_single }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tvcmsblogfeasin_img_width" value="{{ tvcmscustomsetting_tvcmsblogfeasin_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tvcmsblogfeasin_img_height" value="{{ tvcmscustomsetting_tvcmsblogfeasin_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                       {% if error_tvcmsblogfeasin_img %}
+                        <div class="text-danger">{{ error_tvcmsblogfeasin_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_categoryslider_mainimg }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_categoryslider_mainimg_width" value="{{ tvcmscustomsetting_categoryslider_mainimg_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_categoryslider_mainimg_height" value="{{ tvcmscustomsetting_categoryslider_mainimg_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                        {% if error_categoryslider_mainimg %}
+                          <div class="text-danger">{{ error_categoryslider_mainimg }}</div>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_categoryslider_subimg }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_categoryslider_img_width" value="{{ tvcmscustomsetting_categoryslider_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_categoryslider_img_height" value="{{ tvcmscustomsetting_categoryslider_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                        {% if error_categoryslider_img %}
+                          <div class="text-danger">{{ error_categoryslider_img }}</div>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_customerservice_mainimg }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_customerservice_mainimg_width" value="{{ tvcmscustomsetting_customerservice_mainimg_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_customerservice_mainimg_height" value="{{ tvcmscustomsetting_customerservice_mainimg_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                        {% if error_customerservice_mainimg %}
+                           <div class="text-danger">{{ error_customerservice_mainimg }}</div>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_customerservice_subimg }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_customerservice_img_width" value="{{ tvcmscustomsetting_customerservice_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_customerservice_img_height" value="{{ tvcmscustomsetting_customerservice_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                        {% if error_customerservice_img %}
+                          <div class="text-danger">{{ error_customerservice_img }}</div>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_tabproduct_featuredproimage }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_featureproduct_mainimg_width" value="{{ tvcmscustomsetting_featureproduct_mainimg_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_featureproduct_mainimg_height" value="{{ tvcmscustomsetting_featureproduct_mainimg_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% if error_featureproduct_mainimg %}
+                          <div class="text-danger">{{ error_featureproduct_mainimg }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                     <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_footerlogoimg }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_footerlogo_img_width" value="{{ tvcmscustomsetting_footerlogo_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_footerlogo_img_height" value="{{ tvcmscustomsetting_footerlogo_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                       {% if error_footerlogo_img %}
+                          <div class="text-danger">{{ error_footerlogo_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ footer_product }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_footerproduct_width" value="{{ tvcmscustomsetting_footerproduct_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_footerproduct_height" value="{{ tvcmscustomsetting_footerproduct_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% if error_footerproduct_img %}
+                        <div class="text-danger">{{ error_footerproduct_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_tabproduct_newproimage }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_newproduct_mainimg_width" value="{{ tvcmscustomsetting_newproduct_mainimg_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_newproduct_mainimg_height" value="{{ tvcmscustomsetting_newproduct_mainimg_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% if error_newproduct_mainimg %}
+                          <div class="text-danger">{{ error_newproduct_mainimg }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ entry_newsletter_img }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tvcmsnewsletterpoimg_img_width" value="{{ tvcmscustomsetting_tvcmsnewsletterpoimg_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tvcmsnewsletterpoimg_img_height" value="{{ tvcmscustomsetting_tvcmsnewsletterpoimg_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                       {% if error_tvcmsnewsletterpoimg_img %}
+                        <div class="text-danger">{{ error_tvcmsnewsletterpoimg_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ entry_newsletter_bgimg }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tvcmsnewsletterpobgimg_img_width" value="{{ tvcmscustomsetting_tvcmsnewsletterpobgimg_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tvcmsnewsletterpobgimg_img_height" value="{{ tvcmscustomsetting_tvcmsnewsletterpobgimg_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                       {% if error_tvcmsnewsletterpobgimg_img %}
+                        <div class="text-danger">{{ error_tvcmsnewsletterpobgimg_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                       <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ left_banner }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_leftbanner_img_width" value="{{ tvcmscustomsetting_leftbanner_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_leftbanner_img_height" value="{{ tvcmscustomsetting_leftbanner_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                       {% if error_leftbanner_img %}
+                        <div class="text-danger">{{ error_leftbanner_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ left_product }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_leftproduct_img_width" value="{{ tvcmscustomsetting_leftproduct_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_leftproduct_img_height" value="{{ tvcmscustomsetting_leftproduct_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% if error_leftproduct_img %}
+                        <div class="text-danger">{{ error_leftproduct_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ left_testimonial }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_lefttestimonial_img_width" value="{{ tvcmscustomsetting_lefttestimonial_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_lefttestimonial_img_height" value="{{ tvcmscustomsetting_lefttestimonial_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                       {% if error_lefttestimonial_img %}
+                        <div class="text-danger">{{ error_lefttestimonial_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                     <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_customsetting_offerbannerimg }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_offerbanner_img_width" value="{{ tvcmscustomsetting_offerbanner_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_offerbanner_img_height" value="{{ tvcmscustomsetting_offerbanner_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% if error_offerbanner_img %}
+                          <div class="text-danger">{{ error_offerbanner_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_payemntmainimg }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_payment_mainimg_width" value="{{ tvcmscustomsetting_payment_mainimg_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_payment_mainimg_height" value="{{ tvcmscustomsetting_payment_mainimg_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% if error_payment_mainimg %}
+                          <div class="text-danger">{{ error_payment_mainimg }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_payemntsubimg }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_payment_img_width" value="{{ tvcmscustomsetting_payment_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_payment_img_height" value="{{ tvcmscustomsetting_payment_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% if error_payment_img %}
+                          <div class="text-danger">{{ error_payment_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ error_tvcmsproductgrid_img }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tvcmsproductgridimg_img_width" value="{{ tvcmscustomsetting_tvcmsproductgridimg_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tvcmsproductgridimg_img_height" value="{{ tvcmscustomsetting_tvcmsproductgridimg_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                       {% if error_tvcmsproductgridimg_img %}
+                        <div class="text-danger">{{ error_tvcmsproductgridimg_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+
+                  
+                   
+                   
+                   
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_socialmainimg }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_social_img_width" value="{{ tvcmscustomsetting_social_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_social_img_height" value="{{ tvcmscustomsetting_social_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                       {% if error_social_img %}
+                          <div class="text-danger">{{ error_social_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_tabproduct_specialproimage }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_specialproduct_mainimg_width" value="{{ tvcmscustomsetting_specialproduct_mainimg_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_specialproduct_mainimg_height" value="{{ tvcmscustomsetting_specialproduct_mainimg_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% if error_specialproduct_mainimg %}
+                          <div class="text-danger">{{ error_specialproduct_mainimg }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ special_product }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_special_img_width" value="{{ tvcmscustomsetting_special_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_special_img_height" value="{{ tvcmscustomsetting_special_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                       {% if error_special_img %}
+                        <div class="text-danger">{{ error_special_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ slider_image }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_sliderimage_img_width" value="{{ tvcmscustomsetting_sliderimage_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_sliderimage_img_height" value="{{ tvcmscustomsetting_sliderimage_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% if error_sliderimage_img %}
+                        <div class="text-danger">{{ error_sliderimage_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ singleblock_image }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tvcmssingleblock_img_width" value="{{ tvcmscustomsetting_tvcmssingleblock_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tvcmssingleblock_img_height" value="{{ tvcmscustomsetting_tvcmssingleblock_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                       {% if error_tvcmssingleblock_img %}
+                        <div class="text-danger">{{ error_tvcmssingleblock_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                     <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_tabproduct_mainimage }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tabproduct_mainimg_width" value="{{ tvcmscustomsetting_tabproduct_mainimg_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tabproduct_mainimg_height" value="{{ tvcmscustomsetting_tabproduct_mainimg_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                       {% if error_tabproduct_mainimg %}
+                          <div class="text-danger">{{ error_tabproduct_mainimg }}</div>
+                        {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ tabproductimage }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tabproduct_img_width" value="{{ tvcmscustomsetting_tabproduct_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_tabproduct_img_height" value="{{ tvcmscustomsetting_tabproduct_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% if error_tabproduct_img %}
+                          <div class="text-danger">{{ error_tabproduct_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    
+                   
+                    
+                   
+                   
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_testimonialmainimg }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_testimonial_mainimg_width" value="{{ tvcmscustomsetting_testimonial_mainimg_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_testimonial_mainimg_height" value="{{ tvcmscustomsetting_testimonial_mainimg_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                       {% if error_testimonial_mainimg %}
+                          <div class="text-danger">{{ error_testimonial_mainimg }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_testimonialsubimg }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_testimonial_img_width" value="{{ tvcmscustomsetting_testimonial_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_testimonial_img_height" value="{{ tvcmscustomsetting_testimonial_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% if error_testimonial_img %}
+                          <div class="text-danger">{{ error_testimonial_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label class="col-sm-3 control-label" for="input-image-compare">{{ ttv_testimonialsingsubimg }}</label>
+                      <div class="col-sm-9">
+                        <div class="row">
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_testimonial_sing_img_width" value="{{ tvcmscustomsetting_testimonial_sing_img_width }}" placeholder="{{ entry_width }}" id="input-image-compare" class="form-control" />
+                          </div>
+                          <div class="col-sm-6">
+                            <input type="text" name="tvcmscustomsetting_testimonial_sing_img_height" value="{{ tvcmscustomsetting_testimonial_sing_img_height }}" placeholder="{{ entry_height }}" class="form-control" />
+                          </div>
+                        </div>
+                      {% if error_testimonial_sing_img %}
+                          <div class="text-danger">{{ error_testimonial_sing_img }}</div>
+                      {% endif %}
+                      </div>
+                    </div>
+
+                   
+                   
+
+                    
+
+
+              </div>
+            </div>
+
+        </div>
+
+      </div>
+    </form>
+  </div>
+</div>
+  <script type="text/javascript"><!--
+$('#language_1 a:first').tab('show');
+$('#language_2 a:first').tab('show');
+$('#language_3 a:first').tab('show');
+$('#language_4 a:first').tab('show');
+$('#custom_theme_color').minicolors();
+$('#background_theme_color').minicolors();
+$('.themecolor').change(function() {
+    if (this.value == 'theme1') {
+        $('.input-customthemecolor').addClass('hidden');
+    }
+    else {
+        $('.input-customthemecolor').removeClass('hidden');
+    }
+});
+$('.themebox').change(function() {
+    var val = $(".patternselect:checked").val();
+    $('.patten').removeClass('hidden');
+    $('.pattencolor').removeClass('hidden');
+    if (val == 'bgcolor') {
+    } else  {
+        $('.patten').removeClass('hidden');
+        $('.pattencolor').addClass('hidden');
+    }
+    if (this.value == '1') {
+        $('.themebox1').removeClass('hidden');
+    }
+    else {
+        $('.themebox1').addClass('hidden');
+    }
+});
+
+$('.patternselect').change(function() {
+    if (this.value == 'bgcolor') {
+        $('.pattencolor').removeClass('hidden');
+        $('.patten').addClass('hidden');
+    }
+    else  {
+        $('.pattencolor').addClass('hidden');
+        $('.patten').removeClass('hidden');
+    }
+});
+
+$(".ttvtheme-pattern-image").click(function(){
+  var vall = $(this).attr('id');
+  $('#idpatternval').val(vall);
+  $(".ttvtheme-pattern-image").removeClass('active');
+  $(this).addClass('active');
+});
+
+
+//--></script>
+
+{{ footer }}

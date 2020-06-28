@@ -1,0 +1,88 @@
+{#
+{% if status_main_form %}
+{% if status_main_title %} {{ main_title }} {% endif %}
+{% if status_main_short_description %} {{ main_shortdescription }} {% endif %}
+{% if status_main_description %} {{ main_description }} {% endif %}
+{% if status_main_image %} {{ main_image }} {% endif %}
+{% endif %}
+{% if status_main_block_form %}
+{% if status_main_block_title %} {{ main_block_title }} {% endif %}
+{% if status_main_block_short_description %} {{ main_block_shortdescription }} {% endif %}
+{% if status_main_block_description %} {{ main_block_description }} {% endif %}
+{% if status_main_block_btn_caption %} {{ main_block_btncaption }} {% endif %}
+{% if status_main_block_link %} {{ main_block_link }} {% endif %}
+{% if status_main_block_image %} {{ main_block_image }} {% endif %}
+{% endif %}
+{% if status_record_form %}
+{% for data in advanblock_data %}
+{% if status_link %} {{ data.tvcmsadvanceblocksub_link }} {% endif %}
+{% if status_title %} {{ data.tvcmsadvanceblocksub_title }} {% endif %}
+{% if status_description %} {{ data.tvcmsadvanceblocksub_des }} {% endif %}
+{% if status_short_description %} {{ data.tvcmsadvanceblocksub_sub_des }} {% endif %}
+{% if status_image %} {{ data.tvcmsadvanceblocksub_image }} {% endif %}
+{% endfor %}
+{% endif %}
+{% if status_main_form %}
+{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_maintitle_design.twig' with {'main_title': main_title,'main_short_des': main_shortdescription,'main_des': main_description,'main_img': main_image } %}
+{% endif %}
+#}
+<div class=" container-fluid ttvcmsadvanceblock">
+	<div class=" container ttvadvanceblock">
+		<div class="ttvadvanceblock-title-content">
+			{% if main_block_image %}
+			<div class="ttvadvance-block-img-block col-xs-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+				<div class="ttvadvance-block-wrapper">
+					<div class="ttvadvance-block-img">
+						<img src="{{ main_block_image }}" alt="{{ main_block_image }}">
+					</div>
+				</div>
+			</div>
+			{% endif %}
+			<div class="ttvadvanceblock-inner-info-box col-xl-6 col-lg-6 col-md-12 col-sm-12 col-xs-12">
+				<div class="ttvadvanceblock-info-all-block">
+					{% if main_block_title %}
+					<div class="ttvadv-block-sub-title">
+						{{ main_block_title }}
+					</div>
+					{% endif %} {% if main_block_description %}
+					<div class="ttvadv-block-desc">
+						{{ main_block_des }}
+					</div>
+					{% endif %}
+					<div class="tvadvanceblock-slider-inner">
+						<div class="ttvadvanceblock-content-box">
+							{% for data in advanblock_data %}
+							<div class="ttvadvance-block-content-box">
+								<div class="ttvadvanceblock-wrapper-info">
+									{% if image %}
+									<div class="ttvadv-block-inner-img-block">
+										<img src="{{ data.tvcmsadvanceblocksub_image }}" alt="{{ data.tvcmsadvanceblocksub_title }}">
+									</div>
+									{% endif %}
+									<div class="ttvadvanceblock-info-box">
+										{% if link %} <a href="{{ data.tvcmsadvanceblocksub_link }}">{% endif %}
+											{% if title %}
+												<div class="ttvadvanceblock-title">{{ data.tvcmsadvanceblocksub_title }}</div>
+											{% endif %}
+										{% if link %} </a>{% endif %} {% if description %}
+										<div class="ttvadvanceblock-dec">
+											<p>{{ data.tvcmsadvanceblocksub_des }}</p>
+										</div>
+										{% endif %}
+									</div>
+								</div>
+							</div>
+							{% endfor %} {% if link %}
+							<div class="ttvadv-block-btn-caption">
+								{% if link %}<a href="{{ advanceblock_block.link }}"> {% endif %}
+										<button>{{ main_block_btncap }}</button>
+									{% if link %}</a> {% endif %}
+							</div>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

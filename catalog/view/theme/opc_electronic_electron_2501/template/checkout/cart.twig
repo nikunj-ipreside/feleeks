@@ -1,0 +1,119 @@
+{{ header }}
+<div id="wrapper">
+	<div id="checkout-cart" class="container">
+		{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_breadcrumbs_design.twig' with {'breadcrumbs': breadcrumbs} %}
+		{% if attention %}
+		<div class="alert alert-info"><i class="fa fa-info-circle"></i> {{ attention }}
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+		</div>
+		{% endif %} {% if success %}
+		<div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+		</div>
+		{% endif %} {% if error_warning %}
+		<div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+		</div>
+		{% endif %}
+		<div class="row">{{ column_left }} {% if column_left and column_right %} {% set class = 'col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12' %} {% elseif column_left or column_right %} {% set class = 'col-xl-10 col-lg-12 col-md-12 col-sm-12 col-xs-12' %} {% else %} {% set class = 'col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12' %} {% endif %}
+			<div id="content" class="{{ class }}">{{ content_top }}
+				<div id="main">
+					<div class="ttvpage-header-title-wrapper">
+						<h1 class="ttvpage-header-title">{{ heading_title }}
+						  {% if weight %}
+						  &nbsp;({{ weight }})
+						  {% endif %}
+						</h1>
+					</div>
+					<div class="ttv-sub-pages-inner-content">
+						<form action="{{ action }}" method="post" enctype="multipart/form-data">
+							<div class="table-responsive">
+								<table class="table table-bordered">
+									<thead>
+										<tr>
+											<td class="text-center ttv-cartlist-title">{{ column_image }}</td>
+											<td class="text-left ttv-cartlist-title">{{ column_name }}</td>
+											<td class="text-left ttv-cartlist-title">{{ column_model }}</td>
+											<td class="text-left ttv-cartlist-title">{{ column_quantity }}</td>
+											<td class="text-right ttv-cartlist-title">{{ column_price }}</td>
+											<td class="text-right ttv-cartlist-title">{{ column_total }}</td>
+										</tr>
+									</thead>
+									<tbody>
+										{% for product in products %}
+										<tr>
+											<td class="text-center">{% if product.thumb %} <a href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" class="img-thumbnail" /></a> {% endif %}</td>
+											<td class="text-left">
+												<div class="ttvproduct-name">
+													<div class="product-title"><a href="{{ product.href }}">{{ product.name }}</a></div>
+												</div> {% if not product.stock %} <span class="text-danger">***</span> {% endif %} {% if product.option %} {% for option in product.option %}
+												<small>{{ option.name }}: {{ option.value }}</small> {% endfor %} {% endif %} {% if product.reward %}
+												<small>{{ product.reward }}</small> {% endif %} {% if product.recurring %}
+												<span class="label label-info">{{ text_recurring_item }}</span> <small>{{ product.recurring }}</small> {% endif %}
+											</td>
+											<td class="text-center">{{ product.model }}</td>
+											<td class="text-left">
+												<div class="input-group btn-block" style="max-width: 200px;">
+													<input type="text" name="quantity[{{ product.cart_id }}]" value="{{ product.quantity }}" size="1" class="form-control ttv-cart-quantity" />
+													<span class="input-group-btn">
+														<button type="submit" data-toggle="ttvtooltip" title="{{ button_update }}" class="btn btn-primary ttv-subpage-button"><i class="fa fa-refresh"></i></button>
+														<button type="button" data-toggle="ttvtooltip" title="{{ button_remove }}" class="btn btn-danger ttv-remove-btn ttv-subpage-button" onclick="cart.remove1('{{ product.cart_id }}');"><i class="fa fa-times-circle"></i>
+														</button>
+													</span>
+												</div>
+											</td>
+											<td class="text-right product-price-and-shipping"><span class="price">{{ product.price }}</span></td>
+											<td class="text-right ttv-total-price">{{ product.total }}</td>
+										</tr>
+										{% endfor %} {% for voucher in vouchers %}
+										<tr>
+											<td></td>
+											<td class="text-left">{{ voucher.description }}</td>
+											<td class="text-left"></td>
+											<td class="text-left">
+												<div class="input-group btn-block" style="max-width: 200px;">
+													<input type="text" name="" value="1" size="1" disabled="disabled" class="form-control" />
+													<span class="input-group-btn">
+													<button type="button" data-toggle="ttvtooltip" title="{{ button_remove }}" class="btn btn-danger" onclick="voucher.remove1('{{ voucher.key }}');"><i class="fa fa-times-circle"></i></button>
+													</span>
+												</div>
+											</td>
+											<td class="text-right product-price-and-shipping"><span class="price">{{ voucher.amount }}</span></td>
+											<td class="text-right">{{ voucher.amount }}</td>
+										</tr>
+										{% endfor %}
+									</tbody>
+								</table>
+							</div>
+						</form>
+						{% if modules %}
+						<h2 class="ttvpage-sub-title">{{ text_next }}</h2>
+						<p>{{ text_next_choice }}</p>
+						<div class="panel-group" id="accordion"> {% for module in modules %} {{ module }} {% endfor %} </div>
+						{% endif %}
+						<br />
+						<div>
+							<div class="col-sm-offset-8">
+								<table class="table table-bordered">
+									{% for total in totals %}
+									<tr>
+										<td class="text-right"><strong>{{ total.title }}:</strong></td>
+										<td class="text-right">{{ total.text }}</td>
+									</tr>
+									{% endfor %}
+								</table>
+							</div>
+						</div>
+						<div class="buttons clearfix">
+							<div class="pull-left"><a href="{{ continue }}" class="btn btn-primary ttv-innerpage-button">{{ button_shopping }}</a></div>
+							<div class="pull-right"><a href="{{ checkout }}" class="btn btn-primary ttv-innerpage-button">{{ button_checkout }}</a></div>
+						</div>
+						{{ content_bottom }}
+					</div>
+				</div>
+			</div>
+			{{ column_right }}
+		</div>
+	</div>
+</div>
+{{ footer }}

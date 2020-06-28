@@ -1,0 +1,248 @@
+2020-03-27 8:02:46 - MOD: Modification Default
+
+FILE: system/engine/action.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 69
+
+FILE: system/engine/loader.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 77
+LINE: 151
+LINE: 168
+
+FILE: system/library/config.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 59
+
+FILE: system/library/language.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 67
+LINE: 73
+
+FILE: system/library/template/template.php
+REGEX: ~(require|include)(_once)?\(([^)]+)~
+LINE: 18
+
+FILE: system/library/template/twig.php
+CODE: $loader = new \Twig_Loader_Filesystem(DIR_TEMPLATE);
+LINE: 19
+----------------------------------------------------------------
+MOD: Themevolty
+
+FILE: admin/controller/extension/theme/default.php
+CODE: if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+LINE: 25
+
+FILE: admin/language/en-gb/design/layout.php
+CODE: $_['text_column_right']   = 'Column Right';
+LINE: 17
+
+FILE: admin/view/template/design/layout_form.twig
+CODE: onclick="addModule('content-bottom');"
+LINE: 345
+CODE: $('#module-column-left,
+LINE: 482
+LINE: 492
+
+FILE: admin/language/en-gb/common/column_left.php
+CODE: $_['text_other_status']         = 'Other Statuses';
+LINE: 90
+
+FILE: admin/model/catalog/category.php
+CODE: public function getCategories($data = array()) {
+LINE: 261
+
+FILE: admin/controller/common/column_left.php
+CODE: // Stats
+LINE: 704
+
+FILE: admin/controller/startup/startup.php
+CODE: // Cart
+LINE: 56
+
+FILE: catalog/controller/product/manufacturer.php
+CODE: if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
+LINE: 192
+CODE: 'thumb'       => $image,
+LINE: 225
+CODE: $product_total = $this->model_catalog_product->getTotalProducts($filter_data);
+LINE: 159
+
+FILE: catalog/controller/product/special.php
+CODE: if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
+LINE: 118
+CODE: 'thumb'       => $image,
+LINE: 151
+CODE: $product_total = $this->model_catalog_product->getTotalProductSpecials()
+LINE: 86
+
+FILE: catalog/controller/startup/startup.php
+CODE: // Cart
+LINE: 186
+
+FILE: catalog/controller/product/category.php
+CODE: if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
+LINE: 203
+CODE: 'thumb'       => $image,
+LINE: 236
+CODE: $results = $this->model_catalog_product->getProducts($filter_data)
+LINE: 171
+
+FILE: catalog/controller/product/product.php
+CODE: if ((float)$result['special']) {
+LINE: 415
+CODE: 'thumb'       => $image,
+LINE: 440
+
+FILE: catalog/model/catalog/product.php
+CODE: class ModelCatalogProduct extends Model {
+LINE: 81
+
+FILE: catalog/controller/common/currency.php
+CODE: $data['currencies'] = array();
+LINE: 14
+
+FILE: catalog/controller/common/language.php
+CODE: $data['languages'] = array();
+LINE: 15
+
+FILE: catalog/controller/common/footer.php
+CODE: $data['contact']
+LINE: 83
+
+FILE: catalog/controller/common/header.php
+CODE: if ($this->customer->isLogged()) {
+LINE: 96
+CODE: $this->load->model('account/wishlist');
+LINE: 100
+CODE: (isset($this->session->data['wishlist']) ? count($this->session->data['wishlist']) : 0));
+LINE: 107
+
+FILE: catalog/controller/common/cart.php
+CODE: $this->load->model('tool/image');
+LINE: 54
+
+FILE: catalog/controller/common/menu.php
+CODE: $this->load->model('catalog/product');
+LINE: 43
+CODE: 'name'     => $category['name'],
+LINE: 73
+
+FILE: catalog/controller/product/compare.php
+CODE: if ($product_info['image']) {
+LINE: 60
+CODE: if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
+LINE: 75
+CODE: 'thumb'        => $image,
+LINE: 112
+CODE: $this->load->model('tool/image');
+LINE: 11
+
+FILE: catalog/controller/common/search.php
+CODE: class ControllerCommonSearch extends Controller {
+LINE: 77
+
+FILE: catalog/controller/product/search.php
+CODE: if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
+LINE: 230
+CODE: 'thumb'       => $image,
+LINE: 263
+CODE: $product_total = $this->model_catalog_product->getTotalProducts($filter_data);
+LINE: 196
+
+FILE: catalog/controller/extension/module/latest.php
+CODE: if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
+LINE: 53
+CODE: 'thumb'       => $image,
+LINE: 84
+CODE: public function index($setting) {
+LINE: 7
+CODE: if ($results) {
+LINE: 55
+
+FILE: catalog/controller/extension/module/featured.php
+CODE: if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
+LINE: 54
+CODE: 'thumb'       => $image,
+LINE: 85
+CODE: public function index($setting) {
+LINE: 7
+CODE: public function index($setting) {
+LINE: 38
+
+FILE: catalog/controller/extension/module/bestseller.php
+CODE: if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
+LINE: 47
+CODE: 'thumb'       => $image,
+LINE: 78
+CODE: public function index($setting) {
+LINE: 7
+CODE: if ($results) {
+LINE: 49
+
+FILE: catalog/controller/extension/module/special.php
+CODE: if ($this->customer->isLogged() || !$this->config->get('config_customer_price')) {
+LINE: 54
+CODE: 'thumb'       => $image,
+LINE: 85
+CODE: public function index($setting) {
+LINE: 7
+CODE: if ($results) {
+LINE: 55
+
+FILE: catalog/controller/common/home.php
+CODE: $data['header'] = $this->load->controller('common/header');
+LINE: 19
+
+FILE: catalog/controller/extension/module/category.php
+CODE: $categories = $this->model_catalog_category->getCategories(0);
+LINE: 51
+
+FILE: catalog/controller/account/download.php
+CODE: new Pagination();
+LINE: 77
+
+FILE: catalog/controller/account/order.php
+CODE: new Pagination();
+LINE: 65
+
+FILE: catalog/controller/account/recurring.php
+CODE: new Pagination();
+LINE: 66
+
+FILE: catalog/controller/account/return.php
+CODE: new Pagination();
+LINE: 63
+
+FILE: catalog/controller/account/reward.php
+CODE: new Pagination();
+LINE: 61
+
+FILE: catalog/controller/account/transaction.php
+CODE: new Pagination();
+LINE: 61
+
+FILE: catalog/controller/extension/credit_card/sagepay_direct.php
+CODE: new Pagination();
+LINE: 54
+
+FILE: catalog/controller/extension/credit_card/sagepay_server.php
+CODE: new Pagination();
+LINE: 54
+CODE: new Pagination();
+LINE: 371
+CODE: new Pagination();
+LINE: 347
+CODE: new Pagination();
+LINE: 576
+CODE: new Pagination();
+LINE: 445
+CODE: new Pagination();
+LINE: 273
+
+FILE: system/library/response.php
+CODE: if ($this->output) {
+LINE: 120
+CODE: echo $output;
+LINE: 140
+----------------------------------------------------------------

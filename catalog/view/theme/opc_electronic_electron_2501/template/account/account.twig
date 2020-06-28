@@ -1,0 +1,84 @@
+{{ header }}
+<div id="wrapper">
+	<div id="account-account" class="container">
+		{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_breadcrumbs_design.twig' with {'breadcrumbs': breadcrumbs} %}
+		{% if success %}
+		<div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> {{ success }}</div>
+		{% endif %}
+		<div class="row">{{ column_left }} {% if column_left and column_right %} {% set class = 'col-xl-8 col-lg-12 col-md-12 col-sm-12 col-xs-12' %} {% elseif column_left or column_right %} {% set class = 'col-xl-10 col-lg-12 col-md-12 col-sm-12 col-xs-12' %} {% else %} {% set class = 'col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12' %} {% endif %}
+			<div id="content" class="{{ class }}">{{ content_top }}
+				<div id="main">
+					<div class="ttv-sub-pages-inner-content">
+						<div class="table-responsive">
+							<table class="table table-bordered table-hover">
+								<thead>
+									<tr>
+										<td class="ttvpage-sub-title-wrapper"><h2 class="ttvpage-sub-title">{{ text_my_account }}</h2>
+										</td>
+										<td class="ttvpage-sub-title-wrapper"><h2 class="ttvpage-sub-title">{{ text_my_orders }}</h2>
+										</td>
+										<td class="ttvpage-sub-title-wrapper"><h2 class="ttvpage-sub-title">{{ text_my_affiliate }}</h2>
+										</td>
+										<td class="ttvpage-sub-title-wrapper"><h2 class="ttvpage-sub-title">{{ text_my_newsletter }}</h2>
+										</td>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>
+											<ul class="list-unstyled">
+												<li><a href="{{ edit }}">{{ text_edit }}</a></li>
+												<li><a href="{{ password }}">{{ text_password }}</a></li>
+												<li><a href="{{ address }}">{{ text_account_address }}</a></li>
+												<li><a href="{{ wishlist }}">{{ text_wishlist }}</a></li>
+											</ul>
+											{% if credit_cards %}
+											<div class="ttvpage-sub-title-wrapper"><h2 class="ttvpage-sub-title">{{ text_credit_card }}</h2>
+											</div>
+											<ul class="list-unstyled">
+												{% for credit_card in credit_cards %}
+												<li><a href="{{ credit_card.href }}">{{ credit_card.name }}</a></li>
+												{% endfor %}
+											</ul>
+											{% endif %}
+										</td>
+										<td>
+											<ul class="list-unstyled">
+												<li><a href="{{ order }}">{{ text_order }}</a></li>
+												<li><a href="{{ download }}">{{ text_download }}</a></li>
+												{% if reward %}
+												<li><a href="{{ reward }}">{{ text_reward }}</a></li>
+												{% endif %}
+												<li><a href="{{ return }}">{{ text_return }}</a></li>
+												<li><a href="{{ transaction }}">{{ text_transaction }}</a></li>
+												<li><a href="{{ recurring }}">{{ text_recurring }}</a></li>
+											</ul>
+										</td>
+										<td>
+											<ul class="list-unstyled">
+												{% if not tracking %}
+												<li><a href="{{ affiliate }}">{{ text_affiliate_add }}</a></li>
+												{% else %}
+												<li><a href="{{ affiliate }}">{{ text_affiliate_edit }}</a></li>
+												<li><a href="{{ tracking }}">{{ text_tracking }}</a></li>
+												{% endif %}
+											</ul>
+										</td>
+										<td>
+											<ul class="list-unstyled">
+												<li><a href="{{ newsletter }}">{{ text_newsletter }}</a></li>
+											</ul>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						{{ content_bottom }}
+					</div>
+				</div>
+			</div>
+			{{ column_right }}
+		</div>
+	</div>
+</div>
+{{ footer }}

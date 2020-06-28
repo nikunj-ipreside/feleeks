@@ -1,0 +1,33 @@
+{# {% if status_main_form %}
+{% if status_main_image %}{{ main_image }}{% endif %}
+{% if status_main_title %} {{ main_title }} {% endif %}
+{% if status_main_short_description %}{{ main_short_description }} {% endif %}
+{% if status_main_description %}{{ main_description }}{% endif %}
+{% endif %}
+{% if status_record_form %}
+{% for social_data in socialllist_data %}
+{% if status_title %} {{ social_data['tvcmssocialiconsub_title'] }} {% endif %}
+{% if status_link %}{{ social_data['tvcmssocialiconmain_link'] }} {% endif %}
+{% if status_class_name %} {{ social_data['tvcmssocialiconmain_class_name'] }} {% endif %}
+{% endfor %}
+{% endif %}
+#}
+<div class="block-social ttvcmsfooter-social-icon">
+	{% if status_main_form %}
+	<div class="ttvfooter-title-wrapper" data-target="#footer_sub_menu_social_icon" data-toggle="collapse">
+		{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_maintitle_design.twig' with {'main_title': main_title,'main_short_des': main_short_description,'main_des': main_description,'main_img': main_image } %}
+	</div>
+	{% endif %}
+	{% if status_record_form %}
+	<ul class="ttvfooter-social-icon-wrapper footer_sub_menu_social_icon">
+		{% for social_data in socialllist_data %}
+		<li class="{{ social_data['tvcmssocialiconmain_class_name'] }}">
+			{% if status_link %}<a href="{{ social_data['tvcmssocialiconmain_link'] }}"> {% endif %}
+				<span class="{{ social_data['tvcmssocialiconmain_class_name'] }}-icon"></span>
+				{% if status_title %}<span class="ttvsocial-title"> {{ social_data['tvcmssocialiconsub_title'] }}</span> {% endif %}
+			{% if status_link %}</a> {% endif %}
+		</li>
+		{% endfor %}
+	</ul>
+	{% endif %}
+</div>

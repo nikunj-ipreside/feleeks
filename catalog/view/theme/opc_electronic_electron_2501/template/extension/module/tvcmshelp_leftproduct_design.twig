@@ -1,0 +1,32 @@
+<article class="ttvleft-right-product-slider">
+	<div class="thumbnail-container">
+		<div class="ttvproduct-wrapper">
+			<div class="ttvproduct-image col-xl-3 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+				<a href="{{ product.href }}" class="thumbnail product-thumbnail">
+					<img src="{{ product.thumb }}" alt="{{ product.name }}" data-full-size-image-url="{{ product.smallimage }}">
+					<img class="ttvproduct-hover-img" src="{{ product.hoverimage }}" alt="{{ product.name }}" data-full-size-image-url="{{ product.smallimage }}">
+				</a>
+			</div>
+			<div class="product-description col-xl-9 col-lg-9 col-md-9 col-sm-9 col-xs-9">
+				<div class="ttvproduct-name">
+					<div class="product-title"><a href="{{ product.href }}">{{ product.name }}</a></div>
+				</div>				
+				<div class="ttvall-product-star-icon">
+					{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_rating_design.twig' with {'rating': product.rating} %}
+				</div>
+				{% if product.price %}
+				<div class="ttv-product-price">
+					<div class="product-price-and-shipping">
+						{% if not product.special %}
+						<span class="price">{{ product.price }}</span>
+						{% else %}
+						<span class="regular-price">{{ product.price }}</span>
+						<span class="price">{{ product.special }}</span>
+						{% endif %}
+					</div>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</article>

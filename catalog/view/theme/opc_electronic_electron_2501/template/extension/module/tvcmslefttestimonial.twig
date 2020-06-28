@@ -1,0 +1,96 @@
+<div class="ttvcms-left-testimonial ttvcms-all-testimonial">
+	<div class="ttvtestimonial">
+		{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_left_column_title_design.twig' with {'title': title} %}
+		<div class="ttvtestimonial-slider-button-wrapper">
+			<div class="ttvtestimonial-slider-inner">
+				<div class="ttvtestimonial-content-box owl-theme owl-carousel">
+					{% for data in testimoniallist_data %}
+					<div class="item ttvtestimonial-wrapper-info">
+						<div class="ttvtestimonial-inner-content-box">
+							<div class="ttvtestimonial-img-content-block">
+								<div class="ttvtestimonial-img-block">
+									<img src="{{ data.tvcmstestimonial_img }}" alt="{{ data.tvcmstestimonial_img }}">
+								</div>
+								<div class="ttvtestimonial-title-des">
+									<div class="ttvtestimonial-title"><a href="{{ data.tvcmstestimonialmain_link }}">{{ data.tvcmstestimonialsub_title }}</a></div>
+									<div class="ttvtestimonial-designation">{{ data.tvcmstestimonialsub_designation }}</div>
+								</div>
+							</div>
+							<div class="ttvtestimonial-info-box">
+								<div class="ttvtestimonial-dec">{{ data.tvcmstestimonialsub_description }}</div>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+				</div>
+			</div>
+			<div class="ttvcms-testimonial-pagination-wrapper">
+				<div class="ttvcms-testimonial-pagination">
+					<div class="ttvcms-testimonial-next-pre-btn">
+						<div class="ttvtestimonial-prev ttvcmsprev-btn"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+						<div class="ttvtestimonial-next ttvcmsnext-btn"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+/******************  left testimonial Js *******************************************/
+$(document).ready(function() {
+
+	var mobileViewSize = 991;
+
+	sidePanelTestimonialSlider();
+	leftRightTestimonialTitleToggle();
+	$(window).resize(function() {
+		sidePanelTestimonialSlider();
+		leftRightTestimonialTitleToggle();
+	});
+
+	function sidePanelTestimonialSlider() {
+		$('.ttvcms-left-testimonial .ttvtestimonial-content-box').owlCarousel({
+			loop: false,
+			dots: false,
+			nav: false,
+			responsive: {
+				0: { items: 1 },
+				320: { items: 1, slideBy: 1 },
+				400: { items: 1, slideBy: 1 },
+				768: { items: 1, slideBy: 1 },
+				992: { items: 1, slideBy: 1 },
+				1200: { items: 1, slideBy: 1 },
+				1600: { items: 1, slideBy: 1 },
+				1800: { items: 1, slideBy: 1 }
+			},
+		});
+		$('.ttvcms-left-testimonial .ttvtestimonial-prev').on('click', function() {
+			$('.ttvcms-left-testimonial .owl-nav .owl-prev').trigger('click');
+		});
+
+		$('.ttvcms-left-testimonial .ttvtestimonial-next').on('click', function() {
+			$('.ttvcms-left-testimonial .owl-nav .owl-next').trigger('click');
+		});
+	}
+
+	function leftRightTestimonialTitleToggle() {
+		$('.ttvcms-left-testimonial .ttvleft-right-title-toggle').on('click', function(e) {
+			e.preventDefault();
+			if (document.body.clientWidth <= mobileViewSize) {
+				if (!$(this).hasClass('open')) {
+					$(this).removeClass('open');
+					$(this).parent().parent().find('.ttvtestimonial-slider-button-wrapper').removeClass('open').stop(false).slideUp(500, "swing");
+				} else {
+					$(this).addClass('open');
+					$(this).parent().parent().find('.ttvtestimonial-slider-button-wrapper').addClass('open').stop(false).slideDown(500, "swing");
+				}
+			}
+			e.stopPropagation();
+		});
+	}
+
+
+});
+
+/****************** End left testimonial Js *******************************************/
+</script>

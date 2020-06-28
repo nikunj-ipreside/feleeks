@@ -1,0 +1,600 @@
+/***********************START THEME_CONTOL*****************/
+
+.ttvcmstheme-control .ttvtheme-option{
+
+    border: 2px solid #e6e6e6;
+
+    margin: 0;
+
+}
+
+.ttvcmstheme-control{
+
+    position: fixed;
+
+    z-index: 100;
+
+    top:80px;
+
+    right: -300px;
+
+    -webkit-transition: all 0.6s ease-in-out;
+
+    -moz-transition: all 0.6s ease-in-out;
+
+    -ms-transition: all 0.6s ease-in-out;
+
+    -o-transition: all 0.6s ease-in-out;
+
+    transition: all 0.6s ease-in-out;
+    display: none;
+
+}
+
+.ttvcmstheme-control.open {
+
+    right: 0;
+
+    -webkit-transition: all 0.6s ease-in-out;
+
+    -moz-transition: all 0.6s ease-in-out;
+
+    -ms-transition: all 0.6s ease-in-out;
+
+    -o-transition: all 0.6s ease-in-out;
+
+    transition: all 0.6s ease-in-out;
+
+}
+
+.ttvcmstheme-control table{
+
+    width: 100%;
+
+}
+
+.ttvcmstheme-control .ttvtheme-control-icon{
+
+    width: 44px;
+
+    height: 44px;
+
+    background-color: #222222;
+
+    line-height: 47px;
+
+    text-align: center;
+
+    float: left;
+
+    position: absolute;
+
+    left: -44px;
+
+    cursor: pointer;
+
+    box-shadow: -1px 0px 5px 0px rgba(0, 0, 0, 0.30);
+
+    -webkit-transition: 0.3s ease-in-out;
+
+    -o-transition: 0.3s ease-in-out;
+
+    -ms-transition: 0.3s ease-in-out;
+
+    -moz-transition: 0.3s ease-in-out;
+
+    transition: 0.3s ease-in-out;
+
+}
+
+.ttvcmstheme-control .ttvtheme-control-wrapper.open{
+
+  display: block;
+
+}
+
+.ttvcmstheme-control .ttvtheme-control-icon:hover{
+
+   background-color: #000;
+
+  
+
+}
+
+.ttvcmstheme-control .ttvtheme-control-icon i{
+
+    font-size: 24px;
+
+    color: #FFF;
+
+    position: relative;
+
+    top: 0px;
+
+    height: 45px;
+
+    width: auto;
+
+    line-height: 45px;
+
+    -webkit-animation-name: spin;
+
+      -webkit-animation-duration: 3000ms;
+
+      -webkit-animation-iteration-count: infinite;
+
+      -webkit-animation-timing-function: linear;
+
+      -moz-animation-name: spin;
+
+      -moz-animation-duration: 3000ms;
+
+      -moz-animation-iteration-count: infinite;
+
+      -moz-animation-timing-function: linear;
+
+      -ms-animation-name: spin;
+
+      -ms-animation-duration: 3000ms;
+
+      -ms-animation-iteration-count: infinite;
+
+      -ms-animation-timing-function: linear;
+
+      -o-transition: rotate(3600deg);
+
+     -webkit-transition: 0.3s ease-in-out;
+
+    -o-transition: 0.3s ease-in-out;
+
+    -ms-transition: 0.3s ease-in-out;
+
+    -moz-transition: 0.3s ease-in-out;
+
+    transition: 0.3s ease-in-out;
+
+}
+
+.ttvcmstheme-control .ttvtheme-control-icon:hover i{
+
+    color: #FFF;
+
+}
+
+
+
+@-moz-keyframes spin {
+
+    from { -moz-transform: rotate(0deg); }
+
+    to { -moz-transform: rotate(360deg); }
+
+}
+
+@-webkit-keyframes spin {
+
+    from { -webkit-transform: rotate(0deg); }
+
+    to { -webkit-transform: rotate(360deg); }
+
+}
+
+@keyframes spin {
+
+    from {transform:rotate(0deg);}
+
+    to {transform:rotate(360deg);}
+
+}
+
+.ttvcmstheme-control .ttvtheme-control-wrapper .ttvselect-theme select{
+
+    padding: 0;
+
+    width: 165px;
+
+    font-size: 12px;
+
+    height: 30px;
+
+    border: 1px solid #e6e6e6;
+
+}
+
+.ttvcmstheme-control .ttvtheme-control-wrapper .ttvselect-theme select:focus{
+
+    outline: none;
+
+}
+
+.ttvcmstheme-control .ttvtheme-control-wrapper{
+
+    width:250px;
+
+    height: auto;
+
+    padding:15px 30px;
+
+    background-color: #fafafc;
+
+    overflow: hidden;
+
+    border-radius: 0 7px 7px 7px;
+
+    box-shadow: 0 14px 27px rgba(0,0,0,.1);
+
+    border: 1px solid #e6e6e6;
+
+    display: block;
+
+}
+
+#order-confirmation .ttvcmstheme-control .ttvtheme-control-wrapper table td{
+
+    border: none;
+
+}
+
+
+
+
+
+.ttvcmstheme-control.active {
+
+    right: 0;
+
+} 
+
+
+
+.ttvtheme-control-wrapper{
+
+    color: #222222;
+
+}
+
+.ttvtheme-control-wrapper .ttvselect-theme-name,
+
+.ttvtheme-control-wrapper .ttvcolor-theme-name,
+
+.ttvtheme-control-wrapper .ttvtheme-layout-name,
+
+.ttvtheme-control-wrapper .ttvtheme-animation-name,
+
+.ttvtheme-control-wrapper .ttvtheme-page-loader-name,
+
+.ttvtheme-control-wrapper .ttvtheme-left-sticky-name,
+
+.ttvtheme-control-wrapper .ttvtheme-right-sticky-name,
+
+.ttvtheme-control-wrapper .ttvtheme-menu-sticky-name,
+
+.ttvtheme-control-wrapper .ttvbgcolor-theme-name,
+
+.ttvtheme-control-wrapper .ttvtheme-background-pattern-name{
+
+    font-size: 12px;
+
+}
+
+
+
+.ttvtheme-control-wrapper .ttvtheme-color-box{
+
+    float: left;
+
+}
+
+.ttvtheme-control-wrapper .ttvtheme-color-box input{
+
+    width: 165px;
+
+}
+
+.ttvtheme-control-wrapper .ttvall-theme-content{
+
+    margin-bottom: 15px;
+
+}
+
+
+
+
+
+.ttvtheme-control-wrapper .ttvtheme-color-one{
+
+    margin-bottom: 10px;
+
+    overflow: hidden;
+
+}
+
+.ttvtheme-control-wrapper td{
+
+    padding:4px 0;
+
+}
+
+.ttvtheme-control-wrapper .ttvtheme-option .btn-primary{
+
+    background-color: #222222;
+
+    color: #FFF;
+
+    text-align: center;
+
+    border: none;
+
+    font-weight: 500;
+
+    margin: 0;
+
+    text-transform: uppercase;
+
+}
+
+.ttvtheme-control-wrapper .ttvtheme-option .btn-default{
+
+    background-color: #888;
+
+    color: #FFF;
+
+    text-align: center;
+
+    margin: 0;
+
+    border: none;
+
+    text-transform: uppercase;
+
+}
+
+.ttvtheme-control-wrapper .ttvtheme-option .toggle-handle{
+
+    background-color: #FFF;
+
+    padding: 0px 20px;
+
+}
+
+.ttvtheme-control-wrapper .ttvtheme-color-box input{
+
+    border:none;
+
+    height: 25px;
+
+    padding: 0 32px;
+
+    border: 1px solid #e6e6e6;
+
+    font-size: 12px;
+
+}
+
+.ttvtheme-control-wrapper .ttvtheme-control-title-name{
+
+    float: left;
+
+}
+
+.ttvtheme-control-wrapper .ttvtheme-control-reset{
+
+    background-color:#999;
+
+    margin-bottom: 5px;
+
+    border: none;
+
+    color: #FFF;
+
+    padding: 5px 15px;
+
+    text-transform: uppercase;
+
+    border:1px solid #eee;
+
+    cursor: pointer;
+
+    -webkit-transition: 0.3s ease-in-out;
+
+    -o-transition: 0.3s ease-in-out;
+
+    -ms-transition: 0.3s ease-in-out;
+
+    -moz-transition: 0.3s ease-in-out;
+
+    transition: 0.3s ease-in-out;
+
+    display: inline-block;
+
+}
+
+
+
+.ttvtheme-control-title-name-reset-btn{
+
+    width: 100%;
+
+    overflow: hidden;
+
+    display: block;
+
+    text-align: center;
+
+}
+
+.ttvtheme-control-title-name-reset-btn p{
+
+    font-size: 14px;
+
+    text-transform: capitalize;
+
+    margin-bottom: 5px;
+
+    color: #222222;
+
+}
+
+.ttvtheme-control-wrapper .ttvtheme-control-reset:focus{
+
+    outline: none;
+
+}
+
+.ttvtheme-control-wrapper .ttvtheme-all-pattern-wrapper{
+
+    width: 185px;
+
+}
+
+
+
+.ttvtheme-control-wrapper .ttvtheme-all-pattern{
+
+    width: 22px;
+
+    height: 22px;
+
+    background-color: #FFF;
+
+    float: left;
+
+    margin: 0 5px 5px 0;
+
+    cursor: pointer;
+
+}
+
+.ttvtheme-control-wrapper .ttvtheme-all-pattern .ttvtheme-pattern-image:hover,
+
+.ttvtheme-control-wrapper .ttvtheme-all-pattern .ttvtheme-pattern-image.active{
+
+    border: 2px solid #909090;
+
+}
+
+.ttvtheme-control-wrapper .ttvtheme-all-pattern .ttvtheme-pattern-image{
+
+    width: 22px;
+
+    height: 22px;
+
+    border:1px solid #eee;
+
+}
+
+.ttvcms_theme_active{
+
+    border: 2px solid #f00 !important;
+
+}
+
+.ttvtheme-control-wrapper .ttvtheme-bgcolor-box input{
+
+    width: 165px;
+
+    border: 1px solid #e6e6e6;
+
+    height: 25px;
+
+    padding: 0 32px;
+
+    font-size: 12px;
+
+}
+
+.ttvtheme-background-patten p.notice{
+
+    font-size: 10px;
+
+    display: block;
+
+    float: left;
+
+}
+
+.ttvtheme-left-sticky {
+
+    display: none;
+
+}
+
+.ttvtheme-control-wrapper .ttvtheme-option .toggle-off.btn {
+
+    padding: 8px 0 8px 20px;
+
+}
+
+.ttvtheme-control-wrapper .ttvtheme-option .toggle-on.btn {
+
+    padding: 8px 20px 8px 0px;
+
+}
+
+.ttvtheme-control-wrapper .toggle-group .toggle-on,
+
+.ttvtheme-control-wrapper .toggle-group .toggle-off {
+
+    display: -webkit-box;
+
+    display: -ms-flexbox;
+
+    display: flex;
+
+    -webkit-box-pack: center;
+
+    -ms-flex-pack: center;
+
+    justify-content: center;
+
+    -webkit-box-align: center;
+
+    -ms-flex-align: center;
+
+    align-items: center;
+
+}
+
+
+
+@media (max-width: 767px){
+
+        .ttvcmstheme-control{
+
+            display: none;
+
+        }
+
+}
+
+
+
+.ttvtheme-color-two{
+
+    display: none !important;
+
+}
+
+.ttvtheme-control-wrapper .ttvtheme-control-reset:hover {
+
+    background-color: #222222;
+
+}
+
+.ttvcmstheme-control .ttvtheme-background-patten p.notice {
+
+    color: #222222;
+
+    margin-bottom: 0;
+
+}
+
+.lang-rtl  .ttvtheme-control-wrapper .ttvtheme-color-box ,
+
+.lang-rtl .ttvtheme-control-wrapper .ttvtheme-all-pattern {
+
+    float: right;
+
+}
+
+/***********************END THEME_CONTOL*****************/

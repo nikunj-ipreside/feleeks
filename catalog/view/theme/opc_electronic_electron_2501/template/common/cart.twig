@@ -1,0 +1,105 @@
+<div id="_desktop_cart" class="ttvcms-header-cart">
+	<div class="blockcart cart-preview inactive ttv-header-cart">
+		<div id="cartdropdwon" class="ttvheader-cart-wrapper">
+			<div class="ttvheader-cart-btn-wrapper">
+				<a href="JavaScript:void(0);" title="Cart">
+					<div class="ttvcart-icon-text-wrapper">
+						<span class="ttvcart-lable">Cart</span>
+						<div class="ttv-cart-icon">
+							<i class="fa fa-shopping-cart shopping-cart" aria-hidden="true"></i>
+						</div>
+						<div class="ttv-cart-cart-inner">
+						   <span class="cart-total cart-products-count">{{ ttv_text_items }}</span>
+					   </div>
+					</div>
+				</a>
+			</div>
+			<ul>
+				{% if products or vouchers %}
+				<li>
+					<div class="ttvcmscart-show-dropdown">
+						<div class="ttvcart-product-list">
+							<div class="ttvcart-product-content-box ttvscroll-container">
+								{% for product in products %}
+								<div class="ttvcart-product-wrapper items">
+									<div class="ttvcart-product-list-img">
+										{% if product.thumb %} <a class="ttvshoping-cart-dropdown-img-block" href="{{ product.href }}"><img src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}" /></a> {% endif %}
+									</div>
+									<div class="ttvcart-product-content">
+										<div class="ttvcart-product-list-quentity">
+											<div class="ttvshoping-cart-dropdown-title">
+												<a href="{{ product.href }}"><span class="product-name">{{ product.name }}</span></a>
+											</div>
+										</div>
+										<div class="ttvcart-product-list-price">
+											<span class="product-quentity">{{ product.quantity }}</span>
+											<span class="ttvshopping-cart-quentity">X</span>
+											<span class="product-price">{{ product.total }}</span>
+										</div>
+										<div class="ttvcart-product-list-attribute">
+											{% if product.option %} {% for option in product.option %}
+											<div class="ttvcart-product-attr"><span>{{ option.name }}</span> <span> {{ option.value }}</span></div>
+											{% endfor %} {% endif %} {% if product.recurring %}
+											<div class="ttvcart-product-attr"><span>{{ text_recurring }}</span> <span> {{ product.recurring }}</span></div>
+											{% endif %}
+										</div>
+										<div class="ttvcart-product-remove">
+											<a class="remove-from-cart ttvcmsremove-from-cart" onclick="cart.remove1('{{ product.cart_id }}');" rel="nofollow" data-link-action="delete-from-cart" title="remove from cart">
+														<i class="ion-android-delete"></i>
+													</a>
+										</div>
+									</div>
+								</div>
+								{% endfor %} {% for voucher in vouchers %}
+								<div class="ttvcart-product-wrapper items">
+									<div class="ttvcart-product-content">
+										<div class="ttvcart-product-list-quentity">
+											<div class="ttvshoping-cart-dropdown-title">
+												<span class="product-quentity">1</span>
+												<span class="ttvshopping-cart-quentity">X</span> {{ voucher.description }}
+											</div>
+										</div>
+										<div class="ttvcart-product-list-price">
+											<span class="product-price">{{ voucher.amount }}</span>
+										</div>
+										<div class="ttvcart-product-remove">
+											<a class="remove-from-cart ttvcmsremove-from-cart" rel="nofollow" data-link-action="delete-from-cart" onclick="voucher.remove1('{{ voucher.key }}');" title="{{ button_remove }}">
+														<i class="ion-android-delete"></i>
+													</a>
+										</div>
+									</div>
+								</div>
+								{% endfor %}
+							</div>
+							<div class="ttvcart-product-list-total-info">
+								{% for total in totals %}
+								<div class="ttvcart-product-list-subtotal-prod">
+									<span class="ttvshoping-cart-subtotal">{{ total.title }}</span>
+									<span class="ttvcart-product-price">{{ total.text }}</span>
+								</div>
+								{% endfor %}
+								<div class="ttvcart-product-list-btn">
+									<div class="ttvcart-product-list-checkout">
+										<a href="{{ checkout }}" class="ttv-innerpage-button">{{ text_checkout }}</a>
+									</div>
+									<div class="ttvcart-product-list-viewcart">
+										<a href="{{ cart }}" class="ttv-innerpage-button">{{ text_cart }}</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				{% else %}
+				<li>
+					<div class="ttvcmscart-show-dropdown">
+						<div class="ttvcart-no-product">
+							<div class="ttvcart-no-product-label">{{ text_empty }}</div>
+						</div>
+					</div>
+				</li>
+				{% endif %}
+			</ul>
+		</div>
+	</div>
+</div>

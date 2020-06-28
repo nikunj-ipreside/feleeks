@@ -1,0 +1,50 @@
+{#
+	{{ ttvcmssliderofferbanner_link }}
+{{ image }}
+{% if status_title %}
+	{{ title }}
+{% endif %}
+{% if status_shortdescription %}
+	{{ short_description }}
+{% endif %}
+{% if status_description %}
+	{{ description }}
+{% endif %}
+{% if status_buttoncaption %}
+	{{ button_caption }}
+{% endif %}
+alignment
+{% if status_main_image %}
+	{{ main_image }}
+{% endif %}
+{% if status_main_title %}
+	{{ main_title }}
+{% endif %}
+{% if status_main_shortdescription %}
+	{{ main_short_description }}
+{% endif %}
+{% if status_main_description %}
+	{{ main_description }}
+{% endif %}
+#}
+<div class="ttvcmssliderofferbanners-one col-md-2 col-lg-2">
+    <div class="ttvcmsttvcmssliderofferbanners">
+    	<div class="ttvbanner">
+        	<div class="ttvbanner-wrapper ttvone-banner-wrapper-info">
+            	<div class="ttvbanner1">
+                    <a href="{{ ttvcmssliderofferbanner_link }}">
+                        <div class="ttvbanner-hover-wrapper">
+                            <img src="{{ image }}" class="ttvimage-lazy img-responsive" alt="" />
+                        </div>
+
+                        {% if status_title %}
+                        <div class="ttvofferbanner-text {{ alignment }}">
+                            {{ title }}
+                        </div>
+                        {% endif %}
+                    </a>
+                </div>
+            </div>
+    	</div>
+    </div>
+</div>	

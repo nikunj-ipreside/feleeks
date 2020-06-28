@@ -1,0 +1,116 @@
+
+<div class="ttvcmscustomer-services ttvleftcustomer-service">
+	<div class="ttvcustomer-services">
+		<div class="ttvservice-inner">
+			{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_left_column_title_design.twig' with {'title': title} %}
+
+			<div class="ttvservice-all-block-wrapper">
+				<div class="ttvservices-all-block">
+					<div class="ttv-all-service wrapper">
+						{% if tvcmscustomerservices_cap_1 or tvcmscustomerservices_des_1 %}
+							<div class="ttvservices-center ttvservice-payment">
+								<div class="ttvall-block-box-shadows">
+									<div class="ttvservices-1 ttvall-services-block">
+										<div class="ttvservices-wrapper">
+											<div class="ttvservices-img-conut">
+												<div class="ttvservices-img">
+													<i class="fa fa-smile-o" aria-hidden="true"></i>
+												</div>
+											</div> 
+											<div class="ttvservices-content-box">
+												<div class="ttvservices-info">
+													{% if tvcmscustomerservices_cap_1 %}<div class="ttvservices-title">{{ tvcmscustomerservices_cap_1 }}</div>{% endif %}
+													{% if tvcmscustomerservices_des_1 %}<div class="ttvservice-dec">{{ tvcmscustomerservices_des_1 }}</div>{% endif %}
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+						{% if tvcmscustomerservices_cap_2 or tvcmscustomerservices_des_2 %}
+							<div class="ttvservices-center ttvservice-cash-trustpay">
+								<div class="ttvall-block-box-shadows">
+									<div class="ttvservices-2 ttvall-services-block">
+										<div class="ttvservices-wrapper">
+											<div class="ttvservices-img-conut">
+												<div class="ttvservices-img"><i class="fa fa-ship" aria-hidden="true"></i></div>
+											</div> 
+											<div class="ttvservices-content-box">
+												<div class="ttvservices-info">
+													{% if tvcmscustomerservices_cap_2 %}<div class="ttvservices-title">{{ tvcmscustomerservices_cap_2 }}</div>{% endif %}
+													{% if tvcmscustomerservices_des_2 %}<div class="ttvservice-dec">{{ tvcmscustomerservices_des_2 }}</div>{% endif %}
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+						{% if tvcmscustomerservices_cap_3 or tvcmscustomerservices_des_3 %}
+							<div class="ttvservices-center ttvservice-supprt">
+								<div class="ttvall-block-box-shadows">
+									<div class="ttvservices-3 ttvall-services-block">
+										<div class="ttvservices-wrapper">
+											<div class="ttvservices-img-conut">
+												<div class="ttvservices-img"><i class="fa fa-truck" aria-hidden="true"></i></div>
+											</div>
+											<div class="ttvservices-content-box">
+												<div class="ttvservices-info">
+													{% if tvcmscustomerservices_cap_3 %}<div class="ttvservices-title">{{ tvcmscustomerservices_cap_3 }}</div>{% endif %}
+													{% if tvcmscustomerservices_des_3 %}<div class="ttvservice-dec">{{ tvcmscustomerservices_des_3 }}</div>{% endif %}
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+						{% if tvcmscustomerservices_cap_4 or tvcmscustomerservices_des_4 %}
+							<div class="ttvservices-center ttvservice-shopon">
+								<div class="ttvall-block-box-shadows">
+									<div class="ttvservices-4 ttvall-services-block">
+										<div class="ttvservices-wrapper">
+											<div class="ttvservices-img-conut">
+												<div class="ttvservices-img"><i class="fa fa-usd" aria-hidden="true"></i></div>
+											</div>
+											<div class="ttvservices-content-box">
+												<div class="ttvservices-info">
+													{% if tvcmscustomerservices_cap_4 %}<div class="ttvservices-title">{{ tvcmscustomerservices_cap_4 }}</div>{% endif %}
+													{% if tvcmscustomerservices_des_4 %}<div class="ttvservice-dec">{{ tvcmscustomerservices_des_4 }}</div>{% endif %}
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endif %}
+					</div>
+				</div>			
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+$(document).ready(function () {
+	
+	var mobileViewSize = 991;
+	leftRightServiceTitleToggle();
+	$(window).resize(function() {
+		leftRightServiceTitleToggle();
+	});
+	function leftRightServiceTitleToggle() {
+		$('.ttvcustomer-services .ttvleft-right-title-toggle').on('click', function(e) {
+			if (document.body.clientWidth <= mobileViewSize) {
+				if (!$(this).hasClass('open')) {
+					$(this).removeClass('open');
+					$(this).parent().parent().find('.ttvservice-all-block-wrapper').removeClass('open').stop(false).slideUp(500, "swing");
+				} else {
+					$(this).addClass('open');
+					$(this).parent().parent().find('.ttvservice-all-block-wrapper').addClass('open').stop(false).slideDown(500, "swing");
+				}
+			}
+		});
+	}
+})
+</script>

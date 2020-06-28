@@ -1,0 +1,23 @@
+{#
+{% if status_main_form %}
+	{% if status_main_title %} {{ tag_title }}{% endif %}
+	{% if status_main_short_description %} {{ tag_short_des }}{% endif %}
+{% endif %}
+
+{% if status_record_form %}
+	{% for tag_data in tablink_data %}
+		{% if status_title %} {{ tag_data['tvcmstags_title'] }} {% endif %}
+		{% if status_link %} {{ tag_data['tvcmstags_link'] }} {% endif %}
+	{% endfor %}
+{% endif %}
+#}
+
+<div class="ttvtags-content-box">
+	{% for tag_data in tablink_data %}
+		{% if status_link %}
+			<div class="item ttvtags-wrapper-info">
+				<div class="ttvtags-title"><a href="{{ tag_data['tvcmstags_link'] }}">{{ tag_data['tvcmstags_title'] }}</a></div>
+			</div>
+		{% endif %}
+	{% endfor %}
+</div>

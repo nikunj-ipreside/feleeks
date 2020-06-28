@@ -1,0 +1,88 @@
+{#
+	{% if status_title %}
+		{{ bannarlist.tvcmstwoofferbannersub_img_title_1 }}
+		{{ bannarlist.tvcmstwoofferbannersub_img_title_2 }}
+	{% endif %}
+	{% if status_short_description %}
+		{{ bannarlist.tvcmstwoofferbannersub_img_subtitle_1 }}
+		{{ bannarlist.tvcmstwoofferbannersub_img_subtitle_2 }}
+	{% endif %}
+	{% if status_description %}
+		{{ bannarlist.tvcmstwoofferbannersub_img_description_1 }}
+		{{ bannarlist.tvcmstwoofferbannersub_img_description_2 }}
+	{% endif %}
+	{% if status_btncaption %}
+		{{ bannarlist.tvcmstwoofferbannersub_img_btn_1 }}
+		{{ bannarlist.tvcmstwoofferbannersub_img_btn_2 }}
+		{% endif %}
+	{% if status_link %}
+		{{ bannarlist.tvcmstwoofferbannersub_link_1 }}
+		{{ bannarlist.tvcmstwoofferbannersub_link_2 }}
+	{% endif %}
+
+	{{ bannarlist.tvcmstwoofferbannersub_image_1 }}
+	{{ bannarlist.tvcmstwoofferbannersub_img_align_1 }}
+	{{ bannarlist.tvcmstwoofferbannersub_image_2 }}
+	{{ bannarlist.tvcmstwoofferbannersub_img_align_2 }}
+#}
+
+<div class="ttvcmstwoofferbanners-one container-fluid">
+	<div class="ttvcmsttvcmstwoofferbanners ttvbanner-content">
+		<div class="ttvbanner">
+			<div class="ttvbanner-wrapper ttvone-banner-wrapper-info row">
+				<div class="ttvbanner1 col-md-8 col-sm-8 col-xs-12">
+					<div class="ttvofferbanner-two-inner">
+						<a href="{{ bannarlist.tvcmstwoofferbannersub_link_1 }}">
+							<div class='ttvbanner-hover-wrapper'>
+								<img src="{{ bannarlist.tvcmstwoofferbannersub_image_1 }}" class="img-responsive" alt="" />
+							</div>
+							<div class="{{ bannarlist.tvcmstwoofferbannersub_img_align_1 }}">
+								<div class="ttvtwobanner-content ttvtwoofferbanner-content-one">
+									{% if status_title %}
+										<h6 class="ttvtwobanner-title-text-1 ttvtwobanner-title-text">
+											{{ bannarlist.tvcmstwoofferbannersub_img_title_1 }}
+										</h6>
+									{% endif %}
+									{% if status_short_description %}
+										<h4>{{ bannarlist.tvcmstwoofferbannersub_img_subtitle_1 }}</h4>
+									{% endif %}
+									{% if status_btncaption %}
+										<div class="ttvtwobanner-button-1 ttvtwoofferbaner-btn">
+											<a href="#">{{ bannarlist.tvcmstwoofferbannersub_img_btn_1 }}</a>
+										</div>
+									{% endif %}
+								</div>
+							</div>							
+						</a>
+					</div>
+				</div>
+				<div class="ttvbanner2 col-md-4 col-sm-4 col-xs-12">
+					<div class="ttvofferbanner-two-inner">
+						<a href="{{ bannarlist.tvcmstwoofferbannersub_link_2 }}">
+							<div class='ttvbanner-hover-wrapper'>
+								<img src="{{ bannarlist.tvcmstwoofferbannersub_image_2}}" class="img-responsive" alt="" />
+							</div>
+							<div class="{{ bannarlist.tvcmstwoofferbannersub_img_align_2 }}">
+								<div class="ttvtwobanner-content ttvtwoofferbanner-content-two">
+									{% if status_short_description %}
+										<h4>{{ bannarlist.tvcmstwoofferbannersub_img_subtitle_2 }}</h4>
+									{% endif %}
+									{% if status_title %}
+										<h6 class="ttvtwobanner-title-text-2 ttvtwobanner-title-text">
+											{{ bannarlist.tvcmstwoofferbannersub_img_title_2 }}
+										</h6>
+									{% endif %}
+									{# {% if status_btncaption %}
+										<div class="ttvtwobanner-button-2 ttvtwoofferbaner-btn">
+											<a href="#">{{ bannarlist.tvcmstwoofferbannersub_img_btn_2 }}</a>
+										</div>
+									{% endif %} #}
+								</div>
+							</div>							
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

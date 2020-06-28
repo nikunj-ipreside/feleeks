@@ -1,0 +1,84 @@
+{#
+	{% if title %}
+	{{ title }}
+	{% endif %}
+	{% if subtitle %}
+	{{ subtitle }}
+	{% endif %}
+	{{ footerlogo }}
+{{ socialicon }}
+#}
+<div class="ttvcms-newsletter-wrapper col-xl-3 col-lg-3 col-md-12">
+	<div class="ttvcms-newsletter-inner">
+		<div class="block_newsletter ttv-newsletter-wrapeer">
+			<div class="ttvnewsletter-block">
+				<div class="ttvnewsletter-lable-wrapper">
+					<div class="ttvnewsletter-icon"></div>
+					{% if title %}<p id="block-newsletter-label" class="ttvnewsletter-title">{{ title }}</p>{% endif %}
+				</div>							
+				<div class="ttvnewsletter-input">
+					<div class="ttvnewsleeter-input-button-wraper">
+						<div class="input-wrapper">
+							<input name="email" id="homettvcmsnewsletterpopupnewsletter" type="email" value="" placeholder="{{ text_place_enter }}" aria-labelledby="block-newsletter-label">
+						</div>
+						<div class="ttvnewsleteer-btn-wrapper">
+							<input class="submitNewsletter btn btn-primary hidden-xs-down homettvnewsletter-email-subscribe" name="email" type="submit" value="{{ text_buttonSubscribe }}">
+							<input class="submitNewsletter btn btn-primary hidden-sm-up homettvnewsletter-email-subscribe" name="email" type="submit" value="{{ text_buttonok }}">
+						</div>
+					</div>													
+					{% if subtitle %}
+					<div class="ttvnewsletter-description">
+						<p class="alert-description">{{ subtitle }}</p>
+					</div>
+					{% endif %}
+					<div id="homemsg"></div>
+				</div>
+			</div>
+			{{ socialicon }}
+		</div>
+	</div>		
+</div>
+<script type="text/javascript">
+	$(document).on('click', '#closenewsletter', function() {
+		$(this).parent().remove();
+	});
+	/* NEWSLETTER */
+		$('.submitNewsletter').click(function() {
+			var email = $('#homettvcmsnewsletterpopupnewsletter').val();
+				$.ajax({
+					url: 'index.php?route=extension/module/tvcmsnewsletterpopup/ajaxdata&email=' + encodeURIComponent(email),
+			          type: 'post',
+			          dataType: 'json',
+			          cache: false,
+			          contentType: false,
+			          processData: false,
+			          beforeSend: function() {
+			            $('.homettvnewsletter-email-subscrib').button('loading');
+			          },
+			          complete: function() {
+			            $('.homettvnewsletter-email-subscrib').button('reset');
+			          },
+			          success: function(json) {
+			          	console.log(json);
+			            if (json['text_error_email']) {
+			            	$('#homemsg').html(json['text_error_email']); 
+			            }
+			            if (json['text_repeat_email']) {
+			            	$('#homemsg').html(json['text_repeat_email']); 
+			            }
+			            if (json['text_enter_email']) {
+			            	$('#homemsg').html(json['text_enter_email']); 
+			            }
+			            if (json['text_success_email']) {
+			            	$('#homemsg').html(json['text_success_email']); 
+			            }
+			          },
+			          error: function(xhr, ajaxOptions, thrownError) {
+			            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+			          }
+			    });
+
+			
+		});
+	/* NEWSLETTER */
+	</script>

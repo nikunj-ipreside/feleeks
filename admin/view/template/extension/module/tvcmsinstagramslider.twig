@@ -1,0 +1,169 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-module" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+      </div>
+      <div class="panel-body">
+        <div class="alert alert-info">1/ Before filling in the fields below please <a href="https://instagram.com/developer/register/" target="_blank">Register your application on Instagram API</a>.<br>2/ For the Valid redirect URIs field please enter this URL (<a href="http://192.168.0.101/envato_template/envato_100/envt_101_electronic_digicom_1_7_5/modules/envtcmsinstagramslider/generateToken.php">http://192.168.0.101/envato_template/envato_100/envt_101_electronic_digicom_1_7_5/modules/envtcmsinstagramslider/generateToken.php</a>) to automatically generate your Instagram Access Token.<br><a href="https://youtu.be/7BxCr_ELdkk" target="_blank">Installation and configuration video</a></div>
+        <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-module" class="form-horizontal">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="input-name">{{ entry_name }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="name" value="{{ name }}" placeholder="{{ entry_name }}" id="input-name" class="form-control" />
+              {% if error_name %}
+              <div class="text-danger">{{ error_name }}</div>
+              {% endif %}
+            </div>
+          </div>   
+          <div class="form-group"> 
+            <label class="col-sm-2 control-label" for="input-status">{{ entry_status }}</label>
+            <div class="col-sm-10">
+              <select name="status" id="input-status" class="form-control">
+                {% if status %}
+                <option value="1" selected="selected">{{ text_enabled }}</option>
+                <option value="0">{{ text_disabled }}</option>
+                {% else %}
+                <option value="1">{{ text_enabled }}</option>
+                <option value="0" selected="selected">{{ text_disabled }}</option>
+                {% endif %}
+              </select>
+            </div>
+          </div>
+          <div class="form-group"> 
+            <label class="col-sm-2 control-label" for="input-username">{{ entry_username }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="tvcmsinstagramslider_username" value="{{ tvcmsinstagramslider_username ? tvcmsinstagramslider_username }}" placeholder="{{ entry_username }}" id="input-username" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group"> 
+            <label class="col-sm-2 control-label" for="input-clientid"><font color='red'>*</font> {{ entry_clientid }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="tvcmsinstagramslider_clientid" value="{{ tvcmsinstagramslider_clientid ? tvcmsinstagramslider_clientid }}" placeholder="{{ entry_clientid }}" id="input-clientid" class="form-control" />
+            </div>
+          </div>
+          <div class="form-group"> 
+            <label class="col-sm-2 control-label" for="input-clientsecret"><font color='red'>*</font> {{ entry_clientsecret }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="tvcmsinstagramslider_clientsecret" value="{{ tvcmsinstagramslider_clientsecret ? tvcmsinstagramslider_clientsecret }}" placeholder="{{ entry_clientsecret }}" id="input-clientsecret" class="form-control" />
+            </div>
+          </div>
+           <div class="form-group"> 
+            <label class="col-sm-2 control-label" for="input-imagenumber"><font color='red'>*</font> {{ entry_imagenumber }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="tvcmsinstagramslider_imagenumber" value="{{ tvcmsinstagramslider_imagenumber ? tvcmsinstagramslider_imagenumber }}" placeholder="{{ entry_imagenumber }}" id="input-imagenumber" class="form-control" />
+              {{ entry_imagenumber_des }}
+            </div>
+          </div>
+
+           <div class="form-group"> 
+            <label class="col-sm-2 control-label" for="input-accesstoken">{{ entry_accesstoken }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="tvcmsinstagramslider_accesstoken" value="{{ tvcmsinstagramslider_accesstoken ? tvcmsinstagramslider_accesstoken }}" placeholder="{{ entry_accesstoken }}" id="input-accesstoken" class="form-control" />
+              {{ entry_accesstoken_des }}
+            </div>
+          </div>
+
+           <div class="form-group"> 
+            <label class="col-sm-2 control-label" for="input-refresh">{{ entry_refresh }}</label>
+            <div class="col-sm-10">
+              <select name="tvcmsinstagramslider_refresh" id="input-refresh" class="form-control">
+                <option value="day" {% if tvcmsinstagramslider_refresh == "day" %} selected="selected" {% endif %} >{{ text_day }}</option>
+                <option value="hour" {% if tvcmsinstagramslider_refresh == "hour" %} selected="selected" {% endif %} >{{ text_hour }}</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group"> 
+            <label class="col-sm-2 control-label" for="input-imageformat">{{ entry_imageformat }}</label>
+            <div class="col-sm-10">
+              <select name="tvcmsinstagramslider_imageformat" id="input-imageformat" class="form-control">
+                <option value="thumbnail" {% if tvcmsinstagramslider_imageformat == "thumbnail" %} selected="selected" {% endif %} >{{ text_thumbnail }}</option>
+                <option value="low_resolution" {% if tvcmsinstagramslider_imageformat == "low_resolution" %} selected="selected" {% endif %} >{{ text_medium }}</option>
+                <option value="standard_resolution" {% if tvcmsinstagramslider_imageformat == "standard_resolution" %} selected="selected" {% endif %} >{{ text_large }}</option>
+              </select>
+              
+            </div>
+          </div>
+          <div class="form-group"> 
+            <label class="col-sm-2 control-label" for="input-rezise">{{ entry_resize }}</label>
+            <div class="col-sm-10">
+              <input type="text" name="tvcmsinstagramslider_rezise" value="{{ tvcmsinstagramslider_rezise ? tvcmsinstagramslider_rezise }}" placeholder="{{ entry_resize }}" id="input-rezise" class="form-control" />
+            </div>
+          </div>
+
+          <div class="tab-content">
+              <div class="tab-pane active" id="tab-general">
+                <ul class="nav nav-tabs" id="language">
+                  {% for language in languages %}
+                  <li><a href="#language{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+                  {% endfor %}
+                </ul>
+                <div class="tab-content">{% for language in languages %}
+                  <div class="tab-pane" id="language{{ language.language_id }}">
+                    <div class="form-group">
+                      <label class="col-sm-2 control-label" for="input-name">{{ entry_title }}</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="tvcmsinstagramslider_des[{{ language.language_id }}][main_title]" value="{{ tvcmsinstagramslider_des[language.language_id] ? tvcmsinstagramslider_des[language.language_id].main_title }}" placeholder="{{ entry_title }}" id="input-name" class="form-control" />
+                      </div>
+                    </div>
+                  </div>
+                  {% endfor %}</div>
+              </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  
+  <script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
+  <link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
+  <script type="text/javascript" src="view/javascript/summernote/summernote-image-attributes.js"></script> 
+  <script type="text/javascript" src="view/javascript/summernote/opencart.js"></script> 
+  <script type="text/javascript"><!--
+    $('#language a:first').tab('show');
+    $('#option a:first').tab('show');
+//--></script></div>
+{{ footer }}
+<style type="text/css">
+#content.bootstrap #carrier_wizard form .wizard_error, #content.bootstrap form #carrier_wizard .wizard_error, #content.bootstrap form .alert {
+    clear: both;
+}
+.bootstrap #carrier_wizard .alert-info.wizard_error, .bootstrap .alert.alert-info {
+    border: none;
+    border-left: 3px solid #4ac7e0;
+    padding-left: 50px;
+    position: relative;
+}
+.bootstrap .alert-info {
+    background-color: #dcf4f9;
+    border-color: #25b9d7;
+    color: #1e94ab;
+}
+.bootstrap .alert {
+    border: 1px solid transparent;
+    border-radius: 3px;
+    margin-bottom: 17px;
+    padding: 15px;
+}
+</style>

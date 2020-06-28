@@ -1,0 +1,407 @@
+<script type="text/javascript" src="catalog/view/javascript/jquery/magnific/jquery.magnific-popup.min.js"></script>
+<script type="text/javascript" src="catalog/view/javascript/jquery/datetimepicker/moment/moment.min.js"></script>
+<script type="text/javascript" src="catalog/view/javascript/jquery/datetimepicker/moment/moment-with-locales.min.js"></script>
+<script type="text/javascript" src="catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<link href="catalog/view/javascript/jquery/magnific/magnific-popup.css" rel="stylesheet" />
+<link href="catalog/view/javascript/jquery/datetimepicker/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<div class="row">
+	<div id="content" class="col-sm-12">
+		<div id="main">
+			<div class="ttv-sub-pages-inner-content clearfix">
+				<div class="col-sm-6 ttvproduct-details-img-block">
+					{% if thumb or images %}
+					<ul class="thumbnails">
+						{% if thumb %}
+						<li>
+							<a class="thumbnail" href="{{ popup }}" title="{{ heading_title }}"><img id="img_zoom" src="{{ thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" data-zoom-image="{{ popup }}" /></a>
+						</li>
+						{% endif %} {% if images %}
+						<div class="ttv-additional-image">
+							<div class="ttv-quickview-content-box owl-theme owl-carousel">
+								{% for image in images %}
+									 <a class="thumbnail" href="{{ image.popup }}" title="{{ heading_title }}"> <img src="{{ image.thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" /></a>
+								{% endfor %}
+							</div>
+							<div class="ttvcms-quickview-pagination-wrapper">
+								<div class="ttvcms-quickview-pagination-btn">
+									<div class="ttv-quickview-prev ttvcmsprev-btn"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+									<div class="ttv-quickview-next ttvcmsnext-btn"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+								</div>
+							</div>
+						</div>
+						{% endif %}
+					</ul>
+					{% endif %}
+				</div>
+				<div class="col-sm-6 ttv-wrapper-info">
+					<h1 class="ttvproduct-title">{{ heading_title }}</h1>
+					{% if review_status %}
+					<div class="ttvall-product-star-icon clearfix">
+						{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_rating_design.twig' with {'rating': rating} %}					
+					</div>
+					{% endif %}
+				<ul class="list-unstyled">
+					{% if manufacturer %}
+					<li><span class="ttv-product-label">{{ text_manufacturer }}</span> <a href="{{ manufacturers }}" class="ttvproduct-brand">{{ manufacturer }}</a></li>
+					{% endif %}
+					<li><span class="ttv-product-label">{{ text_model }}</span><span class="ttvproduct-model"> {{ model }} </span></li>
+					{% if reward %}
+					<li><span class="ttv-product-label">{{ text_reward }}</span><span class="ttvproduct-reward"> {{ reward }} </span></li>
+					{% endif %}
+					<li><span class="ttv-product-label">{{ text_stock }}</span><span class="ttvproduct-stock-status"> {{ stock }} </span></li>
+				</ul>
+				<hr> {% if price %}
+				<ul class="list-unstyled product-price-and-shipping">
+					{% if not special %}
+					<li>
+						<h2 class="price">{{ price }}</h2>
+					</li>
+					{% else %}
+					<li><span style="text-decoration: line-through;" class="regular-price">{{ price }}</span></li>
+					<li>
+						<h2 class="price">{{ special }}</h2>
+					</li>
+					{% endif %} {% if tax %}
+					<li class="ttv-tax">{{ text_tax }} {{ tax }}</li>
+					{% endif %} {% if points %}
+					<li class="ttv-point">{{ text_points }} {{ points }}</li>
+					{% endif %} {% if discounts %}
+					<li>
+						<hr>
+					</li>
+					{% for discount in discounts %}
+					<li>{{ discount.quantity }}{{ text_discount }}{{ discount.price }}</li>
+					{% endfor %} {% endif %}
+				</ul>
+				{% endif %}
+				<div id="product"> {% if options %}
+					<hr>
+					<h3 class="ttvpage-sub-title">{{ text_option }}</h3> {% for option in options %} {% if option.type == 'select' %}
+					<div class="form-group{% if option.required %} required {% endif %}">
+						<label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+						<select name="option[{{ option.product_option_id }}]" id="input-option{{ option.product_option_id }}" class="form-control">
+							<option value="">{{ text_select }}</option>
+							{% for option_value in option.product_option_value %}
+							<option value="{{ option_value.product_option_value_id }}">{{ option_value.name }} {% if option_value.price %} ({{ option_value.price_prefix }}{{ option_value.price }}) {% endif %} </option>
+							{% endfor %}
+						</select>
+					</div>
+					{% endif %} {% if option.type == 'radio' %}
+					<div class="form-group{% if option.required %} required {% endif %}">
+						<label class="control-label">{{ option.name }}</label>
+						<div id="input-option{{ option.product_option_id }}"> {% for option_value in option.product_option_value %}
+							<div class="radio">
+								<label>
+									<input type="radio" name="option[{{ option.product_option_id }}]" value="{{ option_value.product_option_value_id }}" /> {% if option_value.image %} <img src="{{ option_value.image }}" alt="{{ option_value.name }} {% if option_value.price %} {{ option_value.price_prefix }} {{ option_value.price }} {% endif %}" class="img-thumbnail" /> {% endif %} {{ option_value.name }} {% if option_value.price %} ({{ option_value.price_prefix }}{{ option_value.price }}) {% endif %} </label>
+							</div>
+							{% endfor %} </div>
+					</div>
+					{% endif %} {% if option.type == 'checkbox' %}
+					<div class="form-group{% if option.required %} required {% endif %}">
+						<label class="control-label">{{ option.name }}</label>
+						<div id="input-option{{ option.product_option_id }}"> {% for option_value in option.product_option_value %}
+							<div class="checkbox">
+								<label>
+									<input type="checkbox" name="option[{{ option.product_option_id }}][]" value="{{ option_value.product_option_value_id }}" /> {% if option_value.image %} <img src="{{ option_value.image }}" alt="{{ option_value.name }} {% if option_value.price %} {{ option_value.price_prefix }} {{ option_value.price }} {% endif %}" class="img-thumbnail" /> {% endif %} {{ option_value.name }} {% if option_value.price %} ({{ option_value.price_prefix }}{{ option_value.price }}) {% endif %} </label>
+							</div>
+							{% endfor %} </div>
+					</div>
+					{% endif %} {% if option.type == 'text' %}
+					<div class="form-group{% if option.required %} required {% endif %}">
+						<label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+						<input type="text" name="option[{{ option.product_option_id }}]" value="{{ option.value }}" placeholder="{{ option.name }}" id="input-option{{ option.product_option_id }}" class="form-control" />
+					</div>
+					{% endif %} {% if option.type == 'textarea' %}
+					<div class="form-group{% if option.required %} required {% endif %}">
+						<label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+						<textarea name="option[{{ option.product_option_id }}]" rows="5" placeholder="{{ option.name }}" id="input-option{{ option.product_option_id }}" class="form-control">{{ option.value }}</textarea>
+					</div>
+					{% endif %} {% if option.type == 'file' %}
+					<div class="form-group{% if option.required %} required {% endif %}">
+						<label class="control-label">{{ option.name }}</label>
+						<button type="button" id="button-upload{{ option.product_option_id }}" data-loading-text="{{ text_loading }}" class="btn btn-default btn-block ttvbtn-upload"><i class="fa fa-upload"></i> {{ button_upload }}</button>
+						<input type="hidden" name="option[{{ option.product_option_id }}]" value="" id="input-option{{ option.product_option_id }}" />
+					</div>
+					{% endif %} {% if option.type == 'date' %}
+					<div class="form-group{% if option.required %} required {% endif %}">
+						<label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+						<div class="input-group date">
+							<input type="text" name="option[{{ option.product_option_id }}]" value="{{ option.value }}" data-date-format="YYYY-MM-DD" id="input-option{{ option.product_option_id }}" class="form-control" />
+							<span class="input-group-btn">
+									<button class="btn btn-default ttv-option-button" type="button"><i class="fa fa-calendar"></i></button>
+								</span>
+						</div>
+					</div>
+					{% endif %} {% if option.type == 'datetime' %}
+					<div class="form-group{% if option.required %} required {% endif %}">
+						<label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+						<div class="input-group datetime">
+							<input type="text" name="option[{{ option.product_option_id }}]" value="{{ option.value }}" data-date-format="YYYY-MM-DD HH:mm" id="input-option{{ option.product_option_id }}" class="form-control" />
+							<span class="input-group-btn">
+									<button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+								</span>
+						</div>
+					</div>
+					{% endif %} {% if option.type == 'time' %}
+					<div class="form-group{% if option.required %} required {% endif %}">
+						<label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+						<div class="input-group time">
+							<input type="text" name="option[{{ option.product_option_id }}]" value="{{ option.value }}" data-date-format="HH:mm" id="input-option{{ option.product_option_id }}" class="form-control" />
+							<span class="input-group-btn">
+									<button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+								</span>
+						</div>
+					</div>
+					{% endif %} {% endfor %} {% endif %} {% if recurrings %}
+					<hr>
+					<h3>{{ text_payment_recurring }}</h3>
+					<div class="form-group required">
+						<select name="recurring_id" class="form-control">
+							<option value="">{{ text_select }}</option>
+							{% for recurring in recurrings %}
+							<option value="{{ recurring.recurring_id }}">{{ recurring.name }}</option>
+							{% endfor %}
+						</select>
+						<div class="help-block" id="recurring-description"></div>
+					</div>
+					{% endif %}
+					<div class="form-group">
+						<label class="control-label ttv-qty-label" for="input-quantity">{{ entry_qty }}</label>
+						<div class='ttv-product-cart-quentity-inner'>									
+							<input type='text' class='ttvproduct-cart-quentity' id="cart_quantity{{ product_id }}" name="quantity" value="1" >
+							<button class='ttvproduct-cart-quentity-decrement'>
+								<i class="fa fa-angle-down" aria-hidden="true"></i>
+							</button>
+							<button class='ttvproduct-cart-quentity-increment'>
+								<i class="fa fa-angle-up" aria-hidden="true"></i>
+							</button>
+						</div>
+						<input type="hidden" name="product_id" value="{{ product_id }}" />
+						<button type="button" id="button-cart" data-loading-text="{{ text_loading }}" class="btn btn-primary btn-lg btn-block"><i class="fa fa-shopping-cart" aria-hidden="true"></i> {{ button_cart }}</button>
+						<div class="btn-group ttvproduct-button-main">
+							<button type="button" class="btn btn-default ttv-wishlist" title="{{ button_wishlist }}" onclick="wishlist.add1('{{ product_id }}');" title="{{ button_wishlist }}" data-link-action="{{ button_wishlist }}" data-toggle="ttvtooltip" data-placement="top" data-html="true" data-original-title="{{ button_wishlist }}"><i class="fa fa-heart"></i>{{ button_wishlist }}</button>
+							<button type="button" class="btn btn-default ttv-compare" title="{{ button_compare }}" onclick="compare.add1('{{ product_id }}');" title="{{ button_compare }}" data-link-action="{{ button_compare }}" data-toggle="ttvtooltip" data-placement="top" data-html="true" data-original-title="{{ button_compare }}"><i class="fa fa-exchange"></i>{{ button_compare }}</button>
+						</div>
+					</div>
+					{% if minimum > 1 %}
+					<div class="alert alert-info"><i class="fa fa-info-circle"></i> {{ text_minimum }}</div>
+					{% endif %}</div>
+				<!-- AddThis Button BEGIN -->
+				<div class="addthis_toolbox addthis_default_style" data-url="{{ share }}">
+					<a class="addthis_button_facebook_like" fb:like:layout="button_count"></a> <a class="addthis_button_tweet"></a> <a class="addthis_button_pinterest_pinit"></a> <a class="addthis_counter addthis_pill_style"></a>
+				</div>
+				<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-515eeaf54693130e"></script>
+				<!-- AddThis Button END -->
+			</div>
+	</div>
+	</div>
+</div>
+</div>
+<script type="text/javascript"><!--
+$('select[name=\'recurring_id\'], input[name="quantity"]').change(function() {
+	$.ajax({
+		url: 'index.php?route=product/product/getRecurringDescription',
+		type: 'post',
+		data: $('input[name=\'product_id\'], input[name=\'quantity\'], select[name=\'recurring_id\']'),
+		dataType: 'json',
+		beforeSend: function() {
+			$('#recurring-description').html('');
+		},
+		success: function(json) {
+			$('.alert-dismissible, .text-danger').remove();
+
+			if (json['success']) {
+				$('#recurring-description').html(json['success']);
+			}
+		}
+	});
+});
+//--></script> 
+<script type="text/javascript"><!--
+$('#button-cart').on('click', function() {
+	$.ajax({
+		url: 'index.php?route=checkout/cart/add',
+		type: 'post',
+		data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
+		dataType: 'json',
+		beforeSend: function() {
+			$('#button-cart').button('loading');
+		},
+		complete: function() {
+			$('#button-cart').button('reset');
+		},
+		success: function(json) {
+			$('.alert-dismissible, .text-danger').remove();
+			$('.form-group').removeClass('has-error');
+
+			if (json['error']) {
+				if (json['error']['option']) {
+					for (i in json['error']['option']) {
+						var element = $('#input-option' + i.replace('_', '-'));
+
+						if (element.parent().hasClass('input-group')) {
+							element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+						} else {
+							element.after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+						}
+					}
+				}
+
+				if (json['error']['recurring']) {
+					$('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
+				}
+
+				$('.text-danger').parent().addClass('has-error');
+			}
+
+			if (json['success']) {
+
+				if (!!$.prototype.fancybox)
+					$.fancybox.open([{
+						type: 'inline',
+						autoScale: true,
+						minHeight: 30,
+						minWidth: "40%",
+						content: '<p class="fancybox-success"> ' + json['success'] + ' </p>'
+					}], {
+						padding: 0
+					});
+				else
+					alert(full_notic);
+
+
+				var re = new RegExp(/^\d+/);
+				var m = re.exec(json['total']);
+
+				setTimeout(function() {
+					$('.cart-total').html(m);
+				}, 100);
+
+
+				//$('html, body').animate({ scrollTop: 0 }, 'slow');
+
+				$('#cartdropdwon > ul').load('index.php?route=common/cart/info ul li');
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+//--></script> 
+<script type="text/javascript"><!--
+$('.date').datetimepicker({
+	language: '{{ datepicker }}',
+	pickTime: false
+});
+$('.datetime').datetimepicker({
+	language: '{{ datepicker }}',
+	pickDate: true,
+	pickTime: true
+});
+$('.time').datetimepicker({
+	language: '{{ datepicker }}',
+	pickDate: false
+});
+//--></script> 
+<script type="text/javascript"><!--
+$('button[id^=\'button-upload\']').on('click', function() {
+	var node = this;
+
+	$('#form-upload').remove();
+
+	$('body').prepend('<form enctype="multipart/form-data" id="form-upload" style="display: none;"><input type="file" name="file" /></form>');
+
+	$('#form-upload input[name=\'file\']').trigger('click');
+
+	if (typeof timer != 'undefined') {
+		clearInterval(timer);
+	}
+
+	timer = setInterval(function() {
+		if ($('#form-upload input[name=\'file\']').val() != '') {
+			clearInterval(timer);
+
+			$.ajax({
+				url: 'index.php?route=tool/upload',
+				type: 'post',
+				dataType: 'json',
+				data: new FormData($('#form-upload')[0]),
+				cache: false,
+				contentType: false,
+				processData: false,
+				beforeSend: function() {
+					$(node).button('loading');
+				},
+				complete: function() {
+					$(node).button('reset');
+				},
+				success: function(json) {
+					$('.text-danger').remove();
+
+					if (json['error']) {
+						$(node).parent().find('input').after('<div class="text-danger">' + json['error'] + '</div>');
+					}
+
+					if (json['success']) {
+						alert(json['success']);
+
+						$(node).parent().find('input').val(json['code']);
+					}
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				}
+			});
+		}
+	}, 500);
+});
+//--></script> 
+<script type="text/javascript"><!--
+$(document).ready(function() {
+	var magnific = $('.thumbnails').magnificPopup({
+		type: 'image',
+		delegate: 'a',
+		gallery: {
+			enabled: true
+		}
+	});
+	magnific.off('click');
+	magnific.on('click', function(e) {
+	  e.preventDefault();
+	});
+	magnific.on('dblclick', function(){
+	  magnific.magnificPopup('open')
+	});
+	$('.ttv-additional-image .ttv-quickview-content-box').owlCarousel({
+		loop: false,
+		dots: false,
+		nav: false,
+		responsive: {
+			0: { items: 1 },
+			320: { items: 2, slideBy: 1 },
+			400: { items: 3, slideBy: 1 },
+			575: { items: 4, slideBy: 1 },
+			768: { items: 2, slideBy: 1 },
+			800: { items: 3, slideBy: 1 },
+			992: { items: 4, slideBy: 1 },
+			1200: { items: 3, slideBy: 1 },
+			1800: { items: 3, slideBy: 1 }
+		},
+	});
+	$('.ttvcms-quickview-pagination-btn .ttv-quickview-prev').click(function(e) {
+		e.preventDefault();
+		$('.ttv-quickview-content-box .owl-nav .owl-prev').trigger('click');
+	});
+	$('.ttvcms-quickview-pagination-btn .ttv-quickview-next').click(function(e) {
+		e.preventDefault();
+		$('.ttv-quickview-content-box .owl-nav .owl-next').trigger('click');
+	});
+});
+
+$('.thumbnail').click(function(){
+	var href = $(this).attr('href');
+	$('#img_zoom').attr('src',href);  
+	$('#img_zoom').attr('data-zoom-image',href);  
+});
+//--></script> 

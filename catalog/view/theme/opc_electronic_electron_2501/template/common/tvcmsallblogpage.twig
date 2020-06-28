@@ -1,0 +1,143 @@
+{{ header }}
+<div id="wrapper">
+	<div id="blog-blog">
+		<!-- all blog module-->
+		<div id="module-ttvcmsblog-archive">
+			<div class="container ttv-left-layout">
+				{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_breadcrumbs_design.twig' with {'breadcrumbs': breadcrumbs} %}
+				<div id="content-wrapper">
+					<div id="main">
+						<div id="content" class="page-content card card-block">
+							<div class="ttv-blog-content-wrapper clearfix">
+								<div class="ttvall-page-top-title"><h1 class="ttvpage-header-title">{{ text_blogspagetitle }}</h1>
+								</div>
+								<div class="kr_blog_post_area">
+									<div class="kr_blog_post_inner products">
+										{% for data in blogpost_data %}
+											<article class="col-xl-4 col-lg-6 col-md-6 col-sm-12 col-xs-12 ttvblog_post blog_post_video">
+												<div class="blog_post_content">
+													<div class="blog_post_content_top">
+														<div class="post_thumbnail">
+															<!-- begin post-video -->
+															 {% if data.tvcmsblog_main_posttype == "video" %}
+																<a href="{{ data.tvcmsblog_main_video }}?autoplay=1" class="item swiper-slide various fancybox fancybox.iframe img_content" style='width:100%;'>
+																	<div class="ttvnews-event-hoverbtn">
+																		<div class="ttvblog-content-img ttvblog-balance-height">
+																			<img src="https://img.youtube.com/vi/{{ data.youtube_id }}/0.jpg" alt="">
+																		</div>
+																		<div class="ttvnews-event-overly"></div>
+																		<div class="ttvnews-event-buttons">
+																			<i class="fa fa-play-circle" aria-hidden="true"></i>
+																		</div>
+																	</div>
+																</a>
+															{% elseif data.tvcmsblog_main_posttype == "gallery" %}
+															<div class="ttvnews-event-hoverbtn">
+																<div class="post_format_items ttvcmsblog-video-slider ttvblog-balance-height ttvcmsblog-gallery-slider-2" data-slider-id="ttvcmsblog-gallery-slider-2">
+																	<div class="ttvblog-wrapper-slider owl-theme owl-carousel">
+																	{% for galleryimage in data.gallery %}
+																		<a href="{{ data.tvcmsblog_main_link }}" style="width:100%;">
+																			<div class="ttvnews-event-hoverbtn">
+																				<div class="ttvblog-content-img ttvblog-balance-height">
+																					<img src="{{ galleryimage }}" alt="">
+																				</div>
+																			</div>
+																		</a>
+																   {% endfor %}
+																	</div>
+																</div>
+																<div class="ttvcmsblog-gallery-slider-pagination">
+																	<div class="ttvcmsblog-gallery-next-pre-btn">
+																		<div class="ttvcmsblog-gallery-slider-prev">
+																			<i class="fa fa-angle-left" aria-hidden="true"></i>
+																		</div>
+																		<div class="ttvcmsblog-gallery-slider-next">
+																			<i class="fa fa-angle-right" aria-hidden="true"></i>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															{% else %}
+															<div class="ttvnews-event-hoverbtn">
+																<a href="{{ data.tvcmsblog_main_link }}">
+																	<img class="ttvcmsblog_img img-responsive" src="{{ data.tvcmsblog_main_featureimage }}" alt="{{ data.tvcmsblog_sub_title }}">
+																</a>
+																<div class="ttvnews-event-overly"></div>
+																<div class="ttvnews-event-buttons">
+																	<a href="{{ data.tvcmsblog_main_link }}">
+																		<i class="fa fa-search" aria-hidden="true"></i>
+																	</a>
+																</div>
+															</div>
+															{% endif %}
+															<!-- end post-video -->
+														</div>
+													</div>
+													<div class="post_content">
+														<h3 class="post_title">
+															<a href="{{ data.tvcmsblog_main_link }}">{{ data.tvcmsblog_sub_title }}</a></h3>
+														<div class="post_meta clearfix">
+															<p class="meta_author">{{ text_blogpostby }} <span>{{ store_owner }}</span></p>
+															<p class="meta_date"><i class="fa fa-calendar-o" aria-hidden="true"></i> {{ data.tvcmsblog_main_adddate }}</p>
+															<p class="meta_category">{{ data.category_title }}</p>
+														</div>
+														<div class="post_description ttvblog-desc-balance-height">
+															<p>{{ data.tvcmsblog_sub_excerpt }} </p>
+														</div>
+														<div class="read_more">
+															<a class="more" href="{{ data.tvcmsblog_main_link }}">{{ text_blogcountinue }} <i class="arrow_right"></i></a>
+														</div>
+													</div>
+												</div>
+											</article>
+										{% endfor %}
+									</div>
+								</div>
+							</div>
+							<!-- begin D:\xampp\htdocs\opencart\hrx\hrx_101\catalog\view\theme\opc_electronic_electron_2501\template\helpfile\tvcmshelp_pagination_design.twig -->
+
+							{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_pagination_design.twig' with {'pagination': pagination} %}
+
+							<!-- end D:\xampp\htdocs\opencart\hrx\hrx_101\catalog\view\theme\opc_electronic_electron_2501\template\helpfile\tvcmshelp_pagination_design.twig -->
+						</div>         
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end all blog module -->
+				
+	</div>
+</div>
+{{ footer }}
+<script type="text/javascript">
+/****************** Start Brand list Slider Js *******************************************/
+$(document).ready(function() {
+	$('#module-ttvcmsblog-archive .ttvblog-wrapper-slider').owlCarousel({
+		loop: false,
+		dots: false,
+		nav: false,
+		responsive: {
+			0: { items: 1 },
+			320: { items: 1, slideBy: 1 },
+			400: { items: 1, slideBy: 1 },
+			768: { items: 1, slideBy: 1 },
+			992: { items: 1, slideBy: 1 },
+			1200: { items: 1, slideBy: 1 },
+			1600: { items: 1, slideBy: 1 },
+			1800: { items: 1, slideBy: 1 }
+		},
+	});
+	$('#module-ttvcmsblog-archive .ttvcmsblog-gallery-slider-prev').click(function(e) {
+		e.preventDefault();
+		$(this).parent().parent().parent().parent().find('.ttvnews-event-hoverbtn .owl-nav .owl-prev').trigger('click');
+	});
+
+	$('#module-ttvcmsblog-archive .ttvcmsblog-gallery-slider-next').click(function(e) {
+		e.preventDefault();
+		$(this).parent().parent().parent().parent().find('.ttvnews-event-hoverbtn .owl-nav .owl-next').trigger('click');
+	});
+
+});
+
+/****************** End Brand list Slider Js *******************************************/
+</script>

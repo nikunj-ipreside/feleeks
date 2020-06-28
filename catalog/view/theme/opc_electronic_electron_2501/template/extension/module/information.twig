@@ -1,0 +1,13 @@
+<div class="ttvcms-sidebar ttvleft-right-penal-all-block ttvall-block-box-shadows">
+	<div class="ttvleft-right-title-wrapper">
+		<div class="ttvleft-right-title facet-label">{{ heading_title }}</div>
+		<div class="ttvleft-right-title-toggle"><i class="fa fa-angle-down" aria-hidden="true"></i></div>
+	</div>
+	<ul class="nav nav-stacked ttv-accountinfo-wrapper">
+		{% for information in informations %}
+		<li><a href="{{ information.href }}">{{ information.title }}</a></li>
+		{% endfor %}
+		<li><a href="{{ contact }}">{{ text_contact }}</a></li>
+		<li><a href="{{ sitemap }}">{{ text_sitemap }}</a></li>
+	</ul>
+</div>

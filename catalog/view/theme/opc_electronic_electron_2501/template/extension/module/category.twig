@@ -1,0 +1,30 @@
+<div class="block-categories hidden-md-down">
+	<ul class="category-top-menu ttvside-panel-dropdown">
+		<li class="ttv-category-title-wrapper">
+			<a class="ttv-main-category-title">{{ heading_title }}</a>
+			<div class="ttvleft-right-title-toggle">
+				<i class="fa fa-angle-down" aria-hidden="true"></i>
+			</div>
+		</li>
+		<li class="ttv-leftcategory-wrapper">
+			<ul class="category-sub-menu">
+				{% set i = 50 %}
+				{% for category in categories %}
+				<li data-depth="0"><a href="{{ category.href }}" class="active">{{ category.name }}</a>
+					{% if category.children %}
+					<div class=" collapse-icons collapsed" data-toggle="collapse" data-target="#exCollapsingNavbar{{ i }}"><i class="fa fa-plus add" aria-hidden="true"></i><i class="fa fa-minus remove" aria-hidden="true"></i></div>
+					<div class="collapse" id="exCollapsingNavbar{{ i }}" style="">
+						<ul class="category-sub-menu">
+							{% for child in category.children %}
+							<li data-depth="1"><a href="{{ child.href }}" class="category-sub-link">{{ child.name }}</a></li>
+							{% endfor %}
+						</ul>
+					</div>
+				</li>
+				{% endif %}
+				{% set i = i + 10 %}
+				{% endfor %}
+			</ul>
+		</li>
+	</ul>
+</div>

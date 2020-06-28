@@ -1,0 +1,92 @@
+{#
+{% if status_main_form %}
+{% if status_main_title %} {{ main_title }} {% endif %}
+{% if status_main_description %} {{ main_description }} {% endif %}
+{% if status_main_short_description %} {{ main_short_description }} {% endif %}
+{% if status_main_image %} {{ main_img }} {% endif %}
+{% endif %}
+{% if status_record_form %}
+{% for data in brandlist_data %}
+{% if status_title %} {{ data.tvcmsbrandlist_lang['title'] }}{% endif %} {% endif %}
+{% if status_short_description %} {{ data.tvcmsbrandlist_lang['short'] }} {% endif %}
+{% if status_description %} {{ data.tvcmsbrandlist_lang['des'] }} {% endif %}
+{% if status_image %} {{ data.tvcmsbrandlist_img }} {% endif %}
+{% if status_link %} {{ data.tvcmsbrandlist_link }} {% endif %}
+{% endfor %}
+{% endif %}
+#}
+<div class="container-fluid ttvcmsbrandlist-slider">
+	<div class="container ttvbrandlist-slider">
+		{% if status_main_form %}
+		<div class="ttvcmsbrandlist-slider-main-title-wrapper">
+			{% include 'opc_electronic_electron_2501/template/helpfile/tvcmshelp_maintitle_design.twig' with {'main_title': main_title,'main_short_des': main_short_description,'main_des': main_description,'main_img': main_img } %}
+		</div>
+		{% endif %}
+		{% if status_record_form %}
+		<div class="ttvbrandlist-slider-inner">
+			<div class="ttvbrandlist-slider-content-box owl-theme owl-carousel">
+				{% for data in brandlist_data %}
+				<div class="item ttvbrandlist-slider-wrapper-info ttvall-block-box-shadows">
+					<div class="ttvbrand-img-block">
+						{% if status_link %}<a href="{{ data.tvcmsbrandlist_link }}" title="{% if status_title %}{{ data.tvcmsbrandlist_lang['title'] }}{% endif %}">{% endif %}
+							{% if status_image %}
+								<img src="{{ data.tvcmsbrandlist_img }}" alt="{% if status_title %}{{ data.tvcmsbrandlist_lang['title'] }}{% endif %}">
+							{% endif %}
+							{% if status_link %}</a>{% endif %}
+					</div>
+					<div class="ttvbrandlist-slider-info-box">
+						<div class="ttvbrandlist-slider-title">{% if status_title %}{{ data.tvcmsbrandlist_lang['title'] }}{% endif %}</div>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+			<div class="ttvcms-brandlist-pagination-wrapper">
+				<div class="ttvcms-brandlist-pagination">
+					<div class="ttvcms-brandlist-next-pre-btn">
+						<div class="ttvbrandlist-slider-prev ttvcmsprev-btn"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+						<div class="ttvbrandlist-slider-next ttvcmsnext-btn"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endif %}
+	</div>
+</div>
+<script type="text/javascript">
+/****************** Start Brand list Slider Js *******************************************/
+$(document).ready(function() {
+	$('.ttvcmsbrandlist-slider .ttvbrandlist-slider-content-box').owlCarousel({
+		loop: true,
+		dots: false,
+		nav: false,
+		autoplay:false,
+		autoplayTimeout:1000,
+		autoplayHoverPause:true,
+		responsive: {
+			0: { items: 1 },
+			320: { items: 1, slideBy: 1 },
+			400: { items: 2, slideBy: 1 },
+			575: { items: 3, slideBy: 1 },
+			768: { items: 4, slideBy: 1 },
+			992: { items: 4, slideBy: 1 },
+			1200: { items: 5, slideBy: 1 },
+			1600: { items: 6, slideBy: 1 },
+			1800: { items: 6, slideBy: 1 }
+		},
+	});
+	$('.ttvbrandlist-slider-prev').click(function(e) {
+		e.preventDefault();
+		$('.ttvcmsbrandlist-slider .owl-nav .owl-prev').trigger('click');
+	});
+
+	$('.ttvbrandlist-slider-next').click(function(e) {
+		e.preventDefault();
+		$('.ttvcmsbrandlist-slider .owl-nav .owl-next').trigger('click');
+	});
+
+	$('.ttvcmsbrandlist-slider .ttvcms-brandlist-pagination-wrapper').insertAfter('.ttvcmsbrandlist-slider .ttvbrandlist-slider-content-box');
+
+});
+
+/****************** End Brand list Slider Js *******************************************/
+</script>

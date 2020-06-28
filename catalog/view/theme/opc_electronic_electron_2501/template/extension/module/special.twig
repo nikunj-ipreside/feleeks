@@ -1,0 +1,24 @@
+<div class="ttv-special-block container-fluid">
+	<div class="ttvspecial-product-wrapper-box">
+		<div class="ttvcms-main-title">
+			<div class="ttv-main-title col-xs-8 col-lg-8 col-md-10 col-sm-10 col-xs-11">
+				<div class="products-section-title">
+					<h3 class="ttvtitle col-xl-12 col-xs-12">{{ heading_title }}</h3>
+				</div>
+			</div>
+		</div>
+		<div class="ttvspecial-product-content">
+			<div class="ttvspecial-product">
+				<div class="owl-carousel owl-theme ttvspecialproduct">
+					{% for product in products %} {% include 'opc_electronic_electron_2501/template/extension/module/tvcmshelp_product_design.twig' with {'product': product} %} {% endfor %}
+				</div>
+			</div>
+			<div class="ttvoc-special-pagination ttvoc-pagination">
+				<div class="ttvoc-special-pagination-next-pre-btn">
+					<div class="ttvoc-special-product-prev"><i class="ion-android-arrow-back"></i></div>
+					<div class="ttvoc-special-product-next"><i class="ion-android-arrow-forward"></i></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

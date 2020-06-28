@@ -1,0 +1,64 @@
+{#
+{% if status_link %} {{ tvcmssingleblock_link }}{% endif %}
+{% if status_image %} {{ icon }}{% endif %}
+{% if status_title %} {{ title }}{% endif %}
+{% if status_shortdescription %} {{ short_description }}{% endif %}
+{% if status_description %} {{ description }}{% endif %}
+{% if status_buttoncaption %} {{ button_caption }}{% endif %}
+{% if status_main_image %} {{ main_image }} {% endif %}
+{% if status_main_title %} {{ main_title }} {% endif %}
+{% if status_main_sub_title %} {{ main_short_description }} {% endif %}
+{% if status_main_description %} {{ main_description }} {% endif %}
+{{ image1 }}
+{{ image2 }}
+{{ image3 }}
+#}
+<div class="container-fluid ttvcmssingle-block" style="background-image:url({{ image1 }})">
+	<div class="container ttvsingle-block">
+		<div class="ttvsingle-block-main-title-wrapper">
+			{#<div class="ttvcmsmain-title-wrapper">
+				<div class="ttvcms-main-title">
+					{% if status_main_sub_title %}<div class="ttvmain-sub-title">{{ main_short_description }}</div>{% endif %}
+					{% if status_main_title %}<div class="ttvmain-title">{{ main_title }}</div>{% endif %}
+					{% if status_main_description %}<div class="ttvmain-desc">{{ main_description }}</div>{% endif %}
+				</div>
+			</div> #}
+		</div>
+		<div class="ttvsingle-block-image-info-wrapper row">
+			<div class="ttv-single-block-image-wrapper-1 col-lg-8 col-md-8 col-sm-12">
+				<div class="ttvsingle-block-image-content-inner">
+					<div class="ttv-single-block-mainimage"><img src="{{ image2 }}" alt=""></div>
+					<div class="ttv-singleblock-content-one">
+						<div class="ttv-single-block-image"><img src="{{ icon }}" alt="{{ icon }}"></div>
+						<div class="ttv-single-block-content">
+							{% if status_shortdescription %}<span class="ttvsingle-block-sub-description">{{ short_description }}</span>{% endif %}
+							{% if status_title %}<span class="ttvsingle-block-title">{{ title }}</span>{% endif %}
+							{% if status_description %}<span class="ttvsingle-block-desc">{{ description }}</span>{% endif %}
+						</div>
+						{% if status_buttoncaption %}
+						<div class="ttvsingle-bolck-btn-link-wrapper">
+							{% if status_link %}<a href="{{ tvcmssingleblock_link }}" class="ttvsingle-bolck-btn-link">{% endif %}
+								{% if status_buttoncaption %}<button class="ttvsingle-bolck-btn">{{ button_caption }}</button>{% endif %}
+								{% if status_link %}</a>{% endif %}
+						</div>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			<div class="ttvsingle-block-info-box col-lg-4 col-md-4 col-sm-12">
+				<div class="ttvsingle-block-image-two"><img src="{{ image3 }}" alt=""></div>
+				<div class="ttv-singleblock-content-two">
+					{% if status_buttoncaption %}
+					<div class="ttvsingle-bolck-btn-link-wrapper">
+						{% if status_link %}<a href="{{ tvcmssingleblock_link }}" class="ttvsingle-bolck-btn-link">{% endif %}
+							{% if status_buttoncaption %}
+							<button class="ttvsingle-bolck-btn">{{ button_caption }}<i class="fa fa-angle-right" aria-hidden="true"></i></button>
+							{% endif %}
+							{% if status_link %}</a>{% endif %}
+					</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,229 @@
+<?php
+class ControllerExtensionModuleTvcmscustomlink extends Controller {
+	private $error = array();
+
+	public function index() {
+		$this->load->language('extension/module/tvcmscustomlink');
+
+		$this->document->setTitle($this->language->get('heading_title'));
+
+		$this->load->model('setting/module');
+		$this->load->model('localisation/language');
+		$this->load->model('catalog/tvcmscustomlink');
+
+		$status = $this->status();
+		$data['main_form'] 				= $status['main_form'];
+		$data['main_title'] 			= $status['main_title'];
+		$data['main_short_description'] = $status['main_short_description'];
+
+		$data['record_form'] 			= $status['record_form'];
+		$data['title'] 					= $status['title'];
+		$data['link'] 					= $status['link'];
+
+		if (($this->request->server['REQUEST_METHOD'] == 'POST') && $this->validate()) {
+			if(isset($this->request->post['tvcustomlink']) && !empty($this->request->post['tvcustomlink'])){
+				$post_data = $this->request->post['tvcustomlink'];
+			}else{
+				$post_data = array();
+			}
+
+			$this->model_catalog_tvcmscustomlink->addcustomlink($post_data);
+			unset($this->request->post['tvcustomlink']);
+
+			if (!isset($this->request->get['module_id'])) {
+				$this->model_setting_module->addModule('tvcmscustomlink', $this->request->post);
+			} else {
+				$this->model_setting_module->editModule($this->request->get['module_id'], $this->request->post);
+			}
+
+			$this->session->data['success'] = $this->language->get('text_success');
+
+			$this->response->redirect($this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module', true));
+		}
+
+		$checkrecord = $this->model_catalog_tvcmscustomlink->checkdata();
+		if (isset($this->request->post['tvcustomlink'])) {
+			$tvcustomlink = $this->request->post['tvcustomlink'];
+		} elseif ($checkrecord->num_rows) {
+			$tvcustomlink = $checkrecord->rows;
+		} else {
+			$tvcustomlink = array();
+		}
+		$data['tvcustomlink'] = array();
+
+		if (!empty($tvcustomlink))  {
+
+			foreach ($tvcustomlink as $tvcustom_link) {
+			
+				$title 	= ( isset($tvcustom_link['tvcustomlink_title']) ? json_decode($tvcustom_link['tvcustomlink_title'],1) : array() );
+				$id  	= ( isset($tvcustom_link['tvcustomlink_id']) ? $tvcustom_link['tvcustomlink_id']:'' );
+				$link 	= ( isset($tvcustom_link['tvcustomlink_link']) ? $tvcustom_link['tvcustomlink_link']:'' );
+				$status = ( isset($tvcustom_link['tvcustomlink_status']) ? $tvcustom_link['tvcustomlink_status']:'' );
+				
+				$data['tvcustomlink'][] = array(
+					'tvcustomlink_id' 		=> $id,
+					'tvcustomlink_title' 	=> $title,
+					'tvcustomlink_link'     => $link,
+					'tvcustomlink_status'   => $status
+				);
+			}
+		}
+		
+
+		if (isset($this->error['warning'])) {
+			$data['error_warning'] = $this->error['warning'];
+		} else {
+			$data['error_warning'] = '';
+		}
+
+		if (isset($this->error['name'])) {
+			$data['error_name'] = $this->error['name'];
+		} else {
+			$data['error_name'] = '';
+		}
+
+		$data['breadcrumbs'] = array();
+
+		$data['breadcrumbs'][] = array(
+			'text' => $this->language->get('text_home'),
+			'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true)
+		);
+
+		$data['breadcrumbs'][] = array(
+			'text' => $this->language->get('text_extension'),
+			'href' => $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module', true)
+		);
+
+
+		if (!isset($this->request->get['module_id'])) {
+			$data['breadcrumbs'][] = array(
+				'text' => $this->language->get('heading_title'),
+				'href' => $this->url->link('extension/module/tvcmscustomlink', 'user_token=' . $this->session->data['user_token'], true)
+			);
+		} else {
+			$data['breadcrumbs'][] = array(
+				'text' => $this->language->get('heading_title'),
+				'href' => $this->url->link('extension/module/tvcmscustomlink', 'user_token=' . $this->session->data['user_token'] . '&module_id=' . $this->request->get['module_id'], true)
+			);
+		}
+		
+		$data['text_main']		    = $this->language->get('text_main');
+		$data['text_submain']		= $this->language->get('text_submain');
+		$data['entry_title']		= $this->language->get('entry_title');
+		$data['entry_link']			= $this->language->get('entry_link');
+		$data['entry_name']			= $this->language->get('entry_name');
+		$data['entry_main_title']	= $this->language->get('entry_main_title');
+		$data['entry_main_short']	= $this->language->get('entry_main_short');
+
+		$data['user_token']			= $this->session->data['user_token'];
+
+		if (!isset($this->request->get['module_id'])) {
+			$data['action'] 	= $this->url->link('extension/module/tvcmscustomlink', 'user_token=' . $this->session->data['user_token'], true);
+		} else {
+			$data['action'] 	= $this->url->link('extension/module/tvcmscustomlink', 'user_token=' . $this->session->data['user_token'] . '&module_id=' . $this->request->get['module_id'], true);
+		}
+
+		$data['cancel'] 		= $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=module', true);
+
+
+		if (isset($this->request->get['module_id']) && ($this->request->server['REQUEST_METHOD'] != 'POST')) {
+			$module_info 		= $this->model_setting_module->getModule($this->request->get['module_id']);
+		}
+
+		if(!empty($data['main_form'])){
+			if (isset($this->request->post['tvcmscustomlink_main'])) {
+				$data['tvcmscustomlink_main'] 		= $this->request->post['tvcmscustomlink_main'];
+			} elseif (!empty($module_info['tvcmscustomlink_main'])) {
+				$data['tvcmscustomlink_main'] 		= $module_info['tvcmscustomlink_main'];
+			} else {
+				$data['tvcmscustomlink_main'] 		= '';
+			}
+		}
+
+		if (isset($this->request->post['name'])) {
+			$data['name'] 		= $this->request->post['name'];
+		} elseif (!empty($module_info)) {
+			$data['name'] 		= $module_info['name'];
+		} else {
+			$data['name'] 		= '';
+		}
+
+		if (isset($this->request->post['status'])) {
+			$data['status'] 	= $this->request->post['status'];
+		} elseif (!empty($module_info)) {
+			$data['status'] 	= $module_info['status'];
+		} else {
+			$data['status']	 	= "";
+		}
+
+		$data['languages'] 		= $this->model_localisation_language->getLanguages();
+		$data['header'] 		= $this->load->controller('common/header');
+		$data['column_left'] 	= $this->load->controller('common/column_left');
+		$data['footer'] 		= $this->load->controller('common/footer');
+
+		$this->response->setOutput($this->load->view('extension/module/tvcmscustomlink', $data));
+	}
+	public function install(){
+
+		$main 			= array();
+		$main['name'] 	= "Custom Link";
+		$main['status'] = 1;
+
+		$this->load->model('setting/module');
+		$this->load->model('localisation/language');
+		$this->load->model('catalog/tvcmscategoryslider');
+		$languages = $this->model_localisation_language->getLanguages();
+
+        foreach ($languages as $value) {
+        	$main['tvcmscustomlink_main'][$value['language_id']] =  array('tvcmscustomlink_main_title'=>"Main Title",'tvcmscustomlink_main_short'=>"Short Description");
+		}
+
+		$this->model_setting_module->addModule('tvcmscustomlink', $main);
+		
+		$this->db->query("CREATE TABLE IF NOT EXISTS `" . DB_PREFIX . "tvcustomlink` 
+		(   `tvcustomlink_id` int(11) AUTO_INCREMENT,
+            `tvcustomlink_title` VARCHAR(100),
+            `tvcustomlink_link` VARCHAR(100),
+            `tvcustomlink_pos` int(11),
+            `tvcustomlink_status` int(11),
+        PRIMARY KEY (`tvcustomlink_id`)) ENGINE = InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1;");
+
+		$num_of_data = 5;
+
+	 	for ($i = 1; $i<=4; $i++) {
+	        foreach ($languages as $value) {
+				$ee['language'][$value['language_id']] = array("title"=>"Cusotm Link".$i."");
+			}
+			 $this->db->query("INSERT INTO " . DB_PREFIX . "tvcustomlink SET tvcustomlink_title = '" . json_encode($ee['language']) . "', tvcustomlink_link = '#', tvcustomlink_pos = '1', tvcustomlink_status = '1'");
+    	}
+	}	
+	public function uninstall(){
+		$pre = DB_PREFIX;
+		$this->db->query("DROP TABLE `{$pre}tvcustomlink`");
+	}	
+	protected function status(){
+		return $this->Tvcmsthemevoltystatus->customlinkstatus();
+	}
+	public function ajax() {
+		$this->load->model('catalog/tvcmscustomlink');
+		$update_position 	= $this->request->get['action'];
+		$position 			= $this->request->get['recordsArray'];
+		$return_data 		= array();
+		if ($update_position == 'update_position') {
+		    $return_data['success'] = 'right';
+		    $this->model_catalog_tvcmscustomlink->updatePosition($position);
+		    echo $res = implode("##", $return_data);
+		}
+	}
+	protected function validate() {
+		if (!$this->user->hasPermission('modify', 'extension/module/tvcmscustomlink')) {
+			$this->error['warning'] = $this->language->get('error_permission');
+		}
+
+		if ((utf8_strlen($this->request->post['name']) < 3) || (utf8_strlen($this->request->post['name']) > 64)) {
+			$this->error['name'] = $this->language->get('error_name');
+		}
+
+		return !$this->error;
+	}
+}

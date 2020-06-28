@@ -1,0 +1,132 @@
+
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" form="form-imageslider" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i></button>
+        <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a></div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid"> {% if error_warning %}
+    <div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      <button type="button" class="close" data-dismiss="alert">&times;</button>
+    </div>
+    {% endif %}
+
+    <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-imageslider" class="form-horizontal">
+
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_form }}</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="input-statusa{{ language.language_id }}">{{ column_status }}</label>
+                <div class="col-sm-10">
+                  <select name="tvcmstestimonial_status" id="input-tvcmstestimonial_status" class="form-control">
+                    {% if tvcmstestimonial_status %}
+                      <option value="1" selected="selected">{{ text_enabled }}</option>
+                      <option value="0">{{ text_disabled }}</option>
+                    {% else %}
+                      <option value="1">{{ text_enabled }}</option>
+                      <option value="0" selected="selected">{{ text_disabled }}</option>
+                    {% endif %}
+                  </select>      
+                </div>
+            </div> 
+            <div class="form-group {% if link %} {% else %} hidden {% endif %}">
+                <label class="col-sm-2 control-label" for="input-link{{ language.language_id }}">{{ column_link }}</label>
+                <div class="col-sm-10">
+                  <input type="text" name="tvcmstestimonialmain_link" value="{{ tvcmstestimonialmain_link }}" placeholder="{{ column_link }}" id="input-name{{ language.language_id }}" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group {% if image %} {% else %} hidden {% endif %}">
+                <label class="col-sm-2 control-label" for="input-link{{ language.language_id }}">{{ entry_main_img }}</label>
+                <div class="col-sm-10">               
+                  <a href="" id="thumb-image_main" data-toggle="image" class="img-thumbnail">
+                    <img src="{{ sub_img1 }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                  </a>
+                  <input type="hidden" name="tvcmstestimonial_img" value="{{ tvcmstestimonial_img ? tvcmstestimonial_img }}" id="input-image_main" />
+                </div>
+            </div>
+            <div class="form-group {% if signature_image %} {% else %} hidden {% endif %}">
+                <label class="col-sm-2 control-label" for="input-link{{ language.language_id }}">{{ entry_sing_img }}</label>
+                <div class="col-sm-10">
+                  <a href="" id="thumb-image_sing" data-toggle="image" class="img-thumbnail">
+                    <img src="{{ sub_img2 }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                  </a>
+                  <input type="hidden" name="tvcmstestimonial_sing_img" value="{{ tvcmstestimonial_sing_img ? tvcmstestimonial_sing_img }}" id="input-image_sing" />
+                </div>
+            </div>
+            <div class="form-group {% if signature_text %} {% else %} hidden {% endif %}">
+                <label class="col-sm-2 control-label" for="input-sing_text{{ language.language_id }}">{{ entry_sing_text }}</label>
+                <div class="col-sm-10">
+                  <input type="text" name="tvcmstestimonialmain_sing_text" value="{{ tvcmstestimonialmain_sing_text }}" placeholder="{{ entry_sing_text }}" id="input-name{{ language.language_id }}" class="form-control" />
+                 </div>
+            </div>
+          
+          <div class="tab-content">
+              <div class="tab-pane active" id="tab-general">
+                {% if title or designation or short_description or description %}
+                  <ul class="nav nav-tabs" id="language">
+                    {% for language in languages %}
+                    <li><a href="#language{{ language.language_id }}" data-toggle="tab"><img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" /> {{ language.name }}</a></li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+                <div class="tab-content">{% for language in languages %}
+                  <div class="tab-pane" id="language{{ language.language_id }}">
+                    {% if title %}
+                    <div class="form-group {% if title %} {% else %} hidden {% endif %}">
+                      <label class="col-sm-2 control-label" for="input-tvcmstestimonialsub_title{{ language.language_id }}">{{ column_title }}</label>
+                      <div class="col-sm-10">
+                        <input type="text" name="tvcmstestimonial[{{ language.language_id }}][tvcmstestimonialsub_title]" value="{{ tvcmstestimonial[language.language_id] ? tvcmstestimonial[language.language_id].tvcmstestimonialsub_title }}" placeholder="{{ column_title }}" id="input-name{{ language.language_id }}" class="form-control" />
+
+                        <input type="hidden" name="tvcmstestimonial[{{ language.language_id }}][lang]" value="{{ language.language_id }}" placeholder="{{ column_title }}" id="input-name{{ language.language_id }}" class="form-control" />
+                      </div>
+                    </div>
+                    {% endif %}
+                      <div class="form-group {% if designation %} {% else %} hidden {% endif %}">
+                        <label class="col-sm-2 control-label" for="input-tvcmstestimonialsub_designation{{ language.language_id }}">{{ column_desi }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="tvcmstestimonial[{{ language.language_id }}][tvcmstestimonialsub_designation]" value="{{ tvcmstestimonial[language.language_id] ? tvcmstestimonial[language.language_id].tvcmstestimonialsub_designation }}" placeholder="{{ column_desi }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+                      <div class="form-group {% if short_description %} {% else %} hidden {% endif %}">
+                        <label class="col-sm-2 control-label" for="input-tvcmstestimonialsub_short_description{{ language.language_id }}">{{ entry_short_des }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="tvcmstestimonial[{{ language.language_id }}][tvcmstestimonialsub_short_description]" value="{{ tvcmstestimonial[language.language_id] ? tvcmstestimonial[language.language_id].tvcmstestimonialsub_short_description }}" placeholder="{{ entry_short_des }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+                      <div class="form-group {% if description %} {% else %} hidden {% endif %}">
+                        <label class="col-sm-2 control-label" for="input-tvcmstestimonialsub_description{{ language.language_id }}">{{ column_des }}</label>
+                        <div class="col-sm-10">
+                          <input type="text" name="tvcmstestimonial[{{ language.language_id }}][tvcmstestimonialsub_description]" value="{{ tvcmstestimonial[language.language_id] ? tvcmstestimonial[language.language_id].tvcmstestimonialsub_description }}" placeholder="{{ column_des }}" id="input-name{{ language.language_id }}" class="form-control" />
+                        </div>
+                      </div>
+                  </div>
+                  {% endfor %}</div>
+              </div>
+          </div>
+
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
+  <link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
+  <script type="text/javascript" src="view/javascript/summernote/summernote-image-attributes.js"></script> 
+  <script type="text/javascript" src="view/javascript/summernote/opencart.js"></script> 
+  <script type="text/javascript"><!--
+    $('#language a:first').tab('show');
+    $('#languagew a:first').tab('show');
+//--></script></div>
+{{ footer }} 

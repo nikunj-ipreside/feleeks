@@ -1,0 +1,8 @@
+{% if status_main_form %}
+{% if status_main_title %} {{ main_title }} {% endif %}
+{% if status_main_short_description %} {{ main_short_description }} {% endif %}
+{% endif %}
+{% for cust_data in custlink_data %}
+{% if status_title %} {{ cust_data['tvcustomlink_title'] }} {% endif %}
+{% if status_link %} {{ cust_data['tvcustomlink_link'] }} {% endif %}
+{% endfor %}

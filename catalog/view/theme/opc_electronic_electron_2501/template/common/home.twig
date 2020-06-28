@@ -1,0 +1,22 @@
+
+{{ header }}
+<div id="wrapper">
+	<div class="container  ttv-left-layout">
+		<div class="row">
+			
+			{% set class = 'col-xl-12 col-lg-12 col-md-12 col-sm-12 col-xs-12' %}
+			
+			<div id="content-wrapper" class="left-column {{ class }}">
+				<div id="content" class="page-home">
+					{{ content_top }}
+				</div>					
+			</div>
+			{{ column_right }}
+		</div>
+	</div>
+	<div>
+		{{ content_bottom }}
+	</div>
+</div>
+{{ footer }}
+</footer>

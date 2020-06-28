@@ -1,0 +1,132 @@
+<div class='container-fluid ttvcmstabcategory-product-slider'>
+        <div class='container ttvtabcategory-product-slider'>
+            <div class='ttvtabcategory-tab-product'>
+                {% if maintitle %}
+                <div class='ttvtabcategory-all-tab ttvtabcategory-product-desktop-view'>
+                        <div class="ttvcmsmain-title-wrapper">
+                            <div class="ttvcmsmain-title-wrapper clearfix">
+                                <div class="ttvcms-main-title">
+                                    <div class="ttvmain-title">
+                                        <h2>{{ maintitle }}</h2>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                    
+                </div>
+                {% endif %}                    
+                <div class="ttvtabcategory-product-tab-wrap">
+                    <div class="ttvtabcategory-product-tab-inner">
+                        {% if categoryproduct_data %}
+                            <div class="ttvtabcategory-product-sub-title-block">
+                                <div class="ttvtabcategory-product-inner">
+                                    {% set i = 1 %}
+                                    {% for data in categoryproduct_data %}
+                                        <div class="ttvtabcategory-product-li {% if i == '1' %}active{% endif %}">
+                                            <div class="ttvtabcategory-product-icon"></div>
+                                            <a class="ttvtabcategory-tab-sub-title {% if i == '1' %}active{% endif %}" title='{{ data.title }}' data-category-id='{{ data.id_category }}' data-num-prod='{{ data.num_of_prod }}'>
+                                                {% if status_image %}<img src="{{ data.image }}">{% endif %}
+                                                {% if status_title %}<span>{{ data.title }}</span>{% endif %}
+                                            </a>
+                                        </div>
+                                        {% set i = i + 1 %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                        {% endif %}
+                        <div class='ttvtabcategory-all-product'>
+                            {# Stat Ajax is Call #}
+                            <div class='ttvtabcategory-all-product-wrapper'>
+                            </div>
+                            {# End Ajax is Call #}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <style type="text/css">
+
+    </style>
+    <script type="text/javascript">
+    $(document).ready(function(){
+
+    url = 'index.php?route=common/tvcmscategoryproduct/autocomplete';
+    var category_id = $('.ttvtabcategory-tab-product .ttvtabcategory-product-li a.ttvtabcategory-tab-sub-title.active').attr('data-category-id');
+    var num_of_prod = $('.ttvtabcategory-tab-product .ttvtabcategory-product-li a.ttvtabcategory-tab-sub-title.active').attr('data-num-prod');
+    getDataUsingAjax(url, category_id, num_of_prod);
+    $(document).on('click','.ttvtabcategory-tab-product .ttvtabcategory-product-li a.ttvtabcategory-tab-sub-title', function(){
+        url = 'index.php?route=common/tvcmscategoryproduct/autocomplete';
+        $('.ttvtabcategory-tab-product .ttvtabcategory-product-li, .ttvtabcategory-tab-product .ttvtabcategory-product-li a').removeClass('active');
+        $(this).addClass('active');
+        $(this).parent().addClass('active');
+        var category_id = $(this).attr('data-category-id');
+        var num_of_prod = $(this).attr('data-num-prod');
+        getDataUsingAjax(url, category_id, num_of_prod);
+    });
+
+    function getDataUsingAjax(url, category_id, num_of_prod)
+    {
+        $.ajax({
+            type: 'POST',
+            url: 'index.php?route=extension/module/tvcmscategoryproduct/autocomplete',
+            data: 'category_id='+ category_id + '&num_of_prod=' + num_of_prod ,
+            success: function(data)
+            {
+                $('.ttvcmstabcategory-product-slider .ttvtabcategory-product-pagination').remove();
+                $('.ttvtabcategory-all-product-wrapper').html('');
+                $('.ttvtabcategory-all-product-wrapper').append(data);
+                callSlider();
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.log(textStatus, errorThrown);
+            }
+        });
+    }
+
+
+    /**************************** Start Slider ****************************************/
+    function callSlider()
+    {
+          
+        $('.ttvtabcategory-all-product-content-box .ttvtabcategory-all-product-slider').owlCarousel({
+          loop: false,
+          dots: false,
+          nav: false,
+          responsive: {
+            0: { items: 1},
+            320:{ items: 1, slideBy: 1},
+            576:{ items: 1, slideBy: 1},
+            768:{ items: 2, slideBy: 1},
+            992:{ items: 3, slideBy: 1},
+            1200:{ items: 3, slideBy: 1},
+            1400:{ items: 4, slideBy: 1},
+            1600:{ items: 4, slideBy: 1},
+            1800:{ items: 4, slideBy: 1}
+          },
+        });
+        
+        $('.ttvtabcategory-product-prev').click(function(e){
+          e.preventDefault();
+          $('.ttvtabcategory-all-product-content-box .ttvtabcategory-all-product-slider .owl-nav .owl-prev').trigger('click');
+        });
+
+        $('.ttvtabcategory-product-next').click(function(e){
+          e.preventDefault();
+          $('.ttvtabcategory-all-product-content-box .ttvtabcategory-all-product-slider .owl-nav .owl-next').trigger('click');
+        });
+          
+        $(".ttvtabcategory-all-product-slider .ttvproduct-info-box-wrapper .product-description").balance();
+        $(".ttvcmstabcategory-product-slider .ttvtabcategory-product-pagination").insertAfter('.ttvcmstabcategory-product-slider .ttvcmsmain-title-wrapper .ttvcms-main-title');
+    }
+
+
+    
+        
+    
+    /**************************** End Slider ****************************************/
+
+    /*********************** End Ajax And Slider *******************************/
+
+});
+    </script>

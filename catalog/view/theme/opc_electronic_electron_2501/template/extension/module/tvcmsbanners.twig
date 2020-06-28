@@ -1,0 +1,56 @@
+{#
+{% if status_main_form %}
+{% if status_main_title %} {{ main_title }} {% endif %}
+{% if status_main_short_description %} {{ main_short_description }} {% endif %}
+{% if status_main_description %} {{ main_description }} {% endif %}
+{% if status_main_image %} {{ main_image }} {% endif %}
+{% endif %}
+{% if status_record_form %}
+	{% for banner in banners_data %}
+		{% if status_title %} 
+		{% endif %}
+		{% if status_short_description %} 
+		{% endif %}
+		{% if status_description %} 
+		{% endif %}
+		{% if status_image %}
+			{{ banner['tvcmsbanners_img'] }}
+		{% endif %}
+		{% if status_link %} 
+			{{ banner['tvcmsbanners_link'] }}
+		{% endif %}
+	{% endfor %}
+{% endif %}
+
+
+
+#}
+
+{% if status_record_form %}
+<div class="ttvcmsofferbanners-one container-fluid">
+	<div class="ttvcmsttvcmsofferbanners">
+		<div class="ttvbanner">
+			<div class="ttvbanner-wrapper ttvone-banner-wrapper-info">
+				{% for banner in banners_data %}			
+					<div class="ttvbanner1">
+						<a href="{{ banner['tvcmsbanners_link'] }}" title="This is Caption">
+							{% if status_image %}
+								<div class="ttvbanner-hover-wrapper">
+									<img src='{{ banner['tvcmsbanners_img'] }}' class="img-responsive" alt="This is Caption">
+								</div>
+							{% endif %}
+							<div class="{{ banner['tvcmsbanners_align'] }}">
+								<div class="center ttvofferbanner-content">
+			                        <h4>{{ banner['tvcmsbanners_title'] }}</h4>
+			                        <h6>{{ banner['tvcmsbanners_descriptionshort'] }}</h6>
+			                        <p>{{ banner['tvcmsbanners_description'] }}</p>
+			                    </div>
+			                </div>
+						</a>
+					</div>
+				{% endfor %}					
+			</div>
+		</div>
+	</div>
+</div>
+{% endif %}

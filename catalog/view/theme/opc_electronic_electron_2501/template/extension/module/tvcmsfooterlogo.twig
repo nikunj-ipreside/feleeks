@@ -1,0 +1,19 @@
+{# {% if status_main_form %}
+{% if status_main_image %} {{ main_footer_img }}{% endif %}
+{% if status_main_short_description %} {{ main_footer_short_des }} {% endif %}
+{% if status_main_description %} {{ main_footer_main_des }} {% endif %}
+{% if status_main_title %} {{ main_footer_main_title }} {% endif %}
+{% endif %}
+#}
+{% if status_main_form %}
+<div class="ttvfooter-about-logo-wrapper">
+	<div class="ttvfooter-logo-block">
+		{% if status_main_image %}
+			<div class="ttvfooter-img-block">
+				<img src="{{ main_footer_img }}" alt="footerimage">
+			</div>
+		{% endif %}
+		{% if status_main_short_description %} <div class="ttvfooter-logo-desc">{{ main_footer_short_des }}</div> {% endif %}
+	</div>
+</div>
+{% endif %}
